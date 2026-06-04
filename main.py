@@ -1,23 +1,11 @@
-"""GENESIS ezdxf Service — LEANS Tech GmbH — vollautomatisch, libredwg-basiert."""
-import base64, os, subprocess, tempfile, traceback
+"""GENESIS DXF Service — LEANS Tech GmbH — ezdxf, ohne LibreDWG (stabil)."""
+import base64, os, tempfile, traceback
 from fastapi import FastAPI, Request, Header, HTTPException
 from fastapi.responses import Response, JSONResponse
 import ezdxf
 
-app = FastAPI(title="GENESIS ezdxf Service", version="2.0")
+app = FastAPI(title="GENESIS DXF Service", version="3.0")
 API_KEY = os.environ.get("GENESIS_API_KEY", "")
-
-def run(cmd, timeout=120):
-    subprocess.run(cmd, check=True, timeout=timeout,
-                   capture_output=True)
-
-def dwg_to_dxf(dwg, dxf):
-    # libredwg: dwg2dxf
-    run(["dwg2dxf", "-y", "-o", dxf, dwg])
-
-def dxf_to_dwg(dxf, dwg):
-    # libredwg: dwgwrite (DXF -> DWG)
-    run(["dwgwrite", "-y", "-o", dwg, dxf])
 
 def apply_changes(dxf_path, elements):
     doc = ezdxf.readfile(dxf_path); msp = doc.modelspace(); log = []
@@ -33,7 +21,7 @@ def apply_changes(dxf_path, elements):
                     if tg and tg in c.replace(" ", ""):
                         (setattr(t.dxf,"text",neu) if t.dxftype()=="TEXT" else setattr(t,"text",neu)); f=True
                 log.append(f"#{nr} Text->'{neu}'" if f else f"#{nr} Text n/a")
-            elif a.startswith(("loesch","lösch","delete","entfern")):
+            elif a.startswith(("loesch","l\u00f6sch","delete","entfern")):
                 ly = el.get("layer",""); cnt=0
                 for e in list(msp.query(f'*[layer=="{ly}"]')): msp.delete_entity(e); cnt+=1
                 log.append(f"#{nr} del {cnt}@'{ly}'")
@@ -51,7 +39,7 @@ def apply_changes(dxf_path, elements):
     doc.saveas(dxf_path); return log
 
 @app.get("/")
-def health(): return {"service":"GENESIS ezdxf","status":"ok","version":"2.0","engine":"libredwg"}
+def health(): return {"service":"GENESIS DXF","status":"ok","version":"3.0","engine":"ezdxf"}
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):
@@ -59,16 +47,18 @@ async def modify(request: Request, x_genesis_key: str = Header(default="")):
         raise HTTPException(401, "Ungueltiger Key")
     try:
         b = await request.json()
-        filename = b.get("filename","plan_bearbeitet.dwg")
-        if not b.get("dwg_base64"): raise HTTPException(400,"dwg_base64 fehlt")
+        filename = b.get("filename","plan_bearbeitet.dxf")
+        raw = b.get("dxf_base64") or b.get("dwg_base64")
+        if not raw: raise HTTPException(400,"dxf_base64/dwg_base64 fehlt")
         with tempfile.TemporaryDirectory() as t:
-            din=os.path.join(t,"in.dwg"); dxf=os.path.join(t,"m.dxf"); dout=os.path.join(t,"out.dwg")
-            open(din,"wb").write(base64.b64decode(b["dwg_base64"]))
-            dwg_to_dxf(din,dxf)
-            log=apply_changes(dxf, b.get("elements",[]))
-            dxf_to_dwg(dxf,dout)
-            data=open(dout,"rb").read()
-        return Response(content=data, media_type="image/vnd.dwg",
+            dxf=os.path.join(t,"m.dxf")
+            open(dxf,"wb").write(base64.b64decode(raw))
+            try:
+                log=apply_changes(dxf, b.get("elements",[]))
+            except Exception:
+                raise HTTPException(422,"Keine gueltige DXF. Plan in AutoCAD als DXF exportieren (Speichern unter -> DXF) und hochladen.")
+            data=open(dxf,"rb").read()
+        return Response(content=data, media_type="application/dxf",
             headers={"Content-Disposition":f'attachment; filename="{filename}"',
                      "X-Genesis-Log":" | ".join(log)[:500]})
     except HTTPException: raise
