@@ -30,6 +30,7 @@ Gültig bis: 19.07.2026
 | 2 | Montage je System: Innen-/Außengerät setzen, Kältemittelleitung bis 3 m, Wanddurchbruch, Vakuumieren, Dichtheitsprüfung, Inbetriebnahme | 2 Stk. | 850,00 € | 1.700,00 € |
 | 3 | Installationsmaterial je System: Leitungen, Isolierung, Kondensatablauf, Wandkonsole/Befestigung, Kleinmaterial | 2 Stk. | 180,00 € | 360,00 € |
 | 4 | Elektroanschluss / Verkabelung je System (Standard, ≤ 3 m) | 2 Stk. | 120,00 € | 240,00 € |
+| 5 | Zusätzliche Fernbedienung (separat, zzgl. zur im Set enthaltenen) | 2 Stk. | 65,00 € | 130,00 € |
 
 ---
 
@@ -37,9 +38,9 @@ Gültig bis: 19.07.2026
 
 | | |
 |---|---:|
-| **Nettosumme** | **4.600,00 €** |
-| zzgl. 19 % MwSt. | 874,00 € |
-| **Bruttosumme** | **5.474,00 €** |
+| **Nettosumme** | **4.730,00 €** |
+| zzgl. 19 % MwSt. | 898,70 € |
+| **Bruttosumme** | **5.628,70 €** |
 
 ---
 
