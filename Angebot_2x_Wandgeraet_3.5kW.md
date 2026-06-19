@@ -1,71 +1,45 @@
-# Angebot — 2× Klima-Wandgerät 3,5 kW (Split, Inverter)
+LEANS Tech GmbH · Semir Redzic · Berlepschstr. 165 • 14165 • Berlin
 
-**LEANS Tech GmbH**
-Angebots-Nr.: ANG-2026-0619-01
-Datum: 19.06.2026
-Gültig bis: 19.07.2026
+**[Kunde / Empfänger]**
 
----
+[Straße]
 
-## Annahmen (bitte prüfen)
+[PLZ Ort]
 
-> Dieses Angebot wurde mit Standard-Annahmen erstellt, da keine weiteren Angaben vorlagen.
-> Bei abweichenden Anforderungen passen wir das Angebot gerne an.
+**ANGEBOT**
 
-- **Anlagentyp:** 2× **Single-Split** — je 1 Außengerät + 1 Innen-Wandgerät (2 unabhängige Systeme).
-  *(Alternative: Multi-Split mit 1 Außengerät — auf Wunsch separates Angebot.)*
-- **Leistung:** je 3,5 kW Kälteleistung (≈ 12.000 BTU), Inverter, Heiz-/Kühlbetrieb.
-- **Leitungslänge:** bis 3 m je System, Standard-Wanddurchbruch, Außengerät an Fassade/Boden ≤ 1 m vom Durchbruch.
-- **Montagehöhe / Zugänglichkeit:** ohne Gerüst/Hebebühne, normale Erreichbarkeit.
-- **Elektro:** vorhandener Stromanschluss in Reichweite (≤ 3 m).
-- **Standort:** Deutschland, Endkunde. MwSt. 19 %.
+**RAUMLUFTTECHNIK · HEIZUNG**
 
----
+Angebotsnummer: **283**
 
-## Positionen
+Angebotsdatum: **19. Juni 2026**  Gültig bis: **19. August 2026**  Bauvorhaben: **[Bauvorhaben]**
 
-| Pos. | Bezeichnung | Menge | Einzelpreis (netto) | Gesamt (netto) |
-|-----:|-------------|------:|--------------------:|---------------:|
-| 1 | Split-Klimagerät 3,5 kW, Inverter (Außen- + Innen-Wandgerät), Energieeffizienz A++ Kühlen / A+ Heizen, inkl. Kältemittel R32, Fernbedienung | 2 Stk. | 1.150,00 € | 2.300,00 € |
-| 2 | Montage je System: Innen-/Außengerät setzen, Kältemittelleitung bis 3 m, Wanddurchbruch, Vakuumieren, Dichtheitsprüfung, Inbetriebnahme | 2 Stk. | 850,00 € | 1.700,00 € |
-| 3 | Installationsmaterial je System: Leitungen, Isolierung, Kondensatablauf, Wandkonsole/Befestigung, Kleinmaterial | 2 Stk. | 180,00 € | 360,00 € |
-| 4 | Elektroanschluss / Verkabelung je System (Standard, ≤ 3 m) | 2 Stk. | 120,00 € | 240,00 € |
-| 5 | Zusätzliche Fernbedienung (separat, zzgl. zur im Set enthaltenen) | 2 Stk. | 65,00 € | 130,00 € |
+Montage von 2 Klima-Wandgeräten 3,5 kW (Geräte bauseits gestellt) inkl. Demontage der Bestandsanlage
 
----
+| Nr. | Beschreibung | Menge | Einheit | Einzelpreis | Betrag |
+|---|---|---:|---|---:|---:|
+| **1.1** | **Demontage Bestandsanlage** — Fachgerechte Demontage der vorhandenen Klimaanlage inkl. Absaugen/Entsorgung des Kältemittels nach F-Gase-Verordnung, Abbau Innen- und Außengerät sowie fachgerechte Entsorgung der Altgeräte. | 1,00 | psch | 600,00 € | 600,00 € |
+| **1.2** | **Montage 2× Klima-Wandgerät 3,5 kW inkl. Inbetriebnahme** — Montage von je Innen-Wandgerät und Außengerät (Geräte bauseits gestellt), Kältemittelleitungen, Isolierung, Kondensatablauf, Wanddurchbruch, elektrischer Anschluss, Vakuumieren, Dichtheitsprüfung, Inbetriebnahme sowie Einweisung in die Bedienung. | 1,00 | psch | 2.000,00 € | 2.000,00 € |
+| **1.3** | **Fernbedienung (zusätzlich)** — Zusätzliche Fernbedienung je Gerät, separat zur serienmäßig im Gerät enthaltenen. | 2,00 | Stk | 65,00 € | 130,00 € |
 
-## Summe
+Zwischensumme 2.730,00 €
 
-| | |
-|---|---:|
-| **Nettosumme** | **4.730,00 €** |
-| zzgl. 19 % MwSt. | 898,70 € |
-| **Bruttosumme** | **5.628,70 €** |
+Nettobetrag 2.730,00 €
 
----
+**Gesamt (netto) 2.730,00 €**
 
-## Leistungen inklusive
+Die Umsatzsteuer für diese Leistung schuldet nach § 13b UStG der Leistungsempfänger (Reverse-Charge-Verfahren für Bauleistungen).
 
-- Lieferung beider Komplett-Sets
-- Komplette Montage und fachgerechte Installation (VDI 6022 / F-Gase-konform)
-- Vakuumieren, Dichtheitsprüfung, Inbetriebnahme
-- Einweisung in die Bedienung
-- 2 Jahre Gewährleistung (Herstellergarantie gem. Hersteller)
+Zahlungsbedingungen: 14 Tage netto. Es gelten unsere allgemeinen Geschäftsbedingungen. Wir freuen uns auf Ihre Beauftragung.
 
-## Nicht enthalten / optional
+**Adresse**
 
-- Gerüst, Hebebühne oder Arbeiten über 3 m Höhe
-- Leitungslängen > 3 m je System (Mehrpreis: ca. 25 €/m)
-- Elektro-Hausanschluss / neue Leitung vom Verteiler
-- Kernbohrungen in tragenden Wänden, Verkleidungen, Maler-/Putzarbeiten
-- Wartungsvertrag (auf Wunsch separat)
+Berlepschstr. 165 14165 Berlin
 
----
+**Kontakt**
 
-## Hinweise
+info@leanstech-gmbh.de Tel. +49 170 8280836 www.leanstech-gmbh.de
 
-- **Wärmepumpen-Förderung / 0 % MwSt.:** Bei Einsatz als Heizungs-Wärmepumpe in Wohngebäuden kann ggf. der Nullsteuersatz (§ 12 Abs. 3 UStG) bzw. BAFA-Förderung greifen. Bitte vorab klären.
-- Zahlungsbedingungen: 40 % bei Auftrag, 60 % nach Inbetriebnahme, netto 14 Tage.
-- Preise freibleibend; verbindlich nach Aufmaß vor Ort.
+**Register / Bank**
 
-*Alle Preise und Geräteangaben sind Richtwerte und müssen vor Auftragserteilung bestätigt werden.*
+HR-Nr HRB 249080 B · USt-IdNr. DE357948720 Berliner Volksbank · BIC BEVODEBB IBAN DE21 1009 0000 2911 7280 04
