@@ -13,7 +13,11 @@ im LEANS-Tech-Muster erstellen — NICHT nachfragen, einfach im Format der beste
 2. Als **Google Doc** im Drive-Ordner `0AM9CvPIUCfZkUk9PVA` speichern
    (dort liegen die anderen Angebote, z. B. Angebot 282).
    - Doc-Titel: `ANGEBOT <Nr> - LEANS Tech GmbH - <Kurzbeschreibung> - <Summe> EUR`
-3. Als **PDF** exportieren (`exportMimeType: application/pdf`) und dem Nutzer senden.
+3. Als **PDF** exportieren und dem Nutzer senden.
+   - **WICHTIG:** PDF **formatiert** erzeugen (echte Tabelle, Spalten, Fett) — NICHT aus
+     reinem Text/Tabs (das ergibt einen unbrauchbaren Text-Dump).
+   - Bewährter Weg in diesem Repo: `gen_angebot.py` (fpdf2 + LiberationSans-TTF für
+     Umlaute/€). Positionsdaten oben im Script anpassen und ausführen.
 4. **Angebotsnummer** fortlaufend hochzählen. Zuletzt vergeben: **283** → nächste = 284.
 5. Fehlende Felder (Kunde/Empfänger, Bauvorhaben) als Platzhalter `[…]` einsetzen,
    nicht extra nachfragen.
