@@ -8,6 +8,8 @@ im LEANS-Tech-Muster erstellen — NICHT nachfragen, einfach im Format der beste
 
 ### Ablauf
 1. Angebot exakt im Muster (siehe unten) erstellen.
+   **IMMER auch das vollständige Angebot direkt hier im Chat ausgeben** (kompletter
+   Text im Muster-Layout), zusätzlich zu Doc + PDF.
 2. Als **Google Doc** im Drive-Ordner `0AM9CvPIUCfZkUk9PVA` speichern
    (dort liegen die anderen Angebote, z. B. Angebot 282).
    - Doc-Titel: `ANGEBOT <Nr> - LEANS Tech GmbH - <Kurzbeschreibung> - <Summe> EUR`
