@@ -53,5 +53,8 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
 - Sprache: Deutsch.
 - „ohne Geräte" = nur Leistung/Arbeit (Geräte bauseits gestellt).
 
+## Kontakte / E-Mail-Aliasse
+- **Mita** („schick zu Mita") → `info@aam-handwerk-montage.de`
+
 ## Repo
 GENESIS DWG-Service (FastAPI, `main.py`): DWG/DXF rein → kleine Änderungen → DWG/DXF raus.
