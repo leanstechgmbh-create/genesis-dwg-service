@@ -20,6 +20,16 @@ Bei **jeder** Rechnung an apoprojekt:
 3. Versand-Konventionen apoprojekt: Empfänger **rechnungen@apoprojekt.de**,
    **nur als PDF**, Rechnungen **kumuliert** stellen.
 
+4. **Kumulierung (Anlage zur Rechnung)** immer im Format der bisherigen
+   „Kumulierung RG …"-Vorlage (Kopfblock: Anlage zur Rechnung, Unser Auftrag vom,
+   Objektstandort, Tätigkeiten, Kunde, Auftragsnummer apoprojekt; Auftragswert
+   Netto/Brutto, Gesamtleistungsstand, noch nicht abgerechnet; Tabelle: Nummer der
+   Abschlagsrechnung | Datum | Teilrechnung Netto/Brutto | erhaltene Zahlung Brutto |
+   offener Betrag Brutto + Summe). **Als PDF** umwandeln und in den apoprojekt-Ordner ablegen.
+
+5. **Rechnungen müssen IMMER identisch aussehen** = LEANS-Tech-Vorlage mit Logo/Layout
+   (Referenz 2026-19). Keine abweichenden Layouts.
+
 ## Gilt für JEDE Mail / JEDE Rechnung (nicht nur apoprojekt)
 
 - **Unten in jeder Mail** (am Ende, in **großen roten Buchstaben**) den Hinweis:
