@@ -7,8 +7,10 @@ import base64, os, subprocess, tempfile, traceback, math
 from fastapi import FastAPI, Request, Header, HTTPException
 from fastapi.responses import Response, JSONResponse
 import ezdxf
+from slack_bot import router as slack_router, slack_ready
 
 app = FastAPI(title="GENESIS Service", version="4.0")
+app.include_router(slack_router)
 API_KEY = os.environ.get("GENESIS_API_KEY", "")
 
 def have(cmd):
@@ -124,7 +126,8 @@ def apply_changes(dxf_path, elements):
 @app.get("/")
 def health():
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
-            "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg")}
+            "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
+            "slack": slack_ready()}
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):
