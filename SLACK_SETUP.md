@@ -10,6 +10,8 @@ Der GENESIS-Service enthaelt jetzt einen Claude-gestuetzten Slack-Bot.
 ```
 app_mentions:read
 chat:write
+channels:history     (Thread-Kontext in oeffentlichen Channels lesen)
+groups:history       (Thread-Kontext in privaten Channels lesen)
 im:history
 im:read
 ```
@@ -28,6 +30,7 @@ Optional:
 ```
 CLAUDE_MODEL          = claude-opus-4-8 (Standard)
 CLAUDE_MAX_TOKENS     = 4096
+CLAUDE_HISTORY        = 20   (max. Thread-Nachrichten als Kontext)
 CLAUDE_SYSTEM_PROMPT  = eigener System-Prompt
 ```
 
@@ -61,4 +64,6 @@ Speichern → ggf. App neu installieren, wenn Slack dazu auffordert.
 *Technik:* Endpoint `POST /slack/events` in `slack_bot.py`. Signaturpruefung per
 HMAC-SHA256 (5-Min-Replay-Schutz), Claude-Aufruf laeuft im Hintergrund, damit Slack
 das geforderte 200 innerhalb von 3 Sekunden erhaelt. Retries werden per `event_id`
-dedupliziert, Bot-eigene Nachrichten ignoriert (keine Schleifen).
+dedupliziert, Bot-eigene Nachrichten ignoriert (keine Schleifen). Der Bot liest den
+gesamten Thread-Verlauf (`conversations.replies`) und antwortet im Kontext der
+bisherigen Konversation (Mehrfach-Turn).

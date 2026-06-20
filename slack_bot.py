@@ -39,12 +39,38 @@ def _verify_slack(body: bytes, timestamp: str, signature: str) -> bool:
     mine = "v0=" + hmac.new(SLACK_SIGNING_SECRET.encode(), base, hashlib.sha256).hexdigest()
     return hmac.compare_digest(mine, signature or "")
 
-async def _ask_claude(text: str) -> str:
+CLAUDE_HISTORY = int(os.environ.get("CLAUDE_HISTORY", "20"))  # max. Thread-Nachrichten
+
+def _clean(text: str) -> str:
+    return re.sub(r"<@[^>]+>", "", text or "").strip()  # Bot-Mention entfernen
+
+async def _fetch_thread(channel: str, thread_ts: str) -> list[dict]:
+    """Thread-Verlauf als Claude-Nachrichtenliste (User/Assistant-Rollen)."""
+    async with httpx.AsyncClient(timeout=30) as client:
+        r = await client.get(
+            "https://slack.com/api/conversations.replies",
+            headers={"Authorization": f"Bearer {SLACK_BOT_TOKEN}"},
+            params={"channel": channel, "ts": thread_ts, "limit": CLAUDE_HISTORY},
+        )
+    msgs = r.json().get("messages", []) if r.is_success else []
+    history = []
+    for m in msgs:
+        content = _clean(m.get("text", ""))
+        if not content:
+            continue
+        role = "assistant" if m.get("bot_id") else "user"
+        history.append({"role": role, "content": content})
+    # Claude verlangt: erste Nachricht ist "user" -> fuehrende Assistant-Turns droppen
+    while history and history[0]["role"] == "assistant":
+        history.pop(0)
+    return history
+
+async def _ask_claude(messages: list[dict]) -> str:
     async with _anthropic.messages.stream(
         model=CLAUDE_MODEL,
         max_tokens=CLAUDE_MAX_TOKENS,
         system=CLAUDE_SYSTEM,
-        messages=[{"role": "user", "content": text}],
+        messages=messages,
     ) as stream:
         msg = await stream.get_final_message()
     answer = "".join(b.text for b in msg.content if b.type == "text").strip()
@@ -59,16 +85,15 @@ async def _post_message(channel: str, text: str, thread_ts):
         )
 
 async def _handle_event(event: dict):
-    text = re.sub(r"<@[^>]+>", "", event.get("text", "")).strip()  # Bot-Mention entfernen
     channel = event.get("channel")
     thread_ts = event.get("thread_ts") or event.get("ts")
-    if not text:
-        answer = "Wie kann ich helfen?"
-    else:
-        try:
-            answer = await _ask_claude(text)
-        except Exception as e:
-            answer = f"Fehler bei der Anfrage an Claude: {str(e)[:200]}"
+    try:
+        messages = await _fetch_thread(channel, thread_ts)
+        if not messages:  # Fallback: nur die ausloesende Nachricht
+            messages = [{"role": "user", "content": _clean(event.get("text", "")) or "Hallo"}]
+        answer = await _ask_claude(messages)
+    except Exception as e:
+        answer = f"Fehler bei der Anfrage an Claude: {str(e)[:200]}"
     await _post_message(channel, answer, thread_ts)
 
 @router.post("/slack/events")
