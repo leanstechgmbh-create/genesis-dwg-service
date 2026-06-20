@@ -13,34 +13,40 @@ NR = "283"
 DATUM = "20. Juni 2026"
 GUELTIG = "20. September 2026"
 EMPF = ["[Auftraggeber / Kunde]", "[Straße Nr.]", "[PLZ Ort]"]
-LEISTUNG = ("Montage Wandgerät inkl. Inbetriebnahme, Kältemittel- und Kondensatleitung – "
-            "Gerät bauseits gestellt")
+LEISTUNG = ("Demontage Bestandsanlage und Montage Wandgerät inkl. Inbetriebnahme, Kältemittel- "
+            "und Kondensatleitung – Gerät bauseits gestellt")
 GEWERK = "Klimatisierung / Kältetechnik (KG 430)"
 FABRIKAT = "Gerät bauseits gestellt (kundenseitig)"
 SECTION = "1. KLIMATISIERUNG – MONTAGE WANDGERÄT (GERÄT BAUSEITS)"
 # OZ, Titel, Sub-Beschreibung, Menge, Einheit, EP, Betrag
 POS = [
-    ("1.1", "Montage Wandgerät inkl. Inbetriebnahme",
+    ("1.1", "Demontage Bestandsanlage",
+     "Fachgerechte Demontage der vorhandenen Klimaanlage inkl. Absaugen/Entsorgung des "
+     "Kältemittels nach F-Gase-Verordnung, Abbau Innen- und Außengerät sowie fachgerechte "
+     "Entsorgung der Altgeräte.",
+     "1,00", "pschl.", "600,00", "600,00 €"),
+    ("1.2", "Montage Wandgerät inkl. Inbetriebnahme",
      "Montage von Innen-Wandgerät und Außengerät (Gerät bauseits gestellt), Wanddurchbruch, "
      "elektrischer Anschluss, Vakuumieren, Dichtheitsprüfung, Inbetriebnahme sowie Einweisung "
      "in die Bedienung.",
      "1,00", "pschl.", "2.200,00", "2.200,00 €"),
-    ("1.2", "Kabel-Komfortfernbedienung",
+    ("1.3", "Kabel-Komfortfernbedienung",
      "Verdrahtete Komfort-Fernbedienung, Lieferung, Montage und Anschluss.",
      "1,00", "Stk", "97,00", "97,00 €"),
-    ("1.3", "Cu-Kältemittelleitungssatz, vorisoliert, passend zum Gerät",
+    ("1.4", "Cu-Kältemittelleitungssatz, vorisoliert, passend zum Gerät",
      "Kupferrohr weich nach DIN EN 12735-1, inkl. Armaflex-Dämmung, Schellen und Befestigung • "
      "Dimension passend zum Gerät • Lieferung und Montage.",
      "15,00", "m", "66,30", "994,50 €"),
-    ("1.4", "Kondensatleitung DN16, flexibel",
+    ("1.5", "Kondensatleitung DN16, flexibel",
      "Inkl. Gefällesicherung und Anschluss • Lieferung und Montage.",
      "15,00", "m", "22,00", "330,00 €"),
 ]
-NETTO = "3.621,50 €"
-GESAMT = "3.621,50 €"
-LEISTUNGSUMFANG = ("Betriebsfertige Montage eines Klima-Wandgeräts inkl. Inbetriebnahme und "
-    "Dichtheitsprüfung, 15 m vorisolierte Kältemittelleitung und 15 m Kondensatleitung. Das "
-    "Klimagerät wird bauseits gestellt. Gleichwertige Ausführungsvarianten vorbehalten.")
+NETTO = "4.221,50 €"
+GESAMT = "4.221,50 €"
+LEISTUNGSUMFANG = ("Demontage der vorhandenen Klimaanlage sowie betriebsfertige Montage eines "
+    "Klima-Wandgeräts inkl. Inbetriebnahme und Dichtheitsprüfung, 15 m vorisolierte "
+    "Kältemittelleitung und 15 m Kondensatleitung. Das Klimagerät wird bauseits gestellt. "
+    "Gleichwertige Ausführungsvarianten vorbehalten.")
 OUT = "Angebot_283_2x_Wandgeraet_3.5kW.pdf"
 # =========================================================
 
