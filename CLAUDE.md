@@ -18,12 +18,12 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
      Maßgeblich ist immer das PDF.
 2. PDF dem Nutzer senden (SendUserFile) **und IMMER zusätzlich in `~/Downloads` ablegen**
    (macht `gen_angebot.py` automatisch).
-3. **Neue Angebote (von uns/Cloud erstellt) IMMER in den Ordner „Cloud Angebote" ablegen:**
-   `1lS-n7kan-pwbgFDP_NYwyRtGI-JIMd6C`.
-   - Alte/selbst erstellte Bestands-Angebote liegen im Ordner „Bestand Angebote":
-     `1KDlM4-GnjG_9IcERuwYmuyKoEw2HHLov`.
-   - Beide liegen im Drive-Stamm `0AM9CvPIUCfZkUk9PVA`.
-   - Titel: `ANGEBOT <Nr> - LEANS Tech GmbH - <Kurzbeschreibung> - <Summe> EUR`
+3. **Drive-Ablage standardmäßig NICHT nötig** — das branded PDF (Chat + `~/Downloads`) ist
+   das Angebot. **Keine nackten Google-Docs mehr in Drive anlegen.** Nur auf ausdrücklichen
+   Wunsch in Drive ablegen (dann via n8n/Drive-Flow mit Logo, nicht als Doc-Kopie).
+   - Ordner falls doch gebraucht: „Cloud Angebote" `1lS-n7kan-pwbgFDP_NYwyRtGI-JIMd6C`
+     (neu) / „Bestand Angebote" `1KDlM4-GnjG_9IcERuwYmuyKoEw2HHLov` (alt),
+     Drive-Stamm `0AM9CvPIUCfZkUk9PVA`.
 4. **Angebotsnummer-Regel:**
    - **Neues Angebot** (neues Thema/Vorgang) → neue, fortlaufende Nummer.
    - **Änderung/Iteration am selben, im Chat besprochenen Angebot** → Nummer NICHT ändern,
