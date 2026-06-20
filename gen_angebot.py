@@ -12,7 +12,7 @@ LOGO = "leans_logo.png"
 NR = "283"
 DATUM = "20. Juni 2026"
 GUELTIG = "20. September 2026"
-EMPF = ["[Auftraggeber / Kunde]", "[Straße Nr.]", "[PLZ Ort]"]
+EMPF = ["Vape 4 me", "Güntzelstraße 10", "10717 Berlin"]
 LEISTUNG = ("Montage Wandgerät (Außen- und Innengeräte) inkl. Inbetriebnahme, Kältemittel- "
             "und Kondensatleitung – Gerät bauseits gestellt")
 GEWERK = "Klimatisierung / Kältetechnik (KG 430)"
