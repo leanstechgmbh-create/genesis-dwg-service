@@ -86,8 +86,8 @@ class PDF(FPDF):
 pdf = PDF()
 pdf.add_page()
 
-# ---- Logo ----
-pdf.image(LOGO, x=54, y=54, w=86, h=58)
+# ---- Logo (groesser, Schriftzug klar lesbar) ----
+pdf.image(LOGO, x=54, y=50, w=116, h=78)
 
 # ---- Empfaenger (rechtsbuendig auf R) ----
 pdf.t(0, 63, "An:", 7.9, "B", DARK, align="R", w=R)
@@ -97,10 +97,10 @@ for line in EMPF:
     yy += 9
 
 # ---- Absenderzeile + Akzentbalken ----
-pdf.t(L, 128, "LEANS Tech GmbH • Berlepschstr. 165 • 14165 Berlin • Tel: +49 170 828 0836 • "
+pdf.t(L, 142, "LEANS Tech GmbH • Berlepschstr. 165 • 14165 Berlin • Tel: +49 170 828 0836 • "
               "info@leanstech-gmbh.de", 7.5, "", GREY)
 pdf.set_fill_color(*BLUE)
-pdf.rect(L, 141, R - L, 2.2, style="F")
+pdf.rect(L, 152, R - L, 2.2, style="F")
 
 # ---- Titel ----
 pdf.t(L, 178, "ANGEBOT", 18, "B", DARK)
