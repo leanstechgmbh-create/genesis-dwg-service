@@ -13,32 +13,34 @@ NR = "283"
 DATUM = "20. Juni 2026"
 GUELTIG = "20. September 2026"
 EMPF = ["[Auftraggeber / Kunde]", "[Straße Nr.]", "[PLZ Ort]"]
-LEISTUNG = ("Demontage der Bestandsanlage und betriebsfertige Montage von 2 Klima-Wandgeräten "
-            "3,5 kW inkl. Inbetriebnahme – Geräte bauseits gestellt")
+LEISTUNG = ("Montage Wandgerät inkl. Inbetriebnahme, Kältemittel- und Kondensatleitung – "
+            "Gerät bauseits gestellt")
 GEWERK = "Klimatisierung / Kältetechnik (KG 430)"
-FABRIKAT = "Geräte bauseits gestellt (kundenseitig)"
-SECTION = "1. KLIMATISIERUNG – MONTAGE 2× WANDGERÄT 3,5 kW (GERÄTE BAUSEITS)"
+FABRIKAT = "Gerät bauseits gestellt (kundenseitig)"
+SECTION = "1. KLIMATISIERUNG – MONTAGE WANDGERÄT (GERÄT BAUSEITS)"
 # OZ, Titel, Sub-Beschreibung, Menge, Einheit, EP, Betrag
 POS = [
-    ("1.1", "Demontage Bestandsanlage",
-     "Fachgerechte Demontage der vorhandenen Klimaanlage inkl. Absaugen/Entsorgung des "
-     "Kältemittels nach F-Gase-Verordnung, Abbau Innen- und Außengerät sowie fachgerechte "
-     "Entsorgung der Altgeräte.",
-     "1,00", "pschl.", "600,00", "600,00 €"),
-    ("1.2", "Montage 2× Klima-Wandgerät 3,5 kW inkl. Inbetriebnahme",
-     "Montage von je Innen-Wandgerät und Außengerät (Geräte bauseits gestellt), "
-     "Kältemittelleitungen, Isolierung, Kondensatablauf, Wanddurchbruch, elektrischer Anschluss, "
-     "Vakuumieren, Dichtheitsprüfung, Inbetriebnahme sowie Einweisung in die Bedienung.",
-     "1,00", "pschl.", "2.000,00", "2.000,00 €"),
-    ("1.3", "Fernbedienung (zusätzlich)",
-     "Zusätzliche Fernbedienung je Gerät, separat zur serienmäßig im Gerät enthaltenen.",
-     "2,00", "Stk", "65,00", "130,00 €"),
+    ("1.1", "Montage Wandgerät inkl. Inbetriebnahme",
+     "Montage von Innen-Wandgerät und Außengerät (Gerät bauseits gestellt), Wanddurchbruch, "
+     "elektrischer Anschluss, Vakuumieren, Dichtheitsprüfung, Inbetriebnahme sowie Einweisung "
+     "in die Bedienung.",
+     "1,00", "pschl.", "2.200,00", "2.200,00 €"),
+    ("1.2", "Kabel-Komfortfernbedienung",
+     "Verdrahtete Komfort-Fernbedienung, Lieferung, Montage und Anschluss.",
+     "1,00", "Stk", "97,00", "97,00 €"),
+    ("1.3", "Cu-Kältemittelleitungssatz, vorisoliert, passend zum Gerät",
+     "Kupferrohr weich nach DIN EN 12735-1, inkl. Armaflex-Dämmung, Schellen und Befestigung • "
+     "Dimension passend zum Gerät • Lieferung und Montage.",
+     "15,00", "m", "66,30", "994,50 €"),
+    ("1.4", "Kondensatleitung DN16, flexibel",
+     "Inkl. Gefällesicherung und Anschluss • Lieferung und Montage.",
+     "15,00", "m", "22,00", "330,00 €"),
 ]
-NETTO = "2.730,00 €"
-GESAMT = "2.730,00 €"
-LEISTUNGSUMFANG = ("Demontage der vorhandenen Klimaanlage und betriebsfertige Montage von 2 "
-    "Klima-Wandgeräten 3,5 kW inkl. Inbetriebnahme und Dichtheitsprüfung. Die Klimageräte werden "
-    "bauseits gestellt. Gleichwertige Ausführungsvarianten vorbehalten.")
+NETTO = "3.621,50 €"
+GESAMT = "3.621,50 €"
+LEISTUNGSUMFANG = ("Betriebsfertige Montage eines Klima-Wandgeräts inkl. Inbetriebnahme und "
+    "Dichtheitsprüfung, 15 m vorisolierte Kältemittelleitung und 15 m Kondensatleitung. Das "
+    "Klimagerät wird bauseits gestellt. Gleichwertige Ausführungsvarianten vorbehalten.")
 OUT = "Angebot_283_2x_Wandgeraet_3.5kW.pdf"
 # =========================================================
 
