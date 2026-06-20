@@ -30,6 +30,16 @@ Bei **jeder** Rechnung an apoprojekt:
 5. **Rechnungen müssen IMMER identisch aussehen** = LEANS-Tech-Vorlage mit Logo/Layout
    (Referenz 2026-19). Keine abweichenden Layouts.
 
+## Angebote (Offerten) — Umgang (IMMER so)
+
+- **Gleicher Stil wie Rechnungen**: LEANS-Tech-Layout mit Logo, identisches Aussehen,
+  §13b-Hinweis, gleiche Stammdaten + neue Bankverbindung (Adyen).
+- **Angebotsnummer fortlaufend** vergeben und letzte Nummer merken (wie bei Rechnungen,
+  damit keine Dopplung). Stand zuletzt: Angebote 293–297 (Deckenkassetten 10 kW).
+- **Mir immer als PDF zeigen** (zum Angucken), bevor etwas raus geht.
+- **Im Drive ablegen** im passenden Angebote-/Projektordner.
+  → noch zu bestätigen: genauer Standardordner für Angebote.
+
 ## Gilt für JEDE Mail / JEDE Rechnung (nicht nur apoprojekt)
 
 - **Unten in jeder Mail** (am Ende, in **großen roten Buchstaben**) den Hinweis:
