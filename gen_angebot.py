@@ -97,7 +97,7 @@ for line in EMPF:
     yy += 9
 
 # ---- Absenderzeile + Akzentbalken ----
-pdf.t(L, 128, "Semir Redžić • Berlepschstr. 165 • 14165 Berlin • Tel: +49 170 828 0836 • "
+pdf.t(L, 128, "LEANS Tech GmbH • Berlepschstr. 165 • 14165 Berlin • Tel: +49 170 828 0836 • "
               "info@leanstech-gmbh.de", 7.5, "", GREY)
 pdf.set_fill_color(*BLUE)
 pdf.rect(L, 141, R - L, 2.2, style="F")
@@ -200,7 +200,7 @@ pdf.set_xy(L, 760)
 pdf.set_font("Lib", "I", 6.7)
 pdf.set_text_color(*GREY)
 pdf.multi_cell(R - L, 9,
-    "LEANS Tech GmbH • Berlepschstr. 165, 14165 Berlin • GF: Semir Redžić • HRB 249080 B • "
+    "LEANS Tech GmbH • Berlepschstr. 165, 14165 Berlin • HRB 249080 B • "
     "USt-IdNr: DE357948720 • IBAN: DE24 1001 9000 1000 0012 17 • Adyen Bank • BIC: ADYBDEB2XXX",
     align="L")
 

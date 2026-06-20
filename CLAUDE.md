@@ -43,8 +43,9 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
 - **Format:** US-Letter (612×792 pt), Schrift **Arial/LiberationSans**.
 - **Kopf:** Logo `leans_logo.png` oben links (54,54, ca. 86×58 pt); Empfänger oben rechts,
   rechtsbündig, beginnend mit fettem „An:".
-- **Absenderzeile** (klein, grau): `Semir Redžić • Berlepschstr. 165 • 14165 Berlin •
+- **Absenderzeile** (klein, grau): `LEANS Tech GmbH • Berlepschstr. 165 • 14165 Berlin •
   Tel: +49 170 828 0836 • info@leanstech-gmbh.de`, darunter dunkelblauer Akzentbalken.
+  **Namen Semir Redžić NICHT nennen** (in keinem Angebot, weder Absenderzeile noch Fußzeile).
 - **Titel** „ANGEBOT" groß/fett. Darunter Meta (fett): Angebotsnummer, Angebotsdatum,
   Gültig bis, Leistung, Gewerk, Fabrikat.
 - **Tabelle:** dunkelblaue Kopfzeile (RGB 26,82,118, weiße Schrift) mit Spalten
@@ -55,7 +56,7 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
   `Gesamtbetrag` (dunkelblauer Balken, weiß, fett). Gesamtbetrag = Nettobetrag.
 - **Seite 2 (AGB, kursiv):** Leistungsumfang-Absatz, §13b-Hinweis, „Dieses Angebot ist
   freibleibend und gültig bis <Datum>.", unten Fußzeile:
-  `LEANS Tech GmbH • Berlepschstr. 165, 14165 Berlin • GF: Semir Redžić • HRB 249080 B •
+  `LEANS Tech GmbH • Berlepschstr. 165, 14165 Berlin • HRB 249080 B •
   USt-IdNr: DE357948720 • IBAN: DE24 1001 9000 1000 0012 17 • Adyen Bank • BIC: ADYBDEB2XXX`
 
 ### Regeln
