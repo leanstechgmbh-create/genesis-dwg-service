@@ -42,7 +42,9 @@ POS = [
      "15,00", "m", "22,00", "330,00 €"),
 ]
 NETTO = "4.221,50 €"
-GESAMT = "4.221,50 €"
+MWST_LBL = "19%"
+MWST = "802,09 €"
+BRUTTO = "5.023,59 €"
 LEISTUNGSUMFANG = ("Demontage der vorhandenen Klimaanlage sowie betriebsfertige Montage eines "
     "Klima-Wandgeräts inkl. Inbetriebnahme und Dichtheitsprüfung, 15 m vorisolierte "
     "Kältemittelleitung und 15 m Kondensatleitung. Das Klimagerät wird bauseits gestellt. "
@@ -149,7 +151,7 @@ for oz, titel, sub, menge, einh, ep, betrag in POS:
     pdf.t(C["einh"] + 4, ytop + 8, einh, 7.9, "", DARK)
     pdf.t(0, ytop + 8, ep, 7.9, "", DARK, align="R", w=C["bet"] - 4)
     pdf.t(0, ytop + 8, betrag, 7.9, "", DARK, align="R", w=C["mwst"] - 4)
-    pdf.t(C["mwst"] + 5, ytop + 8, "§13b", 7.9, "", GREY)
+    pdf.t(C["mwst"] + 5, ytop + 8, MWST_LBL, 7.9, "", GREY)
     # Sub-Beschreibung
     pdf.set_font("Lib", "", 7.1)
     pdf.set_text_color(*GREY)
@@ -168,15 +170,15 @@ pdf.t(lab_x, y + 10, "Nettobetrag", 9.0, "", DARK)
 pdf.t(0, y + 10, NETTO, 9.0, "", DARK, align="R", w=TB_R - 6)
 y += 24
 pdf.set_draw_color(*LINE_LT); pdf.set_line_width(0.6); pdf.line(TB_L, y, TB_R, y)
-pdf.t(lab_x, y + 13, "USt § 13b UStG (0 %)", 9.0, "", DARK)
-pdf.t(0, y + 13, "0,00 €", 9.0, "", DARK, align="R", w=TB_R - 6)
+pdf.t(lab_x, y + 13, "zzgl. 19 % MwSt", 9.0, "", DARK)
+pdf.t(0, y + 13, MWST, 9.0, "", DARK, align="R", w=TB_R - 6)
 y += 23
 # Gesamt (dunkelblauer Balken)
 gh = 26
 pdf.set_fill_color(*BLUE)
 pdf.rect(TB_L, y, TB_R - TB_L, gh, style="F")
-pdf.t(lab_x, y + 17, "Gesamtbetrag", 9.7, "B", WHITE)
-pdf.t(0, y + 17, GESAMT, 9.7, "B", WHITE, align="R", w=TB_R - 6)
+pdf.t(lab_x, y + 17, "Gesamtbetrag (brutto)", 9.7, "B", WHITE)
+pdf.t(0, y + 17, BRUTTO, 9.7, "B", WHITE, align="R", w=TB_R - 6)
 
 # ===================== SEITE 2 — AGB / Hinweise =====================
 pdf.add_page()
@@ -187,9 +189,8 @@ pdf.multi_cell(R - L, 11, f"Leistungsumfang: {LEISTUNGSUMFANG}", align="L")
 pdf.ln(6)
 pdf.set_x(L)
 pdf.multi_cell(R - L, 11,
-    "Hinweis gemäß § 13b Abs. 2 Nr. 4 UStG (Bauleistungen): Die Steuerschuldnerschaft für die "
-    "Umsatzsteuer geht auf den Leistungsempfänger über, sofern dieser ebenfalls Bauleistungen "
-    "erbringt. Umsatzsteuer wird nicht ausgewiesen – Gesamtbetrag = Nettobetrag.", align="L")
+    "Alle Preise verstehen sich netto zzgl. der gesetzlichen Umsatzsteuer von 19 %. "
+    "Der Gesamtbetrag (brutto) enthält die ausgewiesene Umsatzsteuer.", align="L")
 pdf.ln(6)
 pdf.set_x(L)
 pdf.multi_cell(R - L, 11, f"Dieses Angebot ist freibleibend und gültig bis {GUELTIG}.", align="L")
@@ -205,3 +206,11 @@ pdf.multi_cell(R - L, 9,
 
 pdf.output(OUT)
 print("OK ->", OUT)
+
+# Immer zusaetzlich in Downloads ablegen
+import os, shutil
+dl = os.path.expanduser("~/Downloads")
+os.makedirs(dl, exist_ok=True)
+dst = os.path.join(dl, OUT)
+shutil.copyfile(OUT, dst)
+print("Downloads ->", dst)

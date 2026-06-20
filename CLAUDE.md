@@ -11,7 +11,8 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
    anpassen). Das Script erzeugt das PDF exakt im Original-Template.
    **IMMER auch das vollständige Angebot direkt hier im Chat zeigen** (PDF senden + kurze
    Zusammenfassung).
-2. PDF dem Nutzer senden (SendUserFile).
+2. PDF dem Nutzer senden (SendUserFile) **und IMMER zusätzlich in `~/Downloads` ablegen**
+   (macht `gen_angebot.py` automatisch).
 3. Optional als Google Doc/PDF im Drive-Ordner `0AM9CvPIUCfZkUk9PVA` ablegen
    (dort liegen die anderen Angebote).
    - Titel: `ANGEBOT <Nr> - LEANS Tech GmbH - <Kurzbeschreibung> - <Summe> EUR`
