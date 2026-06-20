@@ -13,23 +13,21 @@ NR = "283"
 DATUM = "20. Juni 2026"
 GUELTIG = "20. September 2026"
 EMPF = ["[Auftraggeber / Kunde]", "[Straße Nr.]", "[PLZ Ort]"]
-LEISTUNG = ("Demontage Bestandsanlage und Montage Wandgerät inkl. Inbetriebnahme, Kältemittel- "
+LEISTUNG = ("Montage Wandgerät (Außen- und Innengeräte) inkl. Inbetriebnahme, Kältemittel- "
             "und Kondensatleitung – Gerät bauseits gestellt")
 GEWERK = "Klimatisierung / Kältetechnik (KG 430)"
 FABRIKAT = "Gerät bauseits gestellt (kundenseitig)"
 SECTION = "1. KLIMATISIERUNG – MONTAGE WANDGERÄT (GERÄT BAUSEITS)"
 # OZ, Titel, Sub-Beschreibung, Menge, Einheit, EP, Betrag
 POS = [
-    ("1.1", "Demontage Bestandsanlage",
-     "Fachgerechte Demontage der vorhandenen Klimaanlage inkl. Absaugen/Entsorgung des "
-     "Kältemittels nach F-Gase-Verordnung, Abbau Innen- und Außengerät sowie fachgerechte "
-     "Entsorgung der Altgeräte.",
-     "1,00", "pschl.", "600,00", "600,00 €"),
-    ("1.2", "Montage Wandgerät inkl. Inbetriebnahme",
-     "Montage von Innen-Wandgerät und Außengerät (Gerät bauseits gestellt), Wanddurchbruch, "
-     "elektrischer Anschluss, Vakuumieren, Dichtheitsprüfung, Inbetriebnahme sowie Einweisung "
-     "in die Bedienung.",
-     "1,00", "pschl.", "2.200,00", "2.200,00 €"),
+    ("1.1", "Montage Außengerät inkl. Inbetriebnahme",
+     "Montage des Außengeräts (Gerät bauseits gestellt), elektrischer Anschluss, Vakuumieren, "
+     "Dichtheitsprüfung, Inbetriebnahme der Gesamtanlage sowie Einweisung in die Bedienung.",
+     "1,00", "pschl.", "1.200,00", "1.200,00 €"),
+    ("1.2", "Montage Innengeräte (Wandgeräte)",
+     "Montage der Innen-Wandgeräte (Gerät bauseits gestellt) inkl. Wanddurchbruch, Befestigung "
+     "und Anschluss • Preis je Innengerät.",
+     "2,00", "Stk", "825,00", "1.650,00 €"),
     ("1.3", "Kabel-Komfortfernbedienung",
      "Verdrahtete Komfort-Fernbedienung, Lieferung, Montage und Anschluss.",
      "1,00", "Stk", "97,00", "97,00 €"),
@@ -41,12 +39,12 @@ POS = [
      "Inkl. Gefällesicherung und Anschluss • Lieferung und Montage.",
      "15,00", "m", "22,00", "330,00 €"),
 ]
-NETTO = "4.221,50 €"
+NETTO = "4.271,50 €"
 MWST_LBL = "19%"
-MWST = "802,09 €"
-BRUTTO = "5.023,59 €"
-LEISTUNGSUMFANG = ("Demontage der vorhandenen Klimaanlage sowie betriebsfertige Montage eines "
-    "Klima-Wandgeräts inkl. Inbetriebnahme und Dichtheitsprüfung, 15 m vorisolierte "
+MWST = "811,59 €"
+BRUTTO = "5.083,09 €"
+LEISTUNGSUMFANG = ("Betriebsfertige Montage eines Klima-Wandgeräts (Außengerät und zwei "
+    "Innengeräte) inkl. Inbetriebnahme und Dichtheitsprüfung, 15 m vorisolierte "
     "Kältemittelleitung und 15 m Kondensatleitung. Das Klimagerät wird bauseits gestellt. "
     "Gleichwertige Ausführungsvarianten vorbehalten.")
 OUT = "Angebot_283_2x_Wandgeraet_3.5kW.pdf"
