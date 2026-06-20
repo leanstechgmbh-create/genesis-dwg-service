@@ -1,196 +1,199 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Erzeugt ein LEANS-Tech-Angebot als PDF im Muster-Layout (Angebot 282)."""
+"""LEANS-Tech-Angebot als PDF im Original-Template (Layout von Angebot 297).
+US-Letter, Logo, dunkelblaue Tabellenkopfzeile, Spalten OZ..MwSt, Summenblock, AGB-Seite.
+Positionsdaten unten anpassen und ausfuehren."""
 from fpdf import FPDF
 
-FONT_DIR = "/usr/share/fonts/truetype/liberation"
+FD = "/usr/share/fonts/truetype/liberation"
+LOGO = "leans_logo.png"
 
-# ---- Angebotsdaten ----
+# ===================== ANGEBOTSDATEN =====================
 NR = "283"
-DATUM = "19. Juni 2026"
-GUELTIG = "19. August 2026"
-EMPF = ["[Kunde / Empfänger]", "[Straße]", "[PLZ Ort]"]
-PROJ = "[Projektkürzel]"
-BAUVORHABEN = "[Bauvorhaben]"
-INTRO = ("Montage von 2 Klima-Wandgeräten 3,5 kW (Geräte bauseits gestellt) "
-         "inkl. Demontage der Bestandsanlage.")
-POSITIONS = [
+DATUM = "20. Juni 2026"
+GUELTIG = "20. September 2026"
+EMPF = ["[Auftraggeber / Kunde]", "[Straße Nr.]", "[PLZ Ort]"]
+LEISTUNG = ("Demontage der Bestandsanlage und betriebsfertige Montage von 2 Klima-Wandgeräten "
+            "3,5 kW inkl. Inbetriebnahme – Geräte bauseits gestellt")
+GEWERK = "Klimatisierung / Kältetechnik (KG 430)"
+FABRIKAT = "Geräte bauseits gestellt (kundenseitig)"
+SECTION = "1. KLIMATISIERUNG – MONTAGE 2× WANDGERÄT 3,5 kW (GERÄTE BAUSEITS)"
+# OZ, Titel, Sub-Beschreibung, Menge, Einheit, EP, Betrag
+POS = [
     ("1.1", "Demontage Bestandsanlage",
      "Fachgerechte Demontage der vorhandenen Klimaanlage inkl. Absaugen/Entsorgung des "
      "Kältemittels nach F-Gase-Verordnung, Abbau Innen- und Außengerät sowie fachgerechte "
      "Entsorgung der Altgeräte.",
-     "1,00", "psch", "600,00 €", "600,00 €"),
+     "1,00", "pschl.", "600,00", "600,00 €"),
     ("1.2", "Montage 2× Klima-Wandgerät 3,5 kW inkl. Inbetriebnahme",
      "Montage von je Innen-Wandgerät und Außengerät (Geräte bauseits gestellt), "
      "Kältemittelleitungen, Isolierung, Kondensatablauf, Wanddurchbruch, elektrischer Anschluss, "
      "Vakuumieren, Dichtheitsprüfung, Inbetriebnahme sowie Einweisung in die Bedienung.",
-     "1,00", "psch", "2.000,00 €", "2.000,00 €"),
+     "1,00", "pschl.", "2.000,00", "2.000,00 €"),
     ("1.3", "Fernbedienung (zusätzlich)",
      "Zusätzliche Fernbedienung je Gerät, separat zur serienmäßig im Gerät enthaltenen.",
-     "2,00", "Stk", "65,00 €", "130,00 €"),
+     "2,00", "Stk", "65,00", "130,00 €"),
 ]
-ZWISCHEN = NETTO = GESAMT = "2.730,00 €"
+NETTO = "2.730,00 €"
+GESAMT = "2.730,00 €"
+LEISTUNGSUMFANG = ("Demontage der vorhandenen Klimaanlage und betriebsfertige Montage von 2 "
+    "Klima-Wandgeräten 3,5 kW inkl. Inbetriebnahme und Dichtheitsprüfung. Die Klimageräte werden "
+    "bauseits gestellt. Gleichwertige Ausführungsvarianten vorbehalten.")
+OUT = "Angebot_283_2x_Wandgeraet_3.5kW.pdf"
+# =========================================================
 
-W = {"nr": 14, "besch": 86, "menge": 16, "einheit": 16, "ep": 23, "betrag": 23}
+BLUE = (26, 82, 118)
+SECTION_BG = (234, 241, 248)
+LINE_LT = (224, 231, 239)
 DARK = (17, 17, 17)
 GREY = (90, 90, 90)
-LINE = (60, 60, 60)
-FAM = "Lib"
+WHITE = (255, 255, 255)
+
+# Spaltengrenzen (pt)
+L, R = 54, 558
+C = {"oz": 54, "bes": 76, "menge": 365, "einh": 399, "ep": 430, "bet": 472, "mwst": 528}
+BESW = C["menge"] - C["bes"] - 8  # Textbreite Beschreibung
 
 
 class PDF(FPDF):
-    def footer(self):
-        self.set_y(-26)
-        self.set_draw_color(150, 150, 150)
-        self.set_line_width(0.2)
-        self.line(self.l_margin, self.get_y(), self.w - self.r_margin, self.get_y())
-        self.ln(2)
-        col_w = (self.w - self.l_margin - self.r_margin) / 3
-        y0 = self.get_y()
-        cols = [
-            ("Adresse", ["Berlepschstr. 165", "14165 Berlin"]),
-            ("Kontakt", ["info@leanstech-gmbh.de", "Tel. +49 170 8280836", "www.leanstech-gmbh.de"]),
-            ("Register / Bank", ["HR-Nr HRB 249080 B", "USt-IdNr. DE357948720",
-                                  "Berliner Volksbank · BIC BEVODEBB", "IBAN DE21 1009 0000 2911 7280 04"]),
-        ]
-        for i, (title, lines) in enumerate(cols):
-            x = self.l_margin + i * col_w
-            self.set_xy(x, y0)
-            self.set_font(FAM, "B", 7.5)
-            self.set_text_color(*DARK)
-            self.cell(col_w, 3.6, title, ln=2)
-            self.set_font(FAM, "", 7.5)
-            self.set_text_color(*GREY)
-            for ln in lines:
-                self.cell(col_w, 3.6, ln, ln=2)
+    def __init__(self):
+        super().__init__(orientation="P", unit="pt", format=(612, 792))
+        self.add_font("Lib", "", f"{FD}/LiberationSans-Regular.ttf")
+        self.add_font("Lib", "B", f"{FD}/LiberationSans-Bold.ttf")
+        self.add_font("Lib", "I", f"{FD}/LiberationSans-Italic.ttf")
+        self.set_auto_page_break(False)
+
+    def t(self, x, y, s, size, style="", color=DARK, align="L", w=None):
+        self.set_font("Lib", style, size)
+        self.set_text_color(*color)
+        if align == "L" and w is None:
+            self.text(x, y, s)
+        else:
+            self.set_xy(x, y - size)
+            self.cell(w if w else 0, size, s, align=align)
 
 
-pdf = PDF(orientation="P", unit="mm", format="A4")
-pdf.add_font(FAM, "", f"{FONT_DIR}/LiberationSans-Regular.ttf")
-pdf.add_font(FAM, "B", f"{FONT_DIR}/LiberationSans-Bold.ttf")
-pdf.set_margins(16, 18, 16)
-pdf.set_auto_page_break(auto=True, margin=30)
+pdf = PDF()
 pdf.add_page()
 
-# Absender
-pdf.set_font(FAM, "", 8)
-pdf.set_text_color(*GREY)
-pdf.cell(0, 4, "LEANS Tech GmbH · Semir Redzic · Berlepschstr. 165 · 14165 · Berlin", ln=1)
-pdf.set_draw_color(150, 150, 150)
-pdf.set_line_width(0.2)
-pdf.line(pdf.l_margin, pdf.get_y() + 1, pdf.w - pdf.r_margin, pdf.get_y() + 1)
-pdf.ln(7)
+# ---- Logo ----
+pdf.image(LOGO, x=54, y=54, w=86, h=58)
 
-# Empfänger
+# ---- Empfaenger (rechtsbuendig auf R) ----
+pdf.t(0, 63, "An:", 7.9, "B", DARK, align="R", w=R)
+yy = 72
+for line in EMPF:
+    pdf.t(0, yy, line, 7.9, "", DARK, align="R", w=R)
+    yy += 9
+
+# ---- Absenderzeile + Akzentbalken ----
+pdf.t(L, 128, "Semir Redžić • Berlepschstr. 165 • 14165 Berlin • Tel: +49 170 828 0836 • "
+              "info@leanstech-gmbh.de", 7.5, "", GREY)
+pdf.set_fill_color(*BLUE)
+pdf.rect(L, 141, R - L, 2.2, style="F")
+
+# ---- Titel ----
+pdf.t(L, 178, "ANGEBOT", 18, "B", DARK)
+
+# ---- Meta ----
+pdf.t(L, 199, f"Angebotsnummer: {NR}", 8.6, "B", DARK)
+pdf.t(L, 211, f"Angebotsdatum: {DATUM}", 8.6, "B", DARK)
+pdf.t(L, 223, f"Gültig bis: {GUELTIG}", 8.6, "B", DARK)
+# Leistung (kann umbrechen)
+pdf.set_font("Lib", "B", 8.6)
 pdf.set_text_color(*DARK)
-pdf.set_font(FAM, "B", 11)
-pdf.cell(0, 5.5, EMPF[0], ln=1)
-pdf.set_font(FAM, "", 10)
-for line in EMPF[1:]:
-    pdf.cell(0, 5, line, ln=1)
-pdf.ln(8)
+pdf.set_xy(L, 228)
+pdf.multi_cell(R - L, 11, f"Leistung: {LEISTUNG}", align="L")
+y = pdf.get_y() + 1
+pdf.t(L, y + 8.6, f"Gewerk: {GEWERK}", 8.6, "B", DARK)
+pdf.t(L, y + 20.6, f"Fabrikat: {FABRIKAT}", 8.6, "B", DARK)
+y = y + 26
 
-# Titel
-pdf.set_font(FAM, "B", 22)
-pdf.cell(0, 10, "ANGEBOT", ln=1)
-pdf.set_font(FAM, "", 10)
-pdf.set_text_color(*GREY)
-pdf.cell(0, 5, PROJ, ln=1)
-pdf.ln(2)
+# ---- Tabellenkopf (dunkelblau) ----
+hy = y + 6
+hh = 16
+pdf.set_fill_color(*BLUE)
+pdf.rect(L, hy, R - L, hh, style="F")
+hb = hy + 11
+pdf.t(C["oz"] + 5, hb, "OZ", 7.9, "B", WHITE)
+pdf.t(C["bes"] + 5, hb, "Beschreibung", 7.9, "B", WHITE)
+pdf.t(0, hb, "Menge", 7.9, "B", WHITE, align="R", w=C["einh"] - 6)
+pdf.t(C["einh"] + 4, hb, "Einh.", 7.9, "B", WHITE)
+pdf.t(0, hb, "EP netto", 7.9, "B", WHITE, align="R", w=C["bet"] - 4)
+pdf.t(0, hb, "Betrag netto", 7.9, "B", WHITE, align="R", w=C["mwst"] - 4)
+pdf.t(C["mwst"] + 5, hb, "MwSt", 7.9, "B", WHITE)
+y = hy + hh
+
+# ---- Abschnittszeile (hellblau) ----
+sh = 17
+pdf.set_fill_color(*SECTION_BG)
+pdf.rect(L, y, R - L, sh, style="F")
+pdf.t(C["oz"] + 6, y + 12, SECTION, 8.6, "B", BLUE)
+y = y + sh + 4
+
+# ---- Positionen ----
+for oz, titel, sub, menge, einh, ep, betrag in POS:
+    ytop = y
+    # Hauptzeile
+    pdf.t(C["oz"] + 6, ytop + 8, oz, 7.9, "", DARK)
+    pdf.t(C["bes"] + 6, ytop + 8, titel, 7.9, "B", DARK)
+    pdf.t(0, ytop + 8, menge, 7.9, "", DARK, align="R", w=C["einh"] - 6)
+    pdf.t(C["einh"] + 4, ytop + 8, einh, 7.9, "", DARK)
+    pdf.t(0, ytop + 8, ep, 7.9, "", DARK, align="R", w=C["bet"] - 4)
+    pdf.t(0, ytop + 8, betrag, 7.9, "", DARK, align="R", w=C["mwst"] - 4)
+    pdf.t(C["mwst"] + 5, ytop + 8, "§13b", 7.9, "", GREY)
+    # Sub-Beschreibung
+    pdf.set_font("Lib", "", 7.1)
+    pdf.set_text_color(*GREY)
+    pdf.set_xy(C["bes"] + 6, ytop + 12)
+    pdf.multi_cell(BESW, 9, sub, align="L")
+    y = pdf.get_y() + 6
+    pdf.set_draw_color(*LINE_LT)
+    pdf.set_line_width(0.5)
+    pdf.line(L, y - 3, R, y - 3)
+
+# ---- Summen (rechter Block 237..556) ----
+TB_L, TB_R = 237, 556
+lab_x = 247
+y += 8
+pdf.t(lab_x, y + 10, "Nettobetrag", 9.0, "", DARK)
+pdf.t(0, y + 10, NETTO, 9.0, "", DARK, align="R", w=TB_R - 6)
+y += 24
+pdf.set_draw_color(*LINE_LT); pdf.set_line_width(0.6); pdf.line(TB_L, y, TB_R, y)
+pdf.t(lab_x, y + 13, "USt § 13b UStG (0 %)", 9.0, "", DARK)
+pdf.t(0, y + 13, "0,00 €", 9.0, "", DARK, align="R", w=TB_R - 6)
+y += 23
+# Gesamt (dunkelblauer Balken)
+gh = 26
+pdf.set_fill_color(*BLUE)
+pdf.rect(TB_L, y, TB_R - TB_L, gh, style="F")
+pdf.t(lab_x, y + 17, "Gesamtbetrag", 9.7, "B", WHITE)
+pdf.t(0, y + 17, GESAMT, 9.7, "B", WHITE, align="R", w=TB_R - 6)
+
+# ===================== SEITE 2 — AGB / Hinweise =====================
+pdf.add_page()
+pdf.set_xy(L, 60)
+pdf.set_font("Lib", "I", 7.5)
 pdf.set_text_color(*DARK)
-pdf.set_font(FAM, "B", 10)
-pdf.cell(0, 5, "RAUMLUFTTECHNIK · HEIZUNG", ln=1)
-pdf.ln(5)
-
-# Meta
-def kv(label, value, end=False):
-    pdf.set_font(FAM, "", 10)
-    pdf.write(5.5, label)
-    pdf.set_font(FAM, "B", 10)
-    pdf.write(5.5, value + ("\n" if end else ""))
-
-kv("Angebotsnummer: ", NR, end=True)
-kv("Angebotsdatum: ", DATUM)
-kv("    Gültig bis: ", GUELTIG)
-kv("    Bauvorhaben: ", BAUVORHABEN, end=True)
+pdf.multi_cell(R - L, 11, f"Leistungsumfang: {LEISTUNGSUMFANG}", align="L")
 pdf.ln(6)
-
-# Intro
-pdf.set_font(FAM, "", 10)
-pdf.multi_cell(0, 5, INTRO)
-pdf.ln(3)
-
-# Tabellenkopf
-pdf.set_font(FAM, "B", 9)
-pdf.set_text_color(*DARK)
-pdf.set_draw_color(*LINE)
-pdf.set_line_width(0.4)
-pdf.cell(W["nr"], 7, "Nr.")
-pdf.cell(W["besch"], 7, "Beschreibung")
-pdf.cell(W["menge"], 7, "Menge", align="R")
-pdf.cell(W["einheit"], 7, "Einheit", align="R")
-pdf.cell(W["ep"], 7, "Einzelpreis", align="R")
-pdf.cell(W["betrag"], 7, "Betrag", align="R")
-pdf.ln(7)
-pdf.line(pdf.l_margin, pdf.get_y(), pdf.w - pdf.r_margin, pdf.get_y())
-pdf.ln(1.5)
-
-# Positionen
-for nr, titel, besch, menge, einheit, ep, betrag in POSITIONS:
-    x0 = pdf.l_margin
-    y0 = pdf.get_y()
-    pdf.set_xy(x0 + W["nr"], y0)
-    pdf.set_font(FAM, "B", 9.5)
-    pdf.multi_cell(W["besch"], 4.8, titel, align="L")
-    pdf.set_font(FAM, "", 9)
-    pdf.set_x(x0 + W["nr"])
-    pdf.multi_cell(W["besch"], 4.6, besch, align="L")
-    y_end = pdf.get_y()
-    pdf.set_xy(x0, y0)
-    pdf.set_font(FAM, "B", 9)
-    pdf.cell(W["nr"], 4.8, nr)
-    pdf.set_font(FAM, "", 9)
-    pdf.set_xy(x0 + W["nr"] + W["besch"], y0)
-    pdf.cell(W["menge"], 4.8, menge, align="R")
-    pdf.cell(W["einheit"], 4.8, einheit, align="R")
-    pdf.cell(W["ep"], 4.8, ep, align="R")
-    pdf.cell(W["betrag"], 4.8, betrag, align="R")
-    pdf.set_y(y_end + 2)
-    pdf.set_draw_color(200, 200, 200)
-    pdf.set_line_width(0.2)
-    pdf.line(pdf.l_margin, pdf.get_y(), pdf.w - pdf.r_margin, pdf.get_y())
-    pdf.ln(2)
-
-# Summen
-pdf.ln(2)
-sum_label_w = 30
-sum_val_w = 30
-sum_x = pdf.w - pdf.r_margin - sum_label_w - sum_val_w
-def sum_row(label, val, bold=False, top=False):
-    if top:
-        pdf.set_draw_color(*LINE); pdf.set_line_width(0.4)
-        pdf.line(sum_x, pdf.get_y(), pdf.w - pdf.r_margin, pdf.get_y())
-        pdf.ln(1.5)
-    pdf.set_x(sum_x)
-    pdf.set_font(FAM, "B" if bold else "", 11 if bold else 10)
-    pdf.cell(sum_label_w, 6, label)
-    pdf.cell(sum_val_w, 6, val, align="R", ln=1)
-
-sum_row("Zwischensumme", ZWISCHEN)
-sum_row("Nettobetrag", NETTO)
-sum_row("Gesamt (netto)", GESAMT, bold=True, top=True)
+pdf.set_x(L)
+pdf.multi_cell(R - L, 11,
+    "Hinweis gemäß § 13b Abs. 2 Nr. 4 UStG (Bauleistungen): Die Steuerschuldnerschaft für die "
+    "Umsatzsteuer geht auf den Leistungsempfänger über, sofern dieser ebenfalls Bauleistungen "
+    "erbringt. Umsatzsteuer wird nicht ausgewiesen – Gesamtbetrag = Nettobetrag.", align="L")
 pdf.ln(6)
+pdf.set_x(L)
+pdf.multi_cell(R - L, 11, f"Dieses Angebot ist freibleibend und gültig bis {GUELTIG}.", align="L")
 
-# Rechtshinweis + Zahlung
-pdf.set_font(FAM, "", 9)
-pdf.set_text_color(*DARK)
-pdf.multi_cell(0, 4.6,
-    "Die Umsatzsteuer für diese Leistung schuldet nach § 13b UStG der Leistungsempfänger "
-    "(Reverse-Charge-Verfahren für Bauleistungen).")
-pdf.ln(2)
-pdf.multi_cell(0, 4.6,
-    "Zahlungsbedingungen: 14 Tage netto. Es gelten unsere allgemeinen Geschäftsbedingungen. "
-    "Wir freuen uns auf Ihre Beauftragung.")
+# Fusszeile Seite 2 (unten)
+pdf.set_xy(L, 760)
+pdf.set_font("Lib", "I", 6.7)
+pdf.set_text_color(*GREY)
+pdf.multi_cell(R - L, 9,
+    "LEANS Tech GmbH • Berlepschstr. 165, 14165 Berlin • GF: Semir Redžić • HRB 249080 B • "
+    "USt-IdNr: DE357948720 • IBAN: DE24 1001 9000 1000 0012 17 • Adyen Bank • BIC: ADYBDEB2XXX",
+    align="L")
 
-pdf.output("Angebot_283_2x_Wandgeraet_3.5kW.pdf")
-print("OK geschrieben")
+pdf.output(OUT)
+print("OK ->", OUT)
