@@ -13,10 +13,17 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
    Zusammenfassung).
 2. PDF dem Nutzer senden (SendUserFile) **und IMMER zusätzlich in `~/Downloads` ablegen**
    (macht `gen_angebot.py` automatisch).
-3. Optional als Google Doc/PDF im Drive-Ordner `0AM9CvPIUCfZkUk9PVA` ablegen
-   (dort liegen die anderen Angebote).
+3. **Neue Angebote (von uns/Cloud erstellt) IMMER in den Ordner „Cloud Angebote" ablegen:**
+   `1lS-n7kan-pwbgFDP_NYwyRtGI-JIMd6C`.
+   - Alte/selbst erstellte Bestands-Angebote liegen im Ordner „Bestand Angebote":
+     `1KDlM4-GnjG_9IcERuwYmuyKoEw2HHLov`.
+   - Beide liegen im Drive-Stamm `0AM9CvPIUCfZkUk9PVA`.
    - Titel: `ANGEBOT <Nr> - LEANS Tech GmbH - <Kurzbeschreibung> - <Summe> EUR`
-4. **Angebotsnummer** fortlaufend hochzählen. Zuletzt vergeben: **283** → nächste = 284.
+4. **Angebotsnummer-Regel:**
+   - **Neues Angebot** (neues Thema/Vorgang) → neue, fortlaufende Nummer.
+   - **Änderung/Iteration am selben, im Chat besprochenen Angebot** → Nummer NICHT ändern,
+     Datei einfach überschreiben.
+   - Zuletzt vergeben: **283** → nächste neue = 284.
 5. Fehlende Felder (Kunde/Empfänger, Bauvorhaben) als Platzhalter `[…]` einsetzen,
    nicht extra nachfragen.
 
