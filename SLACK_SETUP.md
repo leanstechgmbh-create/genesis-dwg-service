@@ -14,6 +14,8 @@ channels:history     (Thread-Kontext in oeffentlichen Channels lesen)
 groups:history       (Thread-Kontext in privaten Channels lesen)
 im:history
 im:read
+files:read           (hochgeladene DWG/DXF herunterladen)
+files:write          (bearbeitete DWG/DXF zurueck in den Thread laden)
 ```
 Dann **Install to Workspace** → das **Bot User OAuth Token** (`xoxb-...`) kopieren.
 
@@ -57,13 +59,24 @@ Speichern → ggf. App neu installieren, wenn Slack dazu auffordert.
 
 ## 4 — Testen
 - Bot in einen Channel einladen: `/invite @DeinBot`
-- `@DeinBot Was kann GENESIS?` → Claude antwortet im Thread.
+- **Frage:** `@DeinBot Was kann GENESIS?` → Claude antwortet im Thread.
+- **Plan-Aenderung:** eine **DWG/DXF-Datei** hochladen und im selben Kommentar
+  `@DeinBot Zuluft-Auslass bei 1200,800 um 200mm nach rechts verschieben`
+  → der Bot erzeugt die `elements`, bearbeitet die Datei und laedt die fertige
+  DWG/DXF in den Thread.
 - Status pruefen: `GET /` zeigt `"slack": true`, wenn Token + Secret gesetzt sind.
+
+## Zwei Modi
+| Eingabe im Thread | Was passiert |
+|---|---|
+| Nur Text (`@Bot …` oder DM) | Claude antwortet als GENESIS-Assistent (mit Thread-Kontext) |
+| **DWG/DXF-Datei + Text** | Claude → `elements`-JSON → `dwg_core.modify_drawing` → fertige Datei zurueck |
 
 ---
 *Technik:* Endpoint `POST /slack/events` in `slack_bot.py`. Signaturpruefung per
-HMAC-SHA256 (5-Min-Replay-Schutz), Claude-Aufruf laeuft im Hintergrund, damit Slack
+HMAC-SHA256 (5-Min-Replay-Schutz), schwere Arbeit laeuft im Hintergrund, damit Slack
 das geforderte 200 innerhalb von 3 Sekunden erhaelt. Retries werden per `event_id`
-dedupliziert, Bot-eigene Nachrichten ignoriert (keine Schleifen). Der Bot liest den
-gesamten Thread-Verlauf (`conversations.replies`) und antwortet im Kontext der
-bisherigen Konversation (Mehrfach-Turn).
+dedupliziert, Bot-eigene Nachrichten ignoriert (keine Schleifen). Chat nutzt den
+gesamten Thread-Verlauf (`conversations.replies`). Die Plan-Aenderung verwendet
+dieselbe Kernlogik (`dwg_core.py`) wie der `/modify-dwg`-Endpoint — Claude erzeugt
+das `elements`-JSON per Tool-Use aus der natuerlichsprachlichen Beschreibung.
