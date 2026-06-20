@@ -16,7 +16,7 @@ RUN git clone --depth 1 --branch 0.13.3 https://github.com/LibreDWG/libredwg.git
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-COPY main.py .
+COPY main.py slack_bot.py ./
 
 ENV PORT=8080
 EXPOSE 8080
