@@ -69,5 +69,15 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
 ## Kontakte / E-Mail-Aliasse
 - **Mita** („schick zu Mita") → `info@aam-handwerk-montage.de`
 
+### Mail-Versand (mit PDF-Anhang)
+- **Gebaut:** `mail_send.send_angebot()` + Service-Endpoint `POST /send-angebot` verschicken
+  das branded PDF als Anhang. Alias „mita" ist hinterlegt.
+- **Aktivieren:** ENV setzen — `SMTP_USER` (Absenderadresse), `SMTP_PASSWORD`
+  (Gmail: **App-Passwort**), optional `SMTP_HOST`/`SMTP_PORT`/`SMTP_FROM`.
+- **Hinweis:** Die interaktive Gmail-Schnittstelle kann nur **Entwürfe ohne Binär-Anhang**
+  anlegen (kein Senden, keine PDF). Echtes Senden mit Anhang läuft nur über den
+  Service-Endpoint mit SMTP-Zugang. Ohne SMTP-Daten: Entwurf anlegen, PDF manuell anhängen,
+  selbst senden.
+
 ## Repo
 GENESIS DWG-Service (FastAPI, `main.py`): DWG/DXF rein → kleine Änderungen → DWG/DXF raus.

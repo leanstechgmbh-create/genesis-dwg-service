@@ -129,6 +129,40 @@ def health():
                           or os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"))}
 
 
+@app.post("/send-angebot")
+async def send_angebot_mail(request: Request, x_genesis_key: str = Header(default="")):
+    """Branded Angebot-PDF per E-Mail (mit Anhang) verschicken.
+
+    Body (JSON): { pdf_base64, to, subject, body }. `to` darf ein Alias sein
+    (z.B. "mita" -> info@aam-handwerk-montage.de).
+    """
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    try:
+        from mail_send import send_angebot
+    except Exception as e:
+        raise HTTPException(500, f"Mail-Modul nicht verfuegbar: {e}")
+    try:
+        b = await request.json()
+        raw = b.get("pdf_base64")
+        if not raw:
+            raise HTTPException(400, "pdf_base64 fehlt")
+        to = b.get("to")
+        if not to:
+            raise HTTPException(400, "to (Empfaenger/Alias) fehlt")
+        subject = b.get("subject") or "Angebot LEANS Tech GmbH"
+        body = b.get("body") or "Anbei unser Angebot.\n\nViele Grüße\nLEANS Tech GmbH"
+        with tempfile.TemporaryDirectory() as t:
+            p = os.path.join(t, "angebot.pdf")
+            open(p, "wb").write(base64.b64decode(raw))
+            res = send_angebot(to, subject, body, p)
+        return res
+    except HTTPException:
+        raise
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e), "trace": traceback.format_exc()[-500:]})
+
+
 @app.post("/upload-angebot")
 async def upload_angebot(request: Request, x_genesis_key: str = Header(default="")):
     """Branded Angebot-PDF nach Drive ("Cloud Angebote") hochladen.
