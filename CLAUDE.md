@@ -8,9 +8,14 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
 
 ### Ablauf
 1. Angebot mit dem Generator `gen_angebot.py` erstellen (Positionsdaten oben im Script
-   anpassen). Das Script erzeugt das PDF exakt im Original-Template.
-   **IMMER auch das vollständige Angebot direkt hier im Chat zeigen** (PDF senden + kurze
-   Zusammenfassung).
+   anpassen). Das Script erzeugt das **branded PDF** exakt im Original-Template — das PDF
+   ist die **fertige, kanonische Angebotsdatei** (Logo `leans_logo.png` ist aus
+   Bestandsangebot 297 extrahiert). **IMMER auch das vollständige PDF direkt hier im Chat
+   senden** + kurze Zusammenfassung.
+   - WICHTIG: Die per Drive-Schnittstelle erzeugten Google-Docs können das **Logo NICHT
+     einbetten** (Bild-Import nicht unterstützt) und sehen „nackt" aus — sie sind NUR eine
+     editierbare Kopie, NICHT das Angebot. Niemals das nackte Doc als „das Angebot" zeigen.
+     Maßgeblich ist immer das PDF.
 2. PDF dem Nutzer senden (SendUserFile) **und IMMER zusätzlich in `~/Downloads` ablegen**
    (macht `gen_angebot.py` automatisch).
 3. **Neue Angebote (von uns/Cloud erstellt) IMMER in den Ordner „Cloud Angebote" ablegen:**
