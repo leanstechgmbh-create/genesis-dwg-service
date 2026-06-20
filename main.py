@@ -124,7 +124,40 @@ def apply_changes(dxf_path, elements):
 @app.get("/")
 def health():
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
-            "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg")}
+            "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
+            "drive": bool(os.environ.get("GOOGLE_SERVICE_ACCOUNT_JSON")
+                          or os.environ.get("GOOGLE_APPLICATION_CREDENTIALS"))}
+
+
+@app.post("/upload-angebot")
+async def upload_angebot(request: Request, x_genesis_key: str = Header(default="")):
+    """Branded Angebot-PDF nach Drive ("Cloud Angebote") hochladen.
+
+    Body (JSON): { pdf_base64, title, folder_id? }. Existiert eine Datei mit
+    gleichem Titel im Ordner, wird ihr Inhalt ueberschrieben (gleiche Datei-ID).
+    """
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    try:
+        from drive_upload import upsert_file, CLOUD_ANGEBOTE
+    except Exception as e:
+        raise HTTPException(500, f"Drive-Modul nicht verfuegbar: {e}")
+    try:
+        b = await request.json()
+        raw = b.get("pdf_base64")
+        if not raw:
+            raise HTTPException(400, "pdf_base64 fehlt")
+        title = b.get("title") or "ANGEBOT - LEANS Tech GmbH.pdf"
+        folder = b.get("folder_id") or CLOUD_ANGEBOTE
+        with tempfile.TemporaryDirectory() as t:
+            p = os.path.join(t, "angebot.pdf")
+            open(p, "wb").write(base64.b64decode(raw))
+            res = upsert_file(p, title, folder, "application/pdf")
+        return {"ok": True, **res}
+    except HTTPException:
+        raise
+    except Exception as e:
+        return JSONResponse(status_code=500, content={"error": str(e), "trace": traceback.format_exc()[-500:]})
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):

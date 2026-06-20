@@ -48,6 +48,8 @@ LEISTUNGSUMFANG = ("Betriebsfertige Montage eines Klima-Wandgeräts (Außengerä
     "Kältemittelleitung und 15 m Kondensatleitung. Das Klimagerät wird bauseits gestellt. "
     "Gleichwertige Ausführungsvarianten vorbehalten.")
 OUT = "Angebot_283_2x_Wandgeraet_3.5kW.pdf"
+# Stabiler Drive-Titel je Angebot (KEINE Summe -> Iteration ueberschreibt dieselbe Datei)
+DRIVE_TITLE = f"ANGEBOT {NR} - LEANS Tech GmbH - 2x Wandgeraet 3.5kW.pdf"
 # =========================================================
 
 BLUE = (26, 82, 118)
@@ -212,3 +214,14 @@ os.makedirs(dl, exist_ok=True)
 dst = os.path.join(dl, OUT)
 shutil.copyfile(OUT, dst)
 print("Downloads ->", dst)
+
+# Branded PDF in Drive-Ordner "Cloud Angebote" hochladen (ueberschreibt bei gleicher Nr).
+# Wird uebersprungen, wenn kein Service-Account-Key gesetzt ist.
+try:
+    from drive_upload import upsert_file, CLOUD_ANGEBOTE
+    res = upsert_file(OUT, DRIVE_TITLE, CLOUD_ANGEBOTE)
+    print(f"Drive {res['action']} -> {res['name']} ({res['id']})")
+    if res.get("webViewLink"):
+        print("Drive-Link ->", res["webViewLink"])
+except Exception as e:
+    print("Drive-Upload uebersprungen:", str(e)[:160])

@@ -24,10 +24,13 @@ bestehenden ~100 Angebote (Referenz: Angebot 297) ausgeben, anzeigen und abspeic
    - **Bei Änderung/Iteration am selben Angebot: dieselbe Datei überschreiben** (gleicher
      Name/Datei-ID), keine zweite Datei anlegen.
    - Es muss das **branded PDF mit Logo** sein, KEIN nacktes Doc.
-   - **Technischer Hinweis (wichtig):** Die interaktive Drive-Schnittstelle kann (Stand jetzt)
-     PDFs nicht binär hochladen und Dateien weder überschreiben noch löschen. Damit „immer
-     hochladen + überschreiben" wirklich automatisch läuft, braucht es den Drive-Upload-Endpoint
-     im Service (Google-Service-Account-Key als Secret) — siehe TODO im Repo.
+   - **Auto-Upload (gebaut):** `gen_angebot.py` lädt das PDF nach dem Erzeugen automatisch
+     in „Cloud Angebote" hoch (`drive_upload.upsert_file`, stabiler Titel je Nr. →
+     Iteration überschreibt dieselbe Datei). Service-Endpoint zusätzlich: `POST /upload-angebot`.
+   - **Aktivieren:** Service-Account-Key als ENV setzen — `GOOGLE_SERVICE_ACCOUNT_JSON`
+     (kompletter JSON-String) oder `GOOGLE_APPLICATION_CREDENTIALS` (Dateipfad). Den Ordner
+     „Cloud Angebote" für die Service-Account-E-Mail freigeben (Bearbeiter). Ohne Key wird
+     der Upload nur übersprungen (PDF liegt trotzdem in Chat + `~/Downloads`).
 4. **Angebotsnummer-Regel:**
    - **Neues Angebot** (neues Thema/Vorgang) → neue, fortlaufende Nummer.
    - **Änderung/Iteration am selben, im Chat besprochenen Angebot** → Nummer NICHT ändern,
