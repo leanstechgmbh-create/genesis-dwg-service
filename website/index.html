@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Allround Property Service Berlin – Reparatur & Hausservice</title>
+<meta name="description" content="Allround Property Service Berlin – zuverlässiger Reparatur- und Property-Service in Berlin. Schnell, professionell, täglich bis 22 Uhr erreichbar. ★ 5,0 Bewertung.">
+<style>
+  :root{
+    --navy:#0B2545; --navy2:#163a63; --amber:#F6A623; --amber-d:#e08a0b;
+    --ink:#0f172a; --grey:#5A6B82; --light:#94A3B8; --bg:#f6f8fb; --line:#e6ebf2;
+    --radius:16px; --shadow:0 18px 40px -18px rgba(11,37,69,.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 22px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;border-radius:999px;padding:14px 24px;transition:.2s;cursor:pointer;border:none;font-size:15px}
+  .btn-amber{background:linear-gradient(180deg,#ffc24b,var(--amber) 60%,var(--amber-d));color:var(--navy);box-shadow:0 10px 22px -8px rgba(246,166,35,.7)}
+  .btn-amber:hover{transform:translateY(-2px)}
+  .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.35)}
+  .btn-ghost:hover{background:rgba(255,255,255,.18)}
+  .btn-wa{background:#25D366;color:#063}
+  .btn-wa:hover{transform:translateY(-2px)}
+  section{padding:84px 0}
+  .eyebrow{color:var(--amber-d);font-weight:800;letter-spacing:2px;text-transform:uppercase;font-size:13px}
+  h2{font-size:clamp(26px,4vw,40px);line-height:1.15;color:var(--navy);margin:8px 0 14px;letter-spacing:-.5px}
+  .lead{color:var(--grey);font-size:18px;max-width:620px}
+
+  /* Header */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+  .brand{display:flex;align-items:center;gap:12px}
+  .brand .logo{width:46px;height:46px;flex:0 0 auto}
+  .brand b{display:block;font-size:19px;font-weight:800;color:var(--navy);letter-spacing:.3px;line-height:1}
+  .brand span{font-size:10px;font-weight:700;letter-spacing:3px;color:var(--grey)}
+  .brand span i{color:var(--amber-d);font-style:normal}
+  nav.links{display:flex;gap:28px;align-items:center}
+  nav.links a{font-weight:600;color:var(--navy);font-size:15px}
+  nav.links a:hover{color:var(--amber-d)}
+  .nav .cta{display:flex;gap:10px;align-items:center}
+  .menu-btn{display:none;background:none;border:none;font-size:26px;color:var(--navy);cursor:pointer}
+
+  /* Hero */
+  .hero{position:relative;background:radial-gradient(1100px 520px at 78% -10%,#1d4d80 0%,transparent 60%),linear-gradient(160deg,#0e2c50,#08203c 60%,#040f1f);color:#fff;overflow:hidden}
+  .hero:after{content:"";position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 39h40M39 0v40' stroke='%23ffffff' stroke-opacity='.04'/%3E%3C/svg%3E")}
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding-top:70px;padding-bottom:84px}
+  .hero h1{font-size:clamp(34px,5.2vw,56px);line-height:1.05;letter-spacing:-1px;margin-bottom:18px}
+  .hero h1 em{font-style:normal;color:var(--amber);position:relative;white-space:nowrap}
+  .hero p{color:#c9d6e8;font-size:19px;max-width:520px;margin-bottom:28px}
+  .hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+  .rating{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:10px 16px;border-radius:999px;font-size:14px;color:#dbe6f5}
+  .stars{color:var(--amber);letter-spacing:2px}
+  .hero-art{display:flex;justify-content:center}
+  .hero-art .badge{width:min(360px,80%);filter:drop-shadow(0 30px 40px rgba(0,0,0,.45))}
+
+  /* trust strip */
+  .strip{background:var(--navy);color:#cdd9ea}
+  .strip .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:18px;padding:18px 22px;font-size:14px;font-weight:600}
+  .strip b{color:#fff}
+  .strip .amber{color:var(--amber)}
+
+  /* services */
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:.22s}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:#dfe7f1}
+  .card .ic{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(160deg,#fff5e2,#ffe6bd);margin-bottom:16px}
+  .card .ic svg{width:28px;height:28px;stroke:var(--amber-d);fill:none;stroke-width:1.9}
+  .card h3{font-size:19px;color:var(--navy);margin-bottom:7px}
+  .card p{color:var(--grey);font-size:15px}
+
+  /* why band */
+  .why{background:var(--bg)}
+  .why .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:42px}
+  .why .item{text-align:center;padding:10px}
+  .why .num{font-size:40px;font-weight:800;color:var(--navy)}
+  .why .num span{color:var(--amber)}
+  .why .item p{color:var(--grey);font-size:15px;margin-top:4px}
+
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:42px;counter-reset:s}
+  .step{position:relative;padding-left:64px}
+  .step:before{counter-increment:s;content:counter(s);position:absolute;left:0;top:0;width:46px;height:46px;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:20px;display:grid;place-items:center}
+  .step h3{color:var(--navy);font-size:18px;margin-bottom:4px}
+  .step p{color:var(--grey);font-size:15px}
+
+  /* reviews */
+  .reviews .grid{grid-template-columns:repeat(3,1fr)}
+  .review{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .review .stars{font-size:18px}
+  .review p{color:var(--ink);margin:12px 0;font-size:15px}
+  .review .who{font-weight:700;color:var(--navy);font-size:14px}
+
+  /* contact */
+  .contact{background:linear-gradient(160deg,#0e2c50,#08203c 60%,#040f1f);color:#fff}
+  .contact h2{color:#fff}
+  .contact .lead{color:#c9d6e8}
+  .cgrid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:40px}
+  .cinfo .row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+  .cinfo .row .ic{width:46px;height:46px;border-radius:12px;background:rgba(246,166,35,.16);display:grid;place-items:center;flex:0 0 auto}
+  .cinfo .row .ic svg{width:22px;height:22px;stroke:var(--amber);fill:none;stroke-width:2}
+  .cinfo .row b{display:block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--light)}
+  .cinfo .row .v{font-size:18px;font-weight:700}
+  form{background:#fff;border-radius:var(--radius);padding:28px;color:var(--ink)}
+  form label{display:block;font-size:13px;font-weight:700;color:var(--navy);margin:12px 0 6px}
+  form input,form textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 14px;font:inherit;font-size:15px;background:#fafbfd}
+  form input:focus,form textarea:focus{outline:none;border-color:var(--amber);background:#fff}
+  form .btn{margin-top:18px;width:100%}
+
+  /* footer */
+  footer{background:#06152a;color:#9db2cc;font-size:14px}
+  .fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:30px;padding:60px 0 30px}
+  footer h4{color:#fff;font-size:13px;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+  footer a:hover{color:var(--amber)}
+  footer .fb{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+  footer .fb .logo{width:42px;height:42px}
+  footer .fb b{color:#fff;font-size:17px}
+  .copy{border-top:1px solid rgba(255,255,255,.1);padding:20px 0;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;color:#6b83a3}
+  .ph{color:var(--amber)} /* platzhalter-marker */
+
+  /* sticky mobile call bar */
+  .mobilebar{display:none}
+
+  @media(max-width:880px){
+    .hero .wrap{grid-template-columns:1fr;text-align:center;padding-top:48px}
+    .hero p{margin-left:auto;margin-right:auto}
+    .hero .cta,.rating{justify-content:center}
+    .hero-art{order:-1}
+    .grid,.reviews .grid{grid-template-columns:1fr 1fr}
+    .why .grid4{grid-template-columns:1fr 1fr}
+    .steps{grid-template-columns:1fr}
+    .cgrid,.fgrid{grid-template-columns:1fr}
+    nav.links{display:none}
+    .menu-btn{display:block}
+    nav.links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 22px;gap:16px;border-bottom:1px solid var(--line)}
+    .nav .cta .btn span{display:none}
+    .mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:60;gap:0}
+    .mobilebar a{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:14px;font-weight:800;font-size:15px}
+    .mobilebar .call{background:var(--navy);color:#fff}
+    .mobilebar .wa{background:#25D366;color:#fff}
+    body{padding-bottom:52px}
+  }
+  @media(max-width:520px){.grid,.reviews .grid,.why .grid4{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- ===== LOGO (inline, reusable) ===== -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tileF" x1="0" y1="0" x2=".5" y2="1"><stop offset="0" stop-color="#27568c"/><stop offset=".5" stop-color="#163a63"/><stop offset="1" stop-color="#0b2545"/></linearGradient>
+    <linearGradient id="ambF" x1="0" y1="0" x2=".3" y2="1"><stop offset="0" stop-color="#FFE08A"/><stop offset=".45" stop-color="#FBB034"/><stop offset="1" stop-color="#EF8E12"/></linearGradient>
+    <linearGradient id="gloss" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".3"/><stop offset=".45" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  </defs>
+  <symbol id="emblem" viewBox="0 0 20 20">
+    <rect width="20" height="20" rx="4" fill="url(#tileF)"/>
+    <rect x=".9" y=".9" width="18.2" height="18.2" rx="3.1" fill="none" stroke="#F6A623" stroke-opacity=".55" stroke-width=".24"/>
+    <rect width="20" height="11" rx="4" fill="url(#gloss)"/>
+    <path d="M10 3.1 L16.7 11.7 L3.3 11.7 Z" fill="url(#ambF)" stroke="#C96B06" stroke-width=".1" stroke-linejoin="round"/>
+    <path d="M10 6.3 L12.9 11 L7.1 11 Z" fill="url(#tileF)"/>
+    <rect x="7.1" y="9.86" width="5.8" height="1.1" rx=".36" fill="#FFCE63"/>
+    <rect x="5.5" y="11.7" width="9" height="4.7" rx=".5" fill="url(#ambF)"/>
+    <rect x="8.65" y="13.15" width="2.7" height="3.25" rx=".36" fill="url(#tileF)"/>
+  </symbol>
+</svg>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg class="logo"><use href="#emblem"/></svg>
+      <div><b>ALLROUND</b><span>PROPERTY&nbsp;SERVICE&nbsp;·&nbsp;<i>BERLIN</i></span></div>
+    </a>
+    <nav class="links" id="links">
+      <a href="#leistungen">Leistungen</a>
+      <a href="#warum">Warum wir</a>
+      <a href="#ablauf">Ablauf</a>
+      <a href="#bewertungen">Bewertungen</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="cta">
+      <a class="btn btn-amber" href="tel:015753020316">📞 <span>Anrufen</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menü">☰</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" style="color:var(--amber)">Reparatur · Montage · Hausservice</span>
+      <h1>Ihr <em>Rundum-Service</em> für Haus & Immobilie in Berlin</h1>
+      <p>Schnell, sauber und zuverlässig: von der kleinen Reparatur bis zur kompletten Objektbetreuung. Ein Anruf genügt – wir kümmern uns.</p>
+      <div class="cta">
+        <a class="btn btn-amber" href="tel:015753020316">📞 01575 3020316</a>
+        <a class="btn btn-wa" href="https://wa.me/4915753020316" target="_blank" rel="noopener">💬 WhatsApp schreiben</a>
+      </div>
+      <div class="rating"><span class="stars">★★★★★</span> <b style="color:#fff">5,0 / 5</b> &nbsp;bei Google · täglich bis 22 Uhr erreichbar</div>
+    </div>
+    <div class="hero-art">
+      <svg class="badge" viewBox="0 0 20 20"><use href="#emblem"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST STRIP -->
+<div class="strip">
+  <div class="wrap">
+    <div>✓ <b>5,0 ★</b> Top bewertet</div>
+    <div>✓ <b>Täglich bis 22:00 Uhr</b> erreichbar</div>
+    <div>✓ <b>Schnelle Termine</b> in ganz Berlin</div>
+    <div>✓ <span class="amber">Faire Festpreise</span> & saubere Arbeit</div>
+  </div>
+</div>
+
+<!-- LEISTUNGEN -->
+<section id="leistungen">
+  <div class="wrap">
+    <span class="eyebrow">Leistungen</span>
+    <h2>Alles aus einer Hand</h2>
+    <p class="lead">Ob Wohnung, Haus oder Gewerbe – wir übernehmen Reparaturen, Montagen und die laufende Betreuung Ihrer Immobilie.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M14 6l4 4-9 9-4 1 1-4 9-9z"/><path d="M13 7l4 4"/></svg></div>
+        <h3>Reparaturen</h3>
+        <p>Schnelle Hilfe bei Schäden an Wänden, Böden, Türen, Fenstern und Sanitär – fachgerecht und sauber.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M10 21v-6h4v6"/></svg></div>
+        <h3>Montage & Aufbau</h3>
+        <p>Möbel, Küchen, Lampen, Regale, TV & Co. – fachmännisch montiert und befestigt.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg></div>
+        <h3>Renovierung</h3>
+        <p>Streichen, Tapezieren, kleine Umbauten – wir bringen Ihre Räume wieder auf Vordermann.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <h3>Hausmeisterservice</h3>
+        <p>Regelmäßige Betreuung, Kleinreparaturen und Pflege Ihrer Immobilie – zuverlässig und planbar.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12h4l2 5 4-12 2 7h6"/></svg></div>
+        <h3>Notdienst</h3>
+        <p>Dringende Fälle? Wir sind täglich bis 22 Uhr erreichbar und kommen schnellstmöglich vorbei.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18V9l-9-6-9 6z"/><path d="M9 21v-6h6v6"/></svg></div>
+        <h3>Objektbetreuung</h3>
+        <p>Komplettservice für Vermieter & Hausverwaltungen: Wartung, Übergaben, Instandhaltung.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WARUM -->
+<section class="why" id="warum">
+  <div class="wrap">
+    <span class="eyebrow">Warum Allround</span>
+    <h2>Auf uns ist Verlass</h2>
+    <p class="lead">Persönlich, ehrlich und gründlich – dafür stehen unsere Bewertungen.</p>
+    <div class="grid4">
+      <div class="item"><div class="num">5,0<span>★</span></div><p>Google-Bewertung</p></div>
+      <div class="item"><div class="num">22<span>h</span></div><p>täglich erreichbar</p></div>
+      <div class="item"><div class="num">100<span>%</span></div><p>Berlin & Umland</p></div>
+      <div class="item"><div class="num">1<span>×</span></div><p>Anruf genügt</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABLAUF -->
+<section id="ablauf">
+  <div class="wrap">
+    <span class="eyebrow">So einfach geht's</span>
+    <h2>In 3 Schritten erledigt</h2>
+    <div class="steps">
+      <div class="step"><h3>Kontakt aufnehmen</h3><p>Rufen Sie an oder schreiben Sie uns kurz per WhatsApp, was zu tun ist.</p></div>
+      <div class="step"><h3>Termin & Festpreis</h3><p>Sie erhalten zeitnah einen Termin und ein faires, transparentes Angebot.</p></div>
+      <div class="step"><h3>Sauber erledigt</h3><p>Wir führen die Arbeiten zuverlässig aus – ordentlich und pünktlich.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEWERTUNGEN -->
+<section class="reviews why" id="bewertungen">
+  <div class="wrap">
+    <span class="eyebrow">Bewertungen</span>
+    <h2>Das sagen Kundinnen & Kunden</h2>
+    <div class="grid">
+      <div class="review"><div class="stars">★★★★★</div><p>„Super schnell, freundlich und absolut zuverlässig. Die Reparatur war einwandfrei – klare Empfehlung!"</p><div class="who">— Google-Rezension</div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>„Termin kurzfristig bekommen, fairer Preis und saubere Arbeit. Sehr zu empfehlen."</p><div class="who">— Google-Rezension</div></div>
+      <div class="review"><div class="stars">★★★★★</div><p>„Endlich ein Handwerker, der sich kümmert und erreichbar ist. Top Service in Berlin!"</p><div class="who">— Google-Rezension</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact" id="kontakt">
+  <div class="wrap">
+    <span class="eyebrow" style="color:var(--amber)">Kontakt</span>
+    <h2>Jetzt unverbindlich anfragen</h2>
+    <p class="lead">Schildern Sie uns kurz Ihr Anliegen – wir melden uns schnellstmöglich zurück.</p>
+    <div class="cgrid">
+      <div class="cinfo">
+        <div class="row">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-3 2a11 11 0 005 5l2-3 5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></div>
+          <div><b>Telefon & WhatsApp</b><div class="v"><a href="tel:015753020316">01575 3020316</a></div></div>
+        </div>
+        <div class="row">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><b>Öffnungszeiten</b><div class="v">Täglich bis 22:00 Uhr</div></div>
+        </div>
+        <div class="row">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><b>Einsatzgebiet</b><div class="v">Berlin & Umland</div></div>
+        </div>
+        <div class="row">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 8h16"/></svg></div>
+          <div><b>Adresse</b><div class="v ph">[ Straße &amp; Hausnummer, PLZ Berlin ]</div></div>
+        </div>
+      </div>
+      <form onsubmit="return sendForm(event)">
+        <label>Name</label><input required placeholder="Ihr Name">
+        <label>Telefon / E-Mail</label><input required placeholder="Wie erreichen wir Sie?">
+        <label>Ihr Anliegen</label><textarea rows="4" required placeholder="Was können wir für Sie tun?"></textarea>
+        <button class="btn btn-amber" type="submit">Anfrage senden →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <div class="fb"><svg class="logo"><use href="#emblem"/></svg><b>Allround Property Service</b></div>
+      <p>Ihr zuverlässiger Reparatur- und Property-Service in Berlin. Schnell, sauber, fair.</p>
+    </div>
+    <div>
+      <h4>Leistungen</h4>
+      <p><a href="#leistungen">Reparaturen</a></p>
+      <p><a href="#leistungen">Montage & Aufbau</a></p>
+      <p><a href="#leistungen">Hausmeisterservice</a></p>
+      <p><a href="#leistungen">Notdienst</a></p>
+    </div>
+    <div>
+      <h4>Kontakt</h4>
+      <p><a href="tel:015753020316">01575 3020316</a></p>
+      <p><a href="https://wa.me/4915753020316">WhatsApp</a></p>
+      <p class="ph">[ E-Mail ]</p>
+      <p>Täglich bis 22:00 Uhr</p>
+    </div>
+    <div>
+      <h4>Rechtliches</h4>
+      <p class="ph">[ Impressum ]</p>
+      <p class="ph">[ Datenschutz ]</p>
+      <p class="ph">Inhaber: [ Name ]</p>
+    </div>
+  </div>
+  <div class="wrap copy">
+    <span>© <span id="yr"></span> Allround Property Service Berlin</span>
+    <span>Berlin · ★ 5,0 bei Google</span>
+  </div>
+</footer>
+
+<!-- mobile sticky call bar -->
+<div class="mobilebar">
+  <a class="call" href="tel:015753020316">📞 Anrufen</a>
+  <a class="wa" href="https://wa.me/4915753020316">💬 WhatsApp</a>
+</div>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  const mb=document.getElementById('menuBtn'),lk=document.getElementById('links');
+  mb.addEventListener('click',()=>lk.classList.toggle('open'));
+  lk.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>lk.classList.remove('open')));
+  function sendForm(e){e.preventDefault();alert('Vielen Dank! Ihre Anfrage wurde vorbereitet.\\nBitte verbinden Sie das Formular mit Ihrer E-Mail oder rufen Sie uns direkt an: 01575 3020316');return false;}
+</script>
+</body>
+</html>
