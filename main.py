@@ -14,36 +14,55 @@ app = FastAPI(title="GENESIS Service", version="4.0")
 app.include_router(slack_router)
 API_KEY = os.environ.get("GENESIS_API_KEY", "")
 
-# Social-Media-/Web-Profile der LEANS Tech GmbH. Leere Werte werden in den
-# Antworten automatisch ausgefiltert -> einfach die echten URLs eintragen.
+# Firmen- und Profildaten der LEANS Tech GmbH. Nach Marke gegliedert.
+# Leere Werte werden in den Antworten automatisch ausgefiltert.
 # Pflege zentral hier und in SOCIAL_MEDIA.md.
-SOCIAL_LINKS = {
-    "website_hkls":  "https://www.leanstechgmbh-hkls.de",
-    "website_klima": "https://www.leanstech-klima.de",
-    "linkedin":  "",
-    "instagram": "",
-    "facebook":  "",
-    "x":         "",
-    "youtube":   "",
-    "github":    "https://github.com/leanstechgmbh-create",
-    "xing":      "",
+COMPANY = {
+    "name":     "LEANS Tech GmbH",
+    "website":  "https://www.leanstech-gmbh.de",
+    "email":    "info@leanstech-gmbh.de",
+    "phone":    "+49 170 8280836",
+    "address":  "Berlepschstraße 165, 14165 Berlin",
+    "github":   "https://github.com/leanstechgmbh-create",
 }
 
-def _social_links() -> dict:
-    """Nur befuellte Profil-Links (Platzhalter/leere Werte werden weggelassen)."""
-    return {k: v for k, v in SOCIAL_LINKS.items() if v}
+# Profile je Marke. URLs aus dem offiziellen Impressum / Marketing-Material.
+BRANDS = {
+    "hkls": {  # LEANS HKLS — Heizung, Klima, Lueftung, Sanitaer
+        "website":   "https://www.leanstechgmbh-hkls.de",
+        "instagram": "https://www.instagram.com/leanstechhkls/",
+        "youtube":   "",
+        "facebook":  "",
+        "whatsapp":  "",
+    },
+    "klima": {  # LEANS Klima — Klimatechnik
+        "website":   "https://www.leanstech-klima.de",
+        "instagram": "https://www.instagram.com/leansklima/",
+        "youtube":   "https://www.youtube.com/@leansklima",
+        "facebook":  "https://www.facebook.com/profile.php?id=61591323627434",
+        "whatsapp":  "https://wa.me/4915216607036",
+    },
+}
+
+def _clean_links(d: dict) -> dict:
+    """Nur befuellte Eintraege (leere Platzhalter werden weggelassen)."""
+    return {k: v for k, v in d.items() if v}
+
+def _social() -> dict:
+    return {"company": _clean_links(COMPANY),
+            "brands": {name: _clean_links(links) for name, links in BRANDS.items()}}
 
 @app.get("/")
 def health():
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
-            "slack": slack_ready(), "company": "LEANS Tech GmbH",
-            "social": _social_links()}
+            "slack": slack_ready(), "company": COMPANY["name"],
+            "social": _social()}
 
 @app.get("/social")
 def social():
-    """Offizielle Social-Media-/Web-Profile der LEANS Tech GmbH."""
-    return {"company": "LEANS Tech GmbH", "social": _social_links()}
+    """Offizielle Web-/Social-Media-Profile der LEANS Tech GmbH (je Marke)."""
+    return _social()
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):
