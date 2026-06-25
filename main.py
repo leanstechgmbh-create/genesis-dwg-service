@@ -14,11 +14,35 @@ app = FastAPI(title="GENESIS Service", version="4.0")
 app.include_router(slack_router)
 API_KEY = os.environ.get("GENESIS_API_KEY", "")
 
+# Social-Media-/Web-Profile der LEANS Tech GmbH. Leere Werte werden in den
+# Antworten automatisch ausgefiltert -> einfach die echten URLs eintragen.
+# Pflege zentral hier und in SOCIAL_MEDIA.md.
+SOCIAL_LINKS = {
+    "website":   "",
+    "linkedin":  "",
+    "instagram": "",
+    "facebook":  "",
+    "x":         "",
+    "youtube":   "",
+    "github":    "https://github.com/leanstechgmbh-create",
+    "xing":      "",
+}
+
+def _social_links() -> dict:
+    """Nur befuellte Profil-Links (Platzhalter/leere Werte werden weggelassen)."""
+    return {k: v for k, v in SOCIAL_LINKS.items() if v}
+
 @app.get("/")
 def health():
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
-            "slack": slack_ready()}
+            "slack": slack_ready(), "company": "LEANS Tech GmbH",
+            "social": _social_links()}
+
+@app.get("/social")
+def social():
+    """Offizielle Social-Media-/Web-Profile der LEANS Tech GmbH."""
+    return {"company": "LEANS Tech GmbH", "social": _social_links()}
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):
