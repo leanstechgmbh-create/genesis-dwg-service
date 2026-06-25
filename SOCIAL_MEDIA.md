@@ -6,10 +6,11 @@ Plattformen entfernen.
 
 ## Profile
 
-| Plattform   | Profil / Handle | Link |
-|-------------|-----------------|------|
-| Website     | leans-tech.de   | https://… |
-| LinkedIn    | @leans-tech     | https://www.linkedin.com/company/… |
+| Plattform        | Profil / Handle           | Link |
+|------------------|---------------------------|------|
+| Website (HKLS)   | leanstechgmbh-hkls.de     | https://www.leanstechgmbh-hkls.de |
+| Website (Klima)  | leanstech-klima.de        | https://www.leanstech-klima.de |
+| LinkedIn         | @leans-tech               | https://www.linkedin.com/company/… |
 | Instagram   | @leanstech      | https://www.instagram.com/… |
 | Facebook    | Leans Tech      | https://www.facebook.com/… |
 | X (Twitter) | @leanstech      | https://x.com/… |

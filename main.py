@@ -18,7 +18,8 @@ API_KEY = os.environ.get("GENESIS_API_KEY", "")
 # Antworten automatisch ausgefiltert -> einfach die echten URLs eintragen.
 # Pflege zentral hier und in SOCIAL_MEDIA.md.
 SOCIAL_LINKS = {
-    "website":   "",
+    "website_hkls":  "https://www.leanstechgmbh-hkls.de",
+    "website_klima": "https://www.leanstech-klima.de",
     "linkedin":  "",
     "instagram": "",
     "facebook":  "",
