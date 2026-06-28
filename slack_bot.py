@@ -25,6 +25,9 @@ SLACK_BOT_TOKEN = os.environ.get("SLACK_BOT_TOKEN", "")
 CLAUDE_MODEL = os.environ.get("CLAUDE_MODEL", "claude-opus-4-8")
 CLAUDE_MAX_TOKENS = int(os.environ.get("CLAUDE_MAX_TOKENS", "4096"))
 CLAUDE_HISTORY = int(os.environ.get("CLAUDE_HISTORY", "20"))  # max. Thread-Nachrichten
+AI_PROVIDER  = os.environ.get("AI_PROVIDER", "claude")   # "claude" oder "ollama"
+OLLAMA_HOST  = os.environ.get("OLLAMA_HOST", "http://localhost:11434")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
 
 # --- GENESIS-Wissen (Chat-System-Prompt) --------------------------------------
 GENESIS_WISSEN = (
@@ -89,7 +92,10 @@ ELEMENTS_TOOL = {
     },
 }
 
-_anthropic = AsyncAnthropic()  # liest ANTHROPIC_API_KEY aus der Umgebung
+try:
+    _anthropic = AsyncAnthropic()  # liest ANTHROPIC_API_KEY aus der Umgebung
+except Exception:
+    _anthropic = None
 _seen_events: set[str] = set()  # Dedup gegen Slack-Retries
 
 def slack_ready():
@@ -161,8 +167,44 @@ async def _upload_file(channel, thread_ts, filename, data, comment):
                   "channel_id": channel, "thread_ts": thread_ts,
                   "initial_comment": comment})
 
+# --- Ollama (lokal, kostenlos) ------------------------------------------------
+async def _ask_ollama(messages: list[dict]) -> str:
+    payload = {
+        "model": OLLAMA_MODEL,
+        "messages": [{"role": "system", "content": CLAUDE_SYSTEM}] + messages,
+        "stream": False,
+    }
+    async with httpx.AsyncClient(base_url=OLLAMA_HOST, timeout=120) as c:
+        r = await c.post("/api/chat", json=payload)
+        r.raise_for_status()
+    return r.json().get("message", {}).get("content", "").strip() or "(keine Antwort)"
+
+async def _extract_elements_ollama(instruction: str) -> list[dict]:
+    prompt = (
+        EXTRACT_SYSTEM + "\n\n"
+        "Eingabe: " + (instruction or "(keine Beschreibung)") + "\n\n"
+        'Antworte NUR mit einem JSON-Objekt: {"elements": [{"nr":"1","aktion":"..."}]}'
+    )
+    payload = {
+        "model": OLLAMA_MODEL,
+        "messages": [{"role": "user", "content": prompt}],
+        "format": "json",
+        "stream": False,
+    }
+    async with httpx.AsyncClient(base_url=OLLAMA_HOST, timeout=120) as c:
+        r = await c.post("/api/chat", json=payload)
+        r.raise_for_status()
+    raw = r.json().get("message", {}).get("content", "")
+    try:
+        data = json.loads(raw) if isinstance(raw, str) else raw
+        return data.get("elements", []) or []
+    except Exception:
+        return []
+
 # --- Claude -------------------------------------------------------------------
 async def _ask_claude(messages: list[dict]) -> str:
+    if AI_PROVIDER == "ollama":
+        return await _ask_ollama(messages)
     async with _anthropic.messages.stream(model=CLAUDE_MODEL, max_tokens=CLAUDE_MAX_TOKENS,
             system=CLAUDE_SYSTEM, messages=messages) as stream:
         msg = await stream.get_final_message()
@@ -170,6 +212,8 @@ async def _ask_claude(messages: list[dict]) -> str:
     return answer or "(keine Antwort erhalten)"
 
 async def _extract_elements(instruction: str) -> list[dict]:
+    if AI_PROVIDER == "ollama":
+        return await _extract_elements_ollama(instruction)
     resp = await _anthropic.messages.create(model=CLAUDE_MODEL, max_tokens=2048,
         system=EXTRACT_SYSTEM, tools=[ELEMENTS_TOOL],
         tool_choice={"type": "tool", "name": "dwg_aenderungen"},

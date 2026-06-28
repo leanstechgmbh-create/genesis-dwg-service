@@ -1,0 +1,26 @@
+services:
+  ollama:
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
+
+  genesis:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - AI_PROVIDER=ollama
+      - OLLAMA_HOST=http://ollama:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-qwen2.5:7b}
+      - SLACK_BOT_TOKEN=${SLACK_BOT_TOKEN:-}
+      - SLACK_SIGNING_SECRET=${SLACK_SIGNING_SECRET:-}
+      - GENESIS_API_KEY=${GENESIS_API_KEY:-}
+    depends_on:
+      - ollama
+
+volumes:
+  ollama_data:
