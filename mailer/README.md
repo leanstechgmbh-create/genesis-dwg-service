@@ -70,6 +70,52 @@ Bereits versendete Adressen werden beim naechsten Lauf automatisch **uebersprung
 | `--resend`         | Protokoll ignorieren und erneut senden                      |
 | `--yes`            | Sicherheitsabfrage ueberspringen                            |
 
+## Weg B: Server-Endpunkt (automatischer Versand ueber Cloud Run)
+
+Statt lokal kann der Versand auch direkt vom laufenden `genesis-dwg-service`
+ausgeloest werden — dann verschickt der Service, nicht Dein Laptop.
+
+### Einrichtung
+
+1. App-Passwort als **Secret/Umgebungsvariable** in Cloud Run hinterlegen:
+   `GMAIL_APP_PASSWORD` (zusaetzlich optional `GMAIL_USER`, `MAIL_ABSENDER`,
+   `MAIL_FIRMA`, `MAIL_WEBSITE`).
+2. Zum Schutz `GENESIS_API_KEY` setzen — der Endpunkt verlangt dann den Header
+   `X-Genesis-Key`.
+
+Im Health-Check (`GET /`) zeigt `"mail_ready": true`, sobald ein App-Passwort gesetzt ist.
+
+### Aufruf
+
+`POST /send-mails` mit JSON-Body (alle Felder optional):
+
+| Feld             | Typ   | Default | Wirkung                                  |
+|------------------|-------|---------|------------------------------------------|
+| `send`           | bool  | `false` | `true` = wirklich senden (sonst Vorschau)|
+| `limit`          | int   | `0`     | hoechstens N Mails (0 = alle)            |
+| `delay`          | float | `2`     | Sekunden Pause zwischen Mails            |
+| `only_confirmed` | bool  | `false` | nur Status `bestaetigt`                  |
+| `status`         | list  | –       | z.B. `["bestaetigt","zentral"]`          |
+| `resend`         | bool  | `false` | Sende-Protokoll ignorieren               |
+
+```bash
+# Vorschau (sendet nichts)
+curl -X POST https://<service-url>/send-mails \
+  -H "X-Genesis-Key: $GENESIS_API_KEY" -H "Content-Type: application/json" \
+  -d '{"limit": 5}'
+
+# Erste 10 wirklich senden
+curl -X POST https://<service-url>/send-mails \
+  -H "X-Genesis-Key: $GENESIS_API_KEY" -H "Content-Type: application/json" \
+  -d '{"send": true, "limit": 10, "delay": 5}'
+```
+
+Hinweis: Der Aufruf antwortet erst nach dem Versand. Bei grossen Mengen mit
+`limit` arbeiten (z.B. per n8n-Zeitplan mehrfach aufrufen) — `delay * Anzahl`
+sollte unter dem Cloud-Run-Timeout bleiben. Das Sende-Protokoll im Container
+ist fluechtig; fuer dauerhaften Doppelversand-Schutz `limit`/`status` gezielt
+einsetzen oder ein persistentes Volume anbinden.
+
 ## Hinweise
 
 - **Status `muster`** in der CSV bedeutet: E-Mail-Adresse nach Traeger-Schema
