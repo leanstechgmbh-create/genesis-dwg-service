@@ -20,3 +20,18 @@ und einen Slack-Bot.
 - `dwg_core.py` — Kernlogik (DWG<->DXF-Konvertierung, Änderungen)
 - `slack_bot.py` — Slack-Bot (Chat + Plan-Bearbeitung, Claude-gestützt)
 - `START_HIER.md` — Deploy-Anleitung (Google Cloud Run)
+
+## Rechnungen & Angebote — Layout (WICHTIG)
+
+Rechnungen und Angebote **immer im bestehenden LEANS-Tech-Layout** erstellen —
+so wie die bisherigen Dokumente aussehen. **Kein eigenes/neues Design.**
+
+- **Vorlage/Referenz:** die bereits vorhandenen PDFs in Google Drive, z. B.
+  Rechnungen „Rechnung 2026-37", „Rechnung 2026-38" und Angebote „Angebot 301"
+  (Ordner „Mehringdamm 44-46" bzw. die jeweiligen Kundenordner).
+- Vor dem Erstellen die **alte Vorlage heranziehen** und Aufbau 1:1 übernehmen:
+  Kopf (LEANS Tech GmbH, Semir Redzic, Berlepschstr. 165, 14165 Berlin),
+  Empfängerblock, Rechnungs-/Angebotsnummer, Datum, Positions-Tabelle,
+  Netto/USt/Gesamt, § 13b-Hinweis (Steuerschuldnerschaft Leistungsempfänger),
+  Fußzeile mit HRB 249080 B, USt-IdNr. DE357948720 und Bankverbindung.
+- Absender für Kundenmails ist **info@leanstech-gmbh.de**.
