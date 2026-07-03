@@ -29,14 +29,20 @@ STANDARD_LOG = HIER / "sent_log.csv"
 
 def konfig() -> dict:
     """Liest die Absender-Konfiguration aus den Umgebungsvariablen."""
-    user = os.environ.get("GMAIL_USER", "leanstechgmbh@gmail.com")
+    # Login-Adresse. MAIL_USER hat Vorrang (z.B. info@leanstech-gmbh.de bei IONOS),
+    # sonst GMAIL_USER (Rueckwaertskompatibilitaet).
+    user = os.environ.get("MAIL_USER") or os.environ.get("GMAIL_USER", "leanstechgmbh@gmail.com")
+    passwort = os.environ.get("MAIL_PASSWORD") or os.environ.get("GMAIL_APP_PASSWORD", "")
     return {
         "user": user,
         # Absender-Adresse im From-Header. Standardmaessig die Login-Adresse;
-        # per MAIL_FROM ueberschreibbar (z.B. info@leanstech-gmbh.de). Voraussetzung:
-        # die Adresse ist im Gmail-Konto als "Senden als" verifiziert.
+        # per MAIL_FROM ueberschreibbar.
         "from_addr": os.environ.get("MAIL_FROM", user),
-        "passwort": os.environ.get("GMAIL_APP_PASSWORD", ""),
+        "passwort": passwort,
+        # SMTP-Server frei waehlbar: Gmail (Standard) ODER IONOS
+        # (MAIL_HOST=smtp.ionos.de, MAIL_PORT=587) o.a.
+        "smtp_host": os.environ.get("MAIL_HOST", "smtp.gmail.com"),
+        "smtp_port": int(os.environ.get("MAIL_PORT", "587")),
         "absender": os.environ.get("MAIL_ABSENDER", "Semir Redzic"),
         "firma": os.environ.get("MAIL_FIRMA", "LeansTech GmbH"),
         "website": os.environ.get("MAIL_WEBSITE", "www.leanstech-klima.de"),
@@ -131,10 +137,14 @@ def baue_nachricht(empfaenger: str, betreff: str, body: str, cfg: dict,
 def smtp_verbinden(cfg: dict) -> smtplib.SMTP:
     """Oeffnet eine authentifizierte SMTP-Verbindung zu Gmail."""
     if not cfg["passwort"]:
-        raise RuntimeError("GMAIL_APP_PASSWORD ist nicht gesetzt.")
+        raise RuntimeError("Mail-Passwort ist nicht gesetzt (MAIL_PASSWORD/GMAIL_APP_PASSWORD).")
     ctx = ssl.create_default_context()
-    server = smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=30)
-    server.starttls(context=ctx)
+    host, port = cfg["smtp_host"], cfg["smtp_port"]
+    if port == 465:
+        server = smtplib.SMTP_SSL(host, port, timeout=30, context=ctx)
+    else:
+        server = smtplib.SMTP(host, port, timeout=30)
+        server.starttls(context=ctx)
     server.login(cfg["user"], cfg["passwort"])
     return server
 
