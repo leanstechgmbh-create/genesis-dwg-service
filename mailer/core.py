@@ -7,6 +7,7 @@ Absender-Konfiguration kommt aus Umgebungsvariablen (in Cloud Run als Secret):
   GMAIL_USER, GMAIL_APP_PASSWORD, MAIL_ABSENDER, MAIL_FIRMA, MAIL_WEBSITE
 """
 import csv
+import mimetypes
 import os
 import smtplib
 import ssl
@@ -28,8 +29,13 @@ STANDARD_LOG = HIER / "sent_log.csv"
 
 def konfig() -> dict:
     """Liest die Absender-Konfiguration aus den Umgebungsvariablen."""
+    user = os.environ.get("GMAIL_USER", "leanstechgmbh@gmail.com")
     return {
-        "user": os.environ.get("GMAIL_USER", "leanstechgmbh@gmail.com"),
+        "user": user,
+        # Absender-Adresse im From-Header. Standardmaessig die Login-Adresse;
+        # per MAIL_FROM ueberschreibbar (z.B. info@leanstech-gmbh.de). Voraussetzung:
+        # die Adresse ist im Gmail-Konto als "Senden als" verifiziert.
+        "from_addr": os.environ.get("MAIL_FROM", user),
         "passwort": os.environ.get("GMAIL_APP_PASSWORD", ""),
         "absender": os.environ.get("MAIL_ABSENDER", "Semir Redzic"),
         "firma": os.environ.get("MAIL_FIRMA", "LeansTech GmbH"),
@@ -93,11 +99,32 @@ def protokolliere(log_pfad, email: str, einrichtung: str, status: str, info: str
 def baue_mail(einrichtung: str, empfaenger: str, body: str, cfg: dict) -> EmailMessage:
     """Baut eine fertige EmailMessage mit korrekten Headern."""
     msg = EmailMessage()
-    msg["From"] = formataddr((f"{cfg['absender']} – {cfg['firma']}", cfg["user"]))
+    msg["From"] = formataddr((f"{cfg['absender']} – {cfg['firma']}", cfg["from_addr"]))
     msg["To"] = empfaenger
-    msg["Reply-To"] = cfg["user"]
+    msg["Reply-To"] = cfg["from_addr"]
     msg["Subject"] = SUBJECT_TEMPLATE.format(einrichtung=einrichtung)
     msg.set_content(body)
+    return msg
+
+
+def baue_nachricht(empfaenger: str, betreff: str, body: str, cfg: dict,
+                   anhaenge=None) -> EmailMessage:
+    """Baut eine EmailMessage mit frei waehlbarem Betreff/Text und optionalen
+    Datei-Anhaengen (Liste von Pfaden). Absender ist cfg['from_addr']
+    (z.B. info@leanstech-gmbh.de)."""
+    msg = EmailMessage()
+    msg["From"] = formataddr((f"{cfg['absender']} – {cfg['firma']}", cfg["from_addr"]))
+    msg["To"] = empfaenger
+    msg["Reply-To"] = cfg["from_addr"]
+    msg["Subject"] = betreff
+    msg.set_content(body)
+    for pfad in (anhaenge or []):
+        p = Path(pfad)
+        daten = p.read_bytes()
+        typ, _ = mimetypes.guess_type(p.name)
+        haupt, _, unter = (typ or "application/octet-stream").partition("/")
+        msg.add_attachment(daten, maintype=haupt, subtype=unter or "octet-stream",
+                           filename=p.name)
     return msg
 
 
