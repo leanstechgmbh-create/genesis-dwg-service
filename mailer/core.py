@@ -112,6 +112,52 @@ def smtp_verbinden(cfg: dict) -> smtplib.SMTP:
     return server
 
 
+def sende_einzelmail(*, empfaenger, betreff, text, anhaenge=None, cc=None,
+                     antwort_auf=None) -> dict:
+    """Verschickt EINE Mail (z.B. Angebots-Mail) mit optionalen Anhaengen.
+
+    empfaenger: Adresse oder Liste von Adressen.
+    anhaenge:   Liste von Dicts {"filename": ..., "content_base64": ...,
+                optional "mime_type": z.B. "application/pdf"}.
+    antwort_auf: optionale RFC-Message-ID -> setzt In-Reply-To/References,
+                damit die Mail im bestehenden Verlauf haengt.
+    """
+    import base64
+    cfg = konfig()
+    if isinstance(empfaenger, str):
+        empfaenger = [empfaenger]
+
+    msg = EmailMessage()
+    msg["From"] = formataddr((f"{cfg['absender']} – {cfg['firma']}", cfg["user"]))
+    msg["To"] = ", ".join(empfaenger)
+    if cc:
+        msg["Cc"] = ", ".join([cc] if isinstance(cc, str) else cc)
+    msg["Reply-To"] = cfg["user"]
+    msg["Subject"] = betreff
+    if antwort_auf:
+        msg["In-Reply-To"] = antwort_auf
+        msg["References"] = antwort_auf
+    msg.set_content(text)
+
+    for a in anhaenge or []:
+        daten = base64.b64decode(a["content_base64"], validate=True)
+        mime = a.get("mime_type") or "application/octet-stream"
+        haupt, _, unter = mime.partition("/")
+        msg.add_attachment(daten, maintype=haupt, subtype=unter or "octet-stream",
+                           filename=a.get("filename") or "anhang.bin")
+
+    server = smtp_verbinden(cfg)
+    try:
+        server.send_message(msg)
+    finally:
+        try:
+            server.quit()
+        except Exception:
+            pass
+    return {"gesendet": True, "absender": cfg["user"], "an": empfaenger,
+            "betreff": betreff, "anhaenge": [a.get("filename") for a in anhaenge or []]}
+
+
 def versende(*, send=False, limit=0, delay=2.0, status_filter=None, resend=False,
              csv_pfad=STANDARD_CSV, vorlage_pfad=STANDARD_VORLAGE,
              log_pfad=STANDARD_LOG, fortschritt=None) -> dict:
