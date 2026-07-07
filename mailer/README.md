@@ -116,6 +116,35 @@ sollte unter dem Cloud-Run-Timeout bleiben. Das Sende-Protokoll im Container
 ist fluechtig; fuer dauerhaften Doppelversand-Schutz `limit`/`status` gezielt
 einsetzen oder ein persistentes Volume anbinden.
 
+## Weg C: Einzelmail mit Anhaengen (`POST /send-mail`)
+
+Generischer Versand einer einzelnen Mail (z.B. Angebots-Mail mit PDF-Anhang)
+ueber den laufenden Service. Aus Sicherheitsgruenden **nur aktiv, wenn
+`GENESIS_API_KEY` gesetzt ist** (sonst 403) — ohne Key waere der Dienst ein
+offenes Mail-Relay.
+
+| Feld          | Typ          | Pflicht | Wirkung                                   |
+|---------------|--------------|---------|-------------------------------------------|
+| `to`          | str \| list  | ja      | Empfaenger                                |
+| `subject`     | str          | ja      | Betreff                                   |
+| `body`        | str          | ja      | Mailtext (Plain Text)                     |
+| `cc`          | str \| list  | nein    | Kopie                                     |
+| `attachments` | list         | nein    | `[{filename, content_base64, mime_type}]` |
+| `in_reply_to` | str          | nein    | RFC-Message-ID fuer Thread-Zuordnung      |
+
+```bash
+python3 - <<'PY' > payload.json   # Payload mit PDF-Anhang bauen
+import base64, json
+pdf = base64.b64encode(open("Angebot.pdf","rb").read()).decode()
+print(json.dumps({"to": "kunde@example.com", "subject": "Ihr Angebot",
+  "body": "Hallo ...", "attachments": [
+    {"filename": "Angebot.pdf", "content_base64": pdf, "mime_type": "application/pdf"}]}))
+PY
+curl -X POST https://<service-url>/send-mail \
+  -H "X-Genesis-Key: $GENESIS_API_KEY" -H "Content-Type: application/json" \
+  --data @payload.json
+```
+
 ## Hinweise
 
 - **Status `muster`** in der CSV bedeutet: E-Mail-Adresse nach Traeger-Schema

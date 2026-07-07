@@ -9,7 +9,7 @@ from fastapi import FastAPI, Request, Header, HTTPException
 from fastapi.responses import Response, JSONResponse
 from dwg_core import have, modify_drawing
 from slack_bot import router as slack_router, slack_ready
-from mailer.core import versende, mail_bereit
+from mailer.core import versende, mail_bereit, sende_einzelmail
 
 app = FastAPI(title="GENESIS Service", version="4.0")
 app.include_router(slack_router)
@@ -53,6 +53,46 @@ async def send_mails(request: Request, x_genesis_key: str = Header(default="")):
             resend=bool(b.get("resend", False)))
     except RuntimeError as e:
         raise HTTPException(400, str(e))
+
+@app.post("/send-mail")
+async def send_mail(request: Request, x_genesis_key: str = Header(default="")):
+    """Verschickt EINE Mail mit optionalen Anhaengen per Gmail-SMTP.
+
+    Anders als /send-mails (Kampagne aus recipients.csv) ist dies der generische
+    Versand, z.B. fuer Angebots-Mails mit PDF-Anhang.
+
+    Body (JSON):
+      to           str | [str]  -> Empfaenger (Pflicht)
+      subject      str          -> Betreff (Pflicht)
+      body         str          -> Mailtext (Pflicht)
+      cc           str | [str]  -> optional
+      attachments  [{filename, content_base64, mime_type?}] -> optional
+      in_reply_to  str          -> optionale RFC-Message-ID fuer Threading
+    """
+    # Offener Instanz-Schutz: generischer Versand NUR mit gesetztem API-Key,
+    # sonst waere der Dienst ein offenes Mail-Relay.
+    if not API_KEY:
+        raise HTTPException(403, "GENESIS_API_KEY ist nicht gesetzt — /send-mail deaktiviert")
+    if x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    try:
+        b = await request.json()
+    except Exception:
+        raise HTTPException(400, "JSON-Body fehlt")
+    if not b.get("to") or not b.get("subject") or not b.get("body"):
+        raise HTTPException(400, "to, subject und body sind Pflichtfelder")
+    anhaenge = b.get("attachments") or []
+    if sum(len(a.get("content_base64", "")) for a in anhaenge) > 25_000_000:
+        raise HTTPException(400, "Anhaenge zu gross (Gmail-Limit ~25MB)")
+    try:
+        return sende_einzelmail(
+            empfaenger=b["to"], betreff=b["subject"], text=b["body"],
+            cc=b.get("cc"), anhaenge=anhaenge, antwort_auf=b.get("in_reply_to"))
+    except RuntimeError as e:
+        raise HTTPException(400, str(e))
+    except Exception as e:
+        raise HTTPException(502, f"Versand fehlgeschlagen: {e}")
+
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):
