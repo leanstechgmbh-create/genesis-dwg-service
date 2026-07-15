@@ -18,6 +18,7 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY main.py slack_bot.py dwg_core.py ./
 COPY mailer/ ./mailer/
+COPY website/ ./website/
 
 ENV PORT=8080
 EXPOSE 8080

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profihaustechnik.de — Materialien für Lüftung, Sanitär, Heizung & Klima</title>
+<meta name="description" content="Profihaustechnik.de: der komplette Materialkatalog für Lüftung, Sanitär, Heizung und Klima — klar kategorisiert, einfach zu finden. LEANS Tech GmbH.">
+<style>
+  :root {
+    --bg: #f6f8fa;
+    --surface: #ffffff;
+    --text: #1a2332;
+    --muted: #5b6b7f;
+    --border: #e2e8f0;
+    --shadow: 0 1px 3px rgba(16, 24, 40, .08), 0 1px 2px rgba(16, 24, 40, .05);
+    --lueftung: #0e7490;
+    --lueftung-bg: #e0f2f8;
+    --sanitaer: #1d4ed8;
+    --sanitaer-bg: #e3eafc;
+    --heizung: #c2410c;
+    --heizung-bg: #fdeadd;
+    --klima: #047857;
+    --klima-bg: #dcf2ea;
+    --accent: #1a2332;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1520;
+      --surface: #1a2332;
+      --text: #e8edf4;
+      --muted: #9aa8bb;
+      --border: #2c3a4f;
+      --shadow: 0 1px 3px rgba(0, 0, 0, .4);
+      --lueftung: #38bdf8;
+      --lueftung-bg: #103247;
+      --sanitaer: #93b4f8;
+      --sanitaer-bg: #1c2c52;
+      --heizung: #fb923c;
+      --heizung-bg: #43261263;
+      --klima: #34d399;
+      --klima-bg: #0c3328;
+      --accent: #e8edf4;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+  }
+  header.top {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    box-shadow: var(--shadow);
+  }
+  .top-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    text-decoration: none;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .logo span { color: var(--sanitaer); }
+  .logo em { font-style: normal; color: var(--muted); font-weight: 600; font-size: .95em; }
+  #suche {
+    flex: 1 1 260px;
+    padding: 11px 16px;
+    border: 2px solid var(--border);
+    border-radius: 999px;
+    font-size: 1rem;
+    background: var(--bg);
+    color: var(--text);
+    outline: none;
+    transition: border-color .15s;
+  }
+  #suche:focus { border-color: var(--sanitaer); }
+  .usp {
+    background: var(--sanitaer);
+    color: #fff;
+    font-size: .82rem;
+    padding: 7px 20px;
+  }
+  .usp-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 44px 20px 10px;
+    text-align: center;
+  }
+  .hero h1 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.2; }
+  .hero p {
+    color: var(--muted);
+    max-width: 640px;
+    margin: 12px auto 0;
+    font-size: 1.02rem;
+  }
+  .beliebt {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 18px;
+  }
+  .beliebt .tag {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 5px 13px;
+    font-size: .82rem;
+    cursor: pointer;
+  }
+  .beliebt .tag:hover { color: var(--text); border-color: var(--sanitaer); }
+  .kacheln {
+    max-width: 1100px;
+    margin: 26px auto 8px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .kachel {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px 16px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: transform .12s, border-color .12s;
+    box-shadow: var(--shadow);
+  }
+  .kachel:hover { transform: translateY(-3px); }
+  .kachel-icon svg { width: 30px; height: 30px; }
+  .kachel-name { font-weight: 700; font-size: 1.05rem; }
+  .kachel-kurz { color: var(--muted); font-size: .8rem; }
+  .kachel-info { font-size: .78rem; font-weight: 600; margin-top: 2px; }
+  .kachel.k-lueftung .kachel-icon, .kachel.k-lueftung .kachel-info { color: var(--lueftung); }
+  .kachel.k-sanitaer .kachel-icon, .kachel.k-sanitaer .kachel-info { color: var(--sanitaer); }
+  .kachel.k-heizung .kachel-icon, .kachel.k-heizung .kachel-info { color: var(--heizung); }
+  .kachel.k-klima .kachel-icon, .kachel.k-klima .kachel-info { color: var(--klima); }
+  .kachel.k-lueftung.gewaehlt { border-color: var(--lueftung); background: var(--lueftung-bg); }
+  .kachel.k-sanitaer.gewaehlt { border-color: var(--sanitaer); background: var(--sanitaer-bg); }
+  .kachel.k-heizung.gewaehlt { border-color: var(--heizung); background: var(--heizung-bg); }
+  .kachel.k-klima.gewaehlt { border-color: var(--klima); background: var(--klima-bg); }
+  .katalog-kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .werkzeuge { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .klein {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: .82rem;
+    cursor: pointer;
+  }
+  #nachOben {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: none;
+    z-index: 30;
+  }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    padding: 8px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    font-size: .9rem;
+    font-weight: 600;
+    transition: transform .08s;
+  }
+  .chip:active { transform: scale(.96); }
+  .chip.aktiv-alle { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .chip.aktiv-lueftung { background: var(--lueftung); color: #fff; border-color: var(--lueftung); }
+  .chip.aktiv-sanitaer { background: var(--sanitaer); color: #fff; border-color: var(--sanitaer); }
+  .chip.aktiv-heizung { background: var(--heizung); color: #fff; border-color: var(--heizung); }
+  .chip.aktiv-klima { background: var(--klima); color: #fff; border-color: var(--klima); }
+  main { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
+  .statistik { color: var(--muted); font-size: .9rem; }
+  .gewerk { margin-bottom: 36px; }
+  .gewerk-titel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+  }
+  .gewerk-titel .punkt { width: 14px; height: 14px; border-radius: 4px; flex: none; }
+  .gewerk-beschreibung { color: var(--muted); font-size: .9rem; margin-bottom: 14px; }
+  .kategorie { margin-bottom: 10px; }
+  .kategorie-kopf {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    box-shadow: var(--shadow);
+  }
+  .kategorie-kopf .anzahl {
+    font-size: .8rem;
+    color: var(--muted);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .material-raster {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 8px;
+    padding: 12px 4px 4px;
+  }
+  .material {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left-width: 4px;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .material .name { font-weight: 600; font-size: .92rem; }
+  .material .detail { color: var(--muted); font-size: .8rem; margin-top: 2px; }
+  .material.g-lueftung { border-left-color: var(--lueftung); }
+  .material.g-sanitaer { border-left-color: var(--sanitaer); }
+  .material.g-heizung { border-left-color: var(--heizung); }
+  .material.g-klima { border-left-color: var(--klima); }
+  .leer {
+    text-align: center;
+    color: var(--muted);
+    padding: 60px 20px;
+    display: none;
+  }
+  mark { background: #ffe58f; color: #1a2332; border-radius: 3px; padding: 0 2px; }
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 20px;
+    color: var(--muted);
+    font-size: .85rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 600px) {
+    .logo { font-size: 1.1rem; }
+    .usp-inner { gap: 8px; font-size: .75rem; }
+    .material-raster { grid-template-columns: 1fr 1fr; }
+    .kacheln { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <a class="logo" href="#" id="logoLink">Profi<span>haustechnik</span><em>.de</em></a>
+    <input id="suche" type="search" placeholder="Wonach suchst du? z. B. Wärmepumpe, Pressfitting, Duschrinne …" autocomplete="off">
+  </div>
+</header>
+
+<div class="usp">
+  <div class="usp-inner">
+    <span>✓ Komplettes Sortiment Haustechnik</span>
+    <span>✓ Klar kategorisiert — in Sekunden gefunden</span>
+    <span>✓ Fachbetrieb für Klimatechnik</span>
+  </div>
+</div>
+
+<section class="hero">
+  <h1>Alle Materialien der Haustechnik.<br>Einfach finden.</h1>
+  <p>Der komplette Katalog für <strong>Lüftung, Sanitär, Heizung</strong> und <strong>Klima &amp; Kälte</strong> — übersichtlich nach Gewerk und Kategorie sortiert. Gewerk wählen oder direkt suchen.</p>
+  <div class="beliebt" id="beliebt"></div>
+</section>
+
+<nav class="kacheln" id="kacheln" aria-label="Gewerke"></nav>
+
+<main id="katalogStart">
+  <div class="katalog-kopf">
+    <div class="chips" id="chips"></div>
+    <div class="werkzeuge">
+      <span class="statistik" id="statistik"></span>
+      <button class="klein" id="alleUmschalten">Alles aufklappen</button>
+    </div>
+  </div>
+  <div id="katalog"></div>
+  <div class="leer" id="leer">Keine Materialien gefunden. Suchbegriff anpassen oder Filter zurücksetzen.</div>
+</main>
+
+<button id="nachOben" title="Nach oben" aria-label="Nach oben">↑</button>
+
+<footer>
+  <div class="footer-inner">
+    <div><strong>Profihaustechnik.de</strong> · LEANS Tech GmbH · Klimatechnik</div>
+    <div>Lüftung · Sanitär · Heizung · Klima &amp; Kälte</div>
+  </div>
+</footer>
+
+<script>
+const GEWERKE = {
+  lueftung: { name: "Lüftung", kurz: "Rohre, Geräte, Auslässe, Brandschutz", beschreibung: "Luftverteilung, Geräte, Auslässe, Brandschutz und Zubehör für kontrollierte Be- und Entlüftung." },
+  sanitaer: { name: "Sanitär", kurz: "Trinkwasser, Abwasser, Armaturen, Objekte", beschreibung: "Trinkwasser, Abwasser, Armaturen, Sanitärobjekte und Installationsmaterial." },
+  heizung:  { name: "Heizung", kurz: "Wärmeerzeuger, Heizkörper, Speicher", beschreibung: "Wärmeerzeugung, Wärmeverteilung, Speicher, Regelung und hydraulisches Zubehör." },
+  klima:    { name: "Klima & Kälte", kurz: "Splitgeräte, Kälteleitungen, Zubehör", beschreibung: "Split-/Multisplit-Anlagen, Kältemittelleitungen, Kondensat und Zubehör für Klimatechnik." }
+};
+
+const ICONS = {
+  lueftung: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>',
+  sanitaer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
+  heizung:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>',
+  klima:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17"/></svg>'
+};
+
+const BELIEBT = ["Wärmepumpe", "Pressfitting", "KWL", "Brandschutzklappe", "Pufferspeicher", "Duschrinne", "Thermostat", "Split-Klimagerät"];
+
+// Katalogdaten: [Gewerk, Kategorie, Name, Detail]
+const DATEN = [
+  // ============ LÜFTUNG ============
+  ["lueftung","Rohre & Kanäle","Wickelfalzrohr verzinkt","DN 80–1250 mm, Längen 3 m"],
+  ["lueftung","Rohre & Kanäle","Wickelfalzrohr Edelstahl","für Küchenabluft / aggressive Medien"],
+  ["lueftung","Rohre & Kanäle","Flexrohr Aluminium (Alu-Flex)","DN 80–315, dehnbar"],
+  ["lueftung","Rohre & Kanäle","Iso-Flexrohr gedämmt","25/50 mm Dämmung, schallgedämmt"],
+  ["lueftung","Rohre & Kanäle","Kombi-Flexrohr (PVC/Alu)","leicht, für Dunstabzug"],
+  ["lueftung","Rohre & Kanäle","Flachkanal Kunststoff","z. B. 220×90, 220×54 mm"],
+  ["lueftung","Rohre & Kanäle","Rechteckkanal verzinkt","gekantet, nach Maß"],
+  ["lueftung","Rohre & Kanäle","Rundrohr Kunststoff (KWL)","antistatisch, antibakteriell, DN 75/90"],
+  ["lueftung","Rohre & Kanäle","Textilkanal / Luftverteilschlauch","für Hallenbelüftung"],
+  ["lueftung","Formteile","Bogen 15° / 30° / 45° / 90°","gepresst oder segmentiert"],
+  ["lueftung","Formteile","T-Stück / Hosenstück","Abzweig 45°/90°"],
+  ["lueftung","Formteile","Reduzierung konzentrisch/exzentrisch","alle Nennweiten"],
+  ["lueftung","Formteile","Sattelstutzen","Anbohrabzweig für Rohr & Kanal"],
+  ["lueftung","Formteile","Muffe / Nippel / Verbinder","mit & ohne Dichtlippe"],
+  ["lueftung","Formteile","Enddeckel / Blinddeckel","zum Verschließen"],
+  ["lueftung","Formteile","Übergangsstück rund/eckig","Kanal auf Rohr"],
+  ["lueftung","Formteile","Flexbogen verstellbar","0–90° einstellbar"],
+  ["lueftung","Luftdurchlässe","Tellerventil Zuluft","Metall/Kunststoff, DN 80–200"],
+  ["lueftung","Luftdurchlässe","Tellerventil Abluft","einstellbar, DN 80–200"],
+  ["lueftung","Luftdurchlässe","Lüftungsgitter Alu/Stahl","Wand & Tür, feststehend/verstellbar"],
+  ["lueftung","Luftdurchlässe","Wetterschutzgitter","Außenwand, mit Insektenschutz"],
+  ["lueftung","Luftdurchlässe","Drallauslass / Dralldurchlass","Decke, hohe Induktion"],
+  ["lueftung","Luftdurchlässe","Schlitzdurchlass","Design-Deckenauslass"],
+  ["lueftung","Luftdurchlässe","Weitwurfdüse","große Räume/Hallen"],
+  ["lueftung","Luftdurchlässe","Bodendurchlass / Quellauslass","Quelllüftung"],
+  ["lueftung","Luftdurchlässe","Überströmluftdurchlass (Tür/Wand)","Schallschutz-Ausführung"],
+  ["lueftung","Luftdurchlässe","Kombigitter Außen-/Fortluft","für KWL-Fassadenabschluss"],
+  ["lueftung","Luftdurchlässe","Dachhaube / Dachdurchführung","mit Bleipfanne/Flansch"],
+  ["lueftung","Geräte & Ventilatoren","KWL-Gerät mit Wärmerückgewinnung","zentral, bis 90 % WRG"],
+  ["lueftung","Geräte & Ventilatoren","Dezentrales Lüftungsgerät (Pendellüfter)","paarweiser Betrieb, Keramikspeicher"],
+  ["lueftung","Geräte & Ventilatoren","Rohrventilator","DN 100–400, halbradial"],
+  ["lueftung","Geräte & Ventilatoren","Kanalventilator","für Rechteckkanal"],
+  ["lueftung","Geräte & Ventilatoren","Dachventilator","vertikal/horizontal ausblasend"],
+  ["lueftung","Geräte & Ventilatoren","Kleinraumventilator (Bad/WC)","mit Nachlauf/Feuchtesteuerung"],
+  ["lueftung","Geräte & Ventilatoren","Axialventilator","Wandeinbau"],
+  ["lueftung","Geräte & Ventilatoren","Radialventilator","Druckstark für lange Netze"],
+  ["lueftung","Geräte & Ventilatoren","Dunstabzugshaube / Ablufthaube","Küche, gewerblich & privat"],
+  ["lueftung","Geräte & Ventilatoren","Luftreiniger / Umluftgerät","HEPA-Ausführung"],
+  ["lueftung","Filter & Hygiene","Filtermatte G4 / Grobstaub","Zuschnitt & Kassette"],
+  ["lueftung","Filter & Hygiene","Taschenfilter M5 / F7 (ePM10/ePM1)","für zentrale Geräte"],
+  ["lueftung","Filter & Hygiene","Aktivkohlefilter","Geruchsbindung"],
+  ["lueftung","Filter & Hygiene","HEPA-Filter H13/H14","Reinraum/Hygiene"],
+  ["lueftung","Filter & Hygiene","Fettfilter Metall","Küchenabluft, spülbar"],
+  ["lueftung","Filter & Hygiene","Ersatzfilter-Sets KWL","gerätespezifisch"],
+  ["lueftung","Brandschutz & Schall","Brandschutzklappe (BSK)","EI90/EI120, mit Schmelzlot o. Motor"],
+  ["lueftung","Brandschutz & Schall","Absperrvorrichtung K90","für Lüftungsleitungen"],
+  ["lueftung","Brandschutz & Schall","Rohrschalldämpfer","gedämmt, DN 80–400"],
+  ["lueftung","Brandschutz & Schall","Kulissenschalldämpfer","für Rechteckkanal"],
+  ["lueftung","Brandschutz & Schall","Telefonieschalldämpfer","gegen Schallübertragung"],
+  ["lueftung","Regelung & Zubehör","Volumenstromregler (VVS/KVS)","mechanisch/motorisch"],
+  ["lueftung","Regelung & Zubehör","Absperrklappe / Drosselklappe","Hand & Stellmotor"],
+  ["lueftung","Regelung & Zubehör","Rückschlagklappe","selbsttätig"],
+  ["lueftung","Regelung & Zubehör","CO₂-Sensor / Luftqualitätsfühler","0–2000 ppm"],
+  ["lueftung","Regelung & Zubehör","Feuchtesensor / Hygrostat","bedarfsgeführte Lüftung"],
+  ["lueftung","Regelung & Zubehör","Differenzdruckwächter","Filterüberwachung"],
+  ["lueftung","Regelung & Zubehör","Stufenschalter / Drehzahlsteller","Trafo & elektronisch"],
+  ["lueftung","Regelung & Zubehör","Nachheizregister (elektrisch/Wasser)","Zulufterwärmung"],
+  ["lueftung","Montage & Dämmung","Rohrschelle mit Gummieinlage","körperschallgedämmt"],
+  ["lueftung","Montage & Dämmung","Montageband / Lochband","verzinkt"],
+  ["lueftung","Montage & Dämmung","Bride / Spannschelle","Schnellverbindung"],
+  ["lueftung","Montage & Dämmung","Kanalaufhängung / Gewindestange","M8/M10 komplett"],
+  ["lueftung","Montage & Dämmung","Dämmmatte Mineralwolle alukaschiert","20–100 mm"],
+  ["lueftung","Montage & Dämmung","Kautschuk-Dämmung selbstklebend","Kondensatschutz"],
+  ["lueftung","Montage & Dämmung","Alu-Klebeband / Dichtband","hitzebeständig"],
+  ["lueftung","Montage & Dämmung","Dichtmanschette / Dichtlippe (EPDM)","für Safe-Verbindungen"],
+
+  // ============ SANITÄR ============
+  ["sanitaer","Rohre & Leitungen","Kupferrohr","12–54 mm, Stange & Ring"],
+  ["sanitaer","Rohre & Leitungen","C-Stahlrohr verzinkt (Pressfähig)","für Heizung/Sprinkler, nicht Trinkwasser"],
+  ["sanitaer","Rohre & Leitungen","Edelstahlrohr (Trinkwasser)","1.4401/1.4521, pressbar"],
+  ["sanitaer","Rohre & Leitungen","Mehrschichtverbundrohr (MSVR)","16–63 mm, mit Alu-Kern"],
+  ["sanitaer","Rohre & Leitungen","PE-X-Rohr","flexibel, im Ring"],
+  ["sanitaer","Rohre & Leitungen","PP-R-Rohr (Aquatherm-Typ)","schweißbar, grün/grau"],
+  ["sanitaer","Rohre & Leitungen","PE-HD-Rohr (Hausanschluss)","Trinkwasser außen, blau/schwarz"],
+  ["sanitaer","Rohre & Leitungen","HT-Rohr (PP) Abwasser innen","DN 32–160, grau"],
+  ["sanitaer","Rohre & Leitungen","KG-Rohr (PVC-U) Abwasser außen","DN 110–500, orange"],
+  ["sanitaer","Rohre & Leitungen","KG-2000-Rohr (PP)","grün, erhöhte Beständigkeit"],
+  ["sanitaer","Rohre & Leitungen","SML-Gussrohr","schallgedämmtes Abwasser"],
+  ["sanitaer","Rohre & Leitungen","Schallschutz-Abwasserrohr","z. B. Silent-Ausführung, mineralverstärkt"],
+  ["sanitaer","Rohre & Leitungen","Wellrohr/Schutzrohr","Rohr-in-Rohr-System"],
+  ["sanitaer","Fittings & Verbinder","Pressfitting Kupfer/Rotguss","V-/M-Kontur"],
+  ["sanitaer","Fittings & Verbinder","Pressfitting Edelstahl","Trinkwasser"],
+  ["sanitaer","Fittings & Verbinder","Pressfitting Verbundrohr (TH/U-Kontur)","16–63 mm"],
+  ["sanitaer","Fittings & Verbinder","Lötfitting Kupfer","Bogen, Muffe, T-Stück, Reduzierung"],
+  ["sanitaer","Fittings & Verbinder","Klemmringverschraubung","Messing, für Cu & MSVR"],
+  ["sanitaer","Fittings & Verbinder","Steckfitting (Push-Fit)","werkzeuglos"],
+  ["sanitaer","Fittings & Verbinder","Gewindefitting Temperguss/Messing","Winkel, Muffe, Nippel, Kappe"],
+  ["sanitaer","Fittings & Verbinder","Übergangsstück AG/IG","Metall-Kunststoff"],
+  ["sanitaer","Fittings & Verbinder","HT-/KG-Formteile","Bogen, Abzweig, Muffe, Übergänge"],
+  ["sanitaer","Fittings & Verbinder","Langmuffe / Schiebemuffe / Doppelmuffe","Reparatur"],
+  ["sanitaer","Armaturen & Ventile","Eckventil 3/8″ / 1/2″","mit/ohne Schubrosette"],
+  ["sanitaer","Armaturen & Ventile","Kugelhahn / Absperrhahn","1/4″–2″, mit Entleerung"],
+  ["sanitaer","Armaturen & Ventile","Freistromventil (KFR)","mit Rückflussverhinderer"],
+  ["sanitaer","Armaturen & Ventile","Rückflussverhinderer / Systemtrenner BA","Trinkwasserschutz EN 1717"],
+  ["sanitaer","Armaturen & Ventile","Druckminderer","einstellbar 1,5–6 bar"],
+  ["sanitaer","Armaturen & Ventile","Sicherheitsventil (6/8/10 bar)","für Warmwasserbereiter"],
+  ["sanitaer","Armaturen & Ventile","Wasserzähler / Zählerbügel","Haus- & Wohnungszähler"],
+  ["sanitaer","Armaturen & Ventile","Probenahmeventil","Trinkwasserhygiene"],
+  ["sanitaer","Armaturen & Ventile","Einhebelmischer Waschtisch/Spüle/Dusche","Standard & Niederdruck"],
+  ["sanitaer","Armaturen & Ventile","Thermostatarmatur Dusche/Wanne","mit Verbrühschutz"],
+  ["sanitaer","Armaturen & Ventile","Unterputz-Armatur / UP-Körper","inkl. Fertigset"],
+  ["sanitaer","Armaturen & Ventile","Auslaufventil / Gartenventil","frostsichere Außenarmatur"],
+  ["sanitaer","Armaturen & Ventile","Elektronische Armatur (Sensor)","berührungslos"],
+  ["sanitaer","Sanitärobjekte","Wand-WC / Stand-WC","spülrandlos, Tiefspüler"],
+  ["sanitaer","Sanitärobjekte","WC-Sitz mit Absenkautomatik","Duroplast"],
+  ["sanitaer","Sanitärobjekte","Dusch-WC","mit Duschfunktion"],
+  ["sanitaer","Sanitärobjekte","Urinal + Druckspüler/Sensor","wasserlos optional"],
+  ["sanitaer","Sanitärobjekte","Waschtisch / Aufsatzwaschbecken","50–120 cm"],
+  ["sanitaer","Sanitärobjekte","Handwaschbecken","Gäste-WC"],
+  ["sanitaer","Sanitärobjekte","Duschwanne / Duschfläche bodeneben","Acryl/Mineralguss"],
+  ["sanitaer","Sanitärobjekte","Badewanne / Whirlwanne","Acryl/Stahl-Email"],
+  ["sanitaer","Sanitärobjekte","Duschabtrennung / Glaswand","Walk-In & Falttür"],
+  ["sanitaer","Sanitärobjekte","Küchenspüle Edelstahl/Granit","Einbau & Unterbau"],
+  ["sanitaer","Sanitärobjekte","Ausgussbecken","HWR/Keller"],
+  ["sanitaer","Vorwand & Spültechnik","Vorwandelement WC (UP-Spülkasten)","Bauhöhe 82–112 cm"],
+  ["sanitaer","Vorwand & Spültechnik","Vorwandelement Waschtisch/Urinal/Bidet","selbsttragend"],
+  ["sanitaer","Vorwand & Spültechnik","Betätigungsplatte","2-Mengen-Spülung"],
+  ["sanitaer","Vorwand & Spültechnik","Aufputz-Spülkasten","tiefhängend"],
+  ["sanitaer","Vorwand & Spültechnik","Montagerahmen / Traversen","Systemschienen"],
+  ["sanitaer","Vorwand & Spültechnik","Schallschutz-Set WC/WT","Entkopplung"],
+  ["sanitaer","Ablauf & Entwässerung","Röhrensiphon / Flaschensiphon","Waschtisch/Spüle"],
+  ["sanitaer","Ablauf & Entwässerung","Raumsparsiphon / Unterputzsiphon","Möbel-geeignet"],
+  ["sanitaer","Ablauf & Entwässerung","Ablaufgarnitur Wanne/Dusche","mit Überlauf"],
+  ["sanitaer","Ablauf & Entwässerung","Duschrinne / Punktablauf","bodengleiche Dusche"],
+  ["sanitaer","Ablauf & Entwässerung","Bodenablauf mit Geruchsverschluss","Keller/Technikraum"],
+  ["sanitaer","Ablauf & Entwässerung","Rückstauklappe / Rückstauverschluss","DN 100–150"],
+  ["sanitaer","Ablauf & Entwässerung","Hebeanlage (Schmutz-/Fäkalienwasser)","unter Rückstauebene"],
+  ["sanitaer","Ablauf & Entwässerung","Fettabscheider","Gastronomie"],
+  ["sanitaer","Ablauf & Entwässerung","Dachablauf / Gully","Flachdachentwässerung"],
+  ["sanitaer","Ablauf & Entwässerung","Regenrinne & Fallrohr","Zink/Kunststoff"],
+  ["sanitaer","Ablauf & Entwässerung","Lüftungsheber / Rohrbelüfter","Belüftungsventil DN 50–100"],
+  ["sanitaer","Warmwasser & Aufbereitung","Durchlauferhitzer elektronisch","18/21/24 kW"],
+  ["sanitaer","Warmwasser & Aufbereitung","Klein-Durchlauferhitzer / Untertischgerät","5-l-Boiler"],
+  ["sanitaer","Warmwasser & Aufbereitung","Warmwasserspeicher elektrisch","30–300 l"],
+  ["sanitaer","Warmwasser & Aufbereitung","Frischwasserstation","hygienische WW-Bereitung"],
+  ["sanitaer","Warmwasser & Aufbereitung","Zirkulationspumpe Trinkwasser","mit Zeit-/Thermosteuerung"],
+  ["sanitaer","Warmwasser & Aufbereitung","Trinkwasserfilter rückspülbar","Hauseingang, 100 µm"],
+  ["sanitaer","Warmwasser & Aufbereitung","Enthärtungsanlage (Ionentauscher)","mit Regeneriersalz"],
+  ["sanitaer","Warmwasser & Aufbereitung","Dosieranlage / Mineralstoffdosierung","Korrosionsschutz"],
+  ["sanitaer","Warmwasser & Aufbereitung","UV-Entkeimung","Legionellenschutz"],
+  ["sanitaer","Befestigung & Dichtung","Rohrschelle mit Dämmeinlage","M8/M10-Anschluss"],
+  ["sanitaer","Befestigung & Dichtung","Montageschiene & Konsolen","C-Profil-System"],
+  ["sanitaer","Befestigung & Dichtung","Gewindestange / Dübel / Stockschraube","Befestigungsmaterial"],
+  ["sanitaer","Befestigung & Dichtung","Hanf & Dichtpaste (Fermit-Typ)","Gewindedichtung klassisch"],
+  ["sanitaer","Befestigung & Dichtung","PTFE-/Teflonband & Gewindedichtfaden","z. B. Loctite 55-Typ"],
+  ["sanitaer","Befestigung & Dichtung","Flachdichtung / O-Ringe / Gummidichtungen","Sortimente"],
+  ["sanitaer","Befestigung & Dichtung","Sanitärsilikon","dauerelastisch, fungizid"],
+  ["sanitaer","Befestigung & Dichtung","Verbundabdichtung / Dichtband / Dichtmanschette","Dusche nach DIN 18534"],
+  ["sanitaer","Befestigung & Dichtung","Brandschutzmanschette Abwasser","R30–R120"],
+  ["sanitaer","Befestigung & Dichtung","Rohrdämmung Trinkwasser (PE/Kautschuk)","nach GEG-Vorgabe"],
+
+  // ============ HEIZUNG ============
+  ["heizung","Wärmeerzeuger","Gas-Brennwerttherme","wandhängend 15–50 kW"],
+  ["heizung","Wärmeerzeuger","Gas-Brennwertkessel bodenstehend","größere Leistungen"],
+  ["heizung","Wärmeerzeuger","Öl-Brennwertkessel","inkl. Ölfilter/Entlüfter"],
+  ["heizung","Wärmeerzeuger","Luft/Wasser-Wärmepumpe (Monoblock)","Außenaufstellung"],
+  ["heizung","Wärmeerzeuger","Luft/Wasser-Wärmepumpe (Split)","Innen-/Außeneinheit"],
+  ["heizung","Wärmeerzeuger","Sole/Wasser-Wärmepumpe","Erdsonde/Kollektor"],
+  ["heizung","Wärmeerzeuger","Wasser/Wasser-Wärmepumpe","Brunnenanlage"],
+  ["heizung","Wärmeerzeuger","Brauchwasser-Wärmepumpe","WW-Bereitung mit Umluft"],
+  ["heizung","Wärmeerzeuger","Pelletkessel + Fördersystem","Saug-/Schneckenaustragung"],
+  ["heizung","Wärmeerzeuger","Scheitholz-/Kombikessel","Holzvergaser"],
+  ["heizung","Wärmeerzeuger","Elektro-Heizkessel / Heizpatrone","Spitzenlast/PV-Nutzung"],
+  ["heizung","Wärmeerzeuger","Fernwärme-Übergabestation","direkt/indirekt"],
+  ["heizung","Wärmeerzeuger","BHKW (Blockheizkraftwerk)","Strom + Wärme"],
+  ["heizung","Wärmeerzeuger","Hybridgerät Gas + Wärmepumpe","kombiniert"],
+  ["heizung","Heizkörper & Flächenheizung","Flachheizkörper (Typ 11/21/22/33)","alle Baumaße"],
+  ["heizung","Heizkörper & Flächenheizung","Ventilheizkörper","mit integriertem Ventil"],
+  ["heizung","Heizkörper & Flächenheizung","Röhrenradiator","klassisch/Design"],
+  ["heizung","Heizkörper & Flächenheizung","Badheizkörper / Handtuchwärmer","warmwasser/elektrisch/kombi"],
+  ["heizung","Heizkörper & Flächenheizung","Konvektor / Unterflurkonvektor","mit/ohne Gebläse"],
+  ["heizung","Heizkörper & Flächenheizung","Fußbodenheizung Tackersystem","Rolle + Tackernadeln"],
+  ["heizung","Heizkörper & Flächenheizung","Fußbodenheizung Noppensystem","Noppenplatte"],
+  ["heizung","Heizkörper & Flächenheizung","FBH-Rohr PE-RT / PE-Xa","14–17 mm, 5-Schicht"],
+  ["heizung","Heizkörper & Flächenheizung","Heizkreisverteiler Edelstahl","2–12 Heizkreise, mit Topmetern"],
+  ["heizung","Heizkörper & Flächenheizung","Verteilerschrank UP/AP","verzinkt/weiß"],
+  ["heizung","Heizkörper & Flächenheizung","Randdämmstreifen","mit Folienlasche"],
+  ["heizung","Heizkörper & Flächenheizung","Wandheizung / Deckenheizung","Trockenbau-Register"],
+  ["heizung","Heizkörper & Flächenheizung","Estrichzusatz / Fließestrich-Additiv","für FBH"],
+  ["heizung","Heizkörper & Flächenheizung","Heizkörperkonsole / Befestigung","Wand & Stand"],
+  ["heizung","Armaturen & Hydraulik","Thermostatventil (Durchgang/Eck/Axial)","voreinstellbar"],
+  ["heizung","Armaturen & Hydraulik","Thermostatkopf","Standard, Behördenmodell, Fernfühler"],
+  ["heizung","Armaturen & Hydraulik","Elektronischer Heizkörperthermostat","programmierbar/Smart"],
+  ["heizung","Armaturen & Hydraulik","Rücklaufverschraubung","absperr-/entleerbar"],
+  ["heizung","Armaturen & Hydraulik","Hahnblock / Mittelanschlussarmatur","Durchgang & Eck"],
+  ["heizung","Armaturen & Hydraulik","Strangregulierventil","hydraulischer Abgleich"],
+  ["heizung","Armaturen & Hydraulik","Differenzdruckregler / Überströmventil","Anlagenschutz"],
+  ["heizung","Armaturen & Hydraulik","3-Wege-Mischer / 4-Wege-Mischer","mit Stellmotor"],
+  ["heizung","Armaturen & Hydraulik","Zonenventil","2-Wege, motorisch"],
+  ["heizung","Armaturen & Hydraulik","Hydraulische Weiche","Systemtrennung"],
+  ["heizung","Armaturen & Hydraulik","Verteilerbalken Heizkreise","2–5 Abgänge"],
+  ["heizung","Armaturen & Hydraulik","Plattenwärmetauscher","gelötet, Systemtrennung"],
+  ["heizung","Armaturen & Hydraulik","Kesselfüll-/Entleerhahn (KFE)","1/2″–3/4″"],
+  ["heizung","Armaturen & Hydraulik","Schwerkraftbremse / Rückschlagventil","Zirkulationsstopp"],
+  ["heizung","Pumpen & Sicherheit","Hocheffizienz-Umwälzpumpe","z. B. 25-40/60/80, PWM"],
+  ["heizung","Pumpen & Sicherheit","Pumpengruppe / Heizkreisset","gemischt/ungemischt, gedämmt"],
+  ["heizung","Pumpen & Sicherheit","Membran-Ausdehnungsgefäß (MAG)","18–500 l, inkl. Kappenventil"],
+  ["heizung","Pumpen & Sicherheit","Ausdehnungsgefäß Trinkwasser","durchströmt"],
+  ["heizung","Pumpen & Sicherheit","Sicherheitsventil Heizung 2,5/3 bar","Baugruppe"],
+  ["heizung","Pumpen & Sicherheit","Sicherheitsgruppe Kessel (KSG)","SV + Manometer + Entlüfter"],
+  ["heizung","Pumpen & Sicherheit","Manometer / Thermometer / Thermomanometer","axial/radial"],
+  ["heizung","Pumpen & Sicherheit","Schnellentlüfter / Automatikentlüfter","mit Absperrung"],
+  ["heizung","Pumpen & Sicherheit","Mikroblasenabscheider","Luftabscheidung"],
+  ["heizung","Pumpen & Sicherheit","Schlammabscheider (magnetisch)","Magnetitschutz"],
+  ["heizung","Pumpen & Sicherheit","Heizungsfilter / Schmutzfänger","Schrägsitz"],
+  ["heizung","Pumpen & Sicherheit","Nachspeiseeinheit / Systemtrenner Heizung","automatische Füllung"],
+  ["heizung","Speicher","Pufferspeicher","300–2000 l, mit/ohne Register"],
+  ["heizung","Speicher","Warmwasserspeicher (monovalent/bivalent)","150–500 l, emailliert"],
+  ["heizung","Speicher","Hygienespeicher / Kombispeicher","mit Edelstahlwellrohr"],
+  ["heizung","Speicher","Schichtenspeicher","optimierte Beladung"],
+  ["heizung","Speicher","Speicherdämmung / Isolierhaube","nachrüstbar"],
+  ["heizung","Speicher","Opferanode / Fremdstromanode","Korrosionsschutz"],
+  ["heizung","Regelung","Witterungsgeführte Heizungsregelung","mit Außenfühler"],
+  ["heizung","Regelung","Raumthermostat (analog/digital)","230 V / 24 V"],
+  ["heizung","Regelung","Smart-Home-Thermostat","App/Funk, z. B. OpenTherm"],
+  ["heizung","Regelung","Stellantrieb FBH (thermisch)","230 V/24 V, NC/NO"],
+  ["heizung","Regelung","Einzelraumregelung Funk-Set","Verteilerleiste + Regler"],
+  ["heizung","Regelung","Anlegefühler / Tauchfühler / Hülsen","PT1000/NTC"],
+  ["heizung","Regelung","Wärmemengenzähler","Ultraschall, eichfähig"],
+  ["heizung","Abgas & Verbrennung","Abgassystem Kunststoff (PP)","Brennwert, DN 60/100–110/160"],
+  ["heizung","Abgas & Verbrennung","LAS-System konzentrisch","raumluftunabhängig"],
+  ["heizung","Abgas & Verbrennung","Edelstahl-Abgasrohr","einwandig/doppelwandig"],
+  ["heizung","Abgas & Verbrennung","Schornsteinsanierung Flexrohr","Edelstahl/PP flex"],
+  ["heizung","Abgas & Verbrennung","Kaminerhöhung / Mündungsabschluss","mit Haube"],
+  ["heizung","Abgas & Verbrennung","Kondensatpumpe & Neutralisationsbox","Brennwert-Kondensat"],
+  ["heizung","Abgas & Verbrennung","Öltank / Batterietank + Zubehör","inkl. Füllstandsanzeige"],
+  ["heizung","Abgas & Verbrennung","Gasleitungskomponenten","Gaskugelhahn, Gasströmungswächter, TAE"],
+  ["heizung","Solar & Erneuerbare","Flachkollektor Solarthermie","Aufdach/Indach"],
+  ["heizung","Solar & Erneuerbare","Röhrenkollektor (Vakuum)","hoher Wirkungsgrad"],
+  ["heizung","Solar & Erneuerbare","Solarstation + Solarregler","2-Strang, mit Pumpe"],
+  ["heizung","Solar & Erneuerbare","Solarleitung Edelstahl-Well (Duo)","gedämmt, mit Fühlerkabel"],
+  ["heizung","Solar & Erneuerbare","Solarflüssigkeit (Glykol)","Frostschutz bis −28 °C"],
+  ["heizung","Solar & Erneuerbare","PV-Heizstab / Power-to-Heat","0–100 % modulierend"],
+  ["heizung","Montage & Betriebsstoffe","Heizungsrohr C-Stahl / Kupfer / Verbund","alle Dimensionen"],
+  ["heizung","Montage & Betriebsstoffe","Rohrdämmung nach GEG","100 %/50 % Dämmstärke"],
+  ["heizung","Montage & Betriebsstoffe","Heizungswasser-Aufbereitung (VDI 2035)","Vollentsalzung/Kartusche"],
+  ["heizung","Montage & Betriebsstoffe","Inhibitor / Systemreiniger","Korrosionsschutz-Additiv"],
+  ["heizung","Montage & Betriebsstoffe","Frostschutz Wärmeträger","für WP-Außenleitungen"],
+  ["heizung","Montage & Betriebsstoffe","Heizkörperlack / Reparatur-Set","weiß RAL 9016"],
+  ["heizung","Montage & Betriebsstoffe","Entlüftungsschlüssel / Serviceteile","Kleinmaterial"],
+
+  // ============ KLIMA & KÄLTE ============
+  ["klima","Geräte","Split-Klimagerät (Single)","Wandgerät 2,5–7 kW, Inverter"],
+  ["klima","Geräte","Multisplit-Anlage","2–5 Inneneinheiten"],
+  ["klima","Geräte","Truhengerät / Deckengerät","Alternativbauformen"],
+  ["klima","Geräte","Kanalklimagerät","verdeckter Einbau"],
+  ["klima","Geräte","Kassettengerät (Euroraster)","Deckeneinbau 600×600"],
+  ["klima","Geräte","VRF-/VRV-System","Gewerbe, viele Inneneinheiten"],
+  ["klima","Geräte","Mobiles Klimagerät / Monoblock","mit Abluftschlauch"],
+  ["klima","Geräte","Kaltwassersatz (Chiller)","Prozess-/Gebäudekühlung"],
+  ["klima","Geräte","Luftentfeuchter / Bautrockner","Kondensationsprinzip"],
+  ["klima","Installation","Kältemittelleitung Kupfer (Paar)","1/4″–5/8″, gedämmt"],
+  ["klima","Installation","Kältemittel R32 / R410A / R290","Flasche, sachkundepflichtig"],
+  ["klima","Installation","Bördel-Verschraubungen & Werkzeug","Bördelgerät, Drehmoment"],
+  ["klima","Installation","Kondensatpumpe (Mini)","für Splitgeräte"],
+  ["klima","Installation","Kondensatschlauch / -leitung","mit Gefälle/Sifon"],
+  ["klima","Installation","Wandkonsole / Bodenkonsole Außengerät","schwingungsgedämpft"],
+  ["klima","Installation","Schwingungsdämpfer / Gummipuffer","Körperschallentkopplung"],
+  ["klima","Installation","Kanalsystem / Kabelkanal Kälteleitung","Optikabdeckung außen"],
+  ["klima","Installation","Wanddurchführung / Kernbohrzubehör","Abdichtung"],
+  ["klima","Installation","UV-beständige Leitungsdämmung","für Außenbereich"],
+  ["klima","Regelung & Zubehör","IR-Fernbedienung / Wandregler","gerätespezifisch"],
+  ["klima","Regelung & Zubehör","WLAN-Modul / Smart-Steuerung","App-Anbindung"],
+  ["klima","Regelung & Zubehör","Vakuumpumpe & Monteurhilfe","Inbetriebnahme"],
+  ["klima","Regelung & Zubehör","Dichtheitsprüfung (Stickstoff/Lecksuchspray)","nach F-Gase-VO"],
+  ["klima","Regelung & Zubehör","Ersatzfilter / Ionisator-Filter Innengerät","Hygiene"],
+  ["klima","Regelung & Zubehör","Kondensatwanne / Ablaufset","Nachrüstung"]
+];
+
+const kategorienJeGewerk = {};
+for (const [gewerk, kategorie, name, detail] of DATEN) {
+  kategorienJeGewerk[gewerk] = kategorienJeGewerk[gewerk] || {};
+  (kategorienJeGewerk[gewerk][kategorie] = kategorienJeGewerk[gewerk][kategorie] || [])
+    .push({ name, detail });
+}
+
+let filterGewerk = "alle";
+let suchText = "";
+let allesOffen = false;
+
+const sucheEl = document.getElementById("suche");
+const chipsEl = document.getElementById("chips");
+const kachelnEl = document.getElementById("kacheln");
+const beliebtEl = document.getElementById("beliebt");
+const katalogEl = document.getElementById("katalog");
+const statistikEl = document.getElementById("statistik");
+const leerEl = document.getElementById("leer");
+const nachObenEl = document.getElementById("nachOben");
+const umschaltenEl = document.getElementById("alleUmschalten");
+
+function anzahlGewerk(key) {
+  return DATEN.reduce((n, d) => n + (d[0] === key ? 1 : 0), 0);
+}
+
+function kachelnBauen() {
+  kachelnEl.innerHTML = "";
+  for (const [key, g] of Object.entries(GEWERKE)) {
+    const b = document.createElement("button");
+    b.className = "kachel k-" + key + (filterGewerk === key ? " gewaehlt" : "");
+    b.innerHTML = `
+      <span class="kachel-icon">${ICONS[key]}</span>
+      <span class="kachel-name">${g.name}</span>
+      <span class="kachel-kurz">${g.kurz}</span>
+      <span class="kachel-info">${anzahlGewerk(key)} Positionen ansehen →</span>`;
+    b.onclick = () => {
+      filterGewerk = (filterGewerk === key) ? "alle" : key;
+      render();
+      document.getElementById("katalogStart").scrollIntoView({ behavior: "smooth" });
+    };
+    kachelnEl.appendChild(b);
+  }
+}
+
+function beliebtBauen() {
+  beliebtEl.innerHTML = '<span style="align-self:center;font-size:.82rem;color:var(--muted)">Beliebt:</span>';
+  for (const begriff of BELIEBT) {
+    const b = document.createElement("button");
+    b.className = "tag";
+    b.textContent = begriff;
+    b.onclick = () => {
+      sucheEl.value = begriff;
+      suchText = begriff.toLowerCase();
+      filterGewerk = "alle";
+      render();
+      document.getElementById("katalogStart").scrollIntoView({ behavior: "smooth" });
+    };
+    beliebtEl.appendChild(b);
+  }
+}
+
+function chipsBauen() {
+  const eintraege = [["alle", "Alle Gewerke"], ...Object.entries(GEWERKE).map(([k, g]) => [k, g.name])];
+  chipsEl.innerHTML = "";
+  for (const [key, label] of eintraege) {
+    const b = document.createElement("button");
+    b.className = "chip" + (filterGewerk === key ? " aktiv-" + key : "");
+    b.textContent = label;
+    b.onclick = () => { filterGewerk = key; render(); };
+    chipsEl.appendChild(b);
+  }
+}
+
+function markieren(text) {
+  if (!suchText) return text;
+  const i = text.toLowerCase().indexOf(suchText);
+  if (i < 0) return text;
+  return text.slice(0, i) + "<mark>" + text.slice(i, i + suchText.length) + "</mark>" + text.slice(i + suchText.length);
+}
+
+function passt(m) {
+  if (!suchText) return true;
+  return (m.name + " " + m.detail).toLowerCase().includes(suchText);
+}
+
+function render() {
+  chipsBauen();
+  kachelnBauen();
+  katalogEl.innerHTML = "";
+  let gesamt = 0;
+
+  for (const [gewerkKey, gewerk] of Object.entries(GEWERKE)) {
+    if (filterGewerk !== "alle" && filterGewerk !== gewerkKey) continue;
+    const kategorien = kategorienJeGewerk[gewerkKey] || {};
+    const sichtbareKategorien = [];
+    for (const [kategorie, materialien] of Object.entries(kategorien)) {
+      const treffer = materialien.filter(passt);
+      if (treffer.length) sichtbareKategorien.push([kategorie, treffer]);
+    }
+    if (!sichtbareKategorien.length) continue;
+
+    const sektion = document.createElement("section");
+    sektion.className = "gewerk";
+    const farbe = getComputedStyle(document.documentElement).getPropertyValue("--" + gewerkKey);
+    sektion.innerHTML = `
+      <h2 class="gewerk-titel"><span class="punkt" style="background:${farbe}"></span>${gewerk.name}</h2>
+      <p class="gewerk-beschreibung">${gewerk.beschreibung}</p>`;
+
+    for (const [kategorie, materialien] of sichtbareKategorien) {
+      gesamt += materialien.length;
+      const det = document.createElement("details");
+      det.className = "kategorie";
+      det.open = allesOffen || !!suchText || filterGewerk === gewerkKey;
+      const kopf = document.createElement("summary");
+      kopf.className = "kategorie-kopf";
+      kopf.innerHTML = `<span>${kategorie}</span><span class="anzahl">${materialien.length} Positionen</span>`;
+      det.appendChild(kopf);
+      const raster = document.createElement("div");
+      raster.className = "material-raster";
+      raster.innerHTML = materialien.map(m => `
+        <div class="material g-${gewerkKey}">
+          <div class="name">${markieren(m.name)}</div>
+          <div class="detail">${markieren(m.detail)}</div>
+        </div>`).join("");
+      det.appendChild(raster);
+      sektion.appendChild(det);
+    }
+    katalogEl.appendChild(sektion);
+  }
+
+  statistikEl.textContent = gesamt + " von " + DATEN.length + " Materialpositionen angezeigt";
+  if (!gesamt && suchText && filterGewerk !== "alle") {
+    const trefferGesamt = DATEN.filter(d => (d[2] + " " + d[3]).toLowerCase().includes(suchText)).length;
+    leerEl.innerHTML = trefferGesamt
+      ? `Keine Treffer in „${GEWERKE[filterGewerk].name}“. <button class="klein" id="ueberallSuchen">In allen Gewerken suchen (${trefferGesamt} Treffer)</button>`
+      : "Keine Materialien gefunden. Suchbegriff anpassen oder Filter zurücksetzen.";
+    const btn = document.getElementById("ueberallSuchen");
+    if (btn) btn.onclick = () => { filterGewerk = "alle"; render(); };
+  } else {
+    leerEl.textContent = "Keine Materialien gefunden. Suchbegriff anpassen oder Filter zurücksetzen.";
+  }
+  leerEl.style.display = gesamt ? "none" : "block";
+}
+
+sucheEl.addEventListener("input", e => {
+  suchText = e.target.value.trim().toLowerCase();
+  render();
+});
+
+umschaltenEl.addEventListener("click", () => {
+  allesOffen = !allesOffen;
+  umschaltenEl.textContent = allesOffen ? "Alles zuklappen" : "Alles aufklappen";
+  render();
+});
+
+document.getElementById("logoLink").addEventListener("click", e => {
+  e.preventDefault();
+  filterGewerk = "alle";
+  suchText = "";
+  sucheEl.value = "";
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+window.addEventListener("scroll", () => {
+  nachObenEl.style.display = window.scrollY > 600 ? "block" : "none";
+});
+nachObenEl.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+beliebtBauen();
+render();
+</script>
+</body>
+</html>

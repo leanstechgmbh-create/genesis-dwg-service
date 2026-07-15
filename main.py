@@ -5,8 +5,9 @@ Aenderungen sind bewusst naeherungsweise (kleine Anpassungen, keine Neukonstrukt
 Kernlogik in dwg_core.py, Slack-Bot in slack_bot.py.
 """
 import base64, os, traceback
+from pathlib import Path
 from fastapi import FastAPI, Request, Header, HTTPException
-from fastapi.responses import Response, JSONResponse
+from fastapi.responses import Response, JSONResponse, FileResponse
 from dwg_core import have, modify_drawing
 from slack_bot import router as slack_router, slack_ready
 from mailer.core import versende, mail_bereit
@@ -16,10 +17,22 @@ app.include_router(slack_router)
 API_KEY = os.environ.get("GENESIS_API_KEY", "")
 
 @app.get("/")
-def health():
+def health(request: Request):
+    # Ueber die Website-Domain (profihaustechnik.de) liefert "/" direkt den Katalog.
+    host = request.headers.get("host", "").lower()
+    if "profihaustechnik" in host:
+        return katalog()
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
             "slack": slack_ready(), "mail_ready": mail_bereit()}
+
+@app.get("/katalog")
+def katalog():
+    """Materialkatalog-Webseite: Lueftung, Sanitaer, Heizung, Klima/Kaelte."""
+    seite = Path(__file__).parent / "website" / "index.html"
+    if not seite.is_file():
+        raise HTTPException(404, "Katalog nicht gefunden")
+    return FileResponse(seite, media_type="text/html")
 
 @app.post("/send-mails")
 async def send_mails(request: Request, x_genesis_key: str = Header(default="")):
