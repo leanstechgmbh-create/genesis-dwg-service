@@ -264,6 +264,42 @@ REGELN = [
                                            for t in ["Kanal 2 m", "Bogen flach", "Bogen vertikal",
                                                      "Wanddurchführung", "Endstück"]], "St"),
 
+    # ---- Werkzeug
+    (r"Pressbacke V-Kontur", lambda: [f"{d} mm" for d in [12, 15, 18, 22, 28, 35, 42, 54]], "St"),
+    (r"Pressbacke TH-Kontur", lambda: [f"{d} mm" for d in [16, 20, 26, 32, 40, 50, 63]], "St"),
+    (r"Pressschlinge", lambda: [f"{d} mm inkl. Zwischenbacke" for d in [64, 66.7, 76.1, 88.9, 108]], "St"),
+    (r"Akku-Pressmaschine", lambda: ["Kompakt bis 40 mm", "Standard bis 108 mm",
+                                     "Set + 3 Backen V", "Set + 3 Backen TH"], "St"),
+    (r"Rohrabschneider Kupfer", lambda: ["3–16 mm Mini", "3–35 mm", "6–67 mm", "Ersatzrädchen 2er"], "St"),
+    (r"Gewindeschneidkluppe", lambda: ['Satz 1/2"–1 1/4" manuell', 'Satz 1/2"–2" manuell',
+                                       'elektrisch bis 2"'], "St"),
+    (r"Bohrer- & Bit-Sortimente", lambda: ["HSS-Kassette 1–10 mm", "HSS-Kassette 1–13 mm",
+                                           "Betonbohrer-Set 4–12 mm", "SDS-plus-Set 5–12 mm",
+                                           "Bit-Box 32-tlg.", "Bit-Box 61-tlg."], "St"),
+    (r"Lochsäge", lambda: [f"Ø {d} mm Bi-Metall" for d in [35, 44, 51, 60, 68, 76, 83, 102, 111, 127, 152]], "St"),
+    (r"Trennscheiben", lambda: [f"Ø {d} mm · {t} · 10er-Pack" for d in [115, 125, 230]
+                                for t in ["Metall", "Inox dünn", "Stein"]], "Pack"),
+    (r"Kernbohrgerät", lambda: ["Gerät 1500 W", "Bohrkrone Ø 68 mm", "Bohrkrone Ø 82 mm",
+                                "Bohrkrone Ø 112 mm", "Bohrkrone Ø 132 mm", "Bohrkrone Ø 162 mm",
+                                "Zentrierbohrer + Adapter"], "St"),
+    (r"Wasserwaage", lambda: [f"{l} cm" for l in [40, 60, 80, 100, 120, 150, 180, 200]], "St"),
+    (r"Stufenleiter", lambda: [f"{n} Stufen" for n in [3, 4, 5, 6, 7, 8]] +
+                              ["Mehrzweck 3×3", "Mehrzweck 4×4", "Teleskop 3,8 m"], "St"),
+    (r"Verlängerungskabel", lambda: ["10 m IP44", "25 m IP44", "Kabeltrommel 25 m", "Kabeltrommel 40 m",
+                                     "Kabeltrommel 50 m"], "St"),
+    (r"Arbeitshandschuhe", lambda: [f"Gr. {g} · {t}" for g in [8, 9, 10, 11]
+                                    for t in ["Montage", "schnittfest C", "Nitril 12er-Pack"]], "Paar"),
+    (r"Sicherheitsschuhe", lambda: [f"Gr. {g} · {t}" for g in range(39, 49)
+                                    for t in ["Halbschuh S3", "Stiefel S3"]], "Paar"),
+    (r"Arbeitshose", lambda: [f"Gr. {g} · {t}" for g in [44, 46, 48, 50, 52, 54, 56, 58, 60]
+                              for t in ["Hose", "Bundjacke"]], "St"),
+    (r"Atemschutzmaske", lambda: ["FFP2 · 10er", "FFP2 Ventil · 10er", "FFP3 Ventil · 5er"], "Pack"),
+    (r"Rohreinfriergerät", lambda: ["elektrisch bis 2\"", "CO₂-Set bis 1\""], "St"),
+    (r"Prüfpumpe", lambda: ["manuell 60 bar", "elektrisch 40 bar", "Luft-Prüfset mit Manometer"], "St"),
+    (r"Akku-Bohrschrauber|Bohrhammer|Winkelschleifer|Säbelsäge|Baustaubsauger",
+     lambda: ["Solo (ohne Akku)", "Set 2× 4,0 Ah + Lader"], "St"),
+    (r"PP-R-Muffenschweißgerät", lambda: ["Set Heizdorne 20–40 mm", "Set Heizdorne 20–63 mm"], "St"),
+
     # ---- generische Auffangregeln
     (r"Gaskugelhahn|Gasströmungswächter", lambda: ['1/2"', '3/4"', '1"'], "St"),
     (r"", lambda: ["Standard"], "St"),  # Fallback: ein Artikel

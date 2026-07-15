@@ -21,6 +21,8 @@
     --heizung-bg: #fdeadd;
     --klima: #047857;
     --klima-bg: #dcf2ea;
+    --werkzeug: #6d28d9;
+    --werkzeug-bg: #ede9fe;
     --accent: #1a2332;
   }
   @media (prefers-color-scheme: dark) {
@@ -39,6 +41,8 @@
       --heizung-bg: #43261263;
       --klima: #34d399;
       --klima-bg: #0c3328;
+      --werkzeug: #a78bfa;
+      --werkzeug-bg: #2a2150;
       --accent: #e8edf4;
     }
   }
@@ -164,10 +168,12 @@
   .kachel.k-sanitaer .kachel-icon, .kachel.k-sanitaer .kachel-info { color: var(--sanitaer); }
   .kachel.k-heizung .kachel-icon, .kachel.k-heizung .kachel-info { color: var(--heizung); }
   .kachel.k-klima .kachel-icon, .kachel.k-klima .kachel-info { color: var(--klima); }
+  .kachel.k-werkzeug .kachel-icon, .kachel.k-werkzeug .kachel-info { color: var(--werkzeug); }
   .kachel.k-lueftung.gewaehlt { border-color: var(--lueftung); background: var(--lueftung-bg); }
   .kachel.k-sanitaer.gewaehlt { border-color: var(--sanitaer); background: var(--sanitaer-bg); }
   .kachel.k-heizung.gewaehlt { border-color: var(--heizung); background: var(--heizung-bg); }
   .kachel.k-klima.gewaehlt { border-color: var(--klima); background: var(--klima-bg); }
+  .kachel.k-werkzeug.gewaehlt { border-color: var(--werkzeug); background: var(--werkzeug-bg); }
   .katalog-kopf {
     display: flex;
     justify-content: space-between;
@@ -303,6 +309,7 @@
   .material.g-sanitaer { border-left-color: var(--sanitaer); }
   .material.g-heizung { border-left-color: var(--heizung); }
   .material.g-klima { border-left-color: var(--klima); }
+  .material.g-werkzeug { border-left-color: var(--werkzeug); }
   .leer {
     text-align: center;
     color: var(--muted);
@@ -393,6 +400,7 @@
   .chip.aktiv-sanitaer { background: var(--sanitaer); color: #fff; border-color: var(--sanitaer); }
   .chip.aktiv-heizung { background: var(--heizung); color: #fff; border-color: var(--heizung); }
   .chip.aktiv-klima { background: var(--klima); color: #fff; border-color: var(--klima); }
+  .chip.aktiv-werkzeug { background: var(--werkzeug); color: #fff; border-color: var(--werkzeug); }
 </style>
 
 <script>
@@ -400,17 +408,19 @@ const GEWERKE = {
   lueftung: { name: "Lüftung", kurz: "Rohre, Geräte, Auslässe, Brandschutz", beschreibung: "Luftverteilung, Geräte, Auslässe, Brandschutz und Zubehör für kontrollierte Be- und Entlüftung." },
   sanitaer: { name: "Sanitär", kurz: "Trinkwasser, Abwasser, Armaturen, Objekte", beschreibung: "Trinkwasser, Abwasser, Armaturen, Sanitärobjekte und Installationsmaterial." },
   heizung:  { name: "Heizung", kurz: "Wärmeerzeuger, Heizkörper, Speicher", beschreibung: "Wärmeerzeugung, Wärmeverteilung, Speicher, Regelung und hydraulisches Zubehör." },
-  klima:    { name: "Klima & Kälte", kurz: "Splitgeräte, Kälteleitungen, Zubehör", beschreibung: "Split-/Multisplit-Anlagen, Kältemittelleitungen, Kondensat und Zubehör für Klimatechnik." }
+  klima:    { name: "Klima & Kälte", kurz: "Splitgeräte, Kälteleitungen, Zubehör", beschreibung: "Split-/Multisplit-Anlagen, Kältemittelleitungen, Kondensat und Zubehör für Klimatechnik." },
+  werkzeug: { name: "Werkzeug", kurz: "Presstechnik, Messgeräte, Maschinen", beschreibung: "Press- und Rohrwerkzeug, Mess- und Prüftechnik, Elektrowerkzeug, Baustellenbedarf und Arbeitsschutz." }
 };
 
 const ICONS = {
   lueftung: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>',
   sanitaer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
   heizung:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>',
-  klima:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17"/></svg>'
+  klima:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17"/></svg>',
+  werkzeug: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>'
 };
 
-const BELIEBT = ["Wärmepumpe", "Pressfitting", "KWL", "Brandschutzklappe", "Pufferspeicher", "Duschrinne", "Thermostat", "Split-Klimagerät"];
+const BELIEBT = ["Wärmepumpe", "Pressfitting", "KWL", "Brandschutzklappe", "Pufferspeicher", "Duschrinne", "Split-Klimagerät", "Pressbacke", "Wärmebildkamera"];
 const VAR_SCHRITT = 100;
 const SUCH_VAR_LIMIT = 50;
 
