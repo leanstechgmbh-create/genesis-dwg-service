@@ -305,6 +305,93 @@
     font-size: .76rem;
     cursor: pointer;
   }
+  .merk-plus {
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--sanitaer);
+    border-radius: 6px;
+    width: 24px;
+    height: 24px;
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+    flex: none;
+  }
+  .merk-plus:hover { border-color: var(--sanitaer); }
+  #merklisteKnopf {
+    position: fixed;
+    left: 18px;
+    bottom: 18px;
+    border: none;
+    background: var(--sanitaer);
+    color: #fff;
+    border-radius: 999px;
+    padding: 12px 20px;
+    font-size: .9rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    z-index: 30;
+    display: none;
+  }
+  #merkPanel {
+    position: fixed;
+    inset: 0;
+    background: rgba(10, 15, 25, .55);
+    z-index: 40;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  #merkPanel.offen { display: flex; }
+  .merk-inhalt {
+    background: var(--surface);
+    color: var(--text);
+    width: 100%;
+    max-width: 640px;
+    max-height: 80vh;
+    border-radius: 16px 16px 0 0;
+    padding: 18px;
+    overflow-y: auto;
+  }
+  .merk-kopf { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .merk-kopf h3 { font-size: 1.1rem; }
+  .merk-zeile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .85rem;
+  }
+  .merk-zeile .info { flex: 1; min-width: 0; }
+  .merk-zeile .info .artnr { display: block; }
+  .merk-zeile .menge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .merk-zeile .menge button {
+    width: 26px; height: 26px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .merk-aktionen { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .merk-aktionen .haupt {
+    flex: 1;
+    background: var(--sanitaer);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: .95rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .merk-hinweis { color: var(--muted); font-size: .78rem; margin-top: 10px; }
   .material.g-lueftung { border-left-color: var(--lueftung); }
   .material.g-sanitaer { border-left-color: var(--sanitaer); }
   .material.g-heizung { border-left-color: var(--heizung); }
@@ -376,6 +463,23 @@
 </main>
 
 <button id="nachOben" title="Nach oben" aria-label="Nach oben">↑</button>
+<button id="merklisteKnopf">Merkliste (0)</button>
+
+<div id="merkPanel">
+  <div class="merk-inhalt">
+    <div class="merk-kopf">
+      <h3>Merkliste / Anfrage</h3>
+      <button class="klein" id="merkSchliessen">Schließen</button>
+    </div>
+    <div id="merkListe"></div>
+    <div class="merk-aktionen">
+      <button class="haupt" id="merkAnfragen">Per E-Mail anfragen</button>
+      <button class="klein" id="merkLeeren">Liste leeren</button>
+    </div>
+    <p class="merk-hinweis">Ihr erhaltet innerhalb kurzer Zeit ein Angebot mit Preisen und Lieferzeit.
+    Bezahlung aktuell per Rechnung — Online-Zahlung folgt.</p>
+  </div>
+</div>
 
 <footer>
   <div class="footer-inner">
@@ -534,7 +638,7 @@ function variantenListe(container, produkt, liste, hervorheben) {
     let html = "";
     for (let i = gezeigt; i < bis; i++) {
       const [ausf, nr] = liste[i];
-      html += `<div class="var-zeile"><span>${hervorheben ? markieren(ausf) : ausf}</span><span class="artnr">${hervorheben ? markieren(nr) : nr} · ${produkt.e}</span></div>`;
+      html += `<div class="var-zeile"><span>${hervorheben ? markieren(ausf) : ausf}</span><span style="display:flex;align-items:center;gap:8px"><span class="artnr">${hervorheben ? markieren(nr) : nr} · ${produkt.e}</span><button class="merk-plus" data-nr="${nr}" title="Auf die Merkliste">+</button></span></div>`;
     }
     wrap.insertAdjacentHTML("beforeend", html);
     gezeigt = bis;
@@ -558,7 +662,7 @@ function materialKarte(p, suchVarianten) {
     <div class="detail">${markieren(p.d)}</div>
     <div class="var-info">
       <span>${einzeln ? `<span class="artnr">${markieren(p.v[0][1])}</span> · ${p.e}` : zahl(p.v.length) + " Ausführungen"}</span>
-      ${einzeln ? "" : '<button class="var-knopf">Varianten anzeigen</button>'}
+      ${einzeln ? `<button class="merk-plus" data-nr="${p.v[0][1]}" title="Auf die Merkliste">+</button>` : '<button class="var-knopf">Varianten anzeigen</button>'}
     </div>`;
   if (!einzeln) {
     const knopf = karte.querySelector(".var-knopf");
@@ -623,7 +727,7 @@ function render() {
       det.open = !!suchText || filterGewerk === gewerkKey;
       const kopf = document.createElement("summary");
       kopf.className = "kategorie-kopf";
-      kopf.innerHTML = `<span>${kategorie}</span><span class="anzahl">${zahl(eintraege.length)} Produktgruppen · ${zahl(skus)} Artikel</span>`;
+      kopf.innerHTML = `<span>${kategorie}</span><span class="anzahl">${zahl(eintraege.length)} ${eintraege.length === 1 ? "Produktgruppe" : "Produktgruppen"} · ${zahl(skus)} Artikel</span>`;
       det.appendChild(kopf);
       const raster = document.createElement("div");
       raster.className = "material-raster";
@@ -680,10 +784,92 @@ window.addEventListener("scroll", () => {
 });
 nachObenEl.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
+// ------------------------- Merkliste / Anfrage -------------------------
+const ANFRAGE_MAIL = "leanstechgmbh@gmail.com";
+let MERKLISTE = [];
+try { MERKLISTE = JSON.parse(localStorage.getItem("pht_merkliste") || "[]"); } catch (e) {}
+const NR_INDEX = new Map();
+
+const merkKnopfEl = document.getElementById("merklisteKnopf");
+const merkPanelEl = document.getElementById("merkPanel");
+const merkListeEl = document.getElementById("merkListe");
+
+function merkSpeichern() {
+  try { localStorage.setItem("pht_merkliste", JSON.stringify(MERKLISTE)); } catch (e) {}
+  const n = MERKLISTE.reduce((s, e) => s + e.menge, 0);
+  merkKnopfEl.textContent = `Merkliste (${zahl(n)})`;
+  merkKnopfEl.style.display = MERKLISTE.length ? "block" : "none";
+}
+
+function merkAendern(nr, delta) {
+  const eintrag = MERKLISTE.find(e => e.nr === nr);
+  if (!eintrag) return;
+  eintrag.menge += delta;
+  if (eintrag.menge <= 0) MERKLISTE = MERKLISTE.filter(e => e.nr !== nr);
+  merkSpeichern();
+  merkRendern();
+}
+
+function merkRendern() {
+  if (!MERKLISTE.length) {
+    merkListeEl.innerHTML = '<p class="merk-hinweis">Noch keine Artikel gemerkt. Im Katalog auf „+" tippen.</p>';
+    return;
+  }
+  merkListeEl.innerHTML = MERKLISTE.map(e => `
+    <div class="merk-zeile">
+      <div class="info">
+        <strong>${e.name}</strong>${e.ausf && e.ausf !== "Standard" ? " — " + e.ausf : ""}
+        <span class="artnr">${e.nr} · ${e.e}</span>
+      </div>
+      <div class="menge">
+        <button data-nr="${e.nr}" data-d="-1">−</button>
+        <span>${e.menge}</span>
+        <button data-nr="${e.nr}" data-d="1">+</button>
+      </div>
+    </div>`).join("");
+  merkListeEl.querySelectorAll("button").forEach(b =>
+    b.onclick = () => merkAendern(b.dataset.nr, parseInt(b.dataset.d, 10)));
+}
+
+document.addEventListener("click", ev => {
+  const knopf = ev.target.closest(".merk-plus");
+  if (!knopf) return;
+  const nr = knopf.dataset.nr;
+  const info = NR_INDEX.get(nr);
+  if (!info) return;
+  const vorhanden = MERKLISTE.find(e => e.nr === nr);
+  if (vorhanden) vorhanden.menge += 1;
+  else MERKLISTE.push({ nr, name: info.p.n, ausf: info.ausf, e: info.p.e, menge: 1 });
+  merkSpeichern();
+  knopf.textContent = "✓";
+  setTimeout(() => { knopf.textContent = "+"; }, 700);
+});
+
+merkKnopfEl.onclick = () => { merkRendern(); merkPanelEl.classList.add("offen"); };
+document.getElementById("merkSchliessen").onclick = () => merkPanelEl.classList.remove("offen");
+merkPanelEl.addEventListener("click", ev => { if (ev.target === merkPanelEl) merkPanelEl.classList.remove("offen"); });
+document.getElementById("merkLeeren").onclick = () => { MERKLISTE = []; merkSpeichern(); merkRendern(); };
+
+document.getElementById("merkAnfragen").onclick = () => {
+  if (!MERKLISTE.length) return;
+  const zeilen = MERKLISTE.map(e =>
+    `${e.menge} ${e.e} — ${e.nr} — ${e.name}${e.ausf && e.ausf !== "Standard" ? " (" + e.ausf + ")" : ""}`);
+  let rumpf = "Guten Tag,%0A%0Abitte um ein Angebot für folgende Artikel:%0A%0A";
+  for (const z of zeilen) {
+    const naechste = encodeURIComponent(z) + "%0A";
+    if ((rumpf + naechste).length > 1600) { rumpf += encodeURIComponent(`… und ${zeilen.length} Positionen insgesamt (Rest bitte erfragen)`) + "%0A"; break; }
+    rumpf += naechste;
+  }
+  rumpf += "%0AName:%0ATelefon:%0ALieferadresse:%0A";
+  location.href = `mailto:${ANFRAGE_MAIL}?subject=${encodeURIComponent("Material-Anfrage Profihaustechnik.de")}&body=${rumpf}`;
+};
+
 ladeDaten().then(daten => {
   PRODUKTE = daten;
+  for (const p of PRODUKTE) for (const [ausf, nr] of p.v) NR_INDEX.set(nr, { p, ausf });
   beliebtBauen();
   render();
+  merkSpeichern();
 }).catch(() => {
   statistikEl.textContent = "Fehler: Artikeldaten konnten nicht geladen werden.";
 });
