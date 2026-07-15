@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Profihaustechnik.de — Materialien für Lüftung, Sanitär, Heizung & Klima</title>
-<meta name="description" content="Profihaustechnik.de: über 10.000 Artikel für Lüftung, Sanitär, Heizung und Klima — klar kategorisiert, einfach zu finden. LEANS Tech GmbH.">
+<meta name="description" content="Profihaustechnik.de — der Online-Fachhandel für Haustechnik: über 10.000 Artikel für Lüftung, Sanitär, Heizung, Klima und Werkzeug. Sofort bestellbar.">
 <style>
   :root {
     --bg: #f6f8fa;
@@ -253,10 +253,28 @@
   .material {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-left-width: 4px;
-    border-radius: 8px;
-    padding: 10px 12px;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
+  .material .bild {
+    height: 92px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+    position: relative;
+    overflow: hidden;
+  }
+  .material .bild svg { width: 54px; height: 54px; }
+  .material .bild img { position: relative; z-index: 1; background: #fff; }
+  .material.g-lueftung .bild { background: var(--lueftung-bg); color: var(--lueftung); }
+  .material.g-sanitaer .bild { background: var(--sanitaer-bg); color: var(--sanitaer); }
+  .material.g-heizung .bild { background: var(--heizung-bg); color: var(--heizung); }
+  .material.g-klima .bild { background: var(--klima-bg); color: var(--klima); }
+  .material.g-werkzeug .bild { background: var(--werkzeug-bg); color: var(--werkzeug); }
+  .material .inhalt { padding: 10px 12px; }
   .material .name { font-weight: 600; font-size: .92rem; }
   .material .detail { color: var(--muted); font-size: .8rem; margin-top: 2px; }
   .material .var-info {
@@ -413,11 +431,6 @@
   .merk-felder input:focus { border-color: var(--sanitaer); }
   .merk-felder input#kundeAdresse { grid-column: 1 / -1; }
   .var-preis { font-weight: 700; white-space: nowrap; }
-  .material.g-lueftung { border-left-color: var(--lueftung); }
-  .material.g-sanitaer { border-left-color: var(--sanitaer); }
-  .material.g-heizung { border-left-color: var(--heizung); }
-  .material.g-klima { border-left-color: var(--klima); }
-  .material.g-werkzeug { border-left-color: var(--werkzeug); }
   .leer {
     text-align: center;
     color: var(--muted);
@@ -460,7 +473,7 @@
   <div class="usp-inner">
     <span>✓ Über 10.000 Artikel — sofort bestellbar</span>
     <span>✓ Karte · Klarna · Apple/Google Pay · Rechnung</span>
-    <span>✓ Fachbetrieb für Klimatechnik</span>
+    <span>✓ Lieferung direkt zur Baustelle</span>
   </div>
 </div>
 
@@ -514,8 +527,8 @@
 
 <footer>
   <div class="footer-inner">
-    <div><strong>Profihaustechnik.de</strong> · LEANS Tech GmbH · Klimatechnik</div>
-    <div>Lüftung · Sanitär · Heizung · Klima &amp; Kälte</div>
+    <div><strong>Profihaustechnik.de</strong> — Ihr Online-Fachhandel für Haustechnik</div>
+    <div>Lüftung · Sanitär · Heizung · Klima &amp; Kälte · Werkzeug</div>
   </div>
 </footer>
 
@@ -556,6 +569,73 @@ const ICONS = {
 };
 
 const BELIEBT = ["Wärmepumpe", "Pressfitting", "KWL", "Brandschutzklappe", "Pufferspeicher", "Duschrinne", "Split-Klimagerät", "Pressbacke", "Wärmebildkamera"];
+
+// Produktbild je Kategorie (Linien-Illustration, gefärbt je Gewerk)
+const S = (inhalt) => `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${inhalt}</svg>`;
+const KAT_BILD = {
+  "Rohre & Kanäle": S('<path d="M3 7h9a6 6 0 0 1 6 6v8"/><path d="M3 11h9a2 2 0 0 1 2 2v8"/><path d="M3 7v4M18 21h-4"/>'),
+  "Rohre & Leitungen": S('<path d="M3 7h9a6 6 0 0 1 6 6v8"/><path d="M3 11h9a2 2 0 0 1 2 2v8"/><path d="M3 7v4M18 21h-4"/>'),
+  "Formteile": S('<path d="M3 8h18v4h-7v9h-4v-9H3z"/>'),
+  "Fittings & Verbinder": S('<path d="M3 9h7v6H3zM14 9h7v6h-7z"/><path d="M10 10.5h4v3h-4z"/>'),
+  "Luftdurchlässe": S('<circle cx="12" cy="12" r="9"/><path d="M7 9h10M7 12h10M7 15h10"/>'),
+  "Geräte & Ventilatoren": S('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/><path d="M12 10V4.5M13.8 13l4.8 2.8M10.2 13l-4.8 2.8"/>'),
+  "Filter & Hygiene": S('<rect x="5" y="4" width="14" height="16" rx="2"/><path d="M8 8h8M8 12h8M8 16h8" stroke-dasharray="2.2 2.2"/>'),
+  "Brandschutz & Schall": S('<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M12 8c-2 2.4-3 3.4-3 4.8a3 3 0 0 0 6 0c0-1.4-1-2.4-3-4.8z"/>'),
+  "Regelung & Zubehör": S('<circle cx="12" cy="12" r="8"/><path d="M12 12l3.5-3.5"/><path d="M12 5.5V4M18.5 12H20M5.5 12H4"/>'),
+  "Regelung": S('<circle cx="12" cy="12" r="8"/><path d="M12 12l3.5-3.5"/><path d="M12 5.5V4M18.5 12H20M5.5 12H4"/>'),
+  "Montage & Dämmung": S('<circle cx="12" cy="10" r="6"/><path d="M12 16v5M9 19.5h6"/>'),
+  "Befestigung & Dichtung": S('<circle cx="12" cy="10" r="6"/><path d="M12 16v5M9 19.5h6"/>'),
+  "KWL-Systemkomponenten": S('<path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/><circle cx="12" cy="15" r="3"/><path d="M12 13.5v3M10.7 15.8l2.6-1.6"/>'),
+  "Küchen- & Gewerbeabluft": S('<path d="M8 4h8l3 9H5z"/><path d="M3 13h18v3H3z"/><path d="M12 16v5"/>'),
+  "Armaturen & Ventile": S('<path d="M5 8v8l7-4zM19 8v8l-7-4"/><path d="M12 12V6M9 6h6"/>'),
+  "Armaturen & Hydraulik": S('<path d="M5 8v8l7-4zM19 8v8l-7-4"/><path d="M12 12V6M9 6h6"/>'),
+  "Sanitärobjekte": S('<path d="M4 10h16v2a7 7 0 0 1-7 7h-2a7 7 0 0 1-7-7z"/><path d="M12 10V6a2 2 0 0 1 2-2h3"/>'),
+  "Bad-Ausstattung": S('<circle cx="12" cy="9" r="5.5"/><path d="M8 20.5h8M12 14.5v6"/>'),
+  "Vorwand & Spültechnik": S('<rect x="5" y="3" width="14" height="18" rx="2"/><rect x="8" y="6" width="8" height="4"/><circle cx="12" cy="15.5" r="2"/>'),
+  "Ablauf & Entwässerung": S('<circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3"/><path d="M12 4v3M12 17v3M4 12h3M17 12h3"/>'),
+  "Regenwasser & Garten": S('<path d="M7 15a4 4 0 1 1 1-7.9A5 5 0 0 1 17.5 9 3.5 3.5 0 0 1 17 16H7z"/><path d="M9 18.5l-1 2.5M13 18.5l-1 2.5M17 18.5l-1 2.5"/>'),
+  "Warmwasser & Aufbereitung": S('<rect x="7" y="2.5" width="10" height="16" rx="4.5"/><path d="M12 8c-1.2 1.5-1.8 2.2-1.8 3.1a1.8 1.8 0 0 0 3.6 0c0-.9-.6-1.6-1.8-3.1z"/><path d="M9 18.5V21M15 18.5V21"/>'),
+  "Wärmeerzeuger": S('<rect x="5" y="3" width="14" height="18" rx="2"/><path d="M12 8c-2 2.4-3 3.5-3 4.9a3 3 0 0 0 6 0c0-1.4-1-2.5-3-4.9z"/><path d="M8 21v1.5M16 21v1.5"/>'),
+  "Wärmepumpen-Zubehör": S('<rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="10" cy="12" r="3.5"/><path d="M10 8.5V12l2.4 1.6M17 9v6"/>'),
+  "Gas- & Ölinstallation": S('<path d="M12 2.5c-2.6 3.2-4 4.9-4 6.8a4 4 0 0 0 8 0c0-1.9-1.4-3.6-4-6.8z"/><path d="M12 13.5V21M8.5 18h7"/>'),
+  "Heizkörper & Flächenheizung": S('<path d="M5 5v14M8.5 5v14M12 5v14M15.5 5v14M19 5v14"/><path d="M5 8h14M5 16h14"/>'),
+  "Pumpen & Sicherheit": S('<circle cx="12" cy="12" r="7.5"/><path d="M12 12l4.8-2.2M12 12l-1.6 4.9M12 12l-3-4.2"/><circle cx="12" cy="12" r="1.2"/>'),
+  "Speicher": S('<rect x="7" y="2" width="10" height="20" rx="5"/><path d="M7 8.5h10M7 15.5h10"/>'),
+  "Abgas & Verbrennung": S('<path d="M9 21V8l3-3.5L15 8v13"/><path d="M7.5 21h9"/><path d="M11 3.5c0-1.2 2-1.2 2 0"/>'),
+  "Solar & Erneuerbare": S('<path d="M5 19l2.5-8h12L17 19z"/><path d="M8.5 14h9M7.5 16.5h9.5"/><circle cx="6" cy="5" r="2"/><path d="M6 1.5v1M2.5 5h1M8.5 5h1M3.8 2.8l.7.7"/>'),
+  "Montage & Betriebsstoffe": S('<path d="M8 3h8v4H8z"/><path d="M6 7h12l1 13a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1z"/><path d="M9 12h6"/>'),
+  "Geräte": S('<rect x="3" y="5" width="18" height="9" rx="2"/><path d="M6 11.5h12M6 8.5h4"/><path d="M8 17v2.5M12 17v3.5M16 17v2.5"/>'),
+  "Installation": S('<circle cx="8" cy="7.5" r="3.5"/><circle cx="16" cy="7.5" r="3.5"/><path d="M8 11v6a2.5 2.5 0 0 0 2.5 2.5h3A2.5 2.5 0 0 0 16 17v-6"/>'),
+  "Press- & Verbindungstechnik": S('<rect x="9" y="2.5" width="6" height="7" rx="1"/><path d="M9 9.5L6.5 13h11L15 9.5"/><path d="M8 13v8h8v-8"/><path d="M12 16v2"/>'),
+  "Rohrwerkzeug": S('<path d="M14.5 7a4.5 4.5 0 1 0-6 4.2V21h3V11.2A4.5 4.5 0 0 0 14.5 7z"/><path d="M16 14l4 4-2 2-4-4"/>'),
+  "Messtechnik & Prüfung": S('<rect x="6" y="2.5" width="12" height="19" rx="2"/><circle cx="12" cy="8" r="3.5"/><path d="M12 8l2-1.5"/><path d="M8.5 15h7M8.5 18h4"/>'),
+  "Elektro- & Maschinenwerkzeug": S('<path d="M3 8h12v6H9.5L8.5 18H5l1-4H3z"/><path d="M15 9.5h4v3h-4z"/><path d="M19 11h2.5"/>'),
+  "Handwerkzeug & Baustelle": S('<rect x="3" y="9" width="18" height="11" rx="2"/><path d="M9 9V7a3 3 0 0 1 6 0v2"/><path d="M3 13.5h18"/>'),
+  "Arbeitsschutz": S('<path d="M4.5 14a7.5 7.5 0 0 1 15 0"/><path d="M2.5 14h19v3h-19z"/><path d="M12 6.5V4"/>')
+};
+
+// Echte Produktfotos je Gewerk|Kategorie (bilder.json bzw. window.BILDER);
+// die Linien-Illustration bleibt als sofortiger Fallback.
+let BILDER = {};
+
+function produktBild(p) {
+  const illu = KAT_BILD[p.k] || ICONS[p.g];
+  const foto = BILDER[p.g + "|" + p.k];
+  if (!foto) return illu;
+  return `<img src="${foto}" alt="${p.k}" loading="lazy"
+    style="width:100%;height:100%;object-fit:cover"
+    onerror="this.remove()">` + `<span class="illu-fallback" style="position:absolute">${illu}</span>`;
+}
+
+async function ladeBilder() {
+  if (window.BILDER) { BILDER = window.BILDER; return; }
+  for (const pfad of ["bilder.json", "katalog/bilder.json", "/katalog/bilder.json"]) {
+    try {
+      const r = await fetch(pfad);
+      if (r.ok) { BILDER = await r.json(); return; }
+    } catch (e) { /* nächsten Pfad versuchen */ }
+  }
+}
 const VAR_SCHRITT = 100;
 const SUCH_VAR_LIMIT = 50;
 
@@ -689,34 +769,38 @@ function materialKarte(p, suchVarianten) {
   karte.className = "material g-" + p.g;
   const einzeln = p.v.length === 1;
   karte.innerHTML = `
-    <div class="name">${markieren(p.n)}</div>
-    <div class="detail">${markieren(p.d)}</div>
-    <div class="var-info">
-      <span>${einzeln ? `<span class="var-preis">${geld(p.v[0][2])}</span> · <span class="artnr">${markieren(p.v[0][1])}</span> · je ${p.e}` : zahl(p.v.length) + " Ausführungen ab " + geld(Math.min(...p.v.map(v => v[2])))}</span>
-      ${einzeln ? `<button class="merk-plus" data-nr="${p.v[0][1]}" title="In den Warenkorb">+</button>` : '<button class="var-knopf">Varianten anzeigen</button>'}
+    <div class="bild">${produktBild(p)}</div>
+    <div class="inhalt">
+      <div class="name">${markieren(p.n)}</div>
+      <div class="detail">${markieren(p.d)}</div>
+      <div class="var-info">
+        <span>${einzeln ? `<span class="var-preis">${geld(p.v[0][2])}</span> · <span class="artnr">${markieren(p.v[0][1])}</span> · je ${p.e}` : zahl(p.v.length) + " Ausführungen ab " + geld(Math.min(...p.v.map(v => v[2])))}</span>
+        ${einzeln ? `<button class="merk-plus" data-nr="${p.v[0][1]}" title="In den Warenkorb">+</button>` : '<button class="var-knopf">Varianten anzeigen</button>'}
+      </div>
     </div>`;
+  const inhalt = karte.querySelector(".inhalt");
   if (!einzeln) {
     const knopf = karte.querySelector(".var-knopf");
     let offen = false;
     knopf.onclick = () => {
       offen = !offen;
       knopf.textContent = offen ? "Varianten ausblenden" : "Varianten anzeigen";
-      karte.querySelectorAll(".varianten, .mehr-knopf").forEach(el => el.remove());
-      if (offen) variantenListe(karte, p, p.v, false);
+      inhalt.querySelectorAll(".varianten, .mehr-knopf").forEach(el => el.remove());
+      if (offen) variantenListe(inhalt, p, p.v, false);
     };
     if (suchVarianten) {
       const begrenzt = suchVarianten.slice(0, SUCH_VAR_LIMIT);
-      variantenListe(karte, p, begrenzt, true);
+      variantenListe(inhalt, p, begrenzt, true);
       if (suchVarianten.length > SUCH_VAR_LIMIT) {
         const hinweis = document.createElement("div");
         hinweis.className = "detail";
         hinweis.textContent = `+ ${zahl(suchVarianten.length - SUCH_VAR_LIMIT)} weitere passende Varianten — Suche verfeinern`;
-        karte.appendChild(hinweis);
+        inhalt.appendChild(hinweis);
       }
       knopf.textContent = `Alle ${zahl(p.v.length)} Varianten anzeigen`;
       knopf.onclick = () => {
-        karte.querySelectorAll(".varianten, .mehr-knopf").forEach(el => el.remove());
-        variantenListe(karte, p, p.v, false);
+        inhalt.querySelectorAll(".varianten, .mehr-knopf").forEach(el => el.remove());
+        variantenListe(inhalt, p, p.v, false);
         knopf.remove();
       };
     }
@@ -960,7 +1044,7 @@ document.getElementById("kaufenRechnung").onclick = async () => {
   }
 };
 
-ladeDaten().then(daten => {
+Promise.all([ladeDaten(), ladeBilder()]).then(([daten]) => {
   PRODUKTE = daten;
   for (const p of PRODUKTE) for (const [ausf, nr, cent] of p.v) NR_INDEX.set(nr, { p, ausf, cent });
   beliebtBauen();
