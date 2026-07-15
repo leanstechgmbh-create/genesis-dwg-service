@@ -26,13 +26,30 @@ def health(request: Request):
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
             "slack": slack_ready(), "mail_ready": mail_bereit()}
 
+WEBSITE = Path(__file__).parent / "website"
+
+def _website_datei(name: str, media: str):
+    pfad = WEBSITE / name
+    if not pfad.is_file():
+        raise HTTPException(404, f"{name} nicht gefunden")
+    return FileResponse(pfad, media_type=media)
+
 @app.get("/katalog")
 def katalog():
     """Materialkatalog-Webseite: Lueftung, Sanitaer, Heizung, Klima/Kaelte."""
-    seite = Path(__file__).parent / "website" / "index.html"
-    if not seite.is_file():
-        raise HTTPException(404, "Katalog nicht gefunden")
-    return FileResponse(seite, media_type="text/html")
+    return _website_datei("index.html", "text/html")
+
+@app.get("/artikel.json")
+@app.get("/katalog/artikel.json")
+def artikel_daten():
+    """Komplette Artikeldatenbank (alle Varianten mit Artikelnummern)."""
+    return _website_datei("artikel.json", "application/json")
+
+@app.get("/amazon-export.csv")
+@app.get("/katalog/amazon-export.csv")
+def amazon_export():
+    """Amazon-Flatfile-Basis: eine Zeile je SKU."""
+    return _website_datei("amazon-export.csv", "text/csv")
 
 @app.post("/send-mails")
 async def send_mails(request: Request, x_genesis_key: str = Header(default="")):
