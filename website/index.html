@@ -264,8 +264,11 @@
     align-items: center;
     justify-content: center;
     flex: none;
+    position: relative;
+    overflow: hidden;
   }
   .material .bild svg { width: 54px; height: 54px; }
+  .material .bild img { position: relative; z-index: 1; background: #fff; }
   .material.g-lueftung .bild { background: var(--lueftung-bg); color: var(--lueftung); }
   .material.g-sanitaer .bild { background: var(--sanitaer-bg); color: var(--sanitaer); }
   .material.g-heizung .bild { background: var(--heizung-bg); color: var(--heizung); }
@@ -611,8 +614,27 @@ const KAT_BILD = {
   "Arbeitsschutz": S('<path d="M4.5 14a7.5 7.5 0 0 1 15 0"/><path d="M2.5 14h19v3h-19z"/><path d="M12 6.5V4"/>')
 };
 
+// Echte Produktfotos je Gewerk|Kategorie (bilder.json bzw. window.BILDER);
+// die Linien-Illustration bleibt als sofortiger Fallback.
+let BILDER = {};
+
 function produktBild(p) {
-  return KAT_BILD[p.k] || ICONS[p.g];
+  const illu = KAT_BILD[p.k] || ICONS[p.g];
+  const foto = BILDER[p.g + "|" + p.k];
+  if (!foto) return illu;
+  return `<img src="${foto}" alt="${p.k}" loading="lazy"
+    style="width:100%;height:100%;object-fit:cover"
+    onerror="this.remove()">` + `<span class="illu-fallback" style="position:absolute">${illu}</span>`;
+}
+
+async function ladeBilder() {
+  if (window.BILDER) { BILDER = window.BILDER; return; }
+  for (const pfad of ["bilder.json", "katalog/bilder.json", "/katalog/bilder.json"]) {
+    try {
+      const r = await fetch(pfad);
+      if (r.ok) { BILDER = await r.json(); return; }
+    } catch (e) { /* nächsten Pfad versuchen */ }
+  }
 }
 const VAR_SCHRITT = 100;
 const SUCH_VAR_LIMIT = 50;
@@ -1022,7 +1044,7 @@ document.getElementById("kaufenRechnung").onclick = async () => {
   }
 };
 
-ladeDaten().then(daten => {
+Promise.all([ladeDaten(), ladeBilder()]).then(([daten]) => {
   PRODUKTE = daten;
   for (const p of PRODUKTE) for (const [ausf, nr, cent] of p.v) NR_INDEX.set(nr, { p, ausf, cent });
   beliebtBauen();

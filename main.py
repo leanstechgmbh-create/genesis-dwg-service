@@ -45,6 +45,12 @@ def artikel_daten():
     """Komplette Artikeldatenbank (alle Varianten mit Artikelnummern)."""
     return _website_datei("artikel.json", "application/json")
 
+@app.get("/bilder.json")
+@app.get("/katalog/bilder.json")
+def bilder_daten():
+    """Produktfoto-URLs je Gewerk|Kategorie."""
+    return _website_datei("bilder.json", "application/json")
+
 @app.get("/amazon-export.csv")
 @app.get("/katalog/amazon-export.csv")
 def amazon_export():
