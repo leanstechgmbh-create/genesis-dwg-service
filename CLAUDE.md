@@ -9,6 +9,12 @@ für getippte Eingaben genauso wie für Spracheingabe (Voice).
 Ausnahme: Code, Befehle, Dateinamen, Logs und technische Bezeichner bleiben
 unverändert (werden nicht übersetzt).
 
+**Überschriften/Titel passend zum Inhalt.** Chat-Titel, Sitzungs-Titel und
+Überschriften in Antworten immer auf Deutsch formulieren und so wählen, dass
+sie das tatsächliche Thema des Inhalts wiedergeben — keine generischen oder
+englischen Titel. Das gilt auch für den Slack-Bot: Jede Bot-Antwort beginnt
+mit einer kurzen, fetten Überschrift zum Thema der Antwort.
+
 ## Projekt
 
 `genesis-dwg-service` — Python/FastAPI-Backend, das DWG/DXF-Dateien entgegennimmt,
