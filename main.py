@@ -17,7 +17,11 @@ app.include_router(slack_router)
 API_KEY = os.environ.get("GENESIS_API_KEY", "")
 
 @app.get("/")
-def health():
+def health(request: Request):
+    # Ueber die Website-Domain (profihaustechnik.de) liefert "/" direkt den Katalog.
+    host = request.headers.get("host", "").lower()
+    if "profihaustechnik" in host:
+        return katalog()
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
             "slack": slack_ready(), "mail_ready": mail_bereit()}

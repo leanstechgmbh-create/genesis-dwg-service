@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GENESIS Materialkatalog — Lüftung · Sanitär · Heizung</title>
-<meta name="description" content="Kompletter Materialkatalog für Klimatechnik: alle Materialien für Lüftung, Sanitär und Heizung — LEANS Tech GmbH.">
+<title>Profihaustechnik.de — Materialien für Lüftung, Sanitär, Heizung & Klima</title>
+<meta name="description" content="Profihaustechnik.de: der komplette Materialkatalog für Lüftung, Sanitär, Heizung und Klima — klar kategorisiert, einfach zu finden. LEANS Tech GmbH.">
 <style>
   :root {
     --bg: #f6f8fa;
@@ -43,48 +43,165 @@
     }
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
     line-height: 1.55;
   }
-  header {
+  header.top {
     background: var(--surface);
     border-bottom: 1px solid var(--border);
-    padding: 28px 20px 20px;
+    padding: 14px 20px;
     position: sticky;
     top: 0;
-    z-index: 10;
+    z-index: 20;
+    box-shadow: var(--shadow);
   }
-  .header-inner { max-width: 1100px; margin: 0 auto; }
-  .brand {
+  .top-inner {
+    max-width: 1100px;
+    margin: 0 auto;
     display: flex;
-    align-items: baseline;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  .brand h1 { font-size: 1.45rem; letter-spacing: .3px; }
-  .brand .firma { color: var(--muted); font-size: .85rem; }
-  .subtitle { color: var(--muted); margin-top: 4px; font-size: .95rem; }
-  .controls {
-    display: flex;
-    gap: 10px;
-    margin-top: 16px;
-    flex-wrap: wrap;
     align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
   }
+  .logo {
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: .2px;
+    text-decoration: none;
+    color: var(--text);
+    white-space: nowrap;
+  }
+  .logo span { color: var(--sanitaer); }
+  .logo em { font-style: normal; color: var(--muted); font-weight: 600; font-size: .95em; }
   #suche {
     flex: 1 1 260px;
-    padding: 10px 14px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    padding: 11px 16px;
+    border: 2px solid var(--border);
+    border-radius: 999px;
     font-size: 1rem;
     background: var(--bg);
     color: var(--text);
     outline: none;
+    transition: border-color .15s;
   }
   #suche:focus { border-color: var(--sanitaer); }
+  .usp {
+    background: var(--sanitaer);
+    color: #fff;
+    font-size: .82rem;
+    padding: 7px 20px;
+  }
+  .usp-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 44px 20px 10px;
+    text-align: center;
+  }
+  .hero h1 { font-size: clamp(1.6rem, 4vw, 2.5rem); line-height: 1.2; }
+  .hero p {
+    color: var(--muted);
+    max-width: 640px;
+    margin: 12px auto 0;
+    font-size: 1.02rem;
+  }
+  .beliebt {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 18px;
+  }
+  .beliebt .tag {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    border-radius: 999px;
+    padding: 5px 13px;
+    font-size: .82rem;
+    cursor: pointer;
+  }
+  .beliebt .tag:hover { color: var(--text); border-color: var(--sanitaer); }
+  .kacheln {
+    max-width: 1100px;
+    margin: 26px auto 8px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 14px;
+  }
+  .kachel {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px 16px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transition: transform .12s, border-color .12s;
+    box-shadow: var(--shadow);
+  }
+  .kachel:hover { transform: translateY(-3px); }
+  .kachel-icon svg { width: 30px; height: 30px; }
+  .kachel-name { font-weight: 700; font-size: 1.05rem; }
+  .kachel-kurz { color: var(--muted); font-size: .8rem; }
+  .kachel-info { font-size: .78rem; font-weight: 600; margin-top: 2px; }
+  .kachel.k-lueftung .kachel-icon, .kachel.k-lueftung .kachel-info { color: var(--lueftung); }
+  .kachel.k-sanitaer .kachel-icon, .kachel.k-sanitaer .kachel-info { color: var(--sanitaer); }
+  .kachel.k-heizung .kachel-icon, .kachel.k-heizung .kachel-info { color: var(--heizung); }
+  .kachel.k-klima .kachel-icon, .kachel.k-klima .kachel-info { color: var(--klima); }
+  .kachel.k-lueftung.gewaehlt { border-color: var(--lueftung); background: var(--lueftung-bg); }
+  .kachel.k-sanitaer.gewaehlt { border-color: var(--sanitaer); background: var(--sanitaer-bg); }
+  .kachel.k-heizung.gewaehlt { border-color: var(--heizung); background: var(--heizung-bg); }
+  .kachel.k-klima.gewaehlt { border-color: var(--klima); background: var(--klima-bg); }
+  .katalog-kopf {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+  }
+  .werkzeuge { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .klein {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: .82rem;
+    cursor: pointer;
+  }
+  #nachOben {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text);
+    font-size: 1.2rem;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    display: none;
+    z-index: 30;
+  }
   .chips { display: flex; gap: 8px; flex-wrap: wrap; }
   .chip {
     padding: 8px 16px;
@@ -104,7 +221,7 @@
   .chip.aktiv-heizung { background: var(--heizung); color: #fff; border-color: var(--heizung); }
   .chip.aktiv-klima { background: var(--klima); color: #fff; border-color: var(--klima); }
   main { max-width: 1100px; margin: 0 auto; padding: 24px 20px 60px; }
-  .statistik { color: var(--muted); font-size: .9rem; margin-bottom: 18px; }
+  .statistik { color: var(--muted); font-size: .9rem; }
   .gewerk { margin-bottom: 36px; }
   .gewerk-titel {
     display: flex;
@@ -167,50 +284,88 @@
   mark { background: #ffe58f; color: #1a2332; border-radius: 3px; padding: 0 2px; }
   footer {
     border-top: 1px solid var(--border);
-    padding: 24px 20px;
-    text-align: center;
+    padding: 28px 20px;
     color: var(--muted);
     font-size: .85rem;
   }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
   @media (max-width: 600px) {
-    .brand h1 { font-size: 1.15rem; }
+    .logo { font-size: 1.1rem; }
+    .usp-inner { gap: 8px; font-size: .75rem; }
     .material-raster { grid-template-columns: 1fr 1fr; }
+    .kacheln { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div class="header-inner">
-    <div class="brand">
-      <h1>GENESIS Materialkatalog</h1>
-      <span class="firma">LEANS Tech GmbH · Klimatechnik</span>
-    </div>
-    <p class="subtitle">Alle Materialien für Lüftung, Sanitär, Heizung &amp; Klima/Kälte — durchsuchbar nach Gewerk und Stichwort.</p>
-    <div class="controls">
-      <input id="suche" type="search" placeholder="Material suchen … (z. B. Wickelfalzrohr, Pressfitting, Pufferspeicher)" autocomplete="off">
-      <div class="chips" id="chips"></div>
-    </div>
+<header class="top">
+  <div class="top-inner">
+    <a class="logo" href="#" id="logoLink">Profi<span>haustechnik</span><em>.de</em></a>
+    <input id="suche" type="search" placeholder="Wonach suchst du? z. B. Wärmepumpe, Pressfitting, Duschrinne …" autocomplete="off">
   </div>
 </header>
 
-<main>
-  <p class="statistik" id="statistik"></p>
+<div class="usp">
+  <div class="usp-inner">
+    <span>✓ Komplettes Sortiment Haustechnik</span>
+    <span>✓ Klar kategorisiert — in Sekunden gefunden</span>
+    <span>✓ Fachbetrieb für Klimatechnik</span>
+  </div>
+</div>
+
+<section class="hero">
+  <h1>Alle Materialien der Haustechnik.<br>Einfach finden.</h1>
+  <p>Der komplette Katalog für <strong>Lüftung, Sanitär, Heizung</strong> und <strong>Klima &amp; Kälte</strong> — übersichtlich nach Gewerk und Kategorie sortiert. Gewerk wählen oder direkt suchen.</p>
+  <div class="beliebt" id="beliebt"></div>
+</section>
+
+<nav class="kacheln" id="kacheln" aria-label="Gewerke"></nav>
+
+<main id="katalogStart">
+  <div class="katalog-kopf">
+    <div class="chips" id="chips"></div>
+    <div class="werkzeuge">
+      <span class="statistik" id="statistik"></span>
+      <button class="klein" id="alleUmschalten">Alles aufklappen</button>
+    </div>
+  </div>
   <div id="katalog"></div>
   <div class="leer" id="leer">Keine Materialien gefunden. Suchbegriff anpassen oder Filter zurücksetzen.</div>
 </main>
 
+<button id="nachOben" title="Nach oben" aria-label="Nach oben">↑</button>
+
 <footer>
-  GENESIS Materialkatalog · LEANS Tech GmbH · Gewerke: Lüftung · Sanitär · Heizung · Klima/Kälte
+  <div class="footer-inner">
+    <div><strong>Profihaustechnik.de</strong> · LEANS Tech GmbH · Klimatechnik</div>
+    <div>Lüftung · Sanitär · Heizung · Klima &amp; Kälte</div>
+  </div>
 </footer>
 
 <script>
 const GEWERKE = {
-  lueftung: { name: "Lüftung", beschreibung: "Luftverteilung, Geräte, Auslässe, Brandschutz und Zubehör für kontrollierte Be- und Entlüftung." },
-  sanitaer: { name: "Sanitär", beschreibung: "Trinkwasser, Abwasser, Armaturen, Sanitärobjekte und Installationsmaterial." },
-  heizung:  { name: "Heizung", beschreibung: "Wärmeerzeugung, Wärmeverteilung, Speicher, Regelung und hydraulisches Zubehör." },
-  klima:    { name: "Klima & Kälte", beschreibung: "Split-/Multisplit-Anlagen, Kältemittelleitungen, Kondensat und Zubehör für Klimatechnik." }
+  lueftung: { name: "Lüftung", kurz: "Rohre, Geräte, Auslässe, Brandschutz", beschreibung: "Luftverteilung, Geräte, Auslässe, Brandschutz und Zubehör für kontrollierte Be- und Entlüftung." },
+  sanitaer: { name: "Sanitär", kurz: "Trinkwasser, Abwasser, Armaturen, Objekte", beschreibung: "Trinkwasser, Abwasser, Armaturen, Sanitärobjekte und Installationsmaterial." },
+  heizung:  { name: "Heizung", kurz: "Wärmeerzeuger, Heizkörper, Speicher", beschreibung: "Wärmeerzeugung, Wärmeverteilung, Speicher, Regelung und hydraulisches Zubehör." },
+  klima:    { name: "Klima & Kälte", kurz: "Splitgeräte, Kälteleitungen, Zubehör", beschreibung: "Split-/Multisplit-Anlagen, Kältemittelleitungen, Kondensat und Zubehör für Klimatechnik." }
 };
+
+const ICONS = {
+  lueftung: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>',
+  sanitaer: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>',
+  heizung:  '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.07-2.14-.22-4.05 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.15.43-2.29 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>',
+  klima:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v20M3.3 7l17.4 10M20.7 7L3.3 17"/></svg>'
+};
+
+const BELIEBT = ["Wärmepumpe", "Pressfitting", "KWL", "Brandschutzklappe", "Pufferspeicher", "Duschrinne", "Thermostat", "Split-Klimagerät"];
 
 // Katalogdaten: [Gewerk, Kategorie, Name, Detail]
 const DATEN = [
@@ -493,14 +648,60 @@ for (const [gewerk, kategorie, name, detail] of DATEN) {
 
 let filterGewerk = "alle";
 let suchText = "";
+let allesOffen = false;
 
+const sucheEl = document.getElementById("suche");
 const chipsEl = document.getElementById("chips");
+const kachelnEl = document.getElementById("kacheln");
+const beliebtEl = document.getElementById("beliebt");
 const katalogEl = document.getElementById("katalog");
 const statistikEl = document.getElementById("statistik");
 const leerEl = document.getElementById("leer");
+const nachObenEl = document.getElementById("nachOben");
+const umschaltenEl = document.getElementById("alleUmschalten");
+
+function anzahlGewerk(key) {
+  return DATEN.reduce((n, d) => n + (d[0] === key ? 1 : 0), 0);
+}
+
+function kachelnBauen() {
+  kachelnEl.innerHTML = "";
+  for (const [key, g] of Object.entries(GEWERKE)) {
+    const b = document.createElement("button");
+    b.className = "kachel k-" + key + (filterGewerk === key ? " gewaehlt" : "");
+    b.innerHTML = `
+      <span class="kachel-icon">${ICONS[key]}</span>
+      <span class="kachel-name">${g.name}</span>
+      <span class="kachel-kurz">${g.kurz}</span>
+      <span class="kachel-info">${anzahlGewerk(key)} Positionen ansehen →</span>`;
+    b.onclick = () => {
+      filterGewerk = (filterGewerk === key) ? "alle" : key;
+      render();
+      document.getElementById("katalogStart").scrollIntoView({ behavior: "smooth" });
+    };
+    kachelnEl.appendChild(b);
+  }
+}
+
+function beliebtBauen() {
+  beliebtEl.innerHTML = '<span style="align-self:center;font-size:.82rem;color:var(--muted)">Beliebt:</span>';
+  for (const begriff of BELIEBT) {
+    const b = document.createElement("button");
+    b.className = "tag";
+    b.textContent = begriff;
+    b.onclick = () => {
+      sucheEl.value = begriff;
+      suchText = begriff.toLowerCase();
+      filterGewerk = "alle";
+      render();
+      document.getElementById("katalogStart").scrollIntoView({ behavior: "smooth" });
+    };
+    beliebtEl.appendChild(b);
+  }
+}
 
 function chipsBauen() {
-  const eintraege = [["alle", "Alle"], ...Object.entries(GEWERKE).map(([k, g]) => [k, g.name])];
+  const eintraege = [["alle", "Alle Gewerke"], ...Object.entries(GEWERKE).map(([k, g]) => [k, g.name])];
   chipsEl.innerHTML = "";
   for (const [key, label] of eintraege) {
     const b = document.createElement("button");
@@ -525,6 +726,7 @@ function passt(m) {
 
 function render() {
   chipsBauen();
+  kachelnBauen();
   katalogEl.innerHTML = "";
   let gesamt = 0;
 
@@ -549,7 +751,7 @@ function render() {
       gesamt += materialien.length;
       const det = document.createElement("details");
       det.className = "kategorie";
-      det.open = !!suchText || filterGewerk === gewerkKey;
+      det.open = allesOffen || !!suchText || filterGewerk === gewerkKey;
       const kopf = document.createElement("summary");
       kopf.className = "kategorie-kopf";
       kopf.innerHTML = `<span>${kategorie}</span><span class="anzahl">${materialien.length} Positionen</span>`;
@@ -568,14 +770,45 @@ function render() {
   }
 
   statistikEl.textContent = gesamt + " von " + DATEN.length + " Materialpositionen angezeigt";
+  if (!gesamt && suchText && filterGewerk !== "alle") {
+    const trefferGesamt = DATEN.filter(d => (d[2] + " " + d[3]).toLowerCase().includes(suchText)).length;
+    leerEl.innerHTML = trefferGesamt
+      ? `Keine Treffer in „${GEWERKE[filterGewerk].name}“. <button class="klein" id="ueberallSuchen">In allen Gewerken suchen (${trefferGesamt} Treffer)</button>`
+      : "Keine Materialien gefunden. Suchbegriff anpassen oder Filter zurücksetzen.";
+    const btn = document.getElementById("ueberallSuchen");
+    if (btn) btn.onclick = () => { filterGewerk = "alle"; render(); };
+  } else {
+    leerEl.textContent = "Keine Materialien gefunden. Suchbegriff anpassen oder Filter zurücksetzen.";
+  }
   leerEl.style.display = gesamt ? "none" : "block";
 }
 
-document.getElementById("suche").addEventListener("input", e => {
+sucheEl.addEventListener("input", e => {
   suchText = e.target.value.trim().toLowerCase();
   render();
 });
 
+umschaltenEl.addEventListener("click", () => {
+  allesOffen = !allesOffen;
+  umschaltenEl.textContent = allesOffen ? "Alles zuklappen" : "Alles aufklappen";
+  render();
+});
+
+document.getElementById("logoLink").addEventListener("click", e => {
+  e.preventDefault();
+  filterGewerk = "alle";
+  suchText = "";
+  sucheEl.value = "";
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
+window.addEventListener("scroll", () => {
+  nachObenEl.style.display = window.scrollY > 600 ? "block" : "none";
+});
+nachObenEl.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+
+beliebtBauen();
 render();
 </script>
 </body>
