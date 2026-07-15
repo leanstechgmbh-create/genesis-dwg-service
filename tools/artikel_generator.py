@@ -308,6 +308,121 @@ REGELN = [
 KOMPILIERT = [(re.compile(m, re.I), v, e) for m, v, e in REGELN]
 
 
+# ------------------------------------------------------------ Preis-Engine
+# Kalkulierte Listenpreise (Brutto, inkl. 19 % MwSt.) je Produktfamilie mit
+# Größenskalierung. ENTWURF: vor Live-Gang mit DATANORM-Einkaufspreisen ersetzen.
+
+def _wert(muster, text, standard=None):
+    m = re.search(muster, text)
+    return float(m.group(1).replace(",", ".")) if m else standard
+
+KAT_BASIS = {  # Fallback-Grundpreis je Kategorie (EUR)
+    "Rohre & Kanäle": 14, "Formteile": 8, "Luftdurchlässe": 24,
+    "Geräte & Ventilatoren": 180, "Filter & Hygiene": 18, "Brandschutz & Schall": 90,
+    "Regelung & Zubehör": 60, "Montage & Dämmung": 9, "KWL-Systemkomponenten": 45,
+    "Küchen- & Gewerbeabluft": 70, "Rohre & Leitungen": 12, "Fittings & Verbinder": 4,
+    "Armaturen & Ventile": 30, "Sanitärobjekte": 180, "Bad-Ausstattung": 25,
+    "Vorwand & Spültechnik": 120, "Ablauf & Entwässerung": 35,
+    "Regenwasser & Garten": 300, "Warmwasser & Aufbereitung": 250,
+    "Befestigung & Dichtung": 7, "Wärmeerzeuger": 2500, "Wärmepumpen-Zubehör": 90,
+    "Gas- & Ölinstallation": 45, "Heizkörper & Flächenheizung": 90,
+    "Armaturen & Hydraulik": 28, "Pumpen & Sicherheit": 70, "Speicher": 700,
+    "Regelung": 65, "Abgas & Verbrennung": 60, "Solar & Erneuerbare": 400,
+    "Montage & Betriebsstoffe": 20, "Geräte": 700, "Installation": 45,
+    "Press- & Verbindungstechnik": 120, "Rohrwerkzeug": 45,
+    "Messtechnik & Prüfung": 150, "Elektro- & Maschinenwerkzeug": 130,
+    "Handwerkzeug & Baustelle": 40, "Arbeitsschutz": 18,
+}
+
+HK_TYP_BASIS = {"Typ 10": 55, "Typ 11": 70, "Typ 20": 88, "Typ 21": 100,
+                "Typ 22": 120, "Typ 30": 140, "Typ 33": 165}
+
+
+def preis_cent(kategorie: str, name: str, ausf: str, nummer: str) -> int:
+    n = name.lower()
+    dn = _wert(r"DN (\d+)", ausf)
+    mm = _wert(r"(\d+) mm", ausf)
+    kw = _wert(r"([\d.,]+) kW", ausf)
+    liter = _wert(r"(\d+) l\b", ausf)
+    meter = _wert(r"(\d+(?:[.,]\d+)?) m\b", ausf)
+
+    eur = None
+    if "wärmepumpe" in n and "zubehör" not in n and kw:
+        eur = 3900 + kw * 430 + (350 if "3-phasig" in ausf else 0)
+    elif "brauchwasser-wärmepumpe" in n:
+        eur = 1650
+    elif ("brennwert" in n or "kessel" in n or "kombitherme" in n) and kw:
+        eur = 1900 + kw * 62
+    elif "flachheizkörper" in n or "ventilheizkörper" in n:
+        typ = next((t for t in HK_TYP_BASIS if t in ausf), "Typ 22")
+        h = _wert(r"· (\d+)×", ausf, 500)
+        l = _wert(r"×(\d+) mm", ausf, 1000)
+        eur = HK_TYP_BASIS[typ] * (h / 500) ** 0.5 * (l / 1000) ** 0.85
+        if "Mittenanschluss" in ausf:
+            eur *= 1.12
+    elif "röhrenradiator" in n:
+        saeulen = _wert(r"(\d)-säulig", ausf, 3)
+        h = _wert(r"H (\d+) mm", ausf, 1000)
+        glieder = _wert(r"(\d+) Glieder", ausf, 10)
+        eur = glieder * (6 + saeulen * 4) * (0.45 + h / 1800)
+    elif "badheizkörper" in n or "designheizkörper" in n:
+        h = _wert(r"(\d+)×", ausf, 1500)
+        eur = 90 + h * 0.09 + (80 if "chrom" in ausf else 0) + (25 if "anthrazit" in ausf or "schwarz" in ausf else 0)
+    elif "pufferspeicher" in n and liter:
+        eur = 320 + liter * 0.85 + (150 if "1 Register" in ausf else 300 if "2 Register" in ausf else 0)
+    elif "speicher" in n and liter:
+        eur = 260 + liter * 1.9
+    elif "split-klimagerät" in n and kw:
+        eur = 520 + kw * 265
+    elif "multisplit" in n:
+        kw2 = _wert(r"([\d.,]+) kW", ausf, 5)
+        einheiten = _wert(r"(\d) Inneneinheiten", ausf, 2)
+        eur = 800 + kw2 * 290 + einheiten * 160
+    elif ("kassettengerät" in n or "kanalklimagerät" in n or "truhengerät" in n
+          or "deckengerät" in n or "standtruhe" in n or "reversibles" in n) and kw:
+        eur = 750 + kw * 300
+    elif "kwl-gerät" in n:
+        m3 = _wert(r"(\d+) m³/h", ausf, 300)
+        eur = 1500 + m3 * 3.2
+    elif "wickelfalzrohr" in n and dn:
+        eur = (3.5 + dn * 0.055) * (0.6 if "1,5 m" in ausf else 1.55 if "5 m" in ausf else 1.0)
+        if "edelstahl" in n:
+            eur *= 2.6
+    elif "kältemittelleitung" in n and meter:
+        eur = 7.5 * meter + 12
+    elif "membran-ausdehnungsgefäß" in n and liter:
+        eur = 22 + liter * 0.75
+    elif "hocheffizienz-umwälzpumpe" in n:
+        eur = 165 + (35 if "32-" in ausf else 0) + (25 if "-80" in ausf else 0)
+    elif "pressbacke" in n and mm:
+        eur = 95 + mm * 1.4
+    elif "akku-pressmaschine" in n:
+        eur = 1450 if "Set" in ausf else 1150
+    elif "kernbohr" in n:
+        eur = 1250 if "Gerät" in ausf else 90 + (_wert(r"Ø (\d+)", ausf, 80)) * 0.9
+    elif "sicherheitsschuhe" in n:
+        eur = 55 if "Halbschuh" in ausf else 70
+    elif "kollektor" in n:
+        eur = 300 + _wert(r"([\d.,]+) m²", ausf, 2.3) * 160
+
+    if eur is None:
+        basis = KAT_BASIS.get(kategorie, 20)
+        faktor = 1.0
+        if dn:
+            faktor *= 0.55 + dn / 220
+        elif mm:
+            faktor *= 0.65 + mm / 60
+        if kw:
+            faktor *= 0.7 + kw / 8
+        # leichte deterministische Streuung je Artikel (±12 %)
+        faktor *= 0.88 + (zlib.crc32(nummer.encode()) % 25) / 100
+        eur = basis * faktor
+
+    eur = max(eur, 1.9)
+    # kaufmännisch auf ,90 enden lassen
+    return int(round(eur)) * 100 - 10
+
+
 def artikelnummer(schluessel: str) -> str:
     n = zlib.crc32(schluessel.encode("utf-8"))
     z = "0123456789ABCDEFGHJKLMNPQRSTUVWXYZ"
@@ -326,7 +441,10 @@ def main():
             if muster.search(name) or (muster.pattern and muster.search(kategorie)):
                 varianten = varianten_fn()
                 break
-        eintraege = [[v, artikelnummer(f"{name}|{v}")] for v in varianten]
+        eintraege = []
+        for v in varianten:
+            nr = artikelnummer(f"{name}|{v}")
+            eintraege.append([v, nr, preis_cent(kategorie, name, v, nr)])
         sku_gesamt += len(eintraege)
         produkte.append({"g": gewerk, "k": kategorie, "n": name, "d": detail,
                          "e": einheit, "v": eintraege})
@@ -337,11 +455,12 @@ def main():
     with open(ZIEL_CSV, "w", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
         w.writerow(["sku", "item_name", "brand_name", "product_category",
-                    "trade", "unit", "ean", "quantity"])
+                    "trade", "unit", "standard_price_eur", "ean", "quantity"])
         for p in produkte:
-            for ausf, nr in p["v"]:
+            for ausf, nr, cent in p["v"]:
                 bezeichnung = p["n"] if ausf == "Standard" else f'{p["n"]} — {ausf}'
-                w.writerow([nr, bezeichnung, "Profihaustechnik", p["k"], p["g"], p["e"], "", ""])
+                w.writerow([nr, bezeichnung, "Profihaustechnik", p["k"], p["g"], p["e"],
+                            f"{cent / 100:.2f}", "", ""])
 
     je_gewerk = {}
     for p in produkte:

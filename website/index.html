@@ -379,9 +379,9 @@
     border-radius: 6px;
     cursor: pointer;
   }
-  .merk-aktionen { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .merk-aktionen { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; align-items: center; }
   .merk-aktionen .haupt {
-    flex: 1;
+    flex: 1 1 200px;
     background: var(--sanitaer);
     color: #fff;
     border: none;
@@ -391,7 +391,28 @@
     font-weight: 700;
     cursor: pointer;
   }
+  .merk-aktionen .haupt.zweit { background: var(--klima); }
   .merk-hinweis { color: var(--muted); font-size: .78rem; margin-top: 10px; }
+  .merk-summe {
+    text-align: right;
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 10px 0 2px;
+  }
+  .merk-summe small { color: var(--muted); font-weight: 400; }
+  .merk-felder { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 10px; }
+  .merk-felder input {
+    padding: 9px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--text);
+    font-size: .85rem;
+    outline: none;
+  }
+  .merk-felder input:focus { border-color: var(--sanitaer); }
+  .merk-felder input#kundeAdresse { grid-column: 1 / -1; }
+  .var-preis { font-weight: 700; white-space: nowrap; }
   .material.g-lueftung { border-left-color: var(--lueftung); }
   .material.g-sanitaer { border-left-color: var(--sanitaer); }
   .material.g-heizung { border-left-color: var(--heizung); }
@@ -437,8 +458,8 @@
 
 <div class="usp">
   <div class="usp-inner">
-    <span>✓ Über 10.000 Artikel Haustechnik</span>
-    <span>✓ Klar kategorisiert — in Sekunden gefunden</span>
+    <span>✓ Über 10.000 Artikel — sofort bestellbar</span>
+    <span>✓ Karte · Klarna · Apple/Google Pay · Rechnung</span>
     <span>✓ Fachbetrieb für Klimatechnik</span>
   </div>
 </div>
@@ -463,21 +484,31 @@
 </main>
 
 <button id="nachOben" title="Nach oben" aria-label="Nach oben">↑</button>
-<button id="merklisteKnopf">Merkliste (0)</button>
+<button id="merklisteKnopf">Warenkorb (0)</button>
 
 <div id="merkPanel">
   <div class="merk-inhalt">
     <div class="merk-kopf">
-      <h3>Merkliste / Anfrage</h3>
+      <h3>Warenkorb</h3>
       <button class="klein" id="merkSchliessen">Schließen</button>
     </div>
     <div id="merkListe"></div>
-    <div class="merk-aktionen">
-      <button class="haupt" id="merkAnfragen">Per E-Mail anfragen</button>
-      <button class="klein" id="merkLeeren">Liste leeren</button>
+    <div class="merk-summe" id="merkSumme"></div>
+    <div class="merk-felder">
+      <input id="kundeName" placeholder="Name / Firma *">
+      <input id="kundeMail" type="email" placeholder="E-Mail">
+      <input id="kundeTel" placeholder="Telefon">
+      <input id="kundeAdresse" placeholder="Lieferadresse (Straße, PLZ, Ort) *">
     </div>
-    <p class="merk-hinweis">Ihr erhaltet innerhalb kurzer Zeit ein Angebot mit Preisen und Lieferzeit.
-    Bezahlung aktuell per Rechnung — Online-Zahlung folgt.</p>
+    <div class="merk-aktionen">
+      <button class="haupt" id="kaufenOnline">Jetzt online bezahlen</button>
+      <button class="haupt zweit" id="kaufenRechnung">Auf Rechnung bestellen</button>
+      <button class="klein" id="merkLeeren">Leeren</button>
+    </div>
+    <p class="merk-hinweis" id="merkStatus"></p>
+    <p class="merk-hinweis">Zahlarten: Karte · Apple Pay · Google Pay · Klarna · SEPA · Kauf auf Rechnung.
+    Alle Preise inkl. 19 % MwSt., zzgl. Versand. Adressfelder (*) nur für Kauf auf Rechnung nötig —
+    bei Online-Zahlung fragt die sichere Bezahlseite die Adresse ab.</p>
   </div>
 </div>
 
@@ -637,8 +668,8 @@ function variantenListe(container, produkt, liste, hervorheben) {
     const bis = Math.min(gezeigt + VAR_SCHRITT, liste.length);
     let html = "";
     for (let i = gezeigt; i < bis; i++) {
-      const [ausf, nr] = liste[i];
-      html += `<div class="var-zeile"><span>${hervorheben ? markieren(ausf) : ausf}</span><span style="display:flex;align-items:center;gap:8px"><span class="artnr">${hervorheben ? markieren(nr) : nr} · ${produkt.e}</span><button class="merk-plus" data-nr="${nr}" title="Auf die Merkliste">+</button></span></div>`;
+      const [ausf, nr, cent] = liste[i];
+      html += `<div class="var-zeile"><span>${hervorheben ? markieren(ausf) : ausf}<br><span class="artnr">${hervorheben ? markieren(nr) : nr} · je ${produkt.e}</span></span><span style="display:flex;align-items:center;gap:8px"><span class="var-preis">${geld(cent)}</span><button class="merk-plus" data-nr="${nr}" title="In den Warenkorb">+</button></span></div>`;
     }
     wrap.insertAdjacentHTML("beforeend", html);
     gezeigt = bis;
@@ -661,8 +692,8 @@ function materialKarte(p, suchVarianten) {
     <div class="name">${markieren(p.n)}</div>
     <div class="detail">${markieren(p.d)}</div>
     <div class="var-info">
-      <span>${einzeln ? `<span class="artnr">${markieren(p.v[0][1])}</span> · ${p.e}` : zahl(p.v.length) + " Ausführungen"}</span>
-      ${einzeln ? `<button class="merk-plus" data-nr="${p.v[0][1]}" title="Auf die Merkliste">+</button>` : '<button class="var-knopf">Varianten anzeigen</button>'}
+      <span>${einzeln ? `<span class="var-preis">${geld(p.v[0][2])}</span> · <span class="artnr">${markieren(p.v[0][1])}</span> · je ${p.e}` : zahl(p.v.length) + " Ausführungen ab " + geld(Math.min(...p.v.map(v => v[2])))}</span>
+      ${einzeln ? `<button class="merk-plus" data-nr="${p.v[0][1]}" title="In den Warenkorb">+</button>` : '<button class="var-knopf">Varianten anzeigen</button>'}
     </div>`;
   if (!einzeln) {
     const knopf = karte.querySelector(".var-knopf");
@@ -784,20 +815,30 @@ window.addEventListener("scroll", () => {
 });
 nachObenEl.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
-// ------------------------- Merkliste / Anfrage -------------------------
-const ANFRAGE_MAIL = "leanstechgmbh@gmail.com";
+// ------------------------- Warenkorb & Kauf -------------------------
+const BESTELL_MAIL = "leanstechgmbh@gmail.com";
 let MERKLISTE = [];
-try { MERKLISTE = JSON.parse(localStorage.getItem("pht_merkliste") || "[]"); } catch (e) {}
+try { MERKLISTE = JSON.parse(localStorage.getItem("pht_warenkorb") || "[]"); } catch (e) {}
 const NR_INDEX = new Map();
 
 const merkKnopfEl = document.getElementById("merklisteKnopf");
 const merkPanelEl = document.getElementById("merkPanel");
 const merkListeEl = document.getElementById("merkListe");
+const merkSummeEl = document.getElementById("merkSumme");
+const merkStatusEl = document.getElementById("merkStatus");
+
+function geld(cent) {
+  return (cent / 100).toLocaleString("de-DE", { style: "currency", currency: "EUR" });
+}
+
+function korbSumme() {
+  return MERKLISTE.reduce((s, e) => s + e.cent * e.menge, 0);
+}
 
 function merkSpeichern() {
-  try { localStorage.setItem("pht_merkliste", JSON.stringify(MERKLISTE)); } catch (e) {}
+  try { localStorage.setItem("pht_warenkorb", JSON.stringify(MERKLISTE)); } catch (e) {}
   const n = MERKLISTE.reduce((s, e) => s + e.menge, 0);
-  merkKnopfEl.textContent = `Merkliste (${zahl(n)})`;
+  merkKnopfEl.textContent = `Warenkorb (${zahl(n)}) · ${geld(korbSumme())}`;
   merkKnopfEl.style.display = MERKLISTE.length ? "block" : "none";
 }
 
@@ -811,24 +852,28 @@ function merkAendern(nr, delta) {
 }
 
 function merkRendern() {
+  merkStatusEl.textContent = "";
   if (!MERKLISTE.length) {
-    merkListeEl.innerHTML = '<p class="merk-hinweis">Noch keine Artikel gemerkt. Im Katalog auf „+" tippen.</p>';
+    merkListeEl.innerHTML = '<p class="merk-hinweis">Der Warenkorb ist leer. Im Katalog auf „+" tippen.</p>';
+    merkSummeEl.innerHTML = "";
     return;
   }
   merkListeEl.innerHTML = MERKLISTE.map(e => `
     <div class="merk-zeile">
       <div class="info">
         <strong>${e.name}</strong>${e.ausf && e.ausf !== "Standard" ? " — " + e.ausf : ""}
-        <span class="artnr">${e.nr} · ${e.e}</span>
+        <span class="artnr">${e.nr} · ${geld(e.cent)} je ${e.e}</span>
       </div>
       <div class="menge">
         <button data-nr="${e.nr}" data-d="-1">−</button>
         <span>${e.menge}</span>
         <button data-nr="${e.nr}" data-d="1">+</button>
       </div>
+      <strong>${geld(e.cent * e.menge)}</strong>
     </div>`).join("");
   merkListeEl.querySelectorAll("button").forEach(b =>
     b.onclick = () => merkAendern(b.dataset.nr, parseInt(b.dataset.d, 10)));
+  merkSummeEl.innerHTML = `Summe: ${geld(korbSumme())} <small>inkl. MwSt., zzgl. Versand</small>`;
 }
 
 document.addEventListener("click", ev => {
@@ -839,7 +884,7 @@ document.addEventListener("click", ev => {
   if (!info) return;
   const vorhanden = MERKLISTE.find(e => e.nr === nr);
   if (vorhanden) vorhanden.menge += 1;
-  else MERKLISTE.push({ nr, name: info.p.n, ausf: info.ausf, e: info.p.e, menge: 1 });
+  else MERKLISTE.push({ nr, name: info.p.n, ausf: info.ausf, e: info.p.e, cent: info.cent, menge: 1 });
   merkSpeichern();
   knopf.textContent = "✓";
   setTimeout(() => { knopf.textContent = "+"; }, 700);
@@ -850,26 +895,82 @@ document.getElementById("merkSchliessen").onclick = () => merkPanelEl.classList.
 merkPanelEl.addEventListener("click", ev => { if (ev.target === merkPanelEl) merkPanelEl.classList.remove("offen"); });
 document.getElementById("merkLeeren").onclick = () => { MERKLISTE = []; merkSpeichern(); merkRendern(); };
 
-document.getElementById("merkAnfragen").onclick = () => {
+function statusMeldung(text) { merkStatusEl.textContent = text; }
+
+function korbDaten() {
+  return MERKLISTE.map(e => ({ nr: e.nr, menge: e.menge }));
+}
+
+// Online-Zahlung: Server erstellt eine Stripe-Checkout-Sitzung (Karte, Apple/
+// Google Pay, Klarna, SEPA) und wir leiten auf die sichere Bezahlseite weiter.
+document.getElementById("kaufenOnline").onclick = async () => {
   if (!MERKLISTE.length) return;
-  const zeilen = MERKLISTE.map(e =>
-    `${e.menge} ${e.e} — ${e.nr} — ${e.name}${e.ausf && e.ausf !== "Standard" ? " (" + e.ausf + ")" : ""}`);
-  let rumpf = "Guten Tag,%0A%0Abitte um ein Angebot für folgende Artikel:%0A%0A";
-  for (const z of zeilen) {
-    const naechste = encodeURIComponent(z) + "%0A";
-    if ((rumpf + naechste).length > 1600) { rumpf += encodeURIComponent(`… und ${zeilen.length} Positionen insgesamt (Rest bitte erfragen)`) + "%0A"; break; }
-    rumpf += naechste;
+  statusMeldung("Bezahlseite wird vorbereitet …");
+  try {
+    const r = await fetch("kasse", { method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ artikel: korbDaten() }) });
+    const d = await r.json().catch(() => ({}));
+    if (r.ok && d.url) { location.href = d.url; return; }
+    statusMeldung(d.detail || 'Online-Zahlung ist noch nicht freigeschaltet — bitte „Auf Rechnung bestellen" nutzen.');
+  } catch (e) {
+    statusMeldung('Vorschau-Modus: Die Online-Zahlung wird mit der Live-Schaltung der Seite aktiv. „Auf Rechnung bestellen" funktioniert schon jetzt.');
   }
-  rumpf += "%0AName:%0ATelefon:%0ALieferadresse:%0A";
-  location.href = `mailto:${ANFRAGE_MAIL}?subject=${encodeURIComponent("Material-Anfrage Profihaustechnik.de")}&body=${rumpf}`;
+};
+
+// Kauf auf Rechnung: Bestellung geht an den Server (E-Mail an uns);
+// Fallback ohne Server: fertige Bestell-E-Mail im Mailprogramm öffnen.
+document.getElementById("kaufenRechnung").onclick = async () => {
+  if (!MERKLISTE.length) return;
+  const kunde = {
+    name: document.getElementById("kundeName").value.trim(),
+    mail: document.getElementById("kundeMail").value.trim(),
+    tel: document.getElementById("kundeTel").value.trim(),
+    adresse: document.getElementById("kundeAdresse").value.trim()
+  };
+  if (!kunde.name || !kunde.adresse) {
+    statusMeldung("Bitte Name und Lieferadresse ausfüllen (Pflicht bei Kauf auf Rechnung).");
+    return;
+  }
+  statusMeldung("Bestellung wird übermittelt …");
+  try {
+    const r = await fetch("bestellung", { method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ artikel: korbDaten(), kunde }) });
+    if (r.ok) {
+      MERKLISTE = [];
+      merkSpeichern();
+      merkRendern();
+      statusMeldung("✅ Bestellung eingegangen! Sie erhalten die Rechnung per E-Mail.");
+      return;
+    }
+    throw new Error("Server nicht bereit");
+  } catch (e) {
+    const zeilen = MERKLISTE.map(x =>
+      `${x.menge} ${x.e} — ${x.nr} — ${x.name}${x.ausf && x.ausf !== "Standard" ? " (" + x.ausf + ")" : ""} — je ${geld(x.cent)}`);
+    let rumpf = "Verbindliche Bestellung (Kauf auf Rechnung) über profihaustechnik.de:%0A%0A";
+    for (const z of zeilen) {
+      const naechste = encodeURIComponent(z) + "%0A";
+      if ((rumpf + naechste).length > 1500) { rumpf += encodeURIComponent(`… insgesamt ${zeilen.length} Positionen`) + "%0A"; break; }
+      rumpf += naechste;
+    }
+    rumpf += "%0A" + encodeURIComponent(`Summe: ${geld(korbSumme())} inkl. MwSt., zzgl. Versand`) + "%0A%0A";
+    rumpf += encodeURIComponent(`Name: ${kunde.name}\nE-Mail: ${kunde.mail}\nTelefon: ${kunde.tel}\nLieferadresse: ${kunde.adresse}`);
+    location.href = `mailto:${BESTELL_MAIL}?subject=${encodeURIComponent("Bestellung Profihaustechnik.de — " + kunde.name)}&body=${rumpf}`;
+  }
 };
 
 ladeDaten().then(daten => {
   PRODUKTE = daten;
-  for (const p of PRODUKTE) for (const [ausf, nr] of p.v) NR_INDEX.set(nr, { p, ausf });
+  for (const p of PRODUKTE) for (const [ausf, nr, cent] of p.v) NR_INDEX.set(nr, { p, ausf, cent });
   beliebtBauen();
   render();
   merkSpeichern();
+  if (new URLSearchParams(location.search).has("bestellt")) {
+    MERKLISTE = [];
+    merkSpeichern();
+    document.querySelector(".hero p").innerHTML = "✅ <strong>Vielen Dank für Ihre Bestellung!</strong> Die Zahlung ist eingegangen — Bestätigung und Rechnung folgen per E-Mail.";
+  }
 }).catch(() => {
   statistikEl.textContent = "Fehler: Artikeldaten konnten nicht geladen werden.";
 });
