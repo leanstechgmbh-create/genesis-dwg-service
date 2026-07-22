@@ -11,6 +11,8 @@ from fastapi.responses import Response, JSONResponse, FileResponse
 from dwg_core import have, modify_drawing
 from slack_bot import router as slack_router, slack_ready
 from mailer.core import versende, mail_bereit
+from social_poster import (insta_bereit, youtube_bereit, post_instagram_reel,
+                           post_youtube, post_nach_schluessel, lade_posts)
 
 app = FastAPI(title="GENESIS Service", version="4.0")
 app.include_router(slack_router)
@@ -24,7 +26,8 @@ def health(request: Request):
         return katalog()
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
-            "slack": slack_ready(), "mail_ready": mail_bereit()}
+            "slack": slack_ready(), "mail_ready": mail_bereit(),
+            "instagram": insta_bereit(), "youtube": youtube_bereit()}
 
 WEBSITE = Path(__file__).parent / "website"
 
@@ -180,6 +183,70 @@ async def send_mails(request: Request, x_genesis_key: str = Header(default="")):
             resend=bool(b.get("resend", False)))
     except RuntimeError as e:
         raise HTTPException(400, str(e))
+
+@app.post("/post-social")
+def post_social(b: dict, x_genesis_key: str = Header(default="")):
+    """Fertiges Video (per oeffentlicher URL) auf Instagram (Reel) und/oder YouTube (Short) posten.
+
+    Body (JSON):
+      video_url   str   -> Pflicht, oeffentliche https-URL der MP4-Datei
+      caption     str   -> Text unter dem Instagram-Reel (+ YouTube-Beschreibung)
+      title       str   -> YouTube-Titel (Default: erste Zeile der Caption)
+      description str   -> eigene YouTube-Beschreibung (Default: caption)
+      platforms   list  -> ["instagram","youtube"] (Default: beide)
+      privacy     str   -> nur YouTube: "public"/"unlisted"/"private" (Default public)
+
+    Antwort kann 1-3 Minuten dauern (Instagram verarbeitet das Video erst).
+    """
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    url = str(b.get("video_url", "")).strip()
+    if not url.startswith("https://"):
+        raise HTTPException(400, "video_url (https) fehlt")
+    caption = str(b.get("caption", ""))
+    titel = str(b.get("title") or caption.split("\n")[0][:95] or "Video")
+    plattformen = [str(p).lower() for p in (b.get("platforms") or ["instagram", "youtube"])]
+    fertig, fehler = [], []
+    if "instagram" in plattformen:
+        try:
+            fertig.append(post_instagram_reel(url, caption))
+        except Exception as e:
+            fehler.append({"platform": "instagram", "error": str(e)})
+    if "youtube" in plattformen:
+        try:
+            fertig.append(post_youtube(url, titel, str(b.get("description") or caption),
+                                       str(b.get("privacy", "public"))))
+        except Exception as e:
+            fehler.append({"platform": "youtube", "error": str(e)})
+    return {"ok": bool(fertig) and not fehler, "posted": fertig, "errors": fehler}
+
+@app.get("/posts")
+def posts_liste(x_genesis_key: str = Header(default="")):
+    """Vorbereitete Posts aus posts.json auflisten (ohne zu posten)."""
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    return {k: {"beschreibung": v.get("beschreibung", ""), "titel": v.get("titel", "")}
+            for k, v in lade_posts().items()}
+
+@app.post("/post-video")
+def post_video(b: dict, x_genesis_key: str = Header(default="")):
+    """Vorbereiteten Post aus posts.json veroeffentlichen.
+
+    Body: {"video": 6}  oder  {"key": "video-6"}; optional platforms wie /post-social.
+    Caption, Hashtags und Titel kommen fertig aus posts.json.
+    """
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    key = str(b.get("key") or "").strip()
+    if not key and b.get("video") is not None:
+        key = f"video-{int(b['video'])}"
+    if not key:
+        raise HTTPException(400, "key oder video (Nummer) fehlt")
+    try:
+        fertig, fehler = post_nach_schluessel(key, b.get("platforms"))
+    except KeyError as e:
+        raise HTTPException(404, str(e))
+    return {"ok": bool(fertig) and not fehler, "key": key, "posted": fertig, "errors": fehler}
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):
