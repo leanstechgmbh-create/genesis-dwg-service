@@ -96,6 +96,20 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
   Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
   verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.
 
+### Wartungsvertrag-Anfragen (Wartungs-Rechner) — VERBINDLICH
+
+Bei jeder Anfrage über den Wartungs-Rechner (leanstech-klima.de,
+Mail „Wartungsvertrag-Anfrage Klima"):
+1. **PDF-Angebot** nach dem Angebotsmuster erstellen (Anlage, Leistungs-
+   umfang der Jahreswartung, Turnus, Anfahrt, Preis aus dem Rechner =
+   verbindlich; Wartung = 19 % MwSt., NICHT § 13b).
+2. Zusätzlich einen **Wartungsvertrag** als Dokument vorbereiten
+   (Vertragsparteien, Anlage, Leistungsumfang, Preis/Jahr, Laufzeit
+   1 Jahr mit Verlängerung, jährlich kündbar).
+3. Beides zuerst als Download in den Chat (Freigabe-Workflow), dann
+   Antwort-Mail an den Kunden mit Angebot; will der Kunde den Vertrag,
+   bekommt er auch den Wartungsvertrag.
+
 ### Angebotsmuster (VERBINDLICH)
 
 Angebote IMMER nach der Regel von **Angebot 301** erstellen
