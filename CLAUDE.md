@@ -62,12 +62,25 @@ Rechnungen IMMER nach `vorlagen/rechnung-muster.html` erstellen
    USt. % | Nettobetrag | Betrag — bei 2./3./x. AR wahlweise kumuliert
    (alle AR + Zwischensumme + „Abzüglich n. Abschlagsrechnung")
 6. Summenblock: Nettobetrag / USt. 0,00 % / **Gesamtsumme**
-7. §13b-Satz, Fußblock mit Stammdaten und Volksbank-Konto
+7. §13b-Satz mit Adyen-Konto, Fußblock mit Stammdaten
 
 Regeln: Rechnungsnummer fortlaufend `<Jahr>-<n>` (Stand Juli 2026:
-zuletzt 2026-39 = 1. AR Klement/Mehringdamm; 2026-40 vergeben).
+zuletzt 2026-40 = 2. AR SP Construct/Mehringdamm).
 Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
-Ablage: als Google Doc + PDF in den jeweiligen Projektordner im Drive.
+
+### Freigabe-Workflow Rechnungen & Angebote (VERBINDLICH)
+
+1. **Entwurf IMMER zuerst als Download in den Chat** senden (PDF),
+   damit der Nutzer sieht, was Sache ist. Bei jeder Änderung erneut
+   die aktualisierte Fassung als Download schicken.
+2. **NICHTS ungefragt ins Google Drive hochladen.** Erst wenn der
+   Nutzer die Rechnung freigibt („passt", „nutzen wir", „abschicken"),
+   wird GENAU DIESE Fassung dauerhaft im Drive abgelegt (Projektordner,
+   Namenskonvention, Zusatz „(VERSENDETE FASSUNG)").
+3. **Keine Zwischenstände/Duplikate im Drive.** Pro Rechnung existiert
+   dort nur die versendete Endfassung. Veraltete eigene Uploads dem
+   Nutzer zum Löschen auflisten (KI hat keine Löschrechte im Drive).
+4. Gilt genauso für Angebote und alle anderen Dokumente.
 
 ### Angebotsmuster (VERBINDLICH)
 
