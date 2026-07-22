@@ -10,7 +10,7 @@ Zwei Faehigkeiten:
 Events-API-Endpoint mit HMAC-Signaturpruefung; schwere Arbeit laeuft im
 Hintergrund, damit Slack innerhalb von 3 Sekunden ein 200 erhaelt.
 """
-import hashlib, hmac, json, os, re, time
+import asyncio, hashlib, hmac, json, os, re, time
 import httpx
 from fastapi import APIRouter, BackgroundTasks, HTTPException, Request
 from fastapi.responses import JSONResponse, PlainTextResponse
@@ -273,10 +273,38 @@ async def _handle_chat(event: dict):
         answer = f"Fehler bei der Anfrage an Claude: {str(e)[:200]}"
     await _post_message(channel, answer, thread_ts)
 
+# --- Social-Posting per Zuruf: "poste Video 6" --------------------------------
+_POST_BEFEHL = re.compile(r"\bpost\w*\s+(?:das\s+)?video\s+(\d+)", re.IGNORECASE)
+
+async def _handle_social_post(event: dict, nr: str):
+    from social_poster import post_nach_schluessel, insta_bereit, youtube_bereit
+    channel = event.get("channel")
+    thread_ts = event.get("thread_ts") or event.get("ts")
+    if not (insta_bereit() or youtube_bereit()):
+        await _post_message(channel,
+            "*Posten noch nicht freigeschaltet*\nEs fehlen die Zugangsdaten "
+            "(Cloud-Run-Variablen, siehe SOCIAL_SETUP.md).", thread_ts)
+        return
+    await _post_message(channel,
+        f"*Poste Video {nr}* auf Instagram + YouTube — dauert 1-3 Minuten …", thread_ts)
+    try:
+        fertig, fehler = await asyncio.to_thread(post_nach_schluessel, f"video-{nr}")
+    except KeyError as e:
+        await _post_message(channel, f"*Unbekanntes Video:* {e}", thread_ts)
+        return
+    zeilen = [f"• {r['platform']}: {r.get('url') or r['id']}" for r in fertig]
+    zeilen += [f"• {f['platform']} FEHLER: {f['error']}" for f in fehler]
+    kopf = f"*Video {nr} ist online!*" if fertig and not fehler else f"*Video {nr}: Ergebnis*"
+    await _post_message(channel, kopf + "\n" + "\n".join(zeilen), thread_ts)
+
 async def _handle_event(event: dict):
     f = _drawing_file(event)
     if f:
         await _handle_plan_change(event, f)
+        return
+    m = _POST_BEFEHL.search(_clean(event.get("text", "")))
+    if m:
+        await _handle_social_post(event, m.group(1))
     else:
         await _handle_chat(event)
 

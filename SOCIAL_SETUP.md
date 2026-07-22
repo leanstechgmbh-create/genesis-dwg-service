@@ -115,3 +115,26 @@ curl -X POST https://DEIN-SERVICE.run.app/post-social \
 
 **Hinweis Facebook:** Reels zusätzlich auf die Facebook-Seite zu posten geht mit
 demselben Meta-Token — sag Bescheid, dann baue ich das als dritte Plattform dazu.
+
+---
+
+## Teil 5: Posten per Zuruf — „poste Video 6"
+
+Die fertigen Posts (Video-Link + Caption + Hashtags + YouTube-Titel) stehen in
+**`posts.json`**. Damit gibt es zwei ganz einfache Wege:
+
+**1. In Slack** (an den GENESIS-Bot, als DM oder @mention):
+```
+poste Video 6
+```
+Der Bot postet das Video auf Instagram + YouTube und antwortet mit den Links.
+
+**2. Per API** (für Claude/n8n):
+```
+curl -X POST https://DEIN-SERVICE.run.app/post-video \
+  -H "Content-Type: application/json" -H "X-Genesis-Key: DEIN_KEY" \
+  -d '{"video": 6}'
+```
+
+`GET /posts` listet alle vorbereiteten Posts. Neue Videos = neuer Eintrag in
+`posts.json` (macht Claude auf Zuruf mit fertigem Text).

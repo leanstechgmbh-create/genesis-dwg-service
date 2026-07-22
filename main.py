@@ -11,7 +11,8 @@ from fastapi.responses import Response, JSONResponse, FileResponse
 from dwg_core import have, modify_drawing
 from slack_bot import router as slack_router, slack_ready
 from mailer.core import versende, mail_bereit
-from social_poster import insta_bereit, youtube_bereit, post_instagram_reel, post_youtube
+from social_poster import (insta_bereit, youtube_bereit, post_instagram_reel,
+                           post_youtube, post_nach_schluessel, lade_posts)
 
 app = FastAPI(title="GENESIS Service", version="4.0")
 app.include_router(slack_router)
@@ -218,6 +219,34 @@ def post_social(b: dict, x_genesis_key: str = Header(default="")):
         except Exception as e:
             fehler.append({"platform": "youtube", "error": str(e)})
     return {"ok": bool(fertig) and not fehler, "posted": fertig, "errors": fehler}
+
+@app.get("/posts")
+def posts_liste(x_genesis_key: str = Header(default="")):
+    """Vorbereitete Posts aus posts.json auflisten (ohne zu posten)."""
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    return {k: {"beschreibung": v.get("beschreibung", ""), "titel": v.get("titel", "")}
+            for k, v in lade_posts().items()}
+
+@app.post("/post-video")
+def post_video(b: dict, x_genesis_key: str = Header(default="")):
+    """Vorbereiteten Post aus posts.json veroeffentlichen.
+
+    Body: {"video": 6}  oder  {"key": "video-6"}; optional platforms wie /post-social.
+    Caption, Hashtags und Titel kommen fertig aus posts.json.
+    """
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    key = str(b.get("key") or "").strip()
+    if not key and b.get("video") is not None:
+        key = f"video-{int(b['video'])}"
+    if not key:
+        raise HTTPException(400, "key oder video (Nummer) fehlt")
+    try:
+        fertig, fehler = post_nach_schluessel(key, b.get("platforms"))
+    except KeyError as e:
+        raise HTTPException(404, str(e))
+    return {"ok": bool(fertig) and not fehler, "key": key, "posted": fertig, "errors": fehler}
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):

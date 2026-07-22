@@ -4,10 +4,12 @@ Instagram: Meta Graph API — Meta laedt das Video selbst von der URL.
 YouTube: Data API v3, Resumable Upload — wir laden das Video und reichen es hoch.
 Einrichtung + Zugangsdaten (alles Umgebungsvariablen): siehe SOCIAL_SETUP.md.
 """
-import os, time
+import json, os, time
+from pathlib import Path
 import httpx
 
 GRAPH = "https://graph.facebook.com/v21.0"
+POSTS_DATEI = Path(__file__).parent / "posts.json"
 
 def insta_bereit() -> bool:
     return bool(os.environ.get("META_ACCESS_TOKEN") and os.environ.get("IG_USER_ID"))
@@ -74,3 +76,30 @@ def post_youtube(video_url: str, titel: str, beschreibung: str, privacy: str = "
         j = _ok(c.put(init.headers["location"], content=video,
                       headers={"Content-Type": "video/mp4"}), "YouTube: Upload")
         return {"platform": "youtube", "id": j["id"], "url": f"https://youtu.be/{j['id']}"}
+
+def lade_posts() -> dict:
+    """Vorbereitete Posts (posts.json): key -> {video_url, titel, caption, beschreibung}."""
+    if not POSTS_DATEI.is_file():
+        return {}
+    return json.loads(POSTS_DATEI.read_text(encoding="utf-8"))
+
+def post_nach_schluessel(key: str, plattformen=None):
+    """Vorbereiteten Post posten, z.B. key='video-6'. Liefert (fertig, fehler)."""
+    eintrag = lade_posts().get(key)
+    if not eintrag:
+        raise KeyError(f"Kein vorbereiteter Post '{key}' in posts.json")
+    plattformen = [str(p).lower() for p in (plattformen or ["instagram", "youtube"])]
+    caption = eintrag["caption"]
+    titel = eintrag.get("titel") or caption.split("\n")[0][:95]
+    fertig, fehler = [], []
+    if "instagram" in plattformen:
+        try:
+            fertig.append(post_instagram_reel(eintrag["video_url"], caption))
+        except Exception as e:
+            fehler.append({"platform": "instagram", "error": str(e)})
+    if "youtube" in plattformen:
+        try:
+            fertig.append(post_youtube(eintrag["video_url"], titel, caption))
+        except Exception as e:
+            fehler.append({"platform": "youtube", "error": str(e)})
+    return fertig, fehler
