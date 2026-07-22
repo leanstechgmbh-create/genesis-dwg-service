@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,sans-serif;font-size:12px;color:#1a1a1a;padding:35px;max-width:1700px;margin:auto}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;padding-bottom:14px;border-bottom:3px solid #1a5276}
+.logoimg{height:78px;width:auto;display:block;margin-bottom:6px}
+.sub{font-size:10px;color:#666;margin-top:4px;line-height:1.8}
+h1{font-size:24px;font-weight:bold;color:#1a5276;margin:18px 0 12px;letter-spacing:2px}
+.meta{display:grid;grid-template-columns:180px 1fr;gap:4px 14px;margin-bottom:14px;font-size:11.5px}
+.ml{font-weight:bold;color:#34495e}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:10.5px}
+th{background:#1a5276;color:#fff;padding:7px 6px;white-space:nowrap;text-align:left}
+td{padding:5px 7px;border:1px solid #dde;vertical-align:top}
+.sec{background:#eaf1f8;font-weight:bold;color:#1a5276;font-size:11.5px}
+.subt{font-weight:bold;background:#f0f4f9}
+.sumbox{margin-top:18px;margin-left:auto;width:460px;border:2px solid #1a5276;border-radius:4px;overflow:hidden}
+.sumbox table{margin:0;font-size:12px}
+.sumbox td{border:none;padding:8px 14px}
+.sumbox tr:not(:last-child){border-bottom:1px solid #e0e7ef}
+.fin{background:#1a5276;color:#fff}
+.fin td{font-size:14px;font-weight:bold;padding:10px 14px}
+.tech{font-size:9.5px;color:#555;margin-top:3px;line-height:1.5}
+.ftr{margin-top:24px;padding-top:8px;border-top:1px solid #ccc;font-size:9px;color:#999;text-align:center;line-height:2}
+.hinweis{margin-top:16px;font-size:10px;color:#888;font-style:italic;border-top:1px solid #eee;padding-top:10px}
+</style></head><body>
+
+<div class="hdr">
+  <div>
+    <img src="logo-full.png" class="logoimg" alt="LEANS Tech GmbH">
+    <div class="sub">Semir Redžić &bull; Berlepschstr. 165 &bull; 14165 Berlin &bull; Tel: +49 170 828 0836 &bull; info@leanstech-gmbh.de</div>
+  </div>
+  <div style="text-align:right;font-size:10.5px">
+    <strong>An:</strong><br>
+    {{KUNDE_NAME}}<br>
+    {{KUNDE_STRASSE}}<br>
+    {{KUNDE_PLZ_ORT}}
+  </div>
+</div>
+
+<h1>ANGEBOT</h1>
+
+<div class="meta">
+  <span class="ml">Angebotsnummer:</span><span>{{ANGEBOTSNUMMER}}</span>
+  <span class="ml">Angebotsdatum:</span><span>{{ANGEBOTSDATUM}}</span>
+  <span class="ml">Gültig bis:</span><span>{{GUELTIG_BIS}}</span>
+  <span class="ml">Projekt:</span><span>{{PROJEKT}}</span>
+  <span class="ml">Auftraggeber:</span><span>{{AUFTRAGGEBER}}</span>
+  <span class="ml">Gewerk:</span><span>{{GEWERK}}</span>
+  <span class="ml">Fabrikat:</span><span>{{FABRIKAT}}</span>
+  <span class="ml">Leistung:</span><span>{{LEISTUNG}}</span>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nr.</th><th>OZ</th><th style="min-width:360px">Beschreibung</th>
+      <th style="text-align:right">Menge</th><th>Einh.</th>
+      <th style="text-align:right">EP netto</th><th style="text-align:right">Betrag netto</th><th>MwSt</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="sec"><td colspan="8">1. {{ABSCHNITT_1_TITEL}}</td></tr>
+    <tr>
+      <td>1</td><td>1.1.</td>
+      <td><strong>{{POSITION_TITEL}}</strong><br>{{POSITION_BESCHREIBUNG}}<div class="tech">{{POSITION_TECHNIK}}</div></td>
+      <td style="text-align:right">{{MENGE}}</td><td>{{EINHEIT}}</td>
+      <td style="text-align:right">{{EP_NETTO}} &euro;</td>
+      <td style="text-align:right;font-weight:bold">{{BETRAG_NETTO}} &euro;</td>
+      <td style="text-align:center">&sect;13b</td>
+    </tr>
+    <tr class="subt"><td colspan="6" style="text-align:right">Zwischensumme {{ABSCHNITT_1_TITEL}}</td><td style="text-align:right">{{ZWISCHENSUMME_1}} &euro;</td><td></td></tr>
+  </tbody>
+</table>
+
+<div class="sumbox">
+  <table>
+    <tr><td>Nettobetrag:</td><td style="text-align:right">{{NETTOBETRAG}} &euro;</td></tr>
+    <tr><td>USt &sect; 13b UStG (0 %):</td><td style="text-align:right">0,00 &euro;</td></tr>
+    <tr class="fin"><td>Gesamtbetrag:</td><td style="text-align:right">{{GESAMTBETRAG}} &euro;</td></tr>
+  </table>
+</div>
+
+<div class="hinweis">
+  {{HINWEISE_ZUM_ANGEBOT}}<br>
+  Hinweis gemäß &sect; 13b Abs. 2 Nr. 4 UStG (Bauleistungen): Die Steuerschuldnerschaft für die Umsatzsteuer geht auf den Leistungsempfänger über, sofern dieser ebenfalls Bauleistungen erbringt. Umsatzsteuer wird nicht ausgewiesen &ndash; Gesamtbetrag = Nettobetrag.<br>
+  Dieses Angebot ist freibleibend und gültig bis {{GUELTIG_BIS}}.
+</div>
+
+<div class="ftr">LEANS Tech GmbH &bull; Berlepschstr. 165, 14165 Berlin &bull; GF: Semir Redžić &bull; HRB 249080 B &bull; USt-IdNr: DE357948720 &bull; IBAN: DE21 1009 0000 2911 7280 04 &bull; Berliner Volksbank &bull; BIC: BEVODEBB</div>
+
+</body></html>

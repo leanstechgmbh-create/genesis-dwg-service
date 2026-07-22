@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;font-size:11pt;color:#111;padding:50px 55px;line-height:1.45}
+p{margin:0 0 4px}
+.block{margin-bottom:22px}
+.title{font-weight:bold;font-size:12pt}
+h1{font-size:13pt;font-weight:bold;margin:10px 0 16px}
+table.pos{width:100%;border-collapse:collapse;font-size:10pt;margin:8px 0 16px}
+table.pos th{border-bottom:1.2px solid #111;text-align:left;padding:5px 6px}
+table.pos td{padding:6px;border-bottom:1px solid #ddd}
+.r{text-align:right;white-space:nowrap}
+.sums{margin-left:auto;width:300px;font-size:11pt;margin-bottom:20px}
+.sums td{padding:3px 6px}
+.sums .tot td{font-weight:bold;border-top:1.2px solid #111;padding-top:6px}
+.ftr{margin-top:40px;font-size:9pt;color:#333;line-height:1.7}
+</style></head><body>
+
+<div class="block title">{{TITEL}}</div>
+
+<div class="block">
+  <strong>LEANS Tech GmbH</strong><br>
+  Semir Redzic<br>
+  Berlepschstr. 165 &bull; 14165 &bull; Berlin
+</div>
+
+<div class="block">
+  <strong>{{KUNDE_NAME}}</strong><br>
+  {{KUNDE_STRASSE}}<br>
+  {{KUNDE_PLZ_ORT}}
+</div>
+
+<div class="block">
+  Rechnungsnummer:&nbsp;&nbsp; <strong>{{RECHNUNGSNUMMER}}</strong><br>
+  Rechnungsdatum:&nbsp;&nbsp;&nbsp; {{RECHNUNGSDATUM}}<br>
+  Zahlungsbedingungen: {{ZAHLUNGSBEDINGUNGEN}}<br>
+  Fälligkeitsdatum:&nbsp;&nbsp; {{FAELLIGKEITSDATUM}}
+</div>
+
+<h1>{{TITEL}}</h1>
+
+<div class="block">
+  BV: {{BV}}<br>
+  Auftrag: {{AUFTRAG}}<br>
+  Gewerk: Klimatisierung
+</div>
+
+<table class="pos">
+  <thead>
+    <tr>
+      <th>Beschreibung</th><th>Datum</th><th class="r">Menge</th><th>Einheit</th>
+      <th class="r">Einzelpreis</th><th class="r">USt. %</th><th class="r">Nettobetrag</th><th class="r">Betrag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{POSITION_BESCHREIBUNG}}</td><td>{{RECHNUNGSDATUM}}</td><td class="r">1,00</td><td>pschl.</td>
+      <td class="r">{{BETRAG}}</td><td class="r">0,00 %</td><td class="r">{{BETRAG}}</td><td class="r">{{BETRAG}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="sums">
+  <tr><td>Nettobetrag</td><td class="r">{{BETRAG}}</td></tr>
+  <tr><td>USt. 0,00 %</td><td class="r">0,00 €</td></tr>
+  <tr class="tot"><td>Gesamtsumme</td><td class="r">{{BETRAG}}</td></tr>
+</table>
+
+<p>Steuerschuldnerschaft des Leistungsempfängers (§ 13b UStG).</p>
+
+<div class="ftr">
+  Adresse Berlepschstr. 165 &bull; 14165 &bull; Berlin<br>
+  HR-Nr HRB 249080 B<br>
+  USt-IdNr. DE357948720<br>
+  E-Mail info@leanstech-gmbh.de<br>
+  Tel. +491708280836<br>
+  Website www.leanstech-gmbh.de<br>
+  Bank Berliner Volksbank<br>
+  SWIFT/BIC BEVODEBB<br>
+  IBAN DE21100900002911728004<br>
+  Kontoinhaber Semir Redzic-Leans Tech GmbH
+</div>
+
+</body></html>
