@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8"><style>
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Open Sans','Segoe UI',Arial,sans-serif;font-size:10.5px;color:#3a3a3a;width:210mm;min-height:297mm;padding:10mm 14mm 8mm;position:relative}
+.logo-wrap{text-align:center;margin-left:22%;margin-bottom:10px}
+.logo-wrap img{height:88px}
+.kopf{display:flex;justify-content:space-between;margin-top:6px}
+.absender b{color:#333;font-size:11px}
+.absender div{color:#555;line-height:1.55}
+.meta{font-size:10.5px}
+.meta td{padding:2.5px 0}
+.meta td:first-child{font-weight:700;color:#333;padding-right:38px}
+.meta td:last-child{color:#555}
+.kunde{margin-top:26px;font-weight:700;color:#333;line-height:1.6;font-size:11px}
+h1{color:#55a047;font-size:19px;font-weight:800;letter-spacing:.3px;margin:34px 0 20px}
+.bv{color:#444;line-height:1.65;margin-bottom:24px}
+table.pos{width:100%;border-collapse:collapse;font-size:10.5px}
+table.pos thead th{background:#cbdcc6;color:#2f2f2f;font-weight:700;padding:7px 8px;text-align:right;white-space:nowrap}
+table.pos thead th.l{text-align:left}
+table.pos td{padding:6px 8px;text-align:right;color:#3a3a3a;white-space:nowrap}
+table.pos td.l{text-align:left;white-space:normal}
+table.pos td.nr{text-align:center;width:34px}
+tr.zw{border-top:1.5px solid #55a047;border-bottom:1.5px solid #55a047}
+tr.zw td{font-weight:700;padding:8px}
+.summen{width:280px;margin-left:auto;margin-top:26px;font-size:10.5px}
+.summen td{padding:3px 0;text-align:right;font-weight:700;color:#333}
+.summen td:first-child{padding-right:26px}
+.summen tr.total{border-top:2px solid #55a047}
+.summen tr.total td{color:#55a047;font-size:12.5px;font-weight:800;padding-top:7px}
+.schluss{position:absolute;bottom:30mm;left:14mm;right:14mm;text-align:center;color:#777;line-height:1.65;font-size:10.5px}
+.fuss{position:absolute;bottom:10mm;left:14mm;right:14mm;text-align:center;color:#555;font-size:9.5px;line-height:1.9;border-top:1.5px solid #55a047;padding-top:9px}
+.fuss b{color:#333}
+</style></head><body>
+
+<div class="logo-wrap"><img src="leans-logo.png" alt="LEANS Tech GmbH"></div>
+
+<div class="kopf">
+  <div class="absender">
+    <b>LEANS Tech GmbH</b>
+    <div>Semir Redzic<br>Berlepschstr. 165 &bull; 14165 &bull; Berlin</div>
+  </div>
+  <table class="meta">
+    <tr><td>Rechnungsnummer:</td><td>{{RECHNUNGSNUMMER}}</td></tr>
+    <tr><td>Rechnungsdatum:</td><td>{{RECHNUNGSDATUM}}</td></tr>
+    <tr><td>Zahlungsbedingungen:</td><td>{{ZAHLUNGSBEDINGUNGEN}}</td></tr>
+    <tr><td>Fälligkeitsdatum:</td><td>{{FAELLIGKEITSDATUM}}</td></tr>
+  </table>
+</div>
+
+<div class="kunde">
+  {{KUNDE_NAME}}<br>
+  {{KUNDE_STRASSE}}<br>
+  {{KUNDE_PLZ_ORT}}
+</div>
+
+<h1>2. ABSCHLAGSRECHNUNG</h1>
+
+<div class="bv">
+  BV : {{BV_UND_AUFTRAG}}<br>
+  Gewerk: {{GEWERK}}<br>
+  Lieferzeitraum: {{LIEFERZEITRAUM}}
+</div>
+
+<table class="pos">
+  <thead>
+    <tr>
+      <th class="l" style="width:34px">Nr.</th>
+      <th class="l">Beschreibung</th>
+      <th>Menge</th><th>Einheit</th><th>Einzelpreis</th><th>USt. %</th><th>USt.</th><th>Betrag</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="nr">1</td><td class="l">1. Abschlagsrechnung</td>
+      <td>1,00</td><td>pschl.</td><td>23.193,00 €</td><td>0,00 %</td><td>0,00 €</td><td>23.193,00 €</td>
+    </tr>
+    <tr>
+      <td class="nr">2</td><td class="l">2. Abschlagsrechnung</td>
+      <td>1,00</td><td>pschl.</td><td>14.000,00 €</td><td>0,00 %</td><td>0,00 €</td><td>14.000,00 €</td>
+    </tr>
+    <tr class="zw">
+      <td class="l" colspan="6" style="text-align:left">Zwischensumme</td>
+      <td>0,00 €</td><td>37.193,00 €</td>
+    </tr>
+    <tr>
+      <td class="nr">3</td><td class="l">Abzüglich 1. Abschlagsrechnung</td>
+      <td>1,00</td><td>pschl.</td><td>-23.193,00 €</td><td>0,00 %</td><td>0,00 €</td><td>-23.193,00 €</td>
+    </tr>
+    <tr><td colspan="8" style="border-bottom:1.5px solid #55a047;padding:0"></td></tr>
+  </tbody>
+</table>
+
+<table class="summen">
+  <tr><td>Nettobetrag</td><td>14.000,00 €</td></tr>
+  <tr><td>USt. 0,00 %</td><td>0,00 €</td></tr>
+  <tr class="total"><td>Rechnungssumme:</td><td>14.000,00 €</td></tr>
+</table>
+
+<div class="schluss">
+  Hiermit erlaube ich mir folgende Rechnung für Baudienstleistungen zu stellen. Die Umsatzsteuer für diese Leistung
+  schuldet nach §13b UStG der Leistungsempfänger. Bitte begleichen sie den Rechnungsbetrag durch Überweisung auf
+  unser Konto: <b>Adyen Bank</b> &bull; IBAN <b>DE24 1001 9000 1000 0012 17</b> &bull; BIC ADYBDEB2XXX
+</div>
+
+<div class="fuss">
+  <b>Adresse</b> Berlepschstr. 165 &bull; 14165 &bull; Berlin &nbsp;&nbsp; <b>HR-Nr</b> HRB 249080 B &nbsp;&nbsp; <b>USt-IdNr.</b> DE357948720<br>
+  <b>E-Mail</b> info@leanstech-gmbh.de &nbsp;&nbsp; <b>Tel.</b> +491708280836 &nbsp;&nbsp; <b>Website</b> www.leanstech-gmbh.de
+</div>
+
+</body></html>
