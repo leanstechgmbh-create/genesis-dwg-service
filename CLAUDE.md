@@ -82,6 +82,20 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
    Nutzer zum Löschen auflisten (KI hat keine Löschrechte im Drive).
 4. Gilt genauso für Angebote und alle anderen Dokumente.
 
+### E-Mail-Versand an Kunden (VERBINDLICH)
+
+- Rechnungen/Angebote an Kunden gehen IMMER vom Postfach **sr@** (IONOS)
+  raus — NIEMALS von leanstechgmbh@gmail.com, außer der Nutzer sagt es
+  ausdrücklich. Der Nutzer hat dafür eine eigene Schnittstelle
+  (IONOS + Gmail) in seinem n8n gebaut (semirredzic.app.n8n.cloud).
+- Ist der n8n-Connector in der Sitzung NICHT verbunden: EINMAL kurz
+  sagen, dass der Versand über sr@ gerade nicht möglich ist, und sofort
+  den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern. Nicht
+  wiederholt erklären oder diskutieren.
+- Der Gmail-Connector (leanstechgmbh@gmail.com) kann KEINE Anhänge in
+  Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
+  verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.
+
 ### Angebotsmuster (VERBINDLICH)
 
 Angebote IMMER nach der Regel von **Angebot 301** erstellen
