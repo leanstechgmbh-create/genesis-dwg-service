@@ -1,0 +1,57 @@
+name: Deploy Graphiti-MCP zu Cloud Run
+
+# Deployt den Graphiti-Gedaechtnis-Server (MCP-Konnektor fuer claude.ai).
+# Einmalige Einrichtung (4 zusaetzliche Secrets): siehe GRAPHITI_SETUP.md
+# Laeuft bei Aenderungen unter graphiti-mcp/ oder manuell ("Run workflow").
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'graphiti-mcp/**'
+      - '.github/workflows/deploy-graphiti.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Secrets pruefen
+        env:
+          S_OPENAI: ${{ secrets.GRAPHITI_OPENAI_API_KEY }}
+          S_NEO4J_URI: ${{ secrets.GRAPHITI_NEO4J_URI }}
+          S_NEO4J_PW: ${{ secrets.GRAPHITI_NEO4J_PASSWORD }}
+          S_PATH: ${{ secrets.GRAPHITI_MCP_PATH_SECRET }}
+        run: |
+          fehlen=""
+          [ -z "$S_OPENAI" ]    && fehlen="$fehlen GRAPHITI_OPENAI_API_KEY"
+          [ -z "$S_NEO4J_URI" ] && fehlen="$fehlen GRAPHITI_NEO4J_URI"
+          [ -z "$S_NEO4J_PW" ]  && fehlen="$fehlen GRAPHITI_NEO4J_PASSWORD"
+          [ -z "$S_PATH" ]      && fehlen="$fehlen GRAPHITI_MCP_PATH_SECRET"
+          if [ -n "$fehlen" ]; then
+            echo "::error::Fehlende GitHub-Secrets:$fehlen — Anleitung: GRAPHITI_SETUP.md"
+            exit 1
+          fi
+
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy
+        run: |
+          gcloud config set project "${{ secrets.GCP_PROJECT }}"
+          gcloud services enable run.googleapis.com cloudbuild.googleapis.com artifactregistry.googleapis.com --quiet
+          gcloud run deploy genesis-graphiti-mcp --source graphiti-mcp --region europe-west3 \
+            --allow-unauthenticated --memory 1Gi --timeout 300 --port 8080 \
+            --max-instances 2 \
+            --set-env-vars "OPENAI_API_KEY=${{ secrets.GRAPHITI_OPENAI_API_KEY }},NEO4J_URI=${{ secrets.GRAPHITI_NEO4J_URI }},NEO4J_USER=neo4j,NEO4J_PASSWORD=${{ secrets.GRAPHITI_NEO4J_PASSWORD }},MCP_PATH_SECRET=${{ secrets.GRAPHITI_MCP_PATH_SECRET }},GRAPHITI_GROUP_ID=leans,GRAPHITI_TELEMETRY_ENABLED=false" \
+            --quiet
+          URL=$(gcloud run services describe genesis-graphiti-mcp --region europe-west3 \
+            --format='value(status.url)')
+          echo "===== KONNEKTOR-URL fuer claude.ai ====="
+          echo "$URL/<DEIN-GEHEIMWORT>/mcp/"
+          echo "(<DEIN-GEHEIMWORT> = Wert des Secrets GRAPHITI_MCP_PATH_SECRET — steht absichtlich nicht im Log)"

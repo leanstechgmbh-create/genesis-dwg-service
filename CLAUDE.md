@@ -27,6 +27,38 @@ und einen Slack-Bot.
 - `slack_bot.py` — Slack-Bot (Chat + Plan-Bearbeitung, Claude-gestützt)
 - `START_HIER.md` — Deploy-Anleitung (Google Cloud Run)
 
+## Suchen & Finden (VERBINDLICH)
+
+Der Nutzer erwartet, dass Gesuchtes (Dateien, Mails, Nachrichten, Notizen)
+zuverlässig gefunden wird. Deshalb gilt für JEDE Suche in Google Drive
+(„GBrain"), Gmail, Slack und Notion:
+
+1. **Immer mehrere Suchvarianten parallel absetzen** — nie nur eine
+   Abfrage. Mindestens 3 Varianten, z. B.: Rechnungs-/Angebotsnummer
+   („2026-40"), Projekt-/BV-Name („Mehringdamm"), Kundenname
+   („SP Construct"), Dateinamens-Schema (`<Datum> <Typ> <Nr> - LEANS
+   Tech GmbH - <Betrag> EUR`), markante Teilbegriffe.
+2. **Schreibvarianten mitdenken:** Umlaute (ä/ae), Bindestriche,
+   Abkürzungen (AR/Abschlagsrechnung, BV), Tippfehler des Nutzers
+   lautlich interpretieren (z. B. „Grafity" → „Graphiti").
+3. **Bei Treffermangel eskalieren statt aufgeben:** zusätzlich
+   `list_recent_files` prüfen und die bekannten Ordner direkt
+   durchgehen (Projektordner, „03 Rechnungen LEANS", „Rechnungen/
+   <Jahr>", Master-Register).
+4. **„Nicht gefunden" erst melden**, wenn mehrere Varianten UND das
+   Ordner-Durchgehen erfolglos waren — und dann kurz auflisten, welche
+   Suchbegriffe probiert wurden, damit der Nutzer korrigieren kann.
+5. Unabhängige Suchen (z. B. Drive + Gmail) **gleichzeitig** starten,
+   nicht nacheinander — Geschwindigkeit zählt.
+
+## Gedächtnis (Graphiti-Konnektor)
+
+Wenn der Konnektor „Graphiti" verbunden ist (Einrichtung:
+`GRAPHITI_SETUP.md`, Code: `graphiti-mcp/`): Wichtige neue Dauer-Fakten
+(Kunden, Projekte, Ansprechpartner, Zusagen, letzte Rechnungsnummer)
+dort aktiv speichern und bei Fragen zu Vergangenem zuerst dort suchen —
+zusätzlich zu Drive/Gmail, nicht stattdessen.
+
 ## Firma / Kaufmännisches (LEANS Tech GmbH)
 
 Der Nutzer ist die **LEANS Tech GmbH** (Semir Redžić), Berlepschstr. 165,
