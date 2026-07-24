@@ -95,6 +95,10 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
 - Der Gmail-Connector (leanstechgmbh@gmail.com) kann KEINE Anhänge in
   Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
   verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.
+- **Kundenmails KURZ halten (Semir 07/2026):** In Mails zu Angeboten/
+  Rechnungen KEINE Preise nennen und das Angebot NICHT erklären — der
+  Kunde hat den Anhang, das reicht. Nur: Dank, Verweis auf den Anhang
+  (ggf. „ersetzt Angebot X"), Gesprächs-/Terminangebot, Gruß.
 
 ### Wartungsvertrag-Anfragen (Wartungs-Rechner) — VERBINDLICH
 
