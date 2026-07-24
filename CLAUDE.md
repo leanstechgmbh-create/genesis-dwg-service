@@ -51,6 +51,14 @@ zuverlässig gefunden wird. Deshalb gilt für JEDE Suche in Google Drive
 5. Unabhängige Suchen (z. B. Drive + Gmail) **gleichzeitig** starten,
    nicht nacheinander — Geschwindigkeit zählt.
 
+## Gedächtnis (Graphiti-Konnektor)
+
+Wenn der Konnektor „Graphiti" verbunden ist (Einrichtung:
+`GRAPHITI_SETUP.md`, Code: `graphiti-mcp/`): Wichtige neue Dauer-Fakten
+(Kunden, Projekte, Ansprechpartner, Zusagen, letzte Rechnungsnummer)
+dort aktiv speichern und bei Fragen zu Vergangenem zuerst dort suchen —
+zusätzlich zu Drive/Gmail, nicht stattdessen.
+
 ## Firma / Kaufmännisches (LEANS Tech GmbH)
 
 Der Nutzer ist die **LEANS Tech GmbH** (Semir Redžić), Berlepschstr. 165,

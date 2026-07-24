@@ -1,0 +1,72 @@
+# Graphiti MCP Server — Konfiguration fuer LEANS Tech (Cloud Run)
+# Basiert auf der Original-config.yaml von getzep/graphiti (mcp_server).
+# Env-Variablen kommen aus dem Cloud-Run-Deploy (siehe GRAPHITI_SETUP.md).
+
+server:
+  transport: "http"
+  # Nur lokal binden — von aussen ist der Server ausschliesslich ueber den
+  # nginx-Proxy mit Geheimpfad erreichbar (siehe nginx.conf.template).
+  host: "127.0.0.1"
+  port: 8000
+
+llm:
+  provider: "openai"
+  model: ${MODEL_NAME:gpt-4.1-mini}
+  max_tokens: 4096
+
+  providers:
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      api_url: ${OPENAI_API_URL:https://api.openai.com/v1}
+      organization_id: ${OPENAI_ORGANIZATION_ID:}
+
+embedder:
+  provider: "openai"
+  model: ${EMBEDDER_MODEL:text-embedding-3-small}
+  dimensions: 1536
+
+  providers:
+    openai:
+      api_key: ${OPENAI_API_KEY}
+      api_url: ${OPENAI_API_URL:https://api.openai.com/v1}
+      organization_id: ${OPENAI_ORGANIZATION_ID:}
+
+database:
+  # Neo4j AuraDB Free als dauerhafte Ablage — Cloud Run selbst ist
+  # zustandslos, eine eingebettete DB wuerde bei jedem Neustart alles
+  # vergessen.
+  provider: "neo4j"
+
+  providers:
+    neo4j:
+      uri: ${NEO4J_URI}
+      username: ${NEO4J_USER:neo4j}
+      password: ${NEO4J_PASSWORD}
+      database: ${NEO4J_DATABASE:neo4j}
+      use_parallel_runtime: ${USE_PARALLEL_RUNTIME:false}
+
+graphiti:
+  group_id: ${GRAPHITI_GROUP_ID:leans}
+  episode_id_prefix: ${EPISODE_ID_PREFIX:}
+  user_id: ${USER_ID:leans_tech}
+  entity_types:
+    - name: "Preference"
+      description: "User preferences, choices, opinions, or selections (PRIORITIZE over most other types except User/Assistant)"
+    - name: "Requirement"
+      description: "Specific needs, features, or functionality that must be fulfilled"
+    - name: "Procedure"
+      description: "Standard operating procedures and sequential instructions"
+    - name: "Location"
+      description: "Physical or virtual places where activities occur"
+    - name: "Event"
+      description: "Time-bound activities, occurrences, or experiences"
+    - name: "Organization"
+      description: "Companies, institutions, groups, or formal entities"
+    - name: "Document"
+      description: "Information content in various forms (books, articles, reports, etc.)"
+    - name: "Topic"
+      description: "Subject of conversation, interest, or knowledge domain (use as last resort)"
+    - name: "Person"
+      description: "An individual human referenced in the content"
+    - name: "Object"
+      description: "Physical items, tools, devices, or possessions (use as last resort)"
