@@ -68,6 +68,12 @@ Regeln: Rechnungsnummer fortlaufend `<Jahr>-<n>` (Stand Juli 2026:
 zuletzt 2026-40 = 2. AR SP Construct/Mehringdamm).
 Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
 
+**Korrigierte Rechnungen:** Wird eine bereits gestellte Rechnung korrigiert
+(z. B. Betrag geändert), bleiben Rechnungsnummer, Rechnungsdatum,
+Zahlungsbedingungen und Fälligkeitsdatum der ursprünglichen Rechnung
+UNVERÄNDERT — zahlbar wann die ursprüngliche Fassung fällig war. Nur die
+korrigierten Werte ändern; die Korrektur ersetzt die alte Fassung.
+
 ### Freigabe-Workflow Rechnungen & Angebote (VERBINDLICH)
 
 1. **Entwurf IMMER zuerst als Download in den Chat** senden (PDF),
