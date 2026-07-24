@@ -92,9 +92,14 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
   sagen, dass der Versand über sr@ gerade nicht möglich ist, und sofort
   den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern. Nicht
   wiederholt erklären oder diskutieren.
-- Der Gmail-Connector (leanstechgmbh@gmail.com) kann KEINE Anhänge in
-  Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
-  verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.
+- **Gmail-Entwürfe MIT Anhängen gehen (neu getestet 24.07.2026):** Das
+  Feld `attachments` von `create_draft` funktioniert (Base64). ABER: Die
+  Übertragung läuft durch den Chat-Kontext — nur KLEINE Dateien anhängen
+  (zusammen max. ~50 KB). Deshalb Angebots-PDFs für den Mailversand mit
+  `tools/angebot_pdf.py` erzeugen (Kernschriften statt eingebetteter
+  Fonts, ~20 KB pro PDF, gleiches Design wie das Angebotsmuster).
+  Gmail verlangt einen Empfänger: fehlt die Kundenadresse, sr@ als
+  Platzhalter eintragen und den Nutzer darauf hinweisen.
 - **Kundenmails KURZ halten (Semir 07/2026):** In Mails zu Angeboten/
   Rechnungen KEINE Preise nennen und das Angebot NICHT erklären — der
   Kunde hat den Anhang, das reicht. Nur: Dank, Verweis auf den Anhang
