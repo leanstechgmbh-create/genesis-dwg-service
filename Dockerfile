@@ -6,7 +6,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && rm -rf /var/lib/apt/lists/*
 
 # LibreDWG bauen — WICHTIG: -Wno-error, sonst bricht der Build an einer Warnung ab (genau das ist vorher passiert)
-RUN git clone --depth 1 --branch 0.13.3 https://github.com/LibreDWG/libredwg.git /tmp/libredwg \
+# --recurse-submodules ist Pflicht: ohne das fehlt jsmn/jsmn.h und make bricht
+# mit "Error 2" ab (in_json.c) — genau daran ist der erste Cloud-Build gestorben.
+RUN git clone --depth 1 --branch 0.13.3 --recurse-submodules --shallow-submodules \
+      https://github.com/LibreDWG/libredwg.git /tmp/libredwg \
  && cd /tmp/libredwg && mkdir build && cd build \
  && cmake .. -DLIBREDWG_LIBONLY=OFF -DBUILD_SHARED_LIBS=ON -DDISABLE_BINDINGS=ON \
       -DCMAKE_C_FLAGS="-Wno-error -w" -DCMAKE_BUILD_TYPE=Release \
