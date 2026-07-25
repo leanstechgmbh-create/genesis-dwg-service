@@ -15,6 +15,29 @@ sie das tatsächliche Thema des Inhalts wiedergeben — keine generischen oder
 englischen Titel. Das gilt auch für den Slack-Bot: Jede Bot-Antwort beginnt
 mit einer kurzen, fetten Überschrift zum Thema der Antwort.
 
+## Bildschirm des Nutzers / Screenshots (VERBINDLICH)
+
+Der Nutzer arbeitet oft mit mehreren Monitoren und sagt Sätze wie „guck auf den
+linken Monitor". **Nicht diskutieren, nicht mehrfach erklären** — es hängt allein
+daran, wo Claude gerade läuft:
+
+- **Claude Code in der Cloud** (claude.ai/code, Web, Handy, Slack-Bot, Routinen):
+  läuft in einem Rechenzentrum-Container, kein `DISPLAY`, keine Verbindung zu den
+  Monitoren des Nutzers. Bildschirminhalte sind hier grundsätzlich unsichtbar.
+- **Claude Desktop / lokal installierter Claude Code**: dort kann der Nutzer
+  Screenshots direkt einfügen bzw. es besteht Zugriff auf den lokalen Rechner.
+
+Verhalten in der Cloud-Umgebung: EINMAL in einem Satz sagen, dass der Bildschirm
+hier nicht sichtbar ist, und im selben Atemzug den funktionierenden Weg nennen —
+**Screenshot in den Chat ziehen** (Bilder werden gelesen) oder Text/Fehlermeldung
+abtippen. Danach sofort weiterarbeiten, nicht rechtfertigen, nicht wiederholen,
+nicht nach Erlaubnis fragen. Niemals behaupten, den Bildschirm zu sehen, und
+niemals Inhalte erfinden, die man nicht gesehen hat.
+
+Was in der Cloud sehr wohl geht: öffentliche Webseiten abrufen und als Bild
+aufnehmen (Chromium/Playwright ist installiert) — aber keine Seiten, die hinter
+dem Login des Nutzers liegen (z. B. Google Cloud Console).
+
 ## Projekt
 
 `genesis-dwg-service` — Python/FastAPI-Backend, das DWG/DXF-Dateien entgegennimmt,
