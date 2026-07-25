@@ -1,0 +1,120 @@
+/* ==========================================================================
+   LEANS KOSMOS — Obsidian CSS-Snippet
+   Dunkler "Sternenkarten"-Look für Graph-Ansicht und Oberfläche.
+
+   Einbauen:
+   1. Datei nach  <Vault>/.obsidian/snippets/leans-kosmos.css  kopieren
+   2. Obsidian → Einstellungen → Erscheinungsbild → Basisfarbschema: Dunkel
+   3. Ganz unten unter "CSS-Snippets" auf Neu laden, dann "leans-kosmos"
+      einschalten
+   ========================================================================== */
+
+/* --- 1. Grundfläche: tiefes Schwarz statt Grau ---------------------------- */
+
+.theme-dark {
+  --background-primary: #04060c;
+  --background-primary-alt: #070a13;
+  --background-secondary: #070a13;
+  --background-secondary-alt: #04060c;
+  --background-modifier-border: #16203a;
+  --background-modifier-border-hover: #24345c;
+
+  --text-normal: #d8e2f2;
+  --text-muted: #7d8db0;
+  --text-faint: #4a587a;
+
+  /* Neon-Akzent (Cyan). Für Violett: #a855f7, für Grün: #3ddc97 */
+  --text-accent: #38e1ff;
+  --text-accent-hover: #7cebff;
+  --interactive-accent: #1b6fa8;
+  --interactive-accent-hover: #2a8fd0;
+
+  --link-color: #38e1ff;
+  --tag-color: #a855f7;
+  --tag-background: rgba(168, 87, 247, 0.12);
+}
+
+/* --- 2. Graph-Ansicht: Farben der Knoten und Linien ----------------------- */
+/* Diese Variablen liest Obsidian direkt für den Canvas der Graph-Ansicht. */
+
+.theme-dark {
+  --graph-text: #cfe0f5;          /* Beschriftung der Knoten            */
+  --graph-line: #1d3357;          /* Verbindungslinien                  */
+  --graph-node: #9fd8ff;          /* normale Notiz                      */
+  --graph-node-focused: #ffd166;  /* Knoten unter dem Mauszeiger        */
+  --graph-node-tag: #a855f7;      /* Tag-Knoten (violett)               */
+  --graph-node-attachment: #3ddc97; /* Anhänge (grün)                   */
+  --graph-node-unresolved: #3a4462; /* noch nicht angelegte Notiz       */
+}
+
+/* Fallback für ältere Obsidian-Versionen (< 1.0) */
+.theme-dark .graph-view.color-fill { color: #9fd8ff; }
+.theme-dark .graph-view.color-line { color: #1d3357; }
+.theme-dark .graph-view.color-text { color: #cfe0f5; }
+.theme-dark .graph-view.color-fill-focused { color: #ffd166; }
+.theme-dark .graph-view.color-fill-tag { color: #a855f7; }
+.theme-dark .graph-view.color-fill-attachment { color: #3ddc97; }
+.theme-dark .graph-view.color-fill-unresolved { color: #3a4462; }
+.theme-dark .graph-view.color-arrow { color: #38e1ff; }
+
+/* Graph-Fläche komplett schwarz + Vignette wie im Video */
+.theme-dark .workspace-leaf-content[data-type="graph"] .view-content,
+.theme-dark .workspace-leaf-content[data-type="localgraph"] .view-content {
+  background-color: #020307;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    rgba(56, 225, 255, 0.06) 0%,
+    rgba(168, 87, 247, 0.05) 35%,
+    rgba(0, 0, 0, 0) 70%
+  );
+}
+
+/* Bedienfeld der Graph-Ansicht (oben links) transparent einbetten */
+.theme-dark .graph-controls {
+  background-color: rgba(7, 10, 19, 0.72);
+  border: 1px solid rgba(56, 225, 255, 0.18);
+  border-radius: 10px;
+  backdrop-filter: blur(6px);
+}
+
+/* --- 3. Oberfläche: Neon-Kanten statt grauer Rahmen ----------------------- */
+
+.theme-dark .workspace-tabs .workspace-tab-header.is-active {
+  box-shadow: inset 0 -2px 0 0 var(--text-accent);
+}
+
+.theme-dark .nav-file-title.is-active,
+.theme-dark .nav-folder-title.is-active {
+  background-color: rgba(56, 225, 255, 0.1);
+  box-shadow: inset 2px 0 0 0 var(--text-accent);
+}
+
+/* Interne Links leicht leuchtend */
+.theme-dark .markdown-preview-view a.internal-link,
+.theme-dark .cm-hmd-internal-link {
+  text-shadow: 0 0 8px rgba(56, 225, 255, 0.45);
+}
+
+/* Überschriften abgestuft einfärben */
+.theme-dark .markdown-preview-view h1,
+.theme-dark .HyperMD-header-1 { color: #ffffff; }
+.theme-dark .markdown-preview-view h2,
+.theme-dark .HyperMD-header-2 { color: #9fd8ff; }
+.theme-dark .markdown-preview-view h3,
+.theme-dark .HyperMD-header-3 { color: #a855f7; }
+
+/* Tags als Neon-Pillen (wie die Labels im Video) */
+.theme-dark a.tag {
+  border: 1px solid rgba(168, 87, 247, 0.45);
+  border-radius: 999px;
+  padding: 1px 9px;
+  font-size: 0.82em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* Statusleiste unten dezent */
+.theme-dark .status-bar {
+  background-color: rgba(4, 6, 12, 0.9);
+  border-top: 1px solid rgba(56, 225, 255, 0.14);
+}
