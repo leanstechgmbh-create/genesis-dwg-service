@@ -15,19 +15,33 @@ Kein Schlüssel, keine JSON-Datei, keine GitHub-Secrets. Google verbindet sich
 selbst mit dem Repository und baut bei jedem Push auf `main`.
 
 1. Öffne https://console.cloud.google.com/run (mit leanstechgmbh@gmail.com)
-2. Dienst **`genesis-dwg-service`** anklicken
-   *(noch nicht vorhanden? → **Dienst erstellen** → **Kontinuierlich aus einem
-   Repository bereitstellen** → weiter bei Schritt 4; Name
-   `genesis-dwg-service`, Region **europe-west3**)*
-3. Oben **„Kontinuierliche Bereitstellung einrichten"** (englisch:
-   *Set up continuous deployment*)
+2. **Zuerst oben die Projektauswahl prüfen** — im falschen Projekt ist die
+   Dienstliste leer, obwohl der Dienst existiert.
+3. Steht dort **`genesis-dwg-service`**? → anklicken, dann
+   **„Kontinuierliche Bereitstellung einrichten"** (englisch: *Set up
+   continuous deployment*) und weiter bei Schritt 4.
+   **Liste leer / Dienst nicht vorhanden?** (dann wurde noch nie deployt) →
+   **Dienst erstellen** → **„Kontinuierlich aus einem Repository
+   bereitstellen"** → **Cloud Build einrichten** → weiter bei Schritt 4.
 4. **Mit GitHub verbinden** → GitHub-Login → die Cloud-Build-App für
    `leanstechgmbh-create/genesis-dwg-service` freigeben
-5. **Repository:** `leanstechgmbh-create/genesis-dwg-service`
+   **Repository:** `leanstechgmbh-create/genesis-dwg-service`
    **Branch:** `^main$`
-   **Build-Typ:** **Dockerfile** (Pfad `/Dockerfile`)
-6. **Speichern** → der erste Build startet sofort (dauert 5–8 Min, weil
-   LibreDWG kompiliert wird)
+   **Build-Typ:** **Dockerfile** (Pfad `/Dockerfile`) → **Speichern**
+5. Beim Neuanlegen diese Einstellungen setzen — sie entsprechen dem, was der
+   Workflow bisher per `gcloud run deploy` mitgegeben hat:
+
+   | Einstellung | Wert | Warum |
+   |---|---|---|
+   | Dienstname | `genesis-dwg-service` | Anleitungen/URLs bauen darauf auf |
+   | Region | **europe-west3** | Frankfurt |
+   | Authentifizierung | **Nicht authentifizierte Aufrufe zulassen** | sonst erreichen Slack, n8n und die Webseite den Service nicht |
+   | Speicher | **1 GiB** | weniger reicht für LibreDWG nicht |
+   | Zeitlimit | **300 s** | DWG-Umwandlung dauert |
+   | Port | **8080** | `ENV PORT=8080` im Dockerfile |
+
+6. **Erstellen / Speichern** → der erste Build startet sofort (dauert 5–8 Min,
+   weil LibreDWG kompiliert wird)
 
 Beim Speichern fragt Google nach den nötigen Rechten und richtet sie selbst
 ein. Läuft der Build durch, steht die Service-URL oben auf der Seite.
