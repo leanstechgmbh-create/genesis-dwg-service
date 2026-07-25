@@ -16,7 +16,8 @@ RUN git clone --depth 1 --branch 0.13.3 https://github.com/LibreDWG/libredwg.git
 WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
-COPY main.py slack_bot.py dwg_core.py ./
+COPY main.py slack_bot.py dwg_core.py social_poster.py ai_bus.py gpt_bridge.py ./
+COPY posts.json ./
 COPY mailer/ ./mailer/
 COPY website/ ./website/
 

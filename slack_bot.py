@@ -273,6 +273,61 @@ async def _handle_chat(event: dict):
         answer = f"Fehler bei der Anfrage an Claude: {str(e)[:200]}"
     await _post_message(channel, answer, thread_ts)
 
+# --- ChatGPT per Zuruf: "frag gpt: ..." / "dialog: ... (3 Runden)" -------------
+_GPT_BEFEHL = re.compile(r"\bfrag(?:e)?\s+(?:mal\s+)?(?:chat)?gpt\b[:,]?\s*(.+)",
+                         re.IGNORECASE | re.DOTALL)
+_DIALOG_BEFEHL = re.compile(r"\bdialog\b[:,]?\s*(.+)", re.IGNORECASE | re.DOTALL)
+_RUNDEN = re.compile(r"\(?\s*(\d+)\s*runden?\s*\)?\s*$", re.IGNORECASE)
+
+
+async def _handle_gpt_frage(event: dict, frage: str):
+    """Frage direkt an ChatGPT weiterreichen, Antwort in den Thread."""
+    import gpt_bridge
+    channel = event.get("channel")
+    thread_ts = event.get("thread_ts") or event.get("ts")
+    if not gpt_bridge.gpt_bereit():
+        await _post_message(channel,
+            "*ChatGPT noch nicht freigeschaltet*\nEs fehlt `OPENAI_API_KEY` als "
+            "Cloud-Run-Variable (siehe LEANS_OS_BUS.md).", thread_ts)
+        return
+    await _post_message(channel, f"*Frage an ChatGPT*\n> {frage[:300]}", thread_ts)
+    try:
+        antwort = await gpt_bridge.frag_gpt([{"role": "user", "content": frage}])
+    except Exception as e:
+        await _post_message(channel, f"*ChatGPT-Fehler*\n{str(e)[:300]}", thread_ts)
+        return
+    await _post_message(channel, f"*Antwort von ChatGPT*\n{antwort[:2800]}", thread_ts)
+
+
+async def _handle_dialog(event: dict, thema: str):
+    """Claude und ChatGPT diskutieren das Thema; Verlauf + Fazit in den Thread."""
+    import gpt_bridge
+    channel = event.get("channel")
+    thread_ts = event.get("thread_ts") or event.get("ts")
+    runden = 3
+    m = _RUNDEN.search(thema)
+    if m:
+        runden = int(m.group(1))
+        thema = thema[:m.start()].strip(" -—…\n")
+    if not gpt_bridge.gpt_bereit():
+        await _post_message(channel,
+            "*ChatGPT noch nicht freigeschaltet*\nEs fehlt `OPENAI_API_KEY` als "
+            "Cloud-Run-Variable (siehe LEANS_OS_BUS.md).", thread_ts)
+        return
+    await _post_message(channel,
+        f"*Dialog gestartet* — {min(runden, gpt_bridge.DIALOG_MAX_RUNDEN)} Runden "
+        f"zu: {thema[:200]}", thread_ts)
+    try:
+        beitraege = await gpt_bridge.dialog(thema, runden)
+        for b in beitraege:  # Verlauf einzeln posten -> man liest live mit
+            wer = "Claude" if b["von"] == "claude" else "ChatGPT"
+            await _post_message(channel,
+                f"*Runde {b['runde']} — {wer}*\n{b['text'][:2500]}", thread_ts)
+        await _post_message(channel, await gpt_bridge.fazit(thema, beitraege), thread_ts)
+    except Exception as e:
+        await _post_message(channel, f"*Dialog-Fehler*\n{str(e)[:300]}", thread_ts)
+
+
 # --- Social-Posting per Zuruf: "poste Video 6" --------------------------------
 _POST_BEFEHL = re.compile(r"\bpost\w*\s+(?:das\s+)?video\s+(\d+)", re.IGNORECASE)
 
@@ -302,11 +357,20 @@ async def _handle_event(event: dict):
     if f:
         await _handle_plan_change(event, f)
         return
-    m = _POST_BEFEHL.search(_clean(event.get("text", "")))
+    text = _clean(event.get("text", ""))
+    m = _POST_BEFEHL.search(text)
     if m:
         await _handle_social_post(event, m.group(1))
-    else:
-        await _handle_chat(event)
+        return
+    m = _GPT_BEFEHL.search(text)
+    if m:
+        await _handle_gpt_frage(event, m.group(1).strip())
+        return
+    m = _DIALOG_BEFEHL.search(text)
+    if m:
+        await _handle_dialog(event, m.group(1).strip())
+        return
+    await _handle_chat(event)
 
 @router.post("/slack/events")
 async def slack_events(request: Request, background: BackgroundTasks):

@@ -7,12 +7,13 @@ Kernlogik in dwg_core.py, Slack-Bot in slack_bot.py.
 import base64, os, traceback
 from pathlib import Path
 from fastapi import FastAPI, Request, Header, HTTPException
-from fastapi.responses import Response, JSONResponse, FileResponse
+from fastapi.responses import Response, JSONResponse, FileResponse, StreamingResponse
 from dwg_core import have, modify_drawing
 from slack_bot import router as slack_router, slack_ready
 from mailer.core import versende, mail_bereit
 from social_poster import (insta_bereit, youtube_bereit, post_instagram_reel,
                            post_youtube, post_nach_schluessel, lade_posts)
+import ai_bus, gpt_bridge
 
 app = FastAPI(title="GENESIS Service", version="4.0")
 app.include_router(slack_router)
@@ -27,7 +28,8 @@ def health(request: Request):
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
             "slack": slack_ready(), "mail_ready": mail_bereit(),
-            "instagram": insta_bereit(), "youtube": youtube_bereit()}
+            "instagram": insta_bereit(), "youtube": youtube_bereit(),
+            "chatgpt": gpt_bridge.gpt_bereit(), "bus": ai_bus.bus_art()}
 
 WEBSITE = Path(__file__).parent / "website"
 
@@ -247,6 +249,135 @@ def post_video(b: dict, x_genesis_key: str = Header(default="")):
     except KeyError as e:
         raise HTTPException(404, str(e))
     return {"ok": bool(fertig) and not fehler, "key": key, "posted": fertig, "errors": fehler}
+
+# --- LEANS OS: Nachrichten-Bus + ChatGPT-Bruecke ------------------------------
+# Austausch mit anderen KI-Systemen laeuft ueber einen Ordner (ai_bus.py), nicht
+# ueber einen direkten Draht. Diese Endpunkte sind die Bedienung dazu.
+# Der Schluessel ist hier PFLICHT — ohne GENESIS_API_KEY bleiben sie geschlossen.
+
+def _bus_key(header_key: str, query_key: str = ""):
+    """Schluessel aus Header ODER Query pruefen.
+
+    Query erlaubt, weil Pub/Sub-Push und Cloud Scheduler keine eigenen Header
+    setzen koennen; die Push-URL gilt dann selbst als Geheimnis.
+    """
+    if not API_KEY:
+        raise HTTPException(503, "GENESIS_API_KEY nicht gesetzt — Bus bleibt geschlossen")
+    if header_key != API_KEY and query_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+
+
+@app.get("/bus/status")
+async def bus_status(x_genesis_key: str = Header(default=""), key: str = ""):
+    """Zustand des Nachrichtenordners: Ablage, offene Nachrichten."""
+    _bus_key(x_genesis_key, key)
+    return await ai_bus.status()
+
+
+@app.post("/bus/tick")
+async def bus_tick(request: Request, x_genesis_key: str = Header(default=""), key: str = ""):
+    """Eingangsordner abarbeiten: lesen -> pruefen -> antworten -> quittieren.
+
+    Aufrufbar per Cloud Scheduler (Poll, z.B. alle 30 s) oder per Pub/Sub-Push
+    aus einem GCS-Ereignis (dann ~1-3 s nach Dateiablage = gefuehlte Echtzeit).
+    Body wird nicht ausgewertet — der Ordner ist die Wahrheit, nicht der Trigger.
+    """
+    _bus_key(x_genesis_key, key)
+    try:
+        b = await request.json()
+    except Exception:
+        b = {}
+    try:
+        return await gpt_bridge.tick(int(b.get("limit", 0) or 0))
+    except RuntimeError as e:
+        raise HTTPException(400, str(e))
+
+
+@app.post("/bus/senden")
+async def bus_senden(b: dict, x_genesis_key: str = Header(default=""), key: str = ""):
+    """Nachricht in den Ausgangsordner legen (von uns an ein anderes KI-System).
+
+    Body: {"an": "chatgpt", "text": "...", "thread": "...", "typ": "frage"}
+    """
+    _bus_key(x_genesis_key, key)
+    text = str(b.get("text", "")).strip()
+    if not text:
+        raise HTTPException(400, "text fehlt")
+    n = ai_bus.baue(von="claude", an=str(b.get("an", "chatgpt")), text=text,
+                    thread=str(b.get("thread", "")), typ=str(b.get("typ", "frage")),
+                    titel=str(b.get("titel", "")))
+    name = await ai_bus.schreibe(n, ai_bus.AUSGANG)
+    return {"ok": True, "datei": name, "id": n["id"], "thread": n["thread"]}
+
+
+@app.post("/ai/ask")
+async def ai_ask(b: dict, x_genesis_key: str = Header(default=""), key: str = ""):
+    """Gegenrichtung: ein anderes KI-System (z.B. ChatGPT-Action) fragt Claude.
+
+    Body: {"text": "...", "von": "chatgpt", "thread": "..."}
+    Antwort kommt synchron zurueck UND wird im Bus protokolliert.
+    Aktionsaufforderungen werden erkannt und nicht ausgefuehrt, sondern zur
+    Freigabe vorgelegt (siehe ai_bus.pruefe / gpt_bridge.BUS_SYSTEM).
+    """
+    _bus_key(x_genesis_key, key)
+    try:
+        n = ai_bus.pruefe({"von": str(b.get("von", "chatgpt")), "an": "claude",
+                           "text": str(b.get("text", "")), "typ": "frage",
+                           "thread": str(b.get("thread", ""))})
+    except RuntimeError as e:
+        raise HTTPException(400, str(e))
+    antwort = await gpt_bridge.beantworte_bus(n)
+    try:  # Protokoll ist Nebensache — eine Antwort darf daran nicht scheitern
+        await ai_bus.quittiere(await ai_bus.schreibe(n, ai_bus.EINGANG), n,
+                              "zur_freigabe" if n.get("verdacht") else "beantwortet")
+        await ai_bus.schreibe(antwort, ai_bus.AUSGANG)
+    except Exception:
+        pass
+    return {"ok": True, "thread": n["thread"], "zur_freigabe": bool(n.get("verdacht")),
+            "antwort": antwort["text"]}
+
+
+@app.post("/gpt/ask")
+async def gpt_ask(b: dict, x_genesis_key: str = Header(default=""), key: str = ""):
+    """Wir fragen ChatGPT. `stream: true` liefert die Antwort Stueck fuer Stueck."""
+    _bus_key(x_genesis_key, key)
+    text = str(b.get("text", "")).strip()
+    if not text:
+        raise HTTPException(400, "text fehlt")
+    if not gpt_bridge.gpt_bereit():
+        raise HTTPException(503, "OPENAI_API_KEY fehlt — ChatGPT-Bruecke nicht freigeschaltet")
+    messages = [{"role": "user", "content": text}]
+    if b.get("stream"):
+        async def haeppchen():
+            try:
+                async for stueck in gpt_bridge.stream_gpt(messages):
+                    yield stueck
+            except RuntimeError as e:
+                yield f"\n[Fehler: {e}]"
+        return StreamingResponse(haeppchen(), media_type="text/plain; charset=utf-8")
+    try:
+        return {"ok": True, "antwort": await gpt_bridge.frag_gpt(messages)}
+    except RuntimeError as e:
+        raise HTTPException(502, str(e))
+
+
+@app.post("/gpt/dialog")
+async def gpt_dialog(b: dict, x_genesis_key: str = Header(default=""), key: str = ""):
+    """Claude und ChatGPT diskutieren ein Thema; am Ende ein Fazit mit Empfehlung.
+
+    Body: {"thema": "...", "runden": 3}
+    """
+    _bus_key(x_genesis_key, key)
+    thema = str(b.get("thema", "")).strip()
+    if not thema:
+        raise HTTPException(400, "thema fehlt")
+    try:
+        beitraege = await gpt_bridge.dialog(thema, int(b.get("runden", 3)))
+        return {"ok": True, "thema": thema, "beitraege": beitraege,
+                "fazit": await gpt_bridge.fazit(thema, beitraege)}
+    except RuntimeError as e:
+        raise HTTPException(502, str(e))
+
 
 @app.post("/modify-dwg")
 async def modify(request: Request, x_genesis_key: str = Header(default="")):
