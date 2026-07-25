@@ -15,6 +15,30 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Ohne diese Pruefung scheitert google-github-actions/auth mit einer
+      # kryptischen Meldung ("must specify exactly one of ...") und es ist nicht
+      # zu erkennen, dass bloss die Secrets fehlen.
+      - name: Secrets pruefen
+        env:
+          S_KEY: ${{ secrets.GCP_SA_KEY }}
+          S_PROJECT: ${{ secrets.GCP_PROJECT }}
+        run: |
+          fehlen=""
+          [ -z "$S_KEY" ]     && fehlen="$fehlen GCP_SA_KEY"
+          [ -z "$S_PROJECT" ] && fehlen="$fehlen GCP_PROJECT"
+          if [ -n "$fehlen" ]; then
+            echo "::error::Deploy nicht moeglich — fehlende GitHub-Secrets:$fehlen"
+            echo ""
+            echo "Es wurde NICHTS deployt. Der Service auf Cloud Run laeuft"
+            echo "weiter auf dem Stand des letzten erfolgreichen Deploys."
+            echo ""
+            echo "Zwei Wege (Anleitung: DEPLOY_SETUP.md):"
+            echo " A) Cloud Run baut selbst aus GitHub — ohne Secrets, empfohlen"
+            echo " B) diese Action nutzen — dafuer die zwei Secrets eintragen:"
+            echo "    https://github.com/${GITHUB_REPOSITORY}/settings/secrets/actions"
+            exit 1
+          fi
+
       - uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
