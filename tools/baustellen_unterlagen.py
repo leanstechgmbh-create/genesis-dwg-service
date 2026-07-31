@@ -498,6 +498,103 @@ Finanzamt abzuführen. Der Antrag sollte daher umgehend abgesendet werden &ndash
     empf=("<strong>An:</strong><br>Finanzamt für Körperschaften III<br>Volkmarstraße 13<br>12099 Berlin<br>"
           "<br><span class='small'>Postfach 42 08 44, 12068 Berlin</span>"))
 
+
+# ---------------------------------------------------------------- 10 BG BAU
+DOCS["10_Antrag_Unbedenklichkeitsbescheinigung_BG_BAU"] = page(
+    "Antrag Unbedenklichkeitsbescheinigung BG BAU", f"""
+<h1>ANTRAG AUF ERTEILUNG EINER UNBEDENKLICHKEITSBESCHEINIGUNG</h1>
+<div class="meta">
+  <span class="ml">Antragsteller:</span><span>LEANS Tech GmbH, Berlepschstr. 165, 14165 Berlin</span>
+  <span class="ml">Mitgliedsnummer:</span><span><span class="line">&nbsp;</span></span>
+  <span class="ml">Gewerke:</span><span>Heizung, Lüftung, Sanitär, Kältetechnik</span>
+  <span class="ml">Datum:</span><span>{DATUM}</span>
+</div>
+<p>Sehr geehrte Damen und Herren,</p>
+<p>hiermit beantragen wir die Erteilung einer aktuellen Unbedenklichkeitsbescheinigung für unser
+Unternehmen. Die Bescheinigung wird von unserem Auftraggeber als Nachweis vor Aufnahme der Arbeiten
+auf einer Baustelle benötigt.</p>
+<p>Die Beiträge zur gesetzlichen Unfallversicherung werden von uns fristgerecht entrichtet; die
+jährlichen Lohnnachweise wurden ordnungsgemäß übermittelt. Sollten für die Bearbeitung weitere
+Angaben erforderlich sein, teilen Sie uns dies bitte kurz mit.</p>
+<p>Wir bitten um Übersendung der Bescheinigung an die oben genannte Anschrift oder per E-Mail an
+info@leanstech-gmbh.de.</p>
+<p>Mit freundlichen Grüßen</p>
+{SIGN}
+""",
+    empf=("<strong>An:</strong><br>BG BAU &ndash; Berufsgenossenschaft<br>der Bauwirtschaft<br>"
+          "Hildegardstraße 29/30<br>10715 Berlin"))
+
+# ---------------------------------------------------------------- 11 SOKA-BAU
+DOCS["11_Antrag_Unbedenklichkeitsbescheinigung_SOKA_BAU"] = page(
+    "Antrag Unbedenklichkeitsbescheinigung SOKA-BAU", f"""
+<h1>ANTRAG AUF ERTEILUNG EINER UNBEDENKLICHKEITS- BZW. NEGATIVBESCHEINIGUNG</h1>
+<div class="meta">
+  <span class="ml">Antragsteller:</span><span>LEANS Tech GmbH, Berlepschstr. 165, 14165 Berlin</span>
+  <span class="ml">Betriebsnummer:</span><span><span class="line">&nbsp;</span></span>
+  <span class="ml">Gewerke:</span><span>Heizung, Lüftung, Sanitär, Kältetechnik</span>
+  <span class="ml">Datum:</span><span>{DATUM}</span>
+</div>
+<p>Sehr geehrte Damen und Herren,</p>
+<p>hiermit beantragen wir die Erteilung einer aktuellen Unbedenklichkeitsbescheinigung. Sofern für
+unseren Betrieb keine Beitragspflicht nach dem Verfahrenstarifvertrag besteht, bitten wir um
+Ausstellung einer entsprechenden Negativbescheinigung.</p>
+<p>Die Bescheinigung wird von unserem Auftraggeber als Nachweis vor Aufnahme der Arbeiten auf einer
+Baustelle benötigt; die dort geforderte Gültigkeit beträgt maximal drei Monate.</p>
+<p>Wir bitten um Übersendung an die oben genannte Anschrift oder per E-Mail an
+info@leanstech-gmbh.de. Für Rückfragen stehen wir Ihnen gern zur Verfügung.</p>
+<p>Mit freundlichen Grüßen</p>
+{SIGN}
+""",
+    empf=("<strong>An:</strong><br>SOKA-BAU<br>Urlaubs- und Lohnausgleichskasse<br>der Bauwirtschaft<br>"
+          "Wettinerstraße 7<br>65189 Wiesbaden"))
+
+# ---------------------------------------------------------------- 12 Krankenkasse
+DOCS["12_Antrag_Unbedenklichkeitsbescheinigung_Krankenkasse"] = page(
+    "Antrag Unbedenklichkeitsbescheinigung Krankenkasse", f"""
+<h1>ANTRAG AUF ERTEILUNG EINER UNBEDENKLICHKEITSBESCHEINIGUNG</h1>
+<div class="meta">
+  <span class="ml">Arbeitgeber:</span><span>LEANS Tech GmbH, Berlepschstr. 165, 14165 Berlin</span>
+  <span class="ml">Betriebsnummer:</span><span><span class="line">&nbsp;</span></span>
+  <span class="ml">Ansprechpartner:</span><span>Semir Redžić &bull; +49 170 828 0836</span>
+  <span class="ml">Datum:</span><span>{DATUM}</span>
+</div>
+<p>Sehr geehrte Damen und Herren,</p>
+<p>hiermit beantragen wir die Erteilung einer aktuellen Unbedenklichkeitsbescheinigung über die
+ordnungsgemäße Zahlung der Sozialversicherungsbeiträge für unsere bei Ihnen versicherten
+Beschäftigten.</p>
+<p>Die Bescheinigung wird von unserem Auftraggeber als Nachweis vor Aufnahme der Arbeiten auf einer
+Baustelle benötigt; gefordert ist eine Gültigkeit von maximal drei Monaten.</p>
+<p>Wir bitten um Übersendung an die oben genannte Anschrift oder per E-Mail an
+info@leanstech-gmbh.de.</p>
+<p>Mit freundlichen Grüßen</p>
+{SIGN}
+""",
+    empf=("<strong>An:</strong><br><span class='line'>&nbsp;</span><br>"
+          "<span class='line'>&nbsp;</span><br><span class='line'>&nbsp;</span><br>"
+          "<span class='small'>(zuständige Krankenkasse eintragen)</span>"))
+
+# ---------------------------------------------------------------- 13 Bescheinigung in Steuersachen
+DOCS["13_Antrag_Bescheinigung_in_Steuersachen_Finanzamt"] = page(
+    "Antrag Bescheinigung in Steuersachen", f"""
+<h1>ANTRAG AUF ERTEILUNG EINER BESCHEINIGUNG IN STEUERSACHEN</h1>
+<div class="meta">
+  <span class="ml">Antragsteller:</span><span>LEANS Tech GmbH, Berlepschstr. 165, 14165 Berlin</span>
+  <span class="ml">Steuernummer:</span><span>29/414/31448</span>
+  <span class="ml">USt-IdNr.:</span><span>DE357948720</span>
+  <span class="ml">Handelsregister:</span><span>HRB 249080 B, Amtsgericht Charlottenburg</span>
+  <span class="ml">Datum:</span><span>{DATUM}</span>
+</div>
+<p>Sehr geehrte Damen und Herren,</p>
+<p>hiermit beantragen wir die Erteilung einer aktuellen Bescheinigung in Steuersachen für unser
+Unternehmen. Die Bescheinigung wird von unserem Auftraggeber im Rahmen der Nachweispflichten vor
+Aufnahme der Arbeiten auf einer Baustelle verlangt.</p>
+<p>Wir bitten um Übersendung der Bescheinigung an die oben genannte Anschrift. Für Rückfragen stehen
+wir Ihnen gern zur Verfügung.</p>
+<p>Mit freundlichen Grüßen</p>
+{SIGN}
+""",
+    empf=("<strong>An:</strong><br>Finanzamt für Körperschaften III<br>Volkmarstraße 13<br>12099 Berlin"))
+
 # ---------------------------------------------------------------- render
 CHROME = next((str(p) for p in sorted(pathlib.Path("/opt/pw-browsers").glob("chromium-*/chrome-linux/chrome"))), None)
 if not CHROME:
