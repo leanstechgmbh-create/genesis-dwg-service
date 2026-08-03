@@ -2,3 +2,8 @@ __pycache__/
 *.pyc
 .env
 mailer/sent_log.csv
+
+# Kosmos: echte Geschaeftsdaten bleiben lokal
+kosmos/zuordnung.json
+kosmos/daten.privat.js
+kosmos/quellen/

@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LEANS Kosmos</title>
+<style>
+  :root {
+    --ground:     #04060c;
+    --panel:      rgba(7, 10, 19, 0.78);
+    --edge:       rgba(56, 225, 255, 0.18);
+    --edge-hard:  #16203a;
+    --text:       #d8e2f2;
+    --muted:      #7d8db0;
+    --faint:      #4a587a;
+
+    --cyan:       #38e1ff;
+    --violet:     #a855f7;
+    --gold:       #ffd166;
+    --green:      #3ddc97;
+    --orange:     #ff7a59;
+    --red:        #ff4d6d;
+
+    --mono: ui-monospace, "SF Mono", "Cascadia Mono", Consolas, Menlo, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0; padding: 0;
+    height: 100%;
+    overflow: hidden;
+    background: var(--ground);
+    color: var(--text);
+    font-family: var(--mono);
+    -webkit-font-smoothing: antialiased;
+    cursor: default;
+    user-select: none;
+  }
+
+  canvas { display: block; width: 100vw; height: 100vh; }
+
+  /* ---------- HUD ---------- */
+
+  .hud {
+    position: fixed;
+    z-index: 10;
+    background: var(--panel);
+    border: 1px solid var(--edge);
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    font-size: 11px;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Bereichs-Umschalter */
+  #bereiche { top: 18px; left: 18px; display: flex; gap: 2px; padding: 4px; }
+  #bereiche button {
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    color: var(--faint);
+    background: transparent;
+    border: 0;
+    border-radius: 7px;
+    padding: 6px 14px;
+    cursor: pointer;
+    display: flex; align-items: center; gap: 7px;
+  }
+  #bereiche button::before {
+    content: ""; width: 6px; height: 6px; border-radius: 50%;
+    background: currentColor;
+  }
+  #bereiche button:hover { color: var(--muted); }
+  #bereiche button[aria-pressed="true"] {
+    color: var(--green);
+    background: rgba(61, 220, 151, 0.08);
+    box-shadow: inset 0 0 0 1px rgba(61, 220, 151, 0.25);
+  }
+
+  /* Briefing-Leiste */
+  #briefing {
+    top: 18px; left: 50%; transform: translateX(-50%);
+    padding: 8px 16px;
+    display: flex; align-items: center; gap: 12px;
+    white-space: nowrap;
+  }
+  #briefing .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+    animation: puls 2.4s ease-in-out infinite;
+  }
+  @keyframes puls { 0%,100% { opacity: 1 } 50% { opacity: 0.35 } }
+  #briefing b { color: var(--orange); font-weight: 500; }
+  #briefing time { color: var(--text); font-variant-numeric: tabular-nums; }
+  #briefing em {
+    font-style: normal; color: var(--faint); font-size: 10px;
+    border-left: 1px solid var(--edge-hard); padding-left: 12px;
+  }
+
+  /* Zähler */
+  #zaehler {
+    top: 18px; right: 18px;
+    display: flex; gap: 22px;
+    padding: 10px 18px;
+  }
+  #zaehler div { text-align: right; }
+  #zaehler .k { display: block; font-size: 10px; color: var(--faint); }
+  #zaehler .v {
+    display: block;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+  }
+  #zaehler .v.warn { color: var(--gold); }
+  #zaehler .v.hot  { color: var(--red); }
+
+  /* Kommandozeile */
+  #kommando {
+    bottom: 22px; left: 50%; transform: translateX(-50%);
+    width: min(560px, calc(100vw - 48px));
+    display: flex; align-items: center; gap: 10px;
+    padding: 0 14px;
+  }
+  #kommando span { color: var(--cyan); }
+  #kommando input {
+    flex: 1;
+    font: inherit;
+    letter-spacing: 0.06em;
+    text-transform: none;
+    color: var(--text);
+    background: transparent;
+    border: 0;
+    padding: 12px 0;
+    outline: none;
+  }
+  #kommando input::placeholder { color: var(--faint); }
+  #kommando kbd {
+    font: inherit; font-size: 10px;
+    color: var(--faint);
+    border: 1px solid var(--edge-hard);
+    border-radius: 4px;
+    padding: 2px 6px;
+  }
+
+  /* Detail-Panel */
+  #detail {
+    top: 84px; right: 18px;
+    width: 300px;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    padding: 16px 18px 18px;
+    display: none;
+    text-transform: none;
+    letter-spacing: normal;
+  }
+  #detail.offen { display: block; }
+  #detail .typ {
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  #detail h2 {
+    margin: 6px 0 2px;
+    font-size: 17px; font-weight: 600; color: #fff;
+    letter-spacing: -0.01em;
+  }
+  #detail .info { margin: 0 0 14px; font-size: 12px; color: var(--muted); }
+  #detail dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 12px; }
+  #detail dt { color: var(--faint); }
+  #detail dd { margin: 0; color: var(--text); font-variant-numeric: tabular-nums; }
+  #detail .pill {
+    display: inline-block; padding: 1px 9px; border-radius: 999px;
+    font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+    border: 1px solid currentColor;
+  }
+  #detail .links { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+  #detail .links button {
+    font: inherit; font-size: 11px;
+    color: var(--muted);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--edge-hard);
+    border-radius: 999px;
+    padding: 4px 11px;
+    cursor: pointer;
+  }
+  #detail .links button:hover { color: var(--cyan); border-color: var(--edge); }
+  #detail .zu {
+    position: absolute; top: 12px; right: 12px;
+    font: inherit; font-size: 14px; line-height: 1;
+    color: var(--faint); background: transparent; border: 0;
+    cursor: pointer; padding: 4px;
+  }
+  #detail .zu:hover { color: var(--red); }
+
+  /* Legende */
+  #legende {
+    bottom: 22px; left: 18px;
+    padding: 10px 14px;
+    display: grid; gap: 6px;
+  }
+  #legende i {
+    font-style: normal; display: flex; align-items: center; gap: 8px;
+  }
+  #legende i::before {
+    content: ""; width: 7px; height: 7px; border-radius: 50%;
+    background: currentColor; box-shadow: 0 0 8px currentColor;
+  }
+
+  .t-projekt  { color: var(--cyan); }
+  .t-kunde    { color: var(--gold); }
+  .t-rechnung { color: var(--green); }
+  .t-angebot  { color: var(--violet); }
+  .t-wartung  { color: var(--orange); }
+  .t-aufgabe  { color: var(--red); }
+
+  /* Hinweis, wenn in einem Bereich noch nichts hinterlegt ist */
+  #leer {
+    top: 50%; left: 50%; transform: translate(-50%, 190px);
+    margin: 0; padding: 12px 18px;
+    max-width: min(440px, calc(100vw - 48px));
+    text-align: center; line-height: 1.7;
+    letter-spacing: 0.06em;
+  }
+  #leer[hidden] { display: none; }
+  #leer b { color: var(--text); font-weight: 500; }
+
+  #hilfe {
+    bottom: 22px; right: 18px;
+    padding: 8px 12px;
+    font-size: 10px;
+    color: var(--faint);
+    display: grid; gap: 3px;
+  }
+
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
+
+  @media (max-width: 900px) {
+    #legende, #hilfe { display: none; }
+    #zaehler { gap: 14px; padding: 8px 12px; }
+    #briefing { font-size: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="buehne"></canvas>
+
+<nav class="hud" id="bereiche" aria-label="Bereich wählen">
+  <button type="button" data-bereich="business" aria-pressed="true">Business</button>
+  <button type="button" data-bereich="privat"   aria-pressed="false">Privat</button>
+</nav>
+
+<div class="hud" id="briefing">
+  <span class="dot" aria-hidden="true"></span>
+  Briefing · Live
+  <b id="firma">LEANS</b>
+  <time id="uhr" datetime="">–</time>
+  <em id="stand" hidden></em>
+</div>
+
+<div class="hud" id="zaehler">
+  <div><span class="k">Offen</span><span class="v" id="z-offen">–</span></div>
+  <div><span class="k">Angebote</span><span class="v" id="z-angebote">–</span></div>
+  <div><span class="k">Aufgaben</span><span class="v" id="z-aufgaben">–</span></div>
+  <div><span class="k">Wartung</span><span class="v" id="z-wartung">–</span></div>
+</div>
+
+<aside class="hud" id="detail" aria-live="polite">
+  <button class="zu" id="detail-zu" type="button" aria-label="Schließen">✕</button>
+  <div id="detail-inhalt"></div>
+</aside>
+
+<div class="hud" id="legende" aria-hidden="true">
+  <i class="t-projekt">Projekte</i>
+  <i class="t-kunde">Kunden</i>
+  <i class="t-rechnung">Rechnungen</i>
+  <i class="t-angebot">Angebote</i>
+  <i class="t-wartung">Wartung</i>
+  <i class="t-aufgabe">Offene Punkte</i>
+</div>
+
+<p class="hud" id="leer" hidden></p>
+
+<div class="hud" id="kommando">
+  <span aria-hidden="true">›</span>
+  <input id="suche" type="search" placeholder="suchen … z. B. beispielstr, offen, rechnungen" autocomplete="off" spellcheck="false">
+  <kbd>/</kbd>
+</div>
+
+<div class="hud" id="hilfe" aria-hidden="true">
+  <span>F — Vollbild</span>
+  <span>/ — Suche</span>
+  <span>Esc — zurücksetzen</span>
+</div>
+
+<!-- daten.js = Beispieldaten. Liegt daneben eine daten.privat.js (aus
+     tools/kosmos-daten.py), gewinnt die — sie ueberschreibt KOSMOS_DATEN.
+     Fehlt sie, meldet der Browser das still in der Konsole, sonst nichts. -->
+<script src="daten.js"></script>
+<script src="daten.privat.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  const D = (window.KOSMOS_DATEN && window.KOSMOS_DATEN.knoten) ? window.KOSMOS_DATEN : { firma: "KOSMOS", knoten: [] };
+
+  const FARBE = {
+    projekt:  "#38e1ff",
+    kunde:    "#ffd166",
+    rechnung: "#3ddc97",
+    angebot:  "#a855f7",
+    wartung:  "#ff7a59",
+    aufgabe:  "#ff4d6d"
+  };
+  const ERLEDIGT = { bezahlt: 1, beauftragt: 1, abgelehnt: 1 };
+  // blass heisst: zaehlt nicht mehr mit — erledigt oder Status nicht gepflegt
+  const BLASS = { bezahlt: 1, beauftragt: 1, abgelehnt: 1, unbekannt: 1 };
+  const GROESSE  = { projekt: 10, kunde: 7.5, rechnung: 5.5, angebot: 5.5, wartung: 5.5, aufgabe: 4.5 };
+
+  const eur = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
+  const eurGenau = new Intl.NumberFormat("de-DE", { style: "currency", currency: "EUR" });
+
+  const canvas = document.getElementById("buehne");
+  const ctx = canvas.getContext("2d");
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let W = 0, H = 0, t = 0;
+  let sterne = [], orb = [];
+  let bereich = "business";
+  let filter = "";
+  let gewaehlt = null;
+  let ueber = null;
+  let sichtbar = [], kanten = [], punkte = [];
+
+  const ORB_FARBEN = ["#ffffff", "#9fd8ff", "#38e1ff", "#a855f7", "#ffd166", "#ff6ad5", "#3ddc97"];
+
+  /* ---------------- Layout ---------------- */
+
+  function baueLayout() {
+    sichtbar = D.knoten.filter(k => (k.bereich || "business") === bereich);
+    const index = new Map(sichtbar.map((k, i) => [k.id, i]));
+
+    // Kanten aus den Verbindungen, doppelte raus
+    const gesehen = new Set();
+    kanten = [];
+    sichtbar.forEach((k, i) => {
+      (k.verbunden || []).forEach(id => {
+        const j = index.get(id);
+        if (j === undefined) return;
+        const key = i < j ? i + ":" + j : j + ":" + i;
+        if (gesehen.has(key)) return;
+        gesehen.add(key);
+        kanten.push([i, j]);
+      });
+    });
+
+    // Projekte auf einen Ring, ihre Anhänge drumherum, Rest nach außen
+    const projekte = sichtbar.filter(k => k.typ === "projekt");
+    const belegt = new Set();
+
+    projekte.forEach((p, pi) => {
+      const w = (pi / Math.max(projekte.length, 1)) * Math.PI * 2 - Math.PI / 2;
+      p._x = 0.5 + Math.cos(w) * 0.26;
+      p._y = 0.5 + Math.sin(w) * 0.26;
+      belegt.add(p.id);
+
+      const kinder = (p.verbunden || [])
+        .map(id => sichtbar.find(k => k.id === id))
+        .filter(k => k && !belegt.has(k.id));
+
+      kinder.forEach((c, ci) => {
+        const cw = w + (ci - (kinder.length - 1) / 2) * 0.58;
+        const r = 0.115 + (ci % 2) * 0.03;
+        c._x = p._x + Math.cos(cw) * r;
+        c._y = p._y + Math.sin(cw) * r * 1.05;
+        belegt.add(c.id);
+      });
+    });
+
+    // Alles ohne Projekt nach aussen — ab 18 Stueck auf zwei Ringe,
+    // sonst kleben die Beschriftungen aneinander
+    const rest = sichtbar.filter(k => !belegt.has(k.id));
+    const zweiRinge = rest.length > 18;
+    rest.forEach((k, i) => {
+      const aussen = zweiRinge && i % 2 === 1;
+      const n = zweiRinge ? Math.ceil(rest.length / 2) : rest.length;
+      const stelle = zweiRinge ? Math.floor(i / 2) : i;
+      const w = (stelle / Math.max(n, 1)) * Math.PI * 2 + (aussen ? 0.4 + Math.PI / n : 0.4);
+      const r = aussen ? 0.49 : 0.44;
+      k._x = 0.5 + Math.cos(w) * r;
+      k._y = 0.5 + Math.sin(w) * r * 0.85;
+    });
+
+    // In den Rahmen holen
+    sichtbar.forEach(k => {
+      k._x = Math.min(0.95, Math.max(0.05, k._x));
+      k._y = Math.min(0.92, Math.max(0.08, k._y));
+    });
+  }
+
+  /* ---------------- Größe ---------------- */
+
+  function messen() {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = Math.round(W * dpr);
+    canvas.height = Math.round(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    sterne = [];
+    const n = Math.round((W * H) / 3200);
+    for (let i = 0; i < n; i++) {
+      sterne.push({
+        x: Math.random() * W, y: Math.random() * H,
+        r: Math.random() * 1.1 + 0.25,
+        p: Math.random() * Math.PI * 2,
+        s: Math.random() * 0.4 + 0.15
+      });
+    }
+
+    orb = [];
+    const m = Math.max(320, Math.round((W * H) / 1500));
+    for (let i = 0; i < m; i++) {
+      orb.push({
+        theta: Math.random() * Math.PI * 2,
+        phi:   Math.acos(2 * Math.random() - 1),
+        rad:   0.55 + Math.pow(Math.random(), 0.6) * 0.5,
+        size:  Math.random() * 1.3 + 0.4,
+        col:   ORB_FARBEN[(Math.random() * ORB_FARBEN.length) | 0],
+        wob:   Math.random() * Math.PI * 2,
+        spd:   0.6 + Math.random() * 0.9
+      });
+    }
+  }
+
+  /* ---------------- Zeichnen ---------------- */
+
+  function passt(k) {
+    if (!filter) return true;
+    const f = filter.toLowerCase();
+    if (f === "offen")      return k.status === "gestellt" || k.status === "offen" || k.typ === "aufgabe";
+    if (f === "rechnungen") return k.typ === "rechnung";
+    if (f === "angebote")   return k.typ === "angebot";
+    if (f === "kunden")     return k.typ === "kunde";
+    if (f === "projekte")   return k.typ === "projekt";
+    if (f === "wartung")    return k.typ === "wartung";
+    if (f === "aufgaben")   return k.typ === "aufgabe";
+    return (k.titel + " " + (k.info || "")).toLowerCase().includes(f);
+  }
+
+  function orbZeichnen() {
+    const cx = W / 2, cy = H / 2;
+    const R = Math.min(W, H) * 0.17;
+    const rot = reduce ? 0.6 : t * 0.00016;
+
+    const halo = ctx.createRadialGradient(cx, cy, R * 0.35, cx, cy, R * 2.1);
+    halo.addColorStop(0,    "rgba(255,138,61,0)");
+    halo.addColorStop(0.42, "rgba(255,110,45,0.20)");
+    halo.addColorStop(0.62, "rgba(255,74,32,0.13)");
+    halo.addColorStop(1,    "rgba(255,60,20,0)");
+    ctx.fillStyle = halo;
+    ctx.beginPath(); ctx.arc(cx, cy, R * 2.1, 0, Math.PI * 2); ctx.fill();
+
+    const kern = ctx.createRadialGradient(cx, cy, 0, cx, cy, R * 0.95);
+    kern.addColorStop(0,   "rgba(180,225,255,0.30)");
+    kern.addColorStop(0.5, "rgba(90,140,220,0.12)");
+    kern.addColorStop(1,   "rgba(20,30,60,0)");
+    ctx.fillStyle = kern;
+    ctx.beginPath(); ctx.arc(cx, cy, R * 0.95, 0, Math.PI * 2); ctx.fill();
+
+    ctx.save();
+    ctx.translate(cx, cy);
+    ctx.rotate(-0.42 + Math.sin(rot * 0.7) * 0.14);
+    ctx.strokeStyle = "rgba(226,240,255,0.55)";
+    ctx.lineWidth = 1.6;
+    ctx.shadowColor = "#cfe6ff";
+    ctx.shadowBlur = 12;
+    ctx.beginPath();
+    ctx.ellipse(0, 0, R * 0.78, R * 0.30 * Math.abs(Math.cos(rot * 0.5)) + R * 0.06, 0, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.restore();
+
+    for (const p of orb) {
+      const th = p.theta + rot * p.spd;
+      const rr = p.rad + (reduce ? 0 : Math.sin(t * 0.0009 + p.wob) * 0.045);
+      const sx = Math.sin(p.phi) * Math.cos(th);
+      const sy = Math.cos(p.phi);
+      const sz = Math.sin(p.phi) * Math.sin(th);
+      const tiefe = (sz + 1) / 2;
+
+      ctx.globalAlpha = 0.18 + tiefe * 0.72;
+      ctx.fillStyle = p.col;
+      ctx.shadowColor = p.col;
+      ctx.shadowBlur = 4 + tiefe * 7;
+      ctx.beginPath();
+      ctx.arc(cx + sx * rr * R, cy + sy * rr * R * 0.94, p.size * (0.45 + tiefe * 0.85), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
+  }
+
+  function zeichnen() {
+    ctx.clearRect(0, 0, W, H);
+
+    const vg = ctx.createRadialGradient(W / 2, H / 2, 0, W / 2, H / 2, Math.max(W, H) * 0.7);
+    vg.addColorStop(0,    "rgba(56,225,255,0.06)");
+    vg.addColorStop(0.38, "rgba(168,87,247,0.05)");
+    vg.addColorStop(1,    "rgba(0,0,0,0)");
+    ctx.fillStyle = vg;
+    ctx.fillRect(0, 0, W, H);
+
+    for (const s of sterne) {
+      ctx.globalAlpha = reduce ? 0.5 : 0.25 + 0.55 * (0.5 + 0.5 * Math.sin(t * 0.001 * s.s + s.p));
+      ctx.fillStyle = "#cfe0f5";
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+
+    orbZeichnen();
+
+    const drift = reduce ? 0 : 6;
+    punkte = sichtbar.map((k, i) => ({
+      x: k._x * W + Math.sin(t * 0.00042 + i * 1.7) * drift,
+      y: k._y * H + Math.cos(t * 0.00037 + i * 2.3) * drift
+    }));
+
+    ctx.lineWidth = 1;
+    for (const [a, b] of kanten) {
+      const hell = gewaehlt !== null && (a === gewaehlt || b === gewaehlt);
+      ctx.strokeStyle = hell ? "rgba(56,225,255,0.55)" : "rgba(29,51,87,0.85)";
+      ctx.beginPath();
+      ctx.moveTo(punkte[a].x, punkte[a].y);
+      ctx.lineTo(punkte[b].x, punkte[b].y);
+      ctx.stroke();
+    }
+
+    sichtbar.forEach((k, i) => {
+      const p = punkte[i];
+      const col = FARBE[k.typ] || "#9fd8ff";
+      const r = GROESSE[k.typ] || 5;
+      const treffer = passt(k);
+      const aktiv = gewaehlt === i || ueber === i;
+      const alpha = treffer ? (BLASS[k.status] ? 0.5 : 1) : 0.12;
+
+      ctx.globalAlpha = alpha;
+      ctx.shadowColor = col;
+      ctx.shadowBlur = treffer ? r * (aktiv ? 3.4 : 2.2) : 0;
+      ctx.fillStyle = col;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r * (aktiv ? 1.25 : 1), 0, Math.PI * 2);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      if (aktiv && treffer) {
+        ctx.strokeStyle = col;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = 0.5;
+        ctx.beginPath(); ctx.arc(p.x, p.y, r * 2.1, 0, Math.PI * 2); ctx.stroke();
+      }
+
+      ctx.globalAlpha = treffer ? (BLASS[k.status] ? 0.45 : 0.85) : 0.12;
+      ctx.font = "500 " + (W > 1500 ? 11 : 10) + "px " + getComputedStyle(document.body).fontFamily;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "top";
+      ctx.fillStyle = "#cfe0f5";
+      ctx.fillText(k.titel.toUpperCase(), p.x, p.y + r + 6);
+      ctx.globalAlpha = 1;
+    });
+  }
+
+  function schleife(now) {
+    t = now;
+    zeichnen();
+    if (!reduce) requestAnimationFrame(schleife);
+  }
+
+  /* ---------------- Zähler & Uhr ---------------- */
+
+  function zaehlerFuellen() {
+    const menge = D.knoten.filter(k => (k.bereich || "business") === bereich);
+
+    const offeneR = menge.filter(k => k.typ === "rechnung" && k.status === "gestellt");
+    const offeneA = menge.filter(k => k.typ === "angebot"  && k.status === "offen");
+    const aufgaben = menge.filter(k => k.typ === "aufgabe");
+    const wartung  = menge.filter(k => k.typ === "wartung" && k.termin)
+                          .sort((a, b) => a.termin.localeCompare(b.termin));
+
+    const sumR = offeneR.reduce((s, k) => s + (k.netto || 0), 0);
+    const sumA = offeneA.reduce((s, k) => s + (k.netto || 0), 0);
+
+    const eOffen = document.getElementById("z-offen");
+    eOffen.textContent = offeneR.length ? eur.format(sumR) : "—";
+    eOffen.className = "v" + (offeneR.length ? " hot" : "");
+
+    const eAng = document.getElementById("z-angebote");
+    eAng.textContent = offeneA.length ? eur.format(sumA) : "—";
+    eAng.className = "v" + (offeneA.length ? " warn" : "");
+
+    const eAuf = document.getElementById("z-aufgaben");
+    eAuf.textContent = aufgaben.length ? String(aufgaben.length) : "0";
+    eAuf.className = "v" + (aufgaben.length ? " hot" : "");
+
+    // Termin schlaegt "kein Termin gepflegt" schlaegt "gar keine Wartung"
+    const wartungAlle = menge.filter(k => k.typ === "wartung");
+    document.getElementById("z-wartung").textContent =
+      wartung.length
+        ? new Date(wartung[0].termin + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "short" })
+        : wartungAlle.length ? "offen" : "—";
+
+    const eLeer = document.getElementById("leer");
+    if (menge.length) {
+      eLeer.hidden = true;
+    } else {
+      eLeer.innerHTML = "Für <b>" + (bereich === "privat" ? "Privat" : "Business") +
+        "</b> ist noch nichts hinterlegt.<br>In <b>zuordnung.json</b> unter „" + bereich +
+        "“ eintragen und <b>tools/kosmos-daten.py</b> laufen lassen.";
+      eLeer.hidden = false;
+    }
+  }
+
+  function uhrStellen() {
+    const jetzt = new Date();
+    const el = document.getElementById("uhr");
+    el.dateTime = jetzt.toISOString();
+    el.textContent = jetzt.toLocaleDateString("de-DE", { weekday: "short", day: "2-digit", month: "2-digit" })
+      + " · " + jetzt.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+  }
+
+  /* ---------------- Detail ---------------- */
+
+  const detail = document.getElementById("detail");
+  const detailInhalt = document.getElementById("detail-inhalt");
+
+  const TYP_NAME = {
+    projekt: "Projekt", kunde: "Kunde", rechnung: "Rechnung",
+    angebot: "Angebot", wartung: "Wartung", aufgabe: "Offener Punkt"
+  };
+
+  function datum(s) {
+    if (!s) return null;
+    return new Date(s + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+  }
+
+  function detailZeigen(i) {
+    const k = sichtbar[i];
+    if (!k) return;
+    gewaehlt = i;
+
+    const col = FARBE[k.typ] || "#9fd8ff";
+    const zeilen = [];
+    if (k.netto != null) zeilen.push(["Netto", eurGenau.format(k.netto)]);
+    if (k.status)        zeilen.push(["Status", '<span class="pill" style="color:' +
+                            (k.status === "unbekannt" ? "#7d8db0" : ERLEDIGT[k.status] ? "#3ddc97" : "#ffd166") +
+                            '">' + k.status + "</span>"]);
+    if (k.faellig)       zeilen.push(["Fällig", datum(k.faellig)]);
+    if (k.gueltig)       zeilen.push(["Gültig bis", datum(k.gueltig)]);
+    if (k.termin)        zeilen.push(["Termin", datum(k.termin)]);
+
+    const nachbarn = kanten
+      .filter(([a, b]) => a === i || b === i)
+      .map(([a, b]) => (a === i ? b : a));
+
+    detailInhalt.innerHTML =
+      '<div class="typ" style="color:' + col + '">' + (TYP_NAME[k.typ] || k.typ) + "</div>" +
+      "<h2>" + k.titel + "</h2>" +
+      '<p class="info">' + (k.info || "") + "</p>" +
+      (zeilen.length ? "<dl>" + zeilen.map(z => "<dt>" + z[0] + "</dt><dd>" + z[1] + "</dd>").join("") + "</dl>" : "") +
+      (nachbarn.length
+        ? '<div class="links">' + nachbarn.map(n => '<button type="button" data-zu="' + n + '">' + sichtbar[n].titel + "</button>").join("") + "</div>"
+        : "");
+
+    detail.classList.add("offen");
+  }
+
+  function detailSchliessen() {
+    detail.classList.remove("offen");
+    gewaehlt = null;
+  }
+
+  detailInhalt.addEventListener("click", e => {
+    const b = e.target.closest("button[data-zu]");
+    if (b) detailZeigen(Number(b.dataset.zu));
+  });
+  document.getElementById("detail-zu").addEventListener("click", detailSchliessen);
+
+  /* ---------------- Maus & Tasten ---------------- */
+
+  function treffer(mx, my) {
+    let best = null, bestD = 26;
+    punkte.forEach((p, i) => {
+      const d = Math.hypot(p.x - mx, p.y - my);
+      if (d < bestD) { bestD = d; best = i; }
+    });
+    return best;
+  }
+
+  canvas.addEventListener("mousemove", e => {
+    ueber = treffer(e.clientX, e.clientY);
+    canvas.style.cursor = ueber === null ? "default" : "pointer";
+  });
+
+  canvas.addEventListener("click", e => {
+    const i = treffer(e.clientX, e.clientY);
+    if (i === null) detailSchliessen(); else detailZeigen(i);
+  });
+
+  const suche = document.getElementById("suche");
+  suche.addEventListener("input", () => { filter = suche.value.trim(); });
+
+  document.addEventListener("keydown", e => {
+    if (e.key === "/" && document.activeElement !== suche) {
+      e.preventDefault(); suche.focus(); suche.select();
+    } else if (e.key === "Escape") {
+      suche.value = ""; filter = ""; suche.blur(); detailSchliessen();
+    } else if ((e.key === "f" || e.key === "F") && document.activeElement !== suche) {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen().catch(() => {});
+    }
+  });
+
+  document.getElementById("bereiche").addEventListener("click", e => {
+    const b = e.target.closest("button[data-bereich]");
+    if (!b) return;
+    bereich = b.dataset.bereich;
+    document.querySelectorAll("#bereiche button").forEach(x =>
+      x.setAttribute("aria-pressed", String(x === b)));
+    detailSchliessen();
+    baueLayout();
+    zaehlerFuellen();
+  });
+
+  /* ---------------- Start ---------------- */
+
+  // Der Starter haengt #vollbild an die Adresse. Der Browser laesst Vollbild
+  // nur nach einer Eingabe zu — also beim ersten Klick oder Tastendruck.
+  if (location.hash.indexOf("vollbild") >= 0) {
+    const einmal = () => {
+      window.removeEventListener("pointerdown", einmal);
+      window.removeEventListener("keydown", einmal);
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+    };
+    window.addEventListener("pointerdown", einmal);
+    window.addEventListener("keydown", einmal);
+  }
+
+  document.getElementById("firma").textContent = D.firma || "KOSMOS";
+  if (D.stand) {
+    const eStand = document.getElementById("stand");
+    eStand.textContent = "Stand " + D.stand;
+    eStand.hidden = false;
+  }
+  window.addEventListener("resize", () => { messen(); if (reduce) zeichnen(); });
+
+  messen();
+  baueLayout();
+  zaehlerFuellen();
+  uhrStellen();
+  setInterval(uhrStellen, 20000);
+
+  if (reduce) zeichnen(); else requestAnimationFrame(schleife);
+})();
+</script>
+</body>
+</html>
