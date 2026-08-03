@@ -5,11 +5,11 @@
 
 ## Aktive Baustellen
 
-- [[Mehringdamm 44-46]]
+- [[Beispielstr. 12]]
 
 ## Kunden
 
-- [[SP Construct]]
+- [[Muster Bau GmbH]]
 
 ## Offene Punkte
 

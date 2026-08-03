@@ -1,0 +1,51 @@
+{
+  "_hinweis": "Vorlage mit erfundenen Beispielen. Kopie als 'zuordnung.json' anlegen, eigene Vorgaenge eintragen, dann 'python3 tools/kosmos-daten.py' laufen lassen. zuordnung.json steht in .gitignore und verlaesst deinen Rechner nicht.",
+
+  "firma": "LEANS TECH GMBH",
+
+  "_kunden": "kurz = der Name, mit dem du unten auf den Kunden zeigst.",
+  "kunden": [
+    { "kurz": "muster-bau", "titel": "Muster Bau GmbH", "info": "Auftraggeber · § 13b" },
+    { "kurz": "hausverwaltung", "titel": "Hausverwaltung Beispiel", "info": "Bestandskunde · Wartung" }
+  ],
+
+  "_projekte": "kunde = kurz-Name von oben. Alles, was unten auf projekt zeigt, haengt im Kosmos daran.",
+  "projekte": [
+    { "kurz": "bv-beispiel", "titel": "Beispielstr. 12", "info": "Klima / Lueftung · laufend", "kunde": "muster-bau" },
+    { "kurz": "bv-dach", "titel": "Dachanlage Nord", "info": "Wartung · Bestand", "kunde": "hausverwaltung" }
+  ],
+
+  "_rechnungen": "nr muss zur Rechnungsnummer im Master-Register passen — dann kommt der Betrag von dort. netto hier eingetragen schlaegt das Register. status: gestellt | bezahlt | mahnung | unbekannt.",
+  "rechnungen": [
+    { "nr": "2026-1", "art": "1. AR", "projekt": "bv-beispiel", "kunde": "muster-bau",
+      "info": "Muster Bau · Beispielstr.", "status": "bezahlt" },
+    { "nr": "2026-2", "art": "2. AR", "projekt": "bv-beispiel", "kunde": "muster-bau",
+      "info": "Muster Bau · Beispielstr.", "netto": 14000.00,
+      "status": "gestellt", "faellig": "2026-08-29" }
+  ],
+
+  "angebote": [
+    { "titel": "Angebot 999", "info": "Beispielstr. · Lueftungsgeraet",
+      "projekt": "bv-beispiel", "kunde": "muster-bau",
+      "netto": 46000.00, "status": "beauftragt", "gueltig": "2026-06-30" }
+  ],
+
+  "wartung": [
+    { "titel": "Wartung Dachanlage", "info": "1x jaehrlich · 19 % MwSt.",
+      "projekt": "bv-dach", "kunde": "hausverwaltung",
+      "netto": 233.00, "termin": "2026-09-15" }
+  ],
+
+  "aufgaben": [
+    { "titel": "Aufmass nachreichen", "info": "Beispielstr. · fuer die Schlussrechnung",
+      "projekt": "bv-beispiel" },
+    { "titel": "Messprotokoll ablegen", "info": "Wartung · ins Drive", "projekt": "bv-dach" }
+  ],
+
+  "_privat": "Freier Bereich, umschaltbar oben links. typ: projekt | kunde | rechnung | angebot | wartung | aufgabe.",
+  "privat": [
+    { "typ": "projekt", "titel": "Fahrzeug", "info": "Transporter · Inspektion",
+      "verbunden": ["pv-werkstatt-termin"] },
+    { "typ": "aufgabe", "id": "pv-werkstatt-termin", "titel": "Werkstatt-Termin", "info": "offen" }
+  ]
+}

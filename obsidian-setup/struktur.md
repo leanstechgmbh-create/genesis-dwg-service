@@ -7,13 +7,13 @@ Ordner, viel Verlinkung.
 LEANS-Vault/
 ├─ 00-Start.md                 ← Einstiegsseite, verlinkt alles
 ├─ 10-Projekte/                ← ein Ordner je Bauvorhaben
-│   └─ Mehringdamm 44-46.md
+│   └─ Beispielstr. 12.md
 ├─ 20-Kunden/
-│   └─ SP Construct.md
+│   └─ Muster Bau GmbH.md
 ├─ 30-Rechnungen/
-│   └─ 2026-40 - 2. AR SP Construct.md
+│   └─ 2026-2 - 2. AR Muster Bau.md
 ├─ 40-Angebote/
-│   └─ Angebot 301 - Mehringdamm.md
+│   └─ Angebot 999 - Beispielstr..md
 ├─ 50-Wartung/
 │   └─ Wartungsvertrag <Kunde>.md
 ├─ 60-Notizen/                 ← Baustellenberichte, Telefonate, Ideen
@@ -34,7 +34,7 @@ Sparsam einsetzen, sonst wird der Graph unlesbar:
 ## Verlinkungsregeln (wichtig für den Graph)
 
 1. Jede Rechnung verlinkt **Projekt** und **Kunde**:
-   `Betrifft: [[Mehringdamm 44-46]] · [[SP Construct]]`
+   `Betrifft: [[Beispielstr. 12]] · [[Muster Bau GmbH]]`
 2. Jedes Projekt verlinkt seinen Kunden und listet Rechnungen/Angebote.
 3. Kundenkarte verlinkt alle Projekte.
 4. Baustellennotizen verlinken das Projekt.
