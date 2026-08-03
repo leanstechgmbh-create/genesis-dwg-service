@@ -3,24 +3,40 @@ setlocal enabledelayedexpansion
 title LEANS Kosmos
 
 REM ===========================================================
-REM  Startet den Kosmos im Vollbild auf dem RECHTEN Monitor.
+REM  Startet den Kosmos auf dem RECHTEN Monitor.
 REM
-REM  Falls er auf dem falschen Bildschirm aufgeht:
-REM  X unten auf die Breite deines LINKEN Monitors setzen.
-REM    1920 = Full HD links   (Standard)
-REM    2560 = WQHD links
-REM    3840 = 4K links
-REM  Zwei Monitore nebeneinander, rechter ist der zweite.
+REM  Der rechte Bildschirm wird selbst ermittelt — normalerweise
+REM  ist hier nichts einzustellen.
+REM
+REM  Nur falls es doch daneben geht: unten MANUELL auf die Breite
+REM  des LINKEN Monitors setzen, z. B.  set "MANUELL=1920"
+REM    1920 = Full HD links   2560 = WQHD links   3840 = 4K links
 REM ===========================================================
 
-set X=1920
+set "MANUELL="
 
 set "SEITE=%~dp0index.html"
 set "SEITE=%SEITE:\=/%"
-REM #vollbild: geht das Fenster nicht von selbst auf Vollbild, reicht ein
-REM Klick ins Bild. Sonst jederzeit F druecken.
 set "URL=file:///%SEITE%#vollbild"
 
+REM ---------- Bildschirm bestimmen ----------
+set "X=1920"
+set "Y=0"
+set "BREITE="
+set "HOEHE="
+
+if defined MANUELL (
+  set "X=%MANUELL%"
+) else (
+  for /f "tokens=1-4" %%a in ('powershell -NoProfile -ExecutionPolicy Bypass -Command "Add-Type -AssemblyName System.Windows.Forms; $s = [System.Windows.Forms.Screen]::AllScreens ^| Sort-Object { $_.Bounds.X } ^| Select-Object -Last 1; '{0} {1} {2} {3}' -f $s.Bounds.X, $s.Bounds.Y, $s.Bounds.Width, $s.Bounds.Height" 2^>nul') do (
+    set "X=%%a"
+    set "Y=%%b"
+    set "BREITE=%%c"
+    set "HOEHE=%%d"
+  )
+)
+
+REM ---------- Browser suchen ----------
 set "BROWSER="
 for %%B in (chrome.exe msedge.exe) do (
   if not defined BROWSER (
@@ -47,5 +63,14 @@ if not defined BROWSER (
   exit /b 1
 )
 
-start "" "%BROWSER%" --app="%URL%" --window-position=%X%,0 --start-fullscreen --new-window
+REM ---------- Starten ----------
+echo   Rechter Monitor: X=!X!  Y=!Y!  !BREITE!x!HOEHE!
+
+if defined BREITE (
+  start "" "%BROWSER%" --app="%URL%" --window-position=!X!,!Y! --window-size=!BREITE!,!HOEHE! --new-window
+) else (
+  start "" "%BROWSER%" --app="%URL%" --window-position=!X!,!Y! --start-fullscreen --new-window
+)
+
+REM Fenster geht auf, Fenster ist da: einmal ins Bild klicken -> Vollbild.
 exit /b 0
