@@ -217,6 +217,17 @@
   .t-wartung  { color: var(--orange); }
   .t-aufgabe  { color: var(--red); }
 
+  /* Hinweis, wenn in einem Bereich noch nichts hinterlegt ist */
+  #leer {
+    top: 50%; left: 50%; transform: translate(-50%, 190px);
+    margin: 0; padding: 12px 18px;
+    max-width: min(440px, calc(100vw - 48px));
+    text-align: center; line-height: 1.7;
+    letter-spacing: 0.06em;
+  }
+  #leer[hidden] { display: none; }
+  #leer b { color: var(--text); font-weight: 500; }
+
   #hilfe {
     bottom: 22px; right: 18px;
     padding: 8px 12px;
@@ -271,6 +282,8 @@
   <i class="t-wartung">Wartung</i>
   <i class="t-aufgabe">Offene Punkte</i>
 </div>
+
+<p class="hud" id="leer" hidden></p>
 
 <div class="hud" id="kommando">
   <span aria-hidden="true">›</span>
@@ -594,8 +607,22 @@
     eAuf.textContent = aufgaben.length ? String(aufgaben.length) : "0";
     eAuf.className = "v" + (aufgaben.length ? " hot" : "");
 
+    // Termin schlaegt "kein Termin gepflegt" schlaegt "gar keine Wartung"
+    const wartungAlle = menge.filter(k => k.typ === "wartung");
     document.getElementById("z-wartung").textContent =
-      wartung.length ? new Date(wartung[0].termin + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "short" }) : "—";
+      wartung.length
+        ? new Date(wartung[0].termin + "T12:00:00").toLocaleDateString("de-DE", { day: "2-digit", month: "short" })
+        : wartungAlle.length ? "offen" : "—";
+
+    const eLeer = document.getElementById("leer");
+    if (menge.length) {
+      eLeer.hidden = true;
+    } else {
+      eLeer.innerHTML = "Für <b>" + (bereich === "privat" ? "Privat" : "Business") +
+        "</b> ist noch nichts hinterlegt.<br>In <b>zuordnung.json</b> unter „" + bereich +
+        "“ eintragen und <b>tools/kosmos-daten.py</b> laufen lassen.";
+      eLeer.hidden = false;
+    }
   }
 
   function uhrStellen() {
@@ -710,6 +737,18 @@
   });
 
   /* ---------------- Start ---------------- */
+
+  // Der Starter haengt #vollbild an die Adresse. Der Browser laesst Vollbild
+  // nur nach einer Eingabe zu — also beim ersten Klick oder Tastendruck.
+  if (location.hash.indexOf("vollbild") >= 0) {
+    const einmal = () => {
+      window.removeEventListener("pointerdown", einmal);
+      window.removeEventListener("keydown", einmal);
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {});
+    };
+    window.addEventListener("pointerdown", einmal);
+    window.addEventListener("keydown", einmal);
+  }
 
   document.getElementById("firma").textContent = D.firma || "KOSMOS";
   if (D.stand) {

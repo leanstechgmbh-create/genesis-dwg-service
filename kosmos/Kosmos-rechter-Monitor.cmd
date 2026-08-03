@@ -17,7 +17,9 @@ set X=1920
 
 set "SEITE=%~dp0index.html"
 set "SEITE=%SEITE:\=/%"
-set "URL=file:///%SEITE%"
+REM #vollbild: geht das Fenster nicht von selbst auf Vollbild, reicht ein
+REM Klick ins Bild. Sonst jederzeit F druecken.
+set "URL=file:///%SEITE%#vollbild"
 
 set "BROWSER="
 for %%B in (chrome.exe msedge.exe) do (

@@ -10,7 +10,9 @@
 X=1920
 
 SEITE="$(cd "$(dirname "$0")" && pwd)/index.html"
-URL="file://$SEITE"
+# #vollbild: geht das Fenster nicht von selbst auf Vollbild, reicht ein
+# Klick ins Bild. Sonst jederzeit F druecken.
+URL="file://$SEITE#vollbild"
 
 if [ -d "/Applications/Google Chrome.app" ]; then
   open -na "Google Chrome" --args --app="$URL" --window-position=$X,0 --start-fullscreen --new-window

@@ -22,6 +22,9 @@ oben `X` auf die Breite deines **linken** Monitors setzen:
 | WQHD (2560×1440) | `2560` |
 | 4K (3840×2160) | `3840` |
 
+**Nicht im Vollbild?** Einmal ins Bild klicken — dann geht er von selbst auf
+Vollbild. Mit **F** jederzeit an und aus.
+
 Ohne Launcher geht es auch: `index.html` doppelklicken, Fenster auf den rechten
 Monitor ziehen, **F11** drücken.
 
