@@ -7,7 +7,8 @@ Kernlogik in dwg_core.py, Slack-Bot in slack_bot.py.
 import base64, os, traceback
 from pathlib import Path
 from fastapi import FastAPI, Request, Header, HTTPException
-from fastapi.responses import Response, JSONResponse, FileResponse, StreamingResponse
+from fastapi.responses import (Response, JSONResponse, FileResponse,
+                               StreamingResponse, PlainTextResponse)
 from dwg_core import have, modify_drawing
 from slack_bot import router as slack_router, slack_ready
 from mailer.core import versende, mail_bereit
@@ -335,6 +336,26 @@ async def ai_ask(b: dict, x_genesis_key: str = Header(default=""), key: str = ""
         pass
     return {"ok": True, "thread": n["thread"], "zur_freigabe": bool(n.get("verdacht")),
             "antwort": antwort["text"]}
+
+
+@app.get("/gpt/test")
+async def gpt_test(key: str = "", frage: str = ""):
+    """Browser-Test der ChatGPT-Bruecke — ohne Terminal bedienbar.
+
+    Aufruf: /gpt/test?key=<GENESIS_API_KEY>            (Standard-Testfrage)
+            /gpt/test?key=...&frage=eigene+Frage       (eigene Frage)
+    Antwort kommt als einfacher Text direkt im Browserfenster.
+    """
+    _bus_key("", key)
+    if not gpt_bridge.gpt_bereit():
+        raise HTTPException(503, "OPENAI_API_KEY fehlt — ChatGPT-Bruecke nicht freigeschaltet")
+    text = frage.strip() or ("Bestaetige in einem kurzen deutschen Satz, dass die "
+                             "Verbindung zwischen GENESIS und dir funktioniert.")
+    try:
+        antwort = await gpt_bridge.frag_gpt([{"role": "user", "content": text[:2000]}])
+    except RuntimeError as e:
+        raise HTTPException(502, str(e))
+    return PlainTextResponse(f"ChatGPT antwortet:\n\n{antwort}\n")
 
 
 @app.post("/gpt/ask")
