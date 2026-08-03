@@ -38,6 +38,29 @@ Was in der Cloud sehr wohl geht: öffentliche Webseiten abrufen und als Bild
 aufnehmen (Chromium/Playwright ist installiert) — aber keine Seiten, die hinter
 dem Login des Nutzers liegen (z. B. Google Cloud Console).
 
+## Live-Stand (seit 03.08.2026 — NICHT neu erklären, gilt bis auf Widerruf)
+
+Der Service LÄUFT in der Cloud. Eckdaten für jede Sitzung:
+
+- **Service-URL:** `https://genesis-dwg-service-24363325360.europe-west3.run.app`
+  (`GET /` = Health mit Modul-Status; `dwg_read`/`dwg_write` sind `true`)
+- **Google-Projekt:** `leans-social` · Region `europe-west3` · Dienst `genesis-dwg-service`
+- **Deploy-Weg:** Cloud Build Trigger baut bei jedem Push auf `main` automatisch
+  (Dauer ~15–18 Min wegen LibreDWG). Die GitHub-Action `deploy.yml` ist dadurch
+  überflüssig und läuft rot durch (Secrets nie gesetzt) — ignorieren oder
+  deaktivieren, NICHT als Fehler des eigenen PRs interpretieren.
+- **Gesetzte Cloud-Run-Variablen:** `OPENAI_API_KEY` (sk-proj-…) und
+  `GENESIS_API_KEY` (eigenes Passwort des Nutzers, beginnt mit „Robertreder" —
+  Wert steht in Cloud Run unter Variablen, niemals im Repo).
+- **ChatGPT-Brücke testen:** `GET /gpt/test?key=<GENESIS_API_KEY>` im Browser
+  (optional `&frage=…`). Stand 03.08.: Kette funktioniert bis OpenAI, aber
+  **OpenAI-Guthaben leer** (429 insufficient_quota) — Nutzer klärt Aufladung
+  auf platform.openai.com. Danach läuft alles ohne weitere Änderung.
+- **Noch offen:** Slack-Schlüssel (`slack:false`), Mail (`mail_ready:false`),
+  Social-Keys, optional GCS-Bucket für den Nachrichten-Bus (`LEANS_OS_BUS.md`).
+- Der Nutzer bedient Google/OpenAI-Konsolen **ohne Terminal** — Anleitungen als
+  einzelne Klick-Schritte geben, Screenshots in den Chat sind der Prüfweg.
+
 ## Projekt
 
 `genesis-dwg-service` — Python/FastAPI-Backend, das DWG/DXF-Dateien entgegennimmt,
