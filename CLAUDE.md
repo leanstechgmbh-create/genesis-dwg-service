@@ -199,3 +199,97 @@ Positionstabelle Nr. | OZ | Beschreibung | Menge | Einh. | EP netto |
 Betrag netto | MwSt mit Abschnitts- und Zwischensummenzeilen, blauer
 Summenkasten (Nettobetrag / USt § 13b 0 % / Gesamtbetrag), kursiver
 Hinweisblock, zentrierte Fußzeile mit Stammdaten.
+
+### AAM-Ablage & Versand (VERBINDLICH)
+
+- **Drive-Ordner "AAM Handwerk&Montage"** (ID `1hFSevIO8XOoEmx0zM0Ew7P-9GEQgI9We`):
+  Dort wird JEDES für AAM erstellte Dokument abgelegt, sobald es raus ist —
+  Namensschema `<Datum> ANGEBOT/RECHNUNG <Nr> - AAM Handwerk und Montage -
+  <BV> - <Betrag> EUR (VERSENDETE FASSUNG).pdf`. Es werden laufend Angebote
+  für ihn gestellt; die versendete Fassung gehört immer ins Drive.
+- **Nummernschema AAM:** Rechnungen `RE26nnnn`, Angebote `AN26nnnn`
+  (Stand 05.08.2026: Rechnung RE260026, Angebot AN260027 vergeben).
+
+### Mailversand — was tatsächlich geht (Stand 05.08.2026)
+
+- **Gmail-Entwürfe können inzwischen Anhänge** (`create_draft` hat ein Feld
+  `attachments` mit base64). Die frühere Notiz "Anhänge werden verworfen"
+  ist überholt.
+- **ABER:** Große Dateien lassen sich nicht fehlerfrei durchreichen — ab
+  etwa 6.000 Zeichen Base64 (~4 KB Datei) kommt der Inhalt abgeschnitten an.
+  Gemessen mit 11,6 KB (45 % angekommen) und 7,1 KB (64 %). Gilt genauso für
+  `Google_Drive create_file` mit `base64Content`.
+  **Daher:** PDF-Anhänge und Drive-Uploads NICHT über base64 schicken —
+  stattdessen das PDF in den Chat liefern; der Nutzer hängt es an bzw. lädt
+  es selbst hoch. Nach jedem Upload die zurückgegebene `fileSize` mit der
+  echten Dateigröße vergleichen; weicht sie ab, ist die Datei unbrauchbar
+  und muss vom Nutzer gelöscht werden (KI hat keine Löschrechte im Drive).
+- **sr@leanstech-gmbh.de** ist ein eigenes IONOS-Postfach, KEIN Gmail-Alias
+  (Mails von sr@ liegen im Gmail-Konto nur als Kopie im Posteingang). Ein
+  Gmail-Entwurf trägt deshalb die Gmail-Adresse. Alternative, die
+  funktioniert: fertige **.eml-Datei** mit Absender sr@ bauen (Python
+  `email.message`) und in den Chat geben — der Nutzer öffnet bzw. importiert
+  sie im Mailprogramm und verschickt sie von dort.
+
+### Geberit Silent-db20 — Kalkulationswissen (aus BV Hotel Kleiststr. 1)
+
+Baulängen aus der Geberit-Baustelleneinweisung 12/2023 (liegt im Drive),
+nötig, um Formstücke in Leitungsmeter umzurechnen:
+
+| Bauteil | Art.-Nr. | Baulänge | Material-EK |
+|---|---|---|---|
+| Rohr d110x6, L 3 m (DN 100) | 310.000.14.1 | 3,00 m | 22,37 € |
+| Bogen 45° DN 100 | 310.450.14.1 | 0,16 m | 9,05 € |
+| Bogenabzweig 88,5° DN 100/100 | 310.108.14.1 | 0,225 m | 15,47 € |
+| Abzweig 45° DN 100/100 | 310.104.14.1 | 0,27 m | ~14 € |
+| Abzweig 45° DN 125/100 | 312.104.14.1 | 0,345 m | ~20 € |
+| Reinigungsstück 90° DN 100 | 310.334.14.1 | 0,24 m | ~25 € |
+| Systemrohrschelle DN 100 m. Dämmeinlage | 310.812.26.1 | — | 10,17 € |
+| Spannverbinder d 110 | 310.003.14.3 | — | 4,17 € |
+
+Regeln des Nutzers: **1 Systemrohrschelle je 1,00 m Leitung**, wobei die
+Leitungslänge = Rohraufmaß + Baulängen aller Formstücke ist. Für
+Meterpreis-Angebote: Material auf die Leitungslänge umlegen und
+**60,00 €/m Montage** aufschlagen. LEANS-Verkaufspreise db20 DN 100
+(aus Angebot 45): Rohr 89,30 €/m, Verbinder DN 100 12,00 €, DN 125 13,00 €.
+
+### „AAM-Stil" (VERBINDLICH, wenn der Nutzer das sagt)
+
+**Auslöser:** „AAM-Stil", „AAM Muster", „Angebot für AAM", „Angebot für
+Mahit", „Rechnung für AAM" — jede Formulierung, die AAM oder Mahit als
+Absender meint. Es werden laufend Dokumente für ihn erstellt; das muss
+ohne Rückfrage sitzen.
+
+**LEANS kommt darin NICHT vor — komplett raus:** kein LEANS-Logo, keine
+LEANS-Anschrift, keine LEANS-Bankverbindung, LEANS auch nicht als
+Empfänger (Empfänger ist der jeweilige Kunde). Ausschließlich AAM-Daten:
+eigenes Logo, Anschrift Scharnweberstr. 33, USt-IdNr. DE460797759,
+Steuernummer 17/484/02061, Commerzbank IBAN DE80 1004 0000 0792 1190 00,
+BIC COBADEFFXXX, E-Mail info@aam-handwerk-montage.de.
+
+**Werkzeug:** `python3 tools/aam_angebot.py <auftrag.json> --pdf` erzeugt
+HTML und PDF aus einer JSON-Datei (Kopfdaten + Positionen); Aufbau der
+JSON steht im Docstring des Skripts.
+
+Sagt der Nutzer **„AAM-Stil"** (auch „AAM Muster", „Stil von Mahit"),
+ist das Dokument im Briefkopf von **AAM Handwerk & Montage** (Inhaber
+Mahit Ramović, Scharnweberstr. 33, 13405 Berlin) zu erstellen —
+Vorlage: `vorlagen/aam-muster.html`, nachgebaut nach der AAM-Rechnung
+RE260026 vom 30.07.2026. AAM ist Subunternehmer/Partner der LEANS Tech
+GmbH; solche Dokumente sind Entwürfe für Mahit und müssen von ihm
+freigegeben werden.
+
+Aufbau (nicht abweichen): AAM-Logo links oben (`vorlagen/aam-logo.jpg`,
+19,6 mm breit) · Firmenblock rechtsbündig oben (Arial fett 10 pt)
++ E-Mail-Zeile `info@aam-handwerk-montage.de` (Calibri fett 11 pt) ·
+kursive Absenderzeile `AAM Handwerk&Montage * Scharnweberstr. 33 *
+13405 Berlin` · Empfängerblock links fett („Firma" + Anschrift), rechts
+daneben „Berlin \<Datum\>" · Titel „Rechnung" bzw. „Angebot" (fett 10 pt) ·
+Metazeilen Rechnungs-/Angebotsnummer (Schema `RE26nnnn` / `AN26nnnn`),
+Kst.Nr., Bauvorhaben, Leistungsdatum · Tabelle **Pos. | Bezeichnung |
+Menge | Einheit | Einzel € | Gesamt €** · Summenblock rechts
+(Gesamtbetrag Netto / zzgl. 19% MwSt / Zahlungsbetrag) · dreispaltiger
+Fußblock (Firma | USt-IdNr. + Steuernummer | Mahit Ramović + Bankverbindung).
+
+**Wichtig:** AAM rechnet mit **19 % MwSt** — kein § 13b, kein LEANS-Logo,
+keine LEANS-Bankverbindung.
