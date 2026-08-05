@@ -7,6 +7,8 @@
 @page{size:A4;margin:0}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Arial,Helvetica,sans-serif;font-size:10pt;color:#000;width:210mm;padding:16mm 18mm 10mm}
+.kopfzeile{display:flex;justify-content:space-between;align-items:flex-start}
+.logo{width:19.6mm;height:auto;display:block}
 .kopf-rechts{text-align:right;font-weight:bold;line-height:1.55}
 .mail{font-family:Calibri,Arial,sans-serif;font-size:11pt;font-weight:bold;text-align:right;margin-top:2px}
 .absenderzeile{font-style:italic;font-size:8pt;margin-top:14px;padding-bottom:2px}
@@ -38,13 +40,18 @@ table.summen tr.zahl td{font-weight:bold;border-top:1px solid #000}
 .fuss div:nth-child(3){text-align:right}
 </style></head><body>
 
-<div class="kopf-rechts">
-  AAM Handwerk&amp;Montage<br>
-  Scharnweberstr. 33<br>
-  13405 Berlin<br>
-  Tel.: +491629825633
+<div class="kopfzeile">
+  <img class="logo" src="aam-logo.jpg" alt="AAM Handwerk &amp; Montage">
+  <div>
+    <div class="kopf-rechts">
+      AAM Handwerk&amp;Montage<br>
+      Scharnweberstr. 33<br>
+      13405 Berlin<br>
+      Tel.: +491629825633
+    </div>
+    <div class="mail">info@aam-handwerk-montage.de</div>
+  </div>
 </div>
-<div class="mail">info@aam-handwerk-montage.de</div>
 
 <div class="absenderzeile">AAM Handwerk&amp;Montage * Scharnweberstr. 33 * 13405 Berlin</div>
 

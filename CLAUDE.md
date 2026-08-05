@@ -210,7 +210,8 @@ RE260026 vom 30.07.2026. AAM ist Subunternehmer/Partner der LEANS Tech
 GmbH; solche Dokumente sind Entwürfe für Mahit und müssen von ihm
 freigegeben werden.
 
-Aufbau (nicht abweichen): Firmenblock rechtsbündig oben (Arial fett 10 pt)
+Aufbau (nicht abweichen): AAM-Logo links oben (`vorlagen/aam-logo.jpg`,
+19,6 mm breit) · Firmenblock rechtsbündig oben (Arial fett 10 pt)
 + E-Mail-Zeile `info@aam-handwerk-montage.de` (Calibri fett 11 pt) ·
 kursive Absenderzeile `AAM Handwerk&Montage * Scharnweberstr. 33 *
 13405 Berlin` · Empfängerblock links fett („Firma" + Anschrift), rechts
