@@ -202,6 +202,22 @@ Hinweisblock, zentrierte Fußzeile mit Stammdaten.
 
 ### „AAM-Stil" (VERBINDLICH, wenn der Nutzer das sagt)
 
+**Auslöser:** „AAM-Stil", „AAM Muster", „Angebot für AAM", „Angebot für
+Mahit", „Rechnung für AAM" — jede Formulierung, die AAM oder Mahit als
+Absender meint. Es werden laufend Dokumente für ihn erstellt; das muss
+ohne Rückfrage sitzen.
+
+**LEANS kommt darin NICHT vor — komplett raus:** kein LEANS-Logo, keine
+LEANS-Anschrift, keine LEANS-Bankverbindung, LEANS auch nicht als
+Empfänger (Empfänger ist der jeweilige Kunde). Ausschließlich AAM-Daten:
+eigenes Logo, Anschrift Scharnweberstr. 33, USt-IdNr. DE460797759,
+Steuernummer 17/484/02061, Commerzbank IBAN DE80 1004 0000 0792 1190 00,
+BIC COBADEFFXXX, E-Mail info@aam-handwerk-montage.de.
+
+**Werkzeug:** `python3 tools/aam_angebot.py <auftrag.json> --pdf` erzeugt
+HTML und PDF aus einer JSON-Datei (Kopfdaten + Positionen); Aufbau der
+JSON steht im Docstring des Skripts.
+
 Sagt der Nutzer **„AAM-Stil"** (auch „AAM Muster", „Stil von Mahit"),
 ist das Dokument im Briefkopf von **AAM Handwerk & Montage** (Inhaber
 Mahit Ramović, Scharnweberstr. 33, 13405 Berlin) zu erstellen —
