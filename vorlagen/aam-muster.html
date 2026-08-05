@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="de"><head><meta charset="UTF-8">
+<!-- AAM-Stil: Briefkopf/Layout von AAM Handwerk & Montage (Mahit Ramovic),
+     nachgebaut nach Rechnung RE260026 vom 30.07.2026.
+     Verwendung: Rechnungen und Angebote, die AAM als Absender ausweisen.
+     Titel je nach Dokument: "Rechnung" oder "Angebot". USt.: 19 % (kein 13b). -->
+<style>
+@page{size:A4;margin:0}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;font-size:10pt;color:#000;width:210mm;padding:16mm 18mm 10mm}
+.kopf-rechts{text-align:right;font-weight:bold;line-height:1.55}
+.mail{font-family:Calibri,Arial,sans-serif;font-size:11pt;font-weight:bold;text-align:right;margin-top:2px}
+.absenderzeile{font-style:italic;font-size:8pt;margin-top:14px;padding-bottom:2px}
+.empf-zeile{display:flex;justify-content:space-between;align-items:flex-start;margin-top:4px}
+.empfaenger{font-weight:bold;line-height:1.55}
+.ortdatum{text-align:right;line-height:1.55}
+.ortdatum .ort{font-family:Calibri,Arial,sans-serif;font-size:11pt}
+.ortdatum .datum{font-style:italic}
+h1{font-size:10pt;font-weight:bold;margin:52px 0 6px}
+.dokmeta{line-height:1.62;margin-bottom:30px}
+table.pos{width:100%;border-collapse:collapse;font-size:10pt}
+table.pos thead th{font-weight:bold;padding:5px 4px;text-align:right;border-bottom:1px solid #000;white-space:nowrap}
+table.pos thead th.l{text-align:left}
+table.pos td{padding:5px 4px;text-align:right;vertical-align:top}
+table.pos td.l{text-align:left}
+table.pos td.nr{text-align:center;width:34px}
+table.pos tbody tr td{border-bottom:1px solid #d5d5d5}
+.detail{font-size:8.5pt;line-height:1.45;color:#333;margin-top:2px}
+.abs-zeile td{font-weight:bold;padding-top:10px;border-bottom:1px solid #000 !important}
+table.summen{width:100%;border-collapse:collapse;font-size:10pt;margin-top:14px}
+table.summen td{padding:4px 4px;text-align:right}
+table.summen td.lbl{text-align:left;width:55%;padding-left:47%}
+table.summen tr.b td{font-weight:bold}
+table.summen tr.zahl td{font-weight:bold;border-top:1px solid #000}
+.hinweis{font-size:8.5pt;line-height:1.5;color:#333;margin-top:26px}
+.fuss{margin-top:40px;padding-top:6px;font-family:Calibri,Arial,sans-serif;font-size:8pt;line-height:1.5;
+      display:flex;justify-content:space-between;border-top:1px solid #999}
+.fuss div:nth-child(2){text-align:center}
+.fuss div:nth-child(3){text-align:right}
+</style></head><body>
+
+<div class="kopf-rechts">
+  AAM Handwerk&amp;Montage<br>
+  Scharnweberstr. 33<br>
+  13405 Berlin<br>
+  Tel.: +491629825633
+</div>
+<div class="mail">info@aam-handwerk-montage.de</div>
+
+<div class="absenderzeile">AAM Handwerk&amp;Montage * Scharnweberstr. 33 * 13405 Berlin</div>
+
+<div class="empf-zeile">
+  <div class="empfaenger">
+    Firma<br>
+    {{KUNDE_NAME}}<br>
+    {{KUNDE_STRASSE}}<br>
+    {{KUNDE_PLZ_ORT}}
+  </div>
+  <div class="ortdatum">
+    <span class="ort">Berlin</span> <span class="datum">{{DATUM}}</span>
+  </div>
+</div>
+
+<h1>{{DOKUMENTTITEL}}</h1>
+<div class="dokmeta">
+  {{NUMMER_LABEL}}: {{NUMMER}}<br>
+  Kst.Nr.: {{KOSTENSTELLE}}<br>
+  Bauvorhaben: {{BAUVORHABEN}}<br>
+  {{ZUSATZZEILE}}<br>
+  {{DATUM_LABEL}}: {{DATUM_WERT}}
+</div>
+
+<table class="pos">
+  <thead>
+    <tr>
+      <th class="l" style="width:34px">Pos.</th>
+      <th class="l">Bezeichnung</th>
+      <th style="width:58px">Menge</th><th style="width:52px">Einheit</th>
+      <th style="width:72px">Einzel &euro;</th><th style="width:82px">Gesamt &euro;</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="abs-zeile"><td colspan="6" class="l">{{ABSCHNITT_TITEL}}</td></tr>
+    <tr>
+      <td class="nr">1</td>
+      <td class="l"><strong>{{POSITION_TITEL}}</strong><div class="detail">{{POSITION_BESCHREIBUNG}}</div></td>
+      <td>{{MENGE}}</td><td>{{EINHEIT}}</td><td>{{EINZELPREIS}} &euro;</td><td>{{GESAMT}} &euro;</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="summen">
+  <tr class="b"><td class="lbl">Gesamtbetrag Netto</td><td>{{NETTO}} &euro;</td></tr>
+  <tr><td class="lbl">zzgl. 19% MwSt</td><td>{{MWST}} &euro;</td></tr>
+  <tr class="zahl"><td class="lbl">{{SUMMENLABEL}}</td><td>{{BRUTTO}} &euro;</td></tr>
+</table>
+
+<div class="hinweis">{{HINWEISE}}</div>
+
+<div class="fuss">
+  <div>AAM Handwerk&amp;Montage<br>Scharnweberstr. 33<br>13405 Berlin<br>Tel.: +491629825633</div>
+  <div>USt-IdNr.: DE460797759<br>Steuernummer: 17/484/02061</div>
+  <div>Mahit Ramovic<br>Commerzbank<br>IBAN: DE80 1004 0000 0792 1190 00<br>BIC: COBADEFFXXX</div>
+</div>
+
+</body></html>

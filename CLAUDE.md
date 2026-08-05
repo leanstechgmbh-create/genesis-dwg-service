@@ -199,3 +199,27 @@ Positionstabelle Nr. | OZ | Beschreibung | Menge | Einh. | EP netto |
 Betrag netto | MwSt mit Abschnitts- und Zwischensummenzeilen, blauer
 Summenkasten (Nettobetrag / USt § 13b 0 % / Gesamtbetrag), kursiver
 Hinweisblock, zentrierte Fußzeile mit Stammdaten.
+
+### „AAM-Stil" (VERBINDLICH, wenn der Nutzer das sagt)
+
+Sagt der Nutzer **„AAM-Stil"** (auch „AAM Muster", „Stil von Mahit"),
+ist das Dokument im Briefkopf von **AAM Handwerk & Montage** (Inhaber
+Mahit Ramović, Scharnweberstr. 33, 13405 Berlin) zu erstellen —
+Vorlage: `vorlagen/aam-muster.html`, nachgebaut nach der AAM-Rechnung
+RE260026 vom 30.07.2026. AAM ist Subunternehmer/Partner der LEANS Tech
+GmbH; solche Dokumente sind Entwürfe für Mahit und müssen von ihm
+freigegeben werden.
+
+Aufbau (nicht abweichen): Firmenblock rechtsbündig oben (Arial fett 10 pt)
++ E-Mail-Zeile `info@aam-handwerk-montage.de` (Calibri fett 11 pt) ·
+kursive Absenderzeile `AAM Handwerk&Montage * Scharnweberstr. 33 *
+13405 Berlin` · Empfängerblock links fett („Firma" + Anschrift), rechts
+daneben „Berlin \<Datum\>" · Titel „Rechnung" bzw. „Angebot" (fett 10 pt) ·
+Metazeilen Rechnungs-/Angebotsnummer (Schema `RE26nnnn` / `AN26nnnn`),
+Kst.Nr., Bauvorhaben, Leistungsdatum · Tabelle **Pos. | Bezeichnung |
+Menge | Einheit | Einzel € | Gesamt €** · Summenblock rechts
+(Gesamtbetrag Netto / zzgl. 19% MwSt / Zahlungsbetrag) · dreispaltiger
+Fußblock (Firma | USt-IdNr. + Steuernummer | Mahit Ramović + Bankverbindung).
+
+**Wichtig:** AAM rechnet mit **19 % MwSt** — kein § 13b, kein LEANS-Logo,
+keine LEANS-Bankverbindung.
