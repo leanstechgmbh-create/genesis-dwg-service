@@ -1,12 +1,12 @@
 name: Deploy zu Cloud Run
 
-# Deployt den Service automatisch bei jedem Push auf main.
-# Einmalige Einrichtung (2 Secrets): siehe DEPLOY_SETUP.md
-# Manuell ausloesbar ueber den "Run workflow"-Knopf (workflow_dispatch).
+# Der automatische Deploy laeuft ueber den Cloud-Build-Trigger im Projekt
+# leans-social (baut bei jedem Push auf main selbst). Diese Action ist daher
+# nur noch manuell ausloesbar ("Run workflow"-Knopf) und braucht dafuer die
+# zwei Secrets aus DEPLOY_SETUP.md — ohne automatischen Lauf gibt es keine
+# roten Haekchen mehr an jedem Commit.
 
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 jobs:
