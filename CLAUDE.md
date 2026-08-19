@@ -178,16 +178,37 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
    Nutzer zum Löschen auflisten (KI hat keine Löschrechte im Drive).
 4. Gilt genauso für Angebote und alle anderen Dokumente.
 
-### E-Mail-Versand an Kunden (VERBINDLICH)
+### E-Mail-Versand an Kunden (VERBINDLICH — Stand 08/2026)
 
 - Rechnungen/Angebote an Kunden gehen IMMER vom Postfach **sr@** (IONOS)
   raus — NIEMALS von leanstechgmbh@gmail.com, außer der Nutzer sagt es
-  ausdrücklich. Der Nutzer hat dafür eine eigene Schnittstelle
-  (IONOS + Gmail) in seinem n8n gebaut (semirredzic.app.n8n.cloud).
-- Ist der n8n-Connector in der Sitzung NICHT verbunden: EINMAL kurz
-  sagen, dass der Versand über sr@ gerade nicht möglich ist, und sofort
-  den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern. Nicht
-  wiederholt erklären oder diskutieren.
+  ausdrücklich.
+- **n8n ist für Mail ABGESCHAFFT** (seit 08/2026). Niemals mehr n8n als
+  Versandweg nennen, vorschlagen oder als fehlend beklagen. Der Mailweg
+  ist der eigene **Mail-MCP-Server „LeansTech Mail"**
+  (`Documents\MailManager\mail_mcp.py` auf Semirs PC):
+  - Kontenschlüssel: `ionos_sr` = sr@leanstech-gmbh.de ·
+    `ionos_info` = info@leanstech-gmbh.de · außerdem `gmx`, `webde`,
+    `gmail` (hotmail bewusst zurückgestellt).
+  - Werkzeuge: `list_accounts`, `list_folders`, `count_folders`,
+    `search_mail`, `read_mail`, `save_draft`, `send_mail`, `delete_mail`.
+  - **PC-Sitzungen** (Claude Code lokal / Codex) erreichen ihn per stdio
+    (`mail_leanstech`). `send_mail` NUR nach ausdrücklicher Freigabe
+    durch Semir — Standard ist `save_draft`. `delete_mail` nur mit
+    `confirm=true` (Standard: Papierkorb).
+  - **Cloud-Sitzungen** (claude.ai, Handy) erreichen ihn als Konnektor
+    über `https://mcp.leanstech-klima.de/mail/mcp` (Bearer-Auth).
+    Dort sind `send_mail`/`delete_mail` serverseitig hart deaktiviert —
+    Lesen/Suchen/Entwürfe ja, Versand nein.
+  - Eigenheiten: Volltextsuche `text=` filtert NICHT — stattdessen
+    `subject=` oder `sender=` verwenden. `read_mail` liefert bei
+    HTML-only-Mails leeren Body. Nach `save_draft` mit
+    `search_mail(folder=…)` gegenprüfen, ob der Entwurf wirklich liegt.
+- Ist in der Sitzung KEIN Mail-Werkzeug für sr@/info@ verbunden: EINMAL
+  kurz sagen, dass der Versand über sr@ gerade nicht möglich ist, und
+  sofort den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern.
+  Nicht wiederholt erklären oder diskutieren — und NICHT auf n8n
+  verweisen.
 - Der Gmail-Connector (leanstechgmbh@gmail.com) kann KEINE Anhänge in
   Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
   verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.
