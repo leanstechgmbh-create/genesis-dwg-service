@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461273.574849537
+2461273.6615046295
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461273.574849537
+2461273.6615046295
   9
 $TDUUPDATE
  40
@@ -553,7 +553,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-121
+126
   9
 $SURFTAB1
  70
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{C6BB0EEE-4CCF-4E03-8FAF-D045DDD1A125}
+{EF9FDA05-7677-4C59-A363-F8AB87450C7D}
   9
 $VERSIONGUID
   2
-{00F68273-81A3-44E1-996E-87E516590635}
+{12C75121-6C2C-47C1-877B-E7978763FABA}
   9
 $EXTNAMES
 290
@@ -3305,7 +3305,7 @@ ACAD
   0
 APPID
   5
-11E
+123
 330
 3
 100
@@ -3319,7 +3319,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-11F
+124
 330
 3
 100
@@ -5475,19 +5475,19 @@ AcDbText
  10
 47.5
  20
-188.0
+190.0
  30
 0.0
  40
 4.0
   1
-WÄRMEPUMPEN 1–6
+WÄRMEPUMPEN 1–3
  72
 1
  11
 47.5
  21
-188.0
+190.0
  31
 0.0
 100
@@ -5509,19 +5509,19 @@ AcDbText
  10
 47.5
  20
-177.0
+181.0
  30
 0.0
  40
-3.2
+3.0
   1
-je 16 kW, reversibel
+Midea MHC-V10W/D2N8-BER90
  72
 1
  11
 47.5
  21
-177.0
+181.0
  31
 0.0
 100
@@ -5543,7 +5543,41 @@ AcDbText
  10
 47.5
  20
-169.0
+174.0
+ 30
+0.0
+ 40
+2.8
+  1
+je 10,0 kW (A7/W35, COP 4,95), reversibel
+ 72
+1
+ 11
+47.5
+ 21
+174.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+97
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+47.5
+ 20
+167.0
  30
 0.0
  40
@@ -5555,7 +5589,41 @@ Heizen / Kühlen / WW
  11
 47.5
  21
-169.0
+167.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+98
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+47.5
+ 20
+159.0
+ 30
+0.0
+ 40
+2.8
+  1
+R32 · 400 V 3N~ · E-Heizstab (IBH) 9 kW
+ 72
+1
+ 11
+47.5
+ 21
+159.0
  31
 0.0
 100
@@ -5565,7 +5633,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-97
+99
 330
 17
 100
@@ -5597,74 +5665,6 @@ AcDbPolyline
   0
 TEXT
   5
-98
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-47.5
- 20
-93.0
- 30
-0.0
- 40
-4.0
-  1
-WÄRMEPUMPEN 7–12
- 72
-1
- 11
-47.5
- 21
-93.0
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-99
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-47.5
- 20
-82.0
- 30
-0.0
- 40
-3.2
-  1
-je 16 kW, reversibel
- 72
-1
- 11
-47.5
- 21
-82.0
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
 9A
 330
 17
@@ -5677,19 +5677,19 @@ AcDbText
  10
 47.5
  20
-74.0
+95.0
  30
 0.0
  40
-3.2
+4.0
   1
-Heizen / Kühlen / WW
+WÄRMEPUMPEN 4–6
  72
 1
  11
 47.5
  21
-74.0
+95.0
  31
 0.0
 100
@@ -5709,6 +5709,142 @@ TEXT
 100
 AcDbText
  10
+47.5
+ 20
+86.0
+ 30
+0.0
+ 40
+3.0
+  1
+Midea MHC-V10W/D2N8-BER90
+ 72
+1
+ 11
+47.5
+ 21
+86.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+9C
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+47.5
+ 20
+79.0
+ 30
+0.0
+ 40
+2.8
+  1
+je 10,0 kW (A7/W35, COP 4,95), reversibel
+ 72
+1
+ 11
+47.5
+ 21
+79.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+9D
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+47.5
+ 20
+72.0
+ 30
+0.0
+ 40
+3.2
+  1
+Heizen / Kühlen / WW
+ 72
+1
+ 11
+47.5
+ 21
+72.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+9E
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+47.5
+ 20
+64.0
+ 30
+0.0
+ 40
+2.8
+  1
+R32 · 400 V 3N~ · E-Heizstab (IBH) 9 kW
+ 72
+1
+ 11
+47.5
+ 21
+64.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+9F
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
 10.0
  20
 137.0
@@ -5717,7 +5853,7 @@ AcDbText
  40
 3.2
   1
-Kaskade gesamt: 12 × 16 kW = 192 kW
+Kaskade gesamt: 6 × 10 kW = 60 kW (A7/W35)
  11
 10.0
  21
@@ -5729,103 +5865,103 @@ AcDbText
   0
 LINE
   5
-9C
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-85.0
- 20
-195.0
- 30
-0.0
- 11
-110.0
- 21
-195.0
- 31
-0.0
-  0
-LINE
-  5
-9D
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-85.0
- 20
-100.0
- 30
-0.0
- 11
-110.0
- 21
-100.0
- 31
-0.0
-  0
-LINE
-  5
-9E
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbLine
- 10
-85.0
- 20
-160.0
- 30
-0.0
- 11
-130.0
- 21
-160.0
- 31
-0.0
-  0
-LINE
-  5
-9F
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbLine
- 10
-85.0
- 20
-65.0
- 30
-0.0
- 11
-130.0
- 21
-65.0
- 31
-0.0
-  0
-LINE
-  5
 A0
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+85.0
+ 20
+195.0
+ 30
+0.0
+ 11
+110.0
+ 21
+195.0
+ 31
+0.0
+  0
+LINE
+  5
+A1
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+85.0
+ 20
+100.0
+ 30
+0.0
+ 11
+110.0
+ 21
+100.0
+ 31
+0.0
+  0
+LINE
+  5
+A2
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+85.0
+ 20
+160.0
+ 30
+0.0
+ 11
+130.0
+ 21
+160.0
+ 31
+0.0
+  0
+LINE
+  5
+A3
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+85.0
+ 20
+65.0
+ 30
+0.0
+ 11
+130.0
+ 21
+65.0
+ 31
+0.0
+  0
+LINE
+  5
+A4
 330
 17
 100
@@ -5849,7 +5985,7 @@ AcDbLine
   0
 LINE
   5
-A1
+A5
 330
 17
 100
@@ -5873,7 +6009,7 @@ AcDbLine
   0
 CIRCLE
   5
-A2
+A6
 330
 17
 100
@@ -5893,7 +6029,7 @@ AcDbCircle
   0
 CIRCLE
   5
-A3
+A7
 330
 17
 100
@@ -5913,7 +6049,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-A4
+A8
 330
 17
 100
@@ -5941,7 +6077,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-A5
+A9
 330
 17
 100
@@ -5969,7 +6105,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-A6
+AA
 330
 17
 100
@@ -5997,7 +6133,7 @@ AcDbPolyline
   0
 TEXT
   5
-A7
+AB
 330
 17
 100
@@ -6027,7 +6163,7 @@ AcDbText
   0
 LINE
   5
-A8
+AC
 330
 17
 100
@@ -6051,7 +6187,7 @@ AcDbLine
   0
 LINE
   5
-A9
+AD
 330
 17
 100
@@ -6075,7 +6211,7 @@ AcDbLine
   0
 LINE
   5
-AA
+AE
 330
 17
 100
@@ -6099,7 +6235,7 @@ AcDbLine
   0
 CIRCLE
   5
-AB
+AF
 330
 17
 100
@@ -6119,7 +6255,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-AC
+B0
 330
 17
 100
@@ -6147,7 +6283,7 @@ AcDbPolyline
   0
 TEXT
   5
-AD
+B1
 330
 17
 100
@@ -6177,7 +6313,7 @@ AcDbText
   0
 TEXT
   5
-AE
+B2
 330
 17
 100
@@ -6207,7 +6343,7 @@ AcDbText
   0
 TEXT
   5
-AF
+B3
 330
 17
 100
@@ -6237,7 +6373,7 @@ AcDbText
   0
 LINE
   5
-B0
+B4
 330
 17
 100
@@ -6261,7 +6397,7 @@ AcDbLine
   0
 LINE
   5
-B1
+B5
 330
 17
 100
@@ -6285,7 +6421,7 @@ AcDbLine
   0
 ARC
   5
-B2
+B6
 330
 17
 100
@@ -6311,7 +6447,7 @@ AcDbArc
   0
 ARC
   5
-B3
+B7
 330
 17
 100
@@ -6337,7 +6473,7 @@ AcDbArc
   0
 TEXT
   5
-B4
+B8
 330
 17
 100
@@ -6371,7 +6507,7 @@ AcDbText
   0
 TEXT
   5
-B5
+B9
 330
 17
 100
@@ -6405,7 +6541,7 @@ AcDbText
   0
 TEXT
   5
-B6
+BA
 330
 17
 100
@@ -6439,95 +6575,95 @@ AcDbText
   0
 LINE
   5
-B7
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-212.0
- 20
-285.0
- 30
-0.0
- 11
-212.0
- 21
-300.0
- 31
-0.0
-  0
-CIRCLE
-  5
-B8
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbCircle
- 10
-212.0
- 20
-285.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
-  5
-B9
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbLine
- 10
-238.0
- 20
-265.0
- 30
-0.0
- 11
-238.0
- 21
-300.0
- 31
-0.0
-  0
-CIRCLE
-  5
-BA
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbCircle
- 10
-238.0
- 20
-265.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
-  5
 BB
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+212.0
+ 20
+285.0
+ 30
+0.0
+ 11
+212.0
+ 21
+300.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+BC
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbCircle
+ 10
+212.0
+ 20
+285.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+BD
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+238.0
+ 20
+265.0
+ 30
+0.0
+ 11
+238.0
+ 21
+300.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+BE
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbCircle
+ 10
+238.0
+ 20
+265.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+BF
 330
 17
 100
@@ -6551,7 +6687,7 @@ AcDbLine
   0
 LINE
   5
-BC
+C0
 330
 17
 100
@@ -6575,7 +6711,7 @@ AcDbLine
   0
 LINE
   5
-BD
+C1
 330
 17
 100
@@ -6599,7 +6735,7 @@ AcDbLine
   0
 LINE
   5
-BE
+C2
 330
 17
 100
@@ -6623,7 +6759,7 @@ AcDbLine
   0
 LINE
   5
-BF
+C3
 330
 17
 100
@@ -6647,7 +6783,7 @@ AcDbLine
   0
 LINE
   5
-C0
+C4
 330
 17
 100
@@ -6671,7 +6807,7 @@ AcDbLine
   0
 LINE
   5
-C1
+C5
 330
 17
 100
@@ -6695,7 +6831,7 @@ AcDbLine
   0
 LINE
   5
-C2
+C6
 330
 17
 100
@@ -6719,7 +6855,7 @@ AcDbLine
   0
 ARC
   5
-C3
+C7
 330
 17
 100
@@ -6745,7 +6881,7 @@ AcDbArc
   0
 ARC
   5
-C4
+C8
 330
 17
 100
@@ -6771,7 +6907,7 @@ AcDbArc
   0
 TEXT
   5
-C5
+C9
 330
 17
 100
@@ -6805,7 +6941,7 @@ AcDbText
   0
 TEXT
   5
-C6
+CA
 330
 17
 100
@@ -6839,7 +6975,7 @@ AcDbText
   0
 TEXT
   5
-C7
+CB
 330
 17
 100
@@ -6873,95 +7009,95 @@ AcDbText
   0
 LINE
   5
-C8
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-292.0
- 20
-285.0
- 30
-0.0
- 11
-292.0
- 21
-300.0
- 31
-0.0
-  0
-CIRCLE
-  5
-C9
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbCircle
- 10
-292.0
- 20
-285.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
-  5
-CA
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbLine
- 10
-318.0
- 20
-265.0
- 30
-0.0
- 11
-318.0
- 21
-300.0
- 31
-0.0
-  0
-CIRCLE
-  5
-CB
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbCircle
- 10
-318.0
- 20
-265.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
-  5
 CC
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+292.0
+ 20
+285.0
+ 30
+0.0
+ 11
+292.0
+ 21
+300.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+CD
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbCircle
+ 10
+292.0
+ 20
+285.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+CE
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+318.0
+ 20
+265.0
+ 30
+0.0
+ 11
+318.0
+ 21
+300.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+CF
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbCircle
+ 10
+318.0
+ 20
+265.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+D0
 330
 17
 100
@@ -6985,7 +7121,7 @@ AcDbLine
   0
 LINE
   5
-CD
+D1
 330
 17
 100
@@ -7009,7 +7145,7 @@ AcDbLine
   0
 LINE
   5
-CE
+D2
 330
 17
 100
@@ -7033,7 +7169,7 @@ AcDbLine
   0
 LINE
   5
-CF
+D3
 330
 17
 100
@@ -7057,7 +7193,7 @@ AcDbLine
   0
 LINE
   5
-D0
+D4
 330
 17
 100
@@ -7081,7 +7217,7 @@ AcDbLine
   0
 LINE
   5
-D1
+D5
 330
 17
 100
@@ -7105,7 +7241,7 @@ AcDbLine
   0
 TEXT
   5
-D2
+D6
 330
 17
 100
@@ -7135,7 +7271,7 @@ AcDbText
   0
 TEXT
   5
-D3
+D7
 330
 17
 100
@@ -7165,7 +7301,7 @@ AcDbText
   0
 LINE
   5
-D4
+D8
 330
 17
 100
@@ -7189,7 +7325,7 @@ AcDbLine
   0
 LINE
   5
-D5
+D9
 330
 17
 100
@@ -7213,7 +7349,7 @@ AcDbLine
   0
 CIRCLE
   5
-D6
+DA
 330
 17
 100
@@ -7233,7 +7369,7 @@ AcDbCircle
   0
 CIRCLE
   5
-D7
+DB
 330
 17
 100
@@ -7253,7 +7389,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-D8
+DC
 330
 17
 100
@@ -7281,7 +7417,7 @@ AcDbPolyline
   0
 TEXT
   5
-D9
+DD
 330
 17
 100
@@ -7311,7 +7447,7 @@ AcDbText
   0
 TEXT
   5
-DA
+DE
 330
 17
 100
@@ -7341,7 +7477,7 @@ AcDbText
   0
 TEXT
   5
-DB
+DF
 330
 17
 100
@@ -7371,7 +7507,7 @@ AcDbText
   0
 LINE
   5
-DC
+E0
 330
 17
 100
@@ -7395,7 +7531,7 @@ AcDbLine
   0
 LINE
   5
-DD
+E1
 330
 17
 100
@@ -7419,7 +7555,7 @@ AcDbLine
   0
 ARC
   5
-DE
+E2
 330
 17
 100
@@ -7445,7 +7581,7 @@ AcDbArc
   0
 ARC
   5
-DF
+E3
 330
 17
 100
@@ -7471,7 +7607,7 @@ AcDbArc
   0
 TEXT
   5
-E0
+E4
 330
 17
 100
@@ -7505,7 +7641,7 @@ AcDbText
   0
 TEXT
   5
-E1
+E5
 330
 17
 100
@@ -7539,7 +7675,7 @@ AcDbText
   0
 TEXT
   5
-E2
+E6
 330
 17
 100
@@ -7571,97 +7707,131 @@ AcDbText
  73
 2
   0
-LINE
-  5
-E3
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-212.0
- 20
-235.0
- 30
-0.0
- 11
-212.0
- 21
-195.0
- 31
-0.0
-  0
-CIRCLE
-  5
-E4
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbCircle
- 10
-212.0
- 20
-235.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
-  5
-E5
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbLine
- 10
-238.0
- 20
-215.0
- 30
-0.0
- 11
-238.0
- 21
-195.0
- 31
-0.0
-  0
-CIRCLE
-  5
-E6
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbCircle
- 10
-238.0
- 20
-215.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
+TEXT
   5
 E7
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+225.0
+ 20
+131.0
+ 30
+0.0
+ 40
+2.6
+  1
+Austria Email · 95 °C · 0,4 MPa
+ 72
+1
+ 11
+225.0
+ 21
+131.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LINE
+  5
+E8
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+212.0
+ 20
+235.0
+ 30
+0.0
+ 11
+212.0
+ 21
+195.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+E9
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbCircle
+ 10
+212.0
+ 20
+235.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+EA
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+238.0
+ 20
+215.0
+ 30
+0.0
+ 11
+238.0
+ 21
+195.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+EB
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbCircle
+ 10
+238.0
+ 20
+215.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+EC
 330
 17
 100
@@ -7685,7 +7855,7 @@ AcDbLine
   0
 LINE
   5
-E8
+ED
 330
 17
 100
@@ -7709,7 +7879,7 @@ AcDbLine
   0
 ARC
   5
-E9
+EE
 330
 17
 100
@@ -7735,7 +7905,7 @@ AcDbArc
   0
 ARC
   5
-EA
+EF
 330
 17
 100
@@ -7761,7 +7931,7 @@ AcDbArc
   0
 TEXT
   5
-EB
+F0
 330
 17
 100
@@ -7795,7 +7965,7 @@ AcDbText
   0
 TEXT
   5
-EC
+F1
 330
 17
 100
@@ -7829,7 +7999,7 @@ AcDbText
   0
 TEXT
   5
-ED
+F2
 330
 17
 100
@@ -7863,7 +8033,7 @@ AcDbText
   0
 LINE
   5
-EE
+F3
 330
 17
 100
@@ -7887,7 +8057,7 @@ AcDbLine
   0
 CIRCLE
   5
-EF
+F4
 330
 17
 100
@@ -7907,7 +8077,7 @@ AcDbCircle
   0
 LINE
   5
-F0
+F5
 330
 17
 100
@@ -7931,7 +8101,7 @@ AcDbLine
   0
 CIRCLE
   5
-F1
+F6
 330
 17
 100
@@ -7951,7 +8121,7 @@ AcDbCircle
   0
 LINE
   5
-F2
+F7
 330
 17
 100
@@ -7975,7 +8145,7 @@ AcDbLine
   0
 LINE
   5
-F3
+F8
 330
 17
 100
@@ -7999,7 +8169,7 @@ AcDbLine
   0
 LINE
   5
-F4
+F9
 330
 17
 100
@@ -8023,7 +8193,7 @@ AcDbLine
   0
 LINE
   5
-F5
+FA
 330
 17
 100
@@ -8047,7 +8217,7 @@ AcDbLine
   0
 LINE
   5
-F6
+FB
 330
 17
 100
@@ -8071,7 +8241,7 @@ AcDbLine
   0
 LINE
   5
-F7
+FC
 330
 17
 100
@@ -8095,7 +8265,7 @@ AcDbLine
   0
 CIRCLE
   5
-F8
+FD
 330
 17
 100
@@ -8115,7 +8285,7 @@ AcDbCircle
   0
 CIRCLE
   5
-F9
+FE
 330
 17
 100
@@ -8135,7 +8305,7 @@ AcDbCircle
   0
 TEXT
   5
-FA
+FF
 330
 17
 100
@@ -8165,7 +8335,7 @@ AcDbText
   0
 TEXT
   5
-FB
+100
 330
 17
 100
@@ -8195,7 +8365,7 @@ AcDbText
   0
 TEXT
   5
-FC
+101
 330
 17
 100
@@ -8225,7 +8395,7 @@ AcDbText
   0
 TEXT
   5
-FD
+102
 330
 17
 100
@@ -8255,7 +8425,7 @@ AcDbText
   0
 TEXT
   5
-FE
+103
 330
 17
 100
@@ -8285,7 +8455,7 @@ AcDbText
   0
 TEXT
   5
-FF
+104
 330
 17
 100
@@ -8315,7 +8485,7 @@ AcDbText
   0
 LINE
   5
-100
+105
 330
 17
 100
@@ -8339,7 +8509,7 @@ AcDbLine
   0
 CIRCLE
   5
-101
+106
 330
 17
 100
@@ -8359,7 +8529,7 @@ AcDbCircle
   0
 LINE
   5
-102
+107
 330
 17
 100
@@ -8383,7 +8553,7 @@ AcDbLine
   0
 LINE
   5
-103
+108
 330
 17
 100
@@ -8407,7 +8577,7 @@ AcDbLine
   0
 LINE
   5
-104
+109
 330
 17
 100
@@ -8431,7 +8601,7 @@ AcDbLine
   0
 CIRCLE
   5
-105
+10A
 330
 17
 100
@@ -8451,7 +8621,7 @@ AcDbCircle
   0
 TEXT
   5
-106
+10B
 330
 17
 100
@@ -8481,7 +8651,7 @@ AcDbText
   0
 TEXT
   5
-107
+10C
 330
 17
 100
@@ -8511,7 +8681,7 @@ AcDbText
   0
 TEXT
   5
-108
+10D
 330
 17
 100
@@ -8541,7 +8711,7 @@ AcDbText
   0
 TEXT
   5
-109
+10E
 330
 17
 100
@@ -8571,7 +8741,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-10A
+10F
 330
 17
 100
@@ -8603,7 +8773,7 @@ AcDbPolyline
   0
 TEXT
   5
-10B
+110
 330
 17
 100
@@ -8633,7 +8803,7 @@ AcDbText
   0
 LINE
   5
-10C
+111
 330
 17
 100
@@ -8657,7 +8827,7 @@ AcDbLine
   0
 TEXT
   5
-10D
+112
 330
 17
 100
@@ -8687,7 +8857,7 @@ AcDbText
   0
 LINE
   5
-10E
+113
 330
 17
 100
@@ -8711,7 +8881,7 @@ AcDbLine
   0
 TEXT
   5
-10F
+114
 330
 17
 100
@@ -8741,7 +8911,7 @@ AcDbText
   0
 CIRCLE
   5
-110
+115
 330
 17
 100
@@ -8761,7 +8931,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-111
+116
 330
 17
 100
@@ -8789,7 +8959,7 @@ AcDbPolyline
   0
 TEXT
   5
-112
+117
 330
 17
 100
@@ -8819,7 +8989,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-113
+118
 330
 17
 100
@@ -8847,7 +9017,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-114
+119
 330
 17
 100
@@ -8875,7 +9045,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-115
+11A
 330
 17
 100
@@ -8903,7 +9073,7 @@ AcDbPolyline
   0
 TEXT
   5
-116
+11B
 330
 17
 100
@@ -8933,7 +9103,7 @@ AcDbText
   0
 CIRCLE
   5
-117
+11C
 330
 17
 100
@@ -8953,7 +9123,7 @@ AcDbCircle
   0
 LINE
   5
-118
+11D
 330
 17
 100
@@ -8977,7 +9147,7 @@ AcDbLine
   0
 TEXT
   5
-119
+11E
 330
 17
 100
@@ -9007,7 +9177,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-11A
+11F
 330
 17
 100
@@ -9039,7 +9209,7 @@ AcDbPolyline
   0
 LINE
   5
-11B
+120
 330
 17
 100
@@ -9063,7 +9233,7 @@ AcDbLine
   0
 TEXT
   5
-11C
+121
 330
 17
 100
@@ -9093,7 +9263,7 @@ AcDbText
   0
 TEXT
   5
-11D
+122
 330
 17
 100
@@ -10211,7 +10381,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-120
+125
   0
 DICTIONARYVAR
   5
@@ -10223,7 +10393,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T13:47:47.537870+00:00
+1.4.4 @ 2026-08-20T15:52:34.629223+00:00
   0
 VISUALSTYLE
   5
@@ -16777,7 +16947,7 @@ strokes_ogs.tif
   0
 DICTIONARYVAR
   5
-120
+125
 330
 2D
 100
@@ -16785,7 +16955,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T13:47:47.545859+00:00
+1.4.4 @ 2026-08-20T15:52:34.640059+00:00
   0
 ENDSEC
   0

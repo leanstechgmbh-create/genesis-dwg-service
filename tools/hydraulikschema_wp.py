@@ -1,7 +1,8 @@
 """Hydraulikschema (Prinzip) als DXF erzeugen:
 
-2 reversible Waermepumpen (Heizen/Kuehlen) mit Umschaltung auf zwei
-getrennte 2-Leiter-Netze:
+Kaskade aus 6 reversiblen Waermepumpen Midea MHC-V10W/D2N8-BER90
+(je 10 kW, Heizen/Kuehlen) mit Umschaltung auf zwei getrennte
+2-Leiter-Netze:
   - Warmwasser: eigenes VL/RL-Paar zu 2 Trinkwarmwasser-Speichern
   - Heizen/Kuehlen: ein VL/RL-Paar (Change-Over) ueber 2 Pufferspeicher,
     ueber die geheizt UND gekuehlt wird
@@ -86,13 +87,17 @@ def build(doc):
     # --- Waermepumpen (Kaskade, Prinzip: 2 Gruppen dargestellt) -----------
     for i, y0 in enumerate((150, 55)):
         rect(msp, 10, y0, 85, y0 + 55, "WP")
-        text(msp, ("WÄRMEPUMPEN 1–6", "WÄRMEPUMPEN 7–12")[i], (47.5, y0 + 38), 4.0,
+        text(msp, ("WÄRMEPUMPEN 1–3", "WÄRMEPUMPEN 4–6")[i], (47.5, y0 + 40), 4.0,
              align=TextEntityAlignment.MIDDLE_CENTER)
-        text(msp, "je 16 kW, reversibel", (47.5, y0 + 27), 3.2,
+        text(msp, "Midea MHC-V10W/D2N8-BER90", (47.5, y0 + 31), 3.0,
              align=TextEntityAlignment.MIDDLE_CENTER)
-        text(msp, "Heizen / Kühlen / WW", (47.5, y0 + 19), 3.2,
+        text(msp, "je 10,0 kW (A7/W35, COP 4,95), reversibel", (47.5, y0 + 24), 2.8,
              align=TextEntityAlignment.MIDDLE_CENTER)
-    text(msp, "Kaskade gesamt: 12 × 16 kW = 192 kW", (10, 137), 3.2)
+        text(msp, "Heizen / Kühlen / WW", (47.5, y0 + 17), 3.2,
+             align=TextEntityAlignment.MIDDLE_CENTER)
+        text(msp, "R32 · 400 V 3N~ · E-Heizstab (IBH) 9 kW", (47.5, y0 + 9), 2.8,
+             align=TextEntityAlignment.MIDDLE_CENTER)
+    text(msp, "Kaskade gesamt: 6 × 10 kW = 60 kW (A7/W35)", (10, 137), 3.2)
 
     # Anschlusshoehen
     wp_vl = [195, 100]   # Vorlauf je WP
@@ -163,6 +168,9 @@ def build(doc):
              align=TextEntityAlignment.MIDDLE_CENTER)
         text(msp, "Heizen + Kühlen", (xs + 25, 139), 2.8,
              align=TextEntityAlignment.MIDDLE_CENTER)
+        if i == 0:   # Typenschild-Daten des vorhandenen Puffers
+            text(msp, "Austria Email · 95 °C · 0,4 MPa", (xs + 25, 131), 2.6,
+                 align=TextEntityAlignment.MIDDLE_CENTER)
         line(msp, (xs + 12, Y_HK_VL), (xs + 12, 195), "VL")  # kreuzt HK-RL ohne Punkt
         punkt(msp, (xs + 12, Y_HK_VL), "VL")
         line(msp, (xs + 38, Y_HK_RL), (xs + 38, 195), "RL")
