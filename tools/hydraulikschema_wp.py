@@ -175,8 +175,10 @@ def build(doc):
     punkt(msp, (330, Y_HK_RL), "RL")
     text(msp, "zu / von den", (385, Y_HK_VL - 5), 3.2)
     text(msp, "21 Umluftkühlgeräten", (385, Y_HK_VL - 13), 3.2)
-    text(msp, "à 1,5 kW (2-Leiter Change-Over,", (385, Y_HK_VL - 21), 2.8)
-    text(msp, "Kondensatablauf je Gerät)", (385, Y_HK_VL - 29), 2.8)
+    text(msp, "KONVEKA DF2 51 (2-Leiter-Ausführung)", (385, Y_HK_VL - 21), 2.8)
+    text(msp, "Kühlen 17/22 °C: 1,5 kW je Gerät", (385, Y_HK_VL - 29), 2.8)
+    text(msp, "Heizen 35/30 °C: 1,6 kW je Gerät", (385, Y_HK_VL - 37), 2.8)
+    text(msp, "Kondensatanschluss DN20 je Gerät", (385, Y_HK_VL - 45), 2.8)
 
     # MAG + Fuellen/Entleeren am Ruecklauf-Sammler
     line(msp, (X_RL, 90), (X_RL, 82), "RL")

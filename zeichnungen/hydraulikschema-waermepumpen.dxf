@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461273.5592824076
+2461273.574849537
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461273.5592824076
+2461273.574849537
   9
 $TDUUPDATE
  40
@@ -553,7 +553,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-11F
+121
   9
 $SURFTAB1
  70
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{AE15894A-E73C-4969-8565-A5A7D515ADE1}
+{C6BB0EEE-4CCF-4E03-8FAF-D045DDD1A125}
   9
 $VERSIONGUID
   2
-{868CCA55-9487-40E0-846B-870029851692}
+{00F68273-81A3-44E1-996E-87E516590635}
   9
 $EXTNAMES
 290
@@ -3305,7 +3305,7 @@ ACAD
   0
 APPID
   5
-11C
+11E
 330
 3
 100
@@ -3319,7 +3319,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-11D
+11F
 330
 3
 100
@@ -8213,7 +8213,7 @@ AcDbText
  40
 2.8
   1
-à 1,5 kW (2-Leiter Change-Over,
+KONVEKA DF2 51 (2-Leiter-Ausführung)
  11
 385.0
  21
@@ -8243,7 +8243,7 @@ AcDbText
  40
 2.8
   1
-Kondensatablauf je Gerät)
+Kühlen 17/22 °C: 1,5 kW je Gerät
  11
 385.0
  21
@@ -8253,9 +8253,69 @@ Kondensatablauf je Gerät)
 100
 AcDbText
   0
-LINE
+TEXT
   5
 FE
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+385.0
+ 20
+198.0
+ 30
+0.0
+ 40
+2.8
+  1
+Heizen 35/30 °C: 1,6 kW je Gerät
+ 11
+385.0
+ 21
+198.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+FF
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+385.0
+ 20
+190.0
+ 30
+0.0
+ 40
+2.8
+  1
+Kondensatanschluss DN20 je Gerät
+ 11
+385.0
+ 21
+190.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+100
 330
 17
 100
@@ -8279,7 +8339,7 @@ AcDbLine
   0
 CIRCLE
   5
-FF
+101
 330
 17
 100
@@ -8299,7 +8359,7 @@ AcDbCircle
   0
 LINE
   5
-100
+102
 330
 17
 100
@@ -8323,7 +8383,7 @@ AcDbLine
   0
 LINE
   5
-101
+103
 330
 17
 100
@@ -8347,7 +8407,7 @@ AcDbLine
   0
 LINE
   5
-102
+104
 330
 17
 100
@@ -8371,7 +8431,7 @@ AcDbLine
   0
 CIRCLE
   5
-103
+105
 330
 17
 100
@@ -8391,7 +8451,7 @@ AcDbCircle
   0
 TEXT
   5
-104
+106
 330
 17
 100
@@ -8421,7 +8481,7 @@ AcDbText
   0
 TEXT
   5
-105
+107
 330
 17
 100
@@ -8451,7 +8511,7 @@ AcDbText
   0
 TEXT
   5
-106
+108
 330
 17
 100
@@ -8481,7 +8541,7 @@ AcDbText
   0
 TEXT
   5
-107
+109
 330
 17
 100
@@ -8511,7 +8571,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-108
+10A
 330
 17
 100
@@ -8543,7 +8603,7 @@ AcDbPolyline
   0
 TEXT
   5
-109
+10B
 330
 17
 100
@@ -8573,7 +8633,7 @@ AcDbText
   0
 LINE
   5
-10A
+10C
 330
 17
 100
@@ -8597,7 +8657,7 @@ AcDbLine
   0
 TEXT
   5
-10B
+10D
 330
 17
 100
@@ -8627,7 +8687,7 @@ AcDbText
   0
 LINE
   5
-10C
+10E
 330
 17
 100
@@ -8651,7 +8711,7 @@ AcDbLine
   0
 TEXT
   5
-10D
+10F
 330
 17
 100
@@ -8681,7 +8741,7 @@ AcDbText
   0
 CIRCLE
   5
-10E
+110
 330
 17
 100
@@ -8701,7 +8761,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-10F
+111
 330
 17
 100
@@ -8729,7 +8789,7 @@ AcDbPolyline
   0
 TEXT
   5
-110
+112
 330
 17
 100
@@ -8759,63 +8819,63 @@ AcDbText
   0
 LWPOLYLINE
   5
-111
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
-342.0
- 20
-85.2
- 10
-342.0
- 20
-90.8
- 10
-346.0
- 20
-88.0
-  0
-LWPOLYLINE
-  5
-112
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
-350.0
- 20
-85.2
- 10
-350.0
- 20
-90.8
- 10
-346.0
- 20
-88.0
-  0
-LWPOLYLINE
-  5
 113
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+342.0
+ 20
+85.2
+ 10
+342.0
+ 20
+90.8
+ 10
+346.0
+ 20
+88.0
+  0
+LWPOLYLINE
+  5
+114
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+350.0
+ 20
+85.2
+ 10
+350.0
+ 20
+90.8
+ 10
+346.0
+ 20
+88.0
+  0
+LWPOLYLINE
+  5
+115
 330
 17
 100
@@ -8843,7 +8903,7 @@ AcDbPolyline
   0
 TEXT
   5
-114
+116
 330
 17
 100
@@ -8873,7 +8933,7 @@ AcDbText
   0
 CIRCLE
   5
-115
+117
 330
 17
 100
@@ -8893,7 +8953,7 @@ AcDbCircle
   0
 LINE
   5
-116
+118
 330
 17
 100
@@ -8917,7 +8977,7 @@ AcDbLine
   0
 TEXT
   5
-117
+119
 330
 17
 100
@@ -8947,7 +9007,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-118
+11A
 330
 17
 100
@@ -8979,7 +9039,7 @@ AcDbPolyline
   0
 LINE
   5
-119
+11B
 330
 17
 100
@@ -9003,7 +9063,7 @@ AcDbLine
   0
 TEXT
   5
-11A
+11C
 330
 17
 100
@@ -9033,7 +9093,7 @@ AcDbText
   0
 TEXT
   5
-11B
+11D
 330
 17
 100
@@ -10151,7 +10211,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-11E
+120
   0
 DICTIONARYVAR
   5
@@ -10163,7 +10223,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T13:25:22.754231+00:00
+1.4.4 @ 2026-08-20T13:47:47.537870+00:00
   0
 VISUALSTYLE
   5
@@ -16717,7 +16777,7 @@ strokes_ogs.tif
   0
 DICTIONARYVAR
   5
-11E
+120
 330
 2D
 100
@@ -16725,7 +16785,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T13:25:22.761690+00:00
+1.4.4 @ 2026-08-20T13:47:47.545859+00:00
   0
 ENDSEC
   0
