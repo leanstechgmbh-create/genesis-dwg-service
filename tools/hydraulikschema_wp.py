@@ -132,6 +132,8 @@ def build(doc):
              align=TextEntityAlignment.MIDDLE_CENTER)
         text(msp, "Trinkwarmwasser", (xs + 25, 333), 2.8,
              align=TextEntityAlignment.MIDDLE_CENTER)
+        text(msp, "zus. 1600 Liter", (xs + 25, 325), 2.8,
+             align=TextEntityAlignment.MIDDLE_CENTER)
         # Ladekreis (VL unten rein, RL unten raus — Kreuzung mit VL ohne Punkt)
         line(msp, (xs + 12, Y_WW_VL), (xs + 12, 300), "VL")
         punkt(msp, (xs + 12, Y_WW_VL), "VL")
@@ -157,7 +159,7 @@ def build(doc):
         tank(msp, xs, 110, xs + 50, 195)
         text(msp, f"PUFFERSPEICHER {i + 1}", (xs + 25, 156), 3.4,
              align=TextEntityAlignment.MIDDLE_CENTER)
-        text(msp, ("800 Liter", "500 Liter")[i], (xs + 25, 147), 3.0,
+        text(msp, ("PSM 800 · 800 l", "PSM 500 · 500 l")[i], (xs + 25, 147), 3.0,
              align=TextEntityAlignment.MIDDLE_CENTER)
         text(msp, "Heizen + Kühlen", (xs + 25, 139), 2.8,
              align=TextEntityAlignment.MIDDLE_CENTER)
