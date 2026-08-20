@@ -129,6 +129,9 @@ def build(doc):
 
     waermetauscher(msp, 150, 325, 178, 375)
     ctext(msp, "WT 2", (X_TRENN, 380), 3.2)
+    text(msp, "WT 2: 30 kW · primär 58/48 → sekundär 45/55 °C", (150, 318), 2.5)
+    text(msp, "Grädigkeit 2–3 K · ca. 2,5–4 m² · DN32–40", (150, 312), 2.5)
+    text(msp, "V 2,8 m³/h primär · 2,6 m³/h sekundär", (150, 306), 2.5)
 
     line(msp, (95, Y_WW_VL), (150, Y_WW_VL), "VL")            # primaer hin
     line(msp, (150, Y_WW_RL), (95, Y_WW_RL), "RL")            # primaer zurueck
@@ -174,9 +177,11 @@ def build(doc):
 
     waermetauscher(msp, 150, 152, 178, 212)
     ctext(msp, "WT 1", (X_TRENN, 217), 3.2)
-    text(msp, "Heizen  primär 38 °C → sekundär 35 °C", (150, 145), 2.5)
-    text(msp, "Kühlen  primär 13 °C → sekundär 16 °C", (150, 139), 2.5)
-    text(msp, "Grädigkeit 2–4 K · Auslegung nach Kühlfall", (150, 133), 2.5)
+    text(msp, "WT 1: 60 kW · Auslegung nach KÜHLFALL", (150, 145), 2.5)
+    text(msp, "Kühlen  primär 13/18 °C → sekundär 16/21 °C", (150, 139), 2.5)
+    text(msp, "Heizen  primär 38/33 °C → sekundär 35/30 °C", (150, 133), 2.5)
+    text(msp, "Grädigkeit 3 K · ca. 7 m² · DN50", (150, 127), 2.5)
+    text(msp, "V 11,5 m³/h primär · 10,3 m³/h sekundär", (150, 121), 2.5)
     line(msp, (X_VL, Y_HK_VL), (150, Y_HK_VL), "VL")
     punkt(msp, (X_VL, Y_HK_VL), "VL")
     line(msp, (150, Y_HK_RL), (X_RL, Y_HK_RL), "RL")
@@ -272,6 +277,9 @@ def build(doc):
         "KALTWASSER: 16 °C Vorlauf sekundär (13 °C primär) hält die Anlage in fast allen Betriebspunkten über dem Taupunkt. Grenzen:",
         "primär nie unter 7 °C (ohne Glykol Vereisungsgefahr), sekundär nie unter 12 °C. Bedarf 30 kW gegen 59 kW Kälteleistung —",
         "die Reserve in eine HÖHERE Kaltwassertemperatur umsetzen (rund 2–3 % besserer EER je Kelvin), nicht in eine tiefere.",
+        "WARMWASSER: Die Wärmepumpe liefert max. 60 °C. Mit 3 K Grädigkeit am WT 2 wird der Speicher nur auf 52–54 °C geladen — bei 1600 l",
+        "fordert die TrinkwV aber 60 °C am Speicheraustritt. Empfehlung: WW-Kreis OHNE Systemtrennung (Glykol bis zum Speicher-WT,",
+        "rund 35 l mehr) oder WT 2 mit 2 K plus E-Nachheizung im Speicher für die Legionellenschaltung.",
         "AUSLEGUNG: Für die Raumtemperatur zählt die SENSIBLE Leistung der Konvektoren — bei 17/22 °C sind das 21,2 kW, bei 14/19 °C",
         "27,4 kW, bei 10/15 °C 35,8 kW (Katalogwerte DF2 51, interpoliert). Volumenstrom steigt dabei von 261 auf 439 l/h je Gerät —",
         "vor einer tieferen Kaltwassertemperatur die Strangquerschnitte Ø22/Ø28/Ø35 auf max. 0,8 m/s nachrechnen.",
