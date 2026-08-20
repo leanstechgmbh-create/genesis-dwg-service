@@ -81,7 +81,7 @@ $MIRRTEXT
   9
 $LTSCALE
  40
-1.0
+3.0
   9
 $ATTMODE
  70
@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461273.6615046295
+2461273.6867708336
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461273.6615046295
+2461273.6867708336
   9
 $TDUUPDATE
  40
@@ -553,7 +553,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-126
+166
   9
 $SURFTAB1
  70
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{EF9FDA05-7677-4C59-A363-F8AB87450C7D}
+{EC395CA4-1271-405A-8402-AD5F2AA7C689}
   9
 $VERSIONGUID
   2
-{12C75121-6C2C-47C1-877B-E7978763FABA}
+{D2928C1F-4E77-49A2-A1CD-7E79A2C89679}
   9
 $EXTNAMES
 290
@@ -1327,9 +1327,9 @@ ISM
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -1343,9 +1343,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -2237,7 +2237,7 @@ LAYER
 100
 AcDbSymbolTable
  70
-11
+13
   0
 LAYER
   5
@@ -2305,7 +2305,7 @@ WP
  62
 7
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2329,7 +2329,7 @@ SPEICHER
  62
 7
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2353,7 +2353,7 @@ ARMATUR
  62
 7
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2377,7 +2377,7 @@ TEXT
  62
 7
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2401,7 +2401,7 @@ RAHMEN
  62
 8
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2425,7 +2425,7 @@ VL
  62
 1
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2449,7 +2449,7 @@ RL
  62
 5
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2473,7 +2473,7 @@ KALTWASSER
  62
 4
   6
-Continuous
+CONTINUOUS
 370
 -3
 390
@@ -2497,7 +2497,55 @@ WARMWASSER
  62
 30
   6
-Continuous
+CONTINUOUS
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+93
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+TRENNUNG
+ 70
+0
+ 62
+3
+  6
+DASHED
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+94
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+MSR
+ 70
+0
+ 62
+6
+  6
+DASHED
 370
 -3
 390
@@ -3305,7 +3353,7 @@ ACAD
   0
 APPID
   5
-123
+163
 330
 3
 100
@@ -3319,7 +3367,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-124
+164
 330
 3
 100
@@ -5431,7 +5479,7 @@ ENTITIES
   0
 LWPOLYLINE
   5
-93
+95
 330
 17
 100
@@ -5447,87 +5495,19 @@ AcDbPolyline
  10
 10.0
  20
-150.0
+312.0
  10
-85.0
+95.0
  20
-150.0
+312.0
  10
-85.0
+95.0
  20
-205.0
+392.0
  10
 10.0
  20
-205.0
-  0
-TEXT
-  5
-94
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-47.5
- 20
-190.0
- 30
-0.0
- 40
-4.0
-  1
-WÄRMEPUMPEN 1–3
- 72
-1
- 11
-47.5
- 21
-190.0
- 31
-0.0
-100
-AcDbText
- 73
-2
-  0
-TEXT
-  5
-95
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-47.5
- 20
-181.0
- 30
-0.0
- 40
-3.0
-  1
-Midea MHC-V10W/D2N8-BER90
- 72
-1
- 11
-47.5
- 21
-181.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+392.0
   0
 TEXT
   5
@@ -5541,21 +5521,21 @@ TEXT
 100
 AcDbText
  10
-47.5
+52.5
  20
-174.0
+379.0
  30
 0.0
  40
-2.8
+4.0
   1
-je 10,0 kW (A7/W35, COP 4,95), reversibel
+WÄRMEPUMPEN 7–9
  72
 1
  11
-47.5
+52.5
  21
-174.0
+379.0
  31
 0.0
 100
@@ -5575,21 +5555,21 @@ TEXT
 100
 AcDbText
  10
-47.5
+52.5
  20
-167.0
+370.0
  30
 0.0
  40
-3.2
+2.9
   1
-Heizen / Kühlen / WW
+Midea MHC-V10W/D2N8-BER90
  72
 1
  11
-47.5
+52.5
  21
-167.0
+370.0
  31
 0.0
 100
@@ -5609,21 +5589,21 @@ TEXT
 100
 AcDbText
  10
-47.5
+52.5
  20
-159.0
+362.0
  30
 0.0
  40
-2.8
+2.9
   1
-R32 · 400 V 3N~ · E-Heizstab (IBH) 9 kW
+3 × 10,0 kW (A7/W35, COP 4,95)
  72
 1
  11
-47.5
+52.5
  21
-159.0
+362.0
  31
 0.0
 100
@@ -5631,7 +5611,7 @@ AcDbText
  73
 2
   0
-LWPOLYLINE
+TEXT
   5
 99
 330
@@ -5639,29 +5619,31 @@ LWPOLYLINE
 100
 AcDbEntity
   8
-WP
+TEXT
 100
-AcDbPolyline
- 90
-4
- 70
+AcDbText
+ 10
+52.5
+ 20
+354.0
+ 30
+0.0
+ 40
+2.9
+  1
+R32 · 400 V 3N~ · IBH 9 kW
+ 72
 1
- 10
-10.0
- 20
-55.0
- 10
-85.0
- 20
-55.0
- 10
-85.0
- 20
-110.0
- 10
-10.0
- 20
-110.0
+ 11
+52.5
+ 21
+354.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
 TEXT
   5
@@ -5675,21 +5657,21 @@ TEXT
 100
 AcDbText
  10
-47.5
+52.5
  20
-95.0
+320.0
  30
 0.0
  40
-4.0
+3.2
   1
-WÄRMEPUMPEN 4–6
+nur Warmwasser
  72
 1
  11
-47.5
+52.5
  21
-95.0
+320.0
  31
 0.0
 100
@@ -5709,29 +5691,25 @@ TEXT
 100
 AcDbText
  10
-47.5
+10.0
  20
-86.0
+302.0
  30
 0.0
  40
 3.0
   1
-Midea MHC-V10W/D2N8-BER90
- 72
-1
+Kaskade Warmwasser: 3 × 10 kW = 30 kW
  11
-47.5
+10.0
  21
-86.0
+302.0
  31
 0.0
 100
 AcDbText
- 73
-2
   0
-TEXT
+LWPOLYLINE
   5
 9C
 330
@@ -5739,33 +5717,31 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+ARMATUR
 100
-AcDbText
- 10
-47.5
- 20
-79.0
- 30
-0.0
- 40
-2.8
-  1
-je 10,0 kW (A7/W35, COP 4,95), reversibel
- 72
+AcDbPolyline
+ 90
+4
+ 70
 1
- 11
-47.5
- 21
-79.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+ 10
+150.0
+ 20
+325.0
+ 10
+178.0
+ 20
+325.0
+ 10
+178.0
+ 20
+375.0
+ 10
+150.0
+ 20
+375.0
   0
-TEXT
+LWPOLYLINE
   5
 9D
 330
@@ -5773,31 +5749,49 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+ARMATUR
 100
-AcDbText
+AcDbPolyline
+ 90
+9
+ 70
+0
  10
-47.5
+157.0
  20
-72.0
- 30
-0.0
- 40
-3.2
-  1
-Heizen / Kühlen / WW
- 72
-1
- 11
-47.5
- 21
-72.0
- 31
-0.0
-100
-AcDbText
- 73
-2
+325.0
+ 10
+171.0
+ 20
+331.25
+ 10
+157.0
+ 20
+337.5
+ 10
+171.0
+ 20
+343.75
+ 10
+157.0
+ 20
+350.0
+ 10
+171.0
+ 20
+356.25
+ 10
+157.0
+ 20
+362.5
+ 10
+171.0
+ 20
+368.75
+ 10
+157.0
+ 20
+375.0
   0
 TEXT
   5
@@ -5811,21 +5805,21 @@ TEXT
 100
 AcDbText
  10
-47.5
+164.0
  20
-64.0
+380.0
  30
 0.0
  40
-2.8
+3.2
   1
-R32 · 400 V 3N~ · E-Heizstab (IBH) 9 kW
+WT 2
  72
 1
  11
-47.5
+164.0
  21
-64.0
+380.0
  31
 0.0
 100
@@ -5833,39 +5827,9 @@ AcDbText
  73
 2
   0
-TEXT
-  5
-9F
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-10.0
- 20
-137.0
- 30
-0.0
- 40
-3.2
-  1
-Kaskade gesamt: 6 × 10 kW = 60 kW (A7/W35)
- 11
-10.0
- 21
-137.0
- 31
-0.0
-100
-AcDbText
-  0
 LINE
   5
-A0
+9F
 330
 17
 100
@@ -5875,15 +5839,39 @@ VL
 100
 AcDbLine
  10
-85.0
+95.0
  20
-195.0
+365.0
  30
 0.0
  11
-110.0
+150.0
  21
-195.0
+365.0
+ 31
+0.0
+  0
+LINE
+  5
+A0
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+150.0
+ 20
+335.0
+ 30
+0.0
+ 11
+95.0
+ 21
+335.0
  31
 0.0
   0
@@ -5899,15 +5887,15 @@ VL
 100
 AcDbLine
  10
-85.0
+178.0
  20
-100.0
+365.0
  30
 0.0
  11
-110.0
+560.0
  21
-100.0
+365.0
  31
 0.0
   0
@@ -5923,19 +5911,19 @@ RL
 100
 AcDbLine
  10
-85.0
+560.0
  20
-160.0
+335.0
  30
 0.0
  11
-130.0
+178.0
  21
-160.0
+335.0
  31
 0.0
   0
-LINE
+CIRCLE
   5
 A3
 330
@@ -5943,23 +5931,19 @@ A3
 100
 AcDbEntity
   8
-RL
+ARMATUR
 100
-AcDbLine
+AcDbCircle
  10
-85.0
+205.0
  20
-65.0
+365.0
  30
 0.0
- 11
-130.0
- 21
-65.0
- 31
-0.0
+ 40
+5.0
   0
-LINE
+LWPOLYLINE
   5
 A4
 330
@@ -5967,23 +5951,27 @@ A4
 100
 AcDbEntity
   8
-VL
+ARMATUR
 100
-AcDbLine
+AcDbPolyline
+ 90
+3
+ 70
+1
  10
-110.0
+209.5
  20
-100.0
- 30
-0.0
- 11
-110.0
- 21
-230.0
- 31
-0.0
+365.0
+ 10
+201.3948537300388
+ 20
+367.6931246484678
+ 10
+201.3948537300388
+ 20
+362.3068753515322
   0
-LINE
+TEXT
   5
 A5
 330
@@ -5991,23 +5979,29 @@ A5
 100
 AcDbEntity
   8
-RL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-130.0
+192.0
  20
-65.0
+374.0
  30
 0.0
+ 40
+3.0
+  1
+WW-Ladepumpe
  11
-130.0
+192.0
  21
-265.0
+374.0
  31
 0.0
+100
+AcDbText
   0
-CIRCLE
+TEXT
   5
 A6
 330
@@ -6017,17 +6011,27 @@ AcDbEntity
   8
 VL
 100
-AcDbCircle
+AcDbText
  10
-110.0
+566.0
  20
-195.0
+363.5
  30
 0.0
  40
-1.2
+3.0
+  1
+WW-Ladung VL
+ 11
+566.0
+ 21
+363.5
+ 31
+0.0
+100
+AcDbText
   0
-CIRCLE
+TEXT
   5
 A7
 330
@@ -6037,335 +6041,21 @@ AcDbEntity
   8
 RL
 100
-AcDbCircle
+AcDbText
  10
-130.0
+566.0
  20
-160.0
+333.5
  30
 0.0
  40
-1.2
-  0
-LWPOLYLINE
-  5
-A8
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
-105.0
- 20
-231.5
- 10
-105.0
- 20
-238.5
- 10
-110.0
- 20
-235.0
-  0
-LWPOLYLINE
-  5
-A9
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
-115.0
- 20
-231.5
- 10
-115.0
- 20
-238.5
- 10
-110.0
- 20
-235.0
-  0
-LWPOLYLINE
-  5
-AA
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
-106.5
- 20
-240.0
- 10
-113.5
- 20
-240.0
- 10
-110.0
- 20
-235.0
-  0
-TEXT
-  5
-AB
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-60.0
- 20
-246.0
- 30
-0.0
- 40
-3.2
-  1
-3-Wege-Umschaltventil (WW-Vorrang)
- 11
-60.0
- 21
-246.0
- 31
-0.0
-100
-AcDbText
-  0
-LINE
-  5
-AC
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-110.0
- 20
-240.0
- 30
-0.0
- 11
-110.0
- 21
-285.0
- 31
-0.0
-  0
-LINE
-  5
-AD
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-110.0
- 20
-285.0
- 30
-0.0
- 11
-330.0
- 21
-285.0
- 31
-0.0
-  0
-LINE
-  5
-AE
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbLine
- 10
-130.0
- 20
-265.0
- 30
-0.0
- 11
-330.0
- 21
-265.0
- 31
-0.0
-  0
-CIRCLE
-  5
-AF
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbCircle
- 10
-160.0
- 20
-285.0
- 30
-0.0
- 40
-5.0
-  0
-LWPOLYLINE
-  5
-B0
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
-164.5
- 20
-285.0
- 10
-156.3948537300388
- 20
-287.6931246484678
- 10
-156.3948537300388
- 20
-282.3068753515322
-  0
-TEXT
-  5
-B1
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-150.0
- 20
-293.0
- 30
-0.0
- 40
-3.2
-  1
-WW-Ladepumpe
- 11
-150.0
- 21
-293.0
- 31
-0.0
-100
-AcDbText
-  0
-TEXT
-  5
-B2
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbText
- 10
-335.0
- 20
-283.5
- 30
-0.0
- 40
-3.2
-  1
-WW-Ladung VL
- 11
-335.0
- 21
-283.5
- 31
-0.0
-100
-AcDbText
-  0
-TEXT
-  5
-B3
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbText
- 10
-335.0
- 20
-263.5
- 30
-0.0
- 40
-3.2
+3.0
   1
 WW-Ladung RL
  11
-335.0
+566.0
  21
-263.5
+333.5
  31
 0.0
 100
@@ -6373,7 +6063,7 @@ AcDbText
   0
 LINE
   5
-B4
+A8
 330
 17
 100
@@ -6383,15 +6073,329 @@ SPEICHER
 100
 AcDbLine
  10
-200.0
+300.0
  20
-325.0
+405.0
  30
 0.0
  11
-200.0
+300.0
  21
+430.0
+ 31
+0.0
+  0
+LINE
+  5
+A9
+330
+17
+100
+AcDbEntity
+  8
+SPEICHER
+100
+AcDbLine
+ 10
+350.0
+ 20
+405.0
+ 30
+0.0
+ 11
+350.0
+ 21
+430.0
+ 31
+0.0
+  0
+ARC
+  5
+AA
+330
+17
+100
+AcDbEntity
+  8
+SPEICHER
+100
+AcDbCircle
+ 10
+325.0
+ 20
+430.0
+ 30
+0.0
+ 40
+25.0
+100
+AcDbArc
+ 50
+0.0
+ 51
+180.0
+  0
+ARC
+  5
+AB
+330
+17
+100
+AcDbEntity
+  8
+SPEICHER
+100
+AcDbCircle
+ 10
+325.0
+ 20
+405.0
+ 30
+0.0
+ 40
+25.0
+100
+AcDbArc
+ 50
+180.0
+ 51
 360.0
+  0
+TEXT
+  5
+AC
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+325.0
+ 20
+424.0
+ 30
+0.0
+ 40
+3.4
+  1
+TWW-SPEICHER 1
+ 72
+1
+ 11
+325.0
+ 21
+424.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+AD
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+325.0
+ 20
+415.0
+ 30
+0.0
+ 40
+2.8
+  1
+Trinkwarmwasser
+ 72
+1
+ 11
+325.0
+ 21
+415.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+AE
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+325.0
+ 20
+407.0
+ 30
+0.0
+ 40
+2.8
+  1
+zus. 1600 Liter
+ 72
+1
+ 11
+325.0
+ 21
+407.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LINE
+  5
+AF
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+312.0
+ 20
+365.0
+ 30
+0.0
+ 11
+312.0
+ 21
+380.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+B0
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbCircle
+ 10
+312.0
+ 20
+365.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+B1
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+338.0
+ 20
+335.0
+ 30
+0.0
+ 11
+338.0
+ 21
+380.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+B2
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbCircle
+ 10
+338.0
+ 20
+335.0
+ 30
+0.0
+ 40
+1.2
+  0
+LINE
+  5
+B3
+330
+17
+100
+AcDbEntity
+  8
+WARMWASSER
+100
+AcDbLine
+ 10
+325.0
+ 20
+455.0
+ 30
+0.0
+ 11
+325.0
+ 21
+478.0
+ 31
+0.0
+  0
+LINE
+  5
+B4
+330
+17
+100
+AcDbEntity
+  8
+WARMWASSER
+100
+AcDbLine
+ 10
+325.0
+ 20
+478.0
+ 30
+0.0
+ 11
+322.93799451271417
+ 21
+474.5724449865242
  31
 0.0
   0
@@ -6403,25 +6407,145 @@ B5
 100
 AcDbEntity
   8
+WARMWASSER
+100
+AcDbLine
+ 10
+325.0
+ 20
+478.0
+ 30
+0.0
+ 11
+327.06200548728583
+ 21
+474.5724449865242
+ 31
+0.0
+  0
+LINE
+  5
+B6
+330
+17
+100
+AcDbEntity
+  8
+KALTWASSER
+100
+AcDbLine
+ 10
+272.0
+ 20
+392.0
+ 30
+0.0
+ 11
+300.0
+ 21
+392.0
+ 31
+0.0
+  0
+LINE
+  5
+B7
+330
+17
+100
+AcDbEntity
+  8
+KALTWASSER
+100
+AcDbLine
+ 10
+300.0
+ 20
+392.0
+ 30
+0.0
+ 11
+296.5724449865242
+ 21
+394.06200548728583
+ 31
+0.0
+  0
+LINE
+  5
+B8
+330
+17
+100
+AcDbEntity
+  8
+KALTWASSER
+100
+AcDbLine
+ 10
+300.0
+ 20
+392.0
+ 30
+0.0
+ 11
+296.5724449865242
+ 21
+389.93799451271417
+ 31
+0.0
+  0
+LINE
+  5
+B9
+330
+17
+100
+AcDbEntity
+  8
 SPEICHER
 100
 AcDbLine
  10
-250.0
+400.0
  20
-325.0
+405.0
  30
 0.0
  11
-250.0
+400.0
  21
-360.0
+430.0
+ 31
+0.0
+  0
+LINE
+  5
+BA
+330
+17
+100
+AcDbEntity
+  8
+SPEICHER
+100
+AcDbLine
+ 10
+450.0
+ 20
+405.0
+ 30
+0.0
+ 11
+450.0
+ 21
+430.0
  31
 0.0
   0
 ARC
   5
-B6
+BB
 330
 17
 100
@@ -6431,9 +6555,9 @@ SPEICHER
 100
 AcDbCircle
  10
-225.0
+425.0
  20
-360.0
+430.0
  30
 0.0
  40
@@ -6447,7 +6571,7 @@ AcDbArc
   0
 ARC
   5
-B7
+BC
 330
 17
 100
@@ -6457,9 +6581,9 @@ SPEICHER
 100
 AcDbCircle
  10
-225.0
+425.0
  20
-325.0
+405.0
  30
 0.0
  40
@@ -6473,7 +6597,7 @@ AcDbArc
   0
 TEXT
   5
-B8
+BD
 330
 17
 100
@@ -6483,21 +6607,21 @@ TEXT
 100
 AcDbText
  10
-225.0
+425.0
  20
-342.0
+424.0
  30
 0.0
  40
-3.6
+3.4
   1
-TWW-SPEICHER 1
+TWW-SPEICHER 2
  72
 1
  11
-225.0
+425.0
  21
-342.0
+424.0
  31
 0.0
 100
@@ -6507,7 +6631,7 @@ AcDbText
   0
 TEXT
   5
-B9
+BE
 330
 17
 100
@@ -6517,9 +6641,9 @@ TEXT
 100
 AcDbText
  10
-225.0
+425.0
  20
-333.0
+415.0
  30
 0.0
  40
@@ -6529,9 +6653,9 @@ Trinkwarmwasser
  72
 1
  11
-225.0
+425.0
  21
-333.0
+415.0
  31
 0.0
 100
@@ -6541,7 +6665,7 @@ AcDbText
   0
 TEXT
   5
-BA
+BF
 330
 17
 100
@@ -6551,9 +6675,9 @@ TEXT
 100
 AcDbText
  10
-225.0
+425.0
  20
-325.0
+407.0
  30
 0.0
  40
@@ -6563,9 +6687,9 @@ zus. 1600 Liter
  72
 1
  11
-225.0
+425.0
  21
-325.0
+407.0
  31
 0.0
 100
@@ -6575,141 +6699,29 @@ AcDbText
   0
 LINE
   5
-BB
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-212.0
- 20
-285.0
- 30
-0.0
- 11
-212.0
- 21
-300.0
- 31
-0.0
-  0
-CIRCLE
-  5
-BC
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbCircle
- 10
-212.0
- 20
-285.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
-  5
-BD
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbLine
- 10
-238.0
- 20
-265.0
- 30
-0.0
- 11
-238.0
- 21
-300.0
- 31
-0.0
-  0
-CIRCLE
-  5
-BE
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbCircle
- 10
-238.0
- 20
-265.0
- 30
-0.0
- 40
-1.2
-  0
-LINE
-  5
-BF
-330
-17
-100
-AcDbEntity
-  8
-WARMWASSER
-100
-AcDbLine
- 10
-225.0
- 20
-385.0
- 30
-0.0
- 11
-225.0
- 21
-413.0
- 31
-0.0
-  0
-LINE
-  5
 C0
 330
 17
 100
 AcDbEntity
   8
-WARMWASSER
+VL
 100
 AcDbLine
  10
-225.0
+412.0
  20
-413.0
+365.0
  30
 0.0
  11
-222.93799451271414
+412.0
  21
-409.5724449865242
+380.0
  31
 0.0
   0
-LINE
+CIRCLE
   5
 C1
 330
@@ -6717,21 +6729,17 @@ C1
 100
 AcDbEntity
   8
-WARMWASSER
+VL
 100
-AcDbLine
+AcDbCircle
  10
-225.0
+412.0
  20
-413.0
+365.0
  30
 0.0
- 11
-227.06200548728586
- 21
-409.5724449865242
- 31
-0.0
+ 40
+1.2
   0
 LINE
   5
@@ -6741,23 +6749,23 @@ C2
 100
 AcDbEntity
   8
-KALTWASSER
+RL
 100
 AcDbLine
  10
-178.0
+438.0
  20
-305.0
+335.0
  30
 0.0
  11
-200.0
+438.0
  21
-305.0
+380.0
  31
 0.0
   0
-LINE
+CIRCLE
   5
 C3
 330
@@ -6765,21 +6773,17 @@ C3
 100
 AcDbEntity
   8
-KALTWASSER
+RL
 100
-AcDbLine
+AcDbCircle
  10
-200.0
+438.0
  20
-305.0
+335.0
  30
 0.0
- 11
-196.5724449865242
- 21
-307.06200548728583
- 31
-0.0
+ 40
+1.2
   0
 LINE
   5
@@ -6789,19 +6793,19 @@ C4
 100
 AcDbEntity
   8
-KALTWASSER
+WARMWASSER
 100
 AcDbLine
  10
-200.0
+425.0
  20
-305.0
+455.0
  30
 0.0
  11
-196.5724449865242
+425.0
  21
-302.93799451271417
+478.0
  31
 0.0
   0
@@ -6813,19 +6817,19 @@ C5
 100
 AcDbEntity
   8
-SPEICHER
+WARMWASSER
 100
 AcDbLine
  10
-280.0
+425.0
  20
-325.0
+478.0
  30
 0.0
  11
-280.0
+422.93799451271417
  21
-360.0
+474.5724449865242
  31
 0.0
   0
@@ -6837,23 +6841,23 @@ C6
 100
 AcDbEntity
   8
-SPEICHER
+WARMWASSER
 100
 AcDbLine
  10
-330.0
+425.0
  20
-325.0
+478.0
  30
 0.0
  11
-330.0
+427.06200548728583
  21
-360.0
+474.5724449865242
  31
 0.0
   0
-ARC
+LINE
   5
 C7
 330
@@ -6861,25 +6865,23 @@ C7
 100
 AcDbEntity
   8
-SPEICHER
+KALTWASSER
 100
-AcDbCircle
+AcDbLine
  10
-305.0
+372.0
  20
-360.0
+392.0
  30
 0.0
- 40
-25.0
-100
-AcDbArc
- 50
+ 11
+400.0
+ 21
+392.0
+ 31
 0.0
- 51
-180.0
   0
-ARC
+LINE
   5
 C8
 330
@@ -6887,25 +6889,23 @@ C8
 100
 AcDbEntity
   8
-SPEICHER
+KALTWASSER
 100
-AcDbCircle
+AcDbLine
  10
-305.0
+400.0
  20
-325.0
+392.0
  30
 0.0
- 40
-25.0
-100
-AcDbArc
- 50
-180.0
- 51
-360.0
+ 11
+396.5724449865242
+ 21
+394.06200548728583
+ 31
+0.0
   0
-TEXT
+LINE
   5
 C9
 330
@@ -6913,31 +6913,21 @@ C9
 100
 AcDbEntity
   8
-TEXT
+KALTWASSER
 100
-AcDbText
+AcDbLine
  10
-305.0
+400.0
  20
-342.0
+392.0
  30
 0.0
- 40
-3.6
-  1
-TWW-SPEICHER 2
- 72
-1
  11
-305.0
+396.5724449865242
  21
-342.0
+389.93799451271417
  31
 0.0
-100
-AcDbText
- 73
-2
   0
 TEXT
   5
@@ -6947,31 +6937,27 @@ CA
 100
 AcDbEntity
   8
-TEXT
+WARMWASSER
 100
 AcDbText
  10
-305.0
+300.0
  20
-333.0
+483.0
  30
 0.0
  40
-2.8
+3.2
   1
-Trinkwarmwasser
- 72
-1
+Warmwasser zu den Zapfstellen
  11
-305.0
+300.0
  21
-333.0
+483.0
  31
 0.0
 100
 AcDbText
- 73
-2
   0
 TEXT
   5
@@ -6981,33 +6967,29 @@ CB
 100
 AcDbEntity
   8
-TEXT
+KALTWASSER
 100
 AcDbText
  10
-305.0
+232.0
  20
-325.0
+396.0
  30
 0.0
  40
-2.8
+3.0
   1
-zus. 1600 Liter
- 72
-1
+Kaltwasser
  11
-305.0
+232.0
  21
-325.0
+396.0
  31
 0.0
 100
 AcDbText
- 73
-2
   0
-LINE
+LWPOLYLINE
   5
 CC
 330
@@ -7015,23 +6997,31 @@ CC
 100
 AcDbEntity
   8
-VL
+WP
 100
-AcDbLine
+AcDbPolyline
+ 90
+4
+ 70
+1
  10
-292.0
+10.0
  20
-285.0
- 30
-0.0
- 11
-292.0
- 21
-300.0
- 31
-0.0
+175.0
+ 10
+95.0
+ 20
+175.0
+ 10
+95.0
+ 20
+255.0
+ 10
+10.0
+ 20
+255.0
   0
-CIRCLE
+TEXT
   5
 CD
 330
@@ -7039,19 +7029,33 @@ CD
 100
 AcDbEntity
   8
-VL
+TEXT
 100
-AcDbCircle
+AcDbText
  10
-292.0
+52.5
  20
-285.0
+242.0
  30
 0.0
  40
-1.2
+4.0
+  1
+WÄRMEPUMPEN 1–3
+ 72
+1
+ 11
+52.5
+ 21
+242.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 CE
 330
@@ -7059,23 +7063,33 @@ CE
 100
 AcDbEntity
   8
-RL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-318.0
+52.5
  20
-265.0
+233.0
  30
 0.0
+ 40
+2.9
+  1
+Midea MHC-V10W/D2N8-BER90
+ 72
+1
  11
-318.0
+52.5
  21
-300.0
+233.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-CIRCLE
+TEXT
   5
 CF
 330
@@ -7083,19 +7097,33 @@ CF
 100
 AcDbEntity
   8
-RL
+TEXT
 100
-AcDbCircle
+AcDbText
  10
-318.0
+52.5
  20
-265.0
+225.0
  30
 0.0
  40
-1.2
+2.9
+  1
+3 × 10,0 kW (A7/W35, COP 4,95)
+ 72
+1
+ 11
+52.5
+ 21
+225.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 D0
 330
@@ -7103,23 +7131,33 @@ D0
 100
 AcDbEntity
   8
-WARMWASSER
+TEXT
 100
-AcDbLine
+AcDbText
  10
-305.0
+52.5
  20
-385.0
+217.0
  30
 0.0
+ 40
+2.9
+  1
+R32 · 400 V 3N~ · IBH 9 kW
+ 72
+1
  11
-305.0
+52.5
  21
-413.0
+217.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+LWPOLYLINE
   5
 D1
 330
@@ -7127,23 +7165,31 @@ D1
 100
 AcDbEntity
   8
-WARMWASSER
+WP
 100
-AcDbLine
+AcDbPolyline
+ 90
+4
+ 70
+1
  10
-305.0
+10.0
  20
-413.0
- 30
-0.0
- 11
-302.93799451271417
- 21
-409.5724449865242
- 31
-0.0
+60.0
+ 10
+95.0
+ 20
+60.0
+ 10
+95.0
+ 20
+140.0
+ 10
+10.0
+ 20
+140.0
   0
-LINE
+TEXT
   5
 D2
 330
@@ -7151,23 +7197,33 @@ D2
 100
 AcDbEntity
   8
-WARMWASSER
+TEXT
 100
-AcDbLine
+AcDbText
  10
-305.0
+52.5
  20
-413.0
+127.0
  30
 0.0
+ 40
+4.0
+  1
+WÄRMEPUMPEN 4–6
+ 72
+1
  11
-307.06200548728583
+52.5
  21
-409.5724449865242
+127.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 D3
 330
@@ -7175,23 +7231,33 @@ D3
 100
 AcDbEntity
   8
-KALTWASSER
+TEXT
 100
-AcDbLine
+AcDbText
  10
-258.0
+52.5
  20
-305.0
+118.0
  30
 0.0
+ 40
+2.9
+  1
+Midea MHC-V10W/D2N8-BER90
+ 72
+1
  11
-280.0
+52.5
  21
-305.0
+118.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 D4
 330
@@ -7199,23 +7265,33 @@ D4
 100
 AcDbEntity
   8
-KALTWASSER
+TEXT
 100
-AcDbLine
+AcDbText
  10
-280.0
+52.5
  20
-305.0
+110.0
  30
 0.0
+ 40
+2.9
+  1
+3 × 10,0 kW (A7/W35, COP 4,95)
+ 72
+1
  11
-276.5724449865242
+52.5
  21
-307.06200548728583
+110.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 D5
 330
@@ -7223,21 +7299,31 @@ D5
 100
 AcDbEntity
   8
-KALTWASSER
+TEXT
 100
-AcDbLine
+AcDbText
  10
-280.0
+52.5
  20
-305.0
+102.0
  30
 0.0
+ 40
+2.9
+  1
+R32 · 400 V 3N~ · IBH 9 kW
+ 72
+1
  11
-276.5724449865242
+52.5
  21
-302.93799451271417
+102.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
 TEXT
   5
@@ -7247,27 +7333,31 @@ D6
 100
 AcDbEntity
   8
-WARMWASSER
+TEXT
 100
 AcDbText
  10
-200.0
+52.5
  20
-420.0
+183.0
  30
 0.0
  40
 3.2
   1
-Warmwasser zu den Zapfstellen
+Heizen / Kühlen (reversibel)
+ 72
+1
  11
-200.0
+52.5
  21
-420.0
+183.0
  31
 0.0
 100
 AcDbText
+ 73
+2
   0
 TEXT
   5
@@ -7277,23 +7367,87 @@ D7
 100
 AcDbEntity
   8
-KALTWASSER
+TEXT
 100
 AcDbText
  10
-148.0
+52.5
  20
-309.0
+68.0
  30
 0.0
  40
 3.2
   1
-Kaltwasser
+Heizen / Kühlen (reversibel)
+ 72
+1
  11
-148.0
+52.5
  21
-309.0
+68.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+D8
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+43.0
+ 30
+0.0
+ 40
+3.0
+  1
+Kaskade Heizen/Kühlen: 6 × 10 kW = 60 kW (A7/W35)
+ 11
+10.0
+ 21
+43.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+D9
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+35.0
+ 30
+0.0
+ 40
+3.0
+  1
+Kühlen: 6 × 9,9 kW = 59 kW (A35/W18, EER 4,55)
+ 11
+10.0
+ 21
+35.0
  31
 0.0
 100
@@ -7301,7 +7455,7 @@ AcDbText
   0
 LINE
   5
-D8
+DA
 330
 17
 100
@@ -7311,21 +7465,45 @@ VL
 100
 AcDbLine
  10
-115.0
+95.0
  20
-235.0
+228.0
  30
 0.0
  11
-330.0
+112.0
  21
-235.0
+228.0
  31
 0.0
   0
 LINE
   5
-D9
+DB
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+95.0
+ 20
+113.0
+ 30
+0.0
+ 11
+112.0
+ 21
+113.0
+ 31
+0.0
+  0
+LINE
+  5
+DC
 330
 17
 100
@@ -7337,85 +7515,17 @@ AcDbLine
  10
 130.0
  20
-215.0
+190.0
  30
 0.0
  11
-330.0
+95.0
  21
-215.0
+190.0
  31
 0.0
   0
-CIRCLE
-  5
-DA
-330
-17
-100
-AcDbEntity
-  8
-RL
-100
-AcDbCircle
- 10
-130.0
- 20
-215.0
- 30
-0.0
- 40
-1.2
-  0
-CIRCLE
-  5
-DB
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbCircle
- 10
-170.0
- 20
-235.0
- 30
-0.0
- 40
-5.0
-  0
-LWPOLYLINE
-  5
-DC
-330
-17
-100
-AcDbEntity
-  8
-ARMATUR
-100
-AcDbPolyline
- 90
-3
- 70
-1
- 10
-174.5
- 20
-235.0
- 10
-166.3948537300388
- 20
-237.6931246484678
- 10
-166.3948537300388
- 20
-232.3068753515322
-  0
-TEXT
+LINE
   5
 DD
 330
@@ -7423,29 +7533,23 @@ DD
 100
 AcDbEntity
   8
-TEXT
+RL
 100
-AcDbText
+AcDbLine
  10
-155.0
+130.0
  20
-223.0
+75.0
  30
 0.0
- 40
-3.2
-  1
-Pumpe Heiz-/Kühlkreis
  11
-155.0
+95.0
  21
-223.0
+75.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 DE
 330
@@ -7455,27 +7559,21 @@ AcDbEntity
   8
 VL
 100
-AcDbText
+AcDbLine
  10
-335.0
+112.0
  20
-233.5
+113.0
  30
 0.0
- 40
-3.2
-  1
-Change-Over VL
  11
-335.0
+112.0
  21
-233.5
+228.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 DF
 330
@@ -7485,27 +7583,21 @@ AcDbEntity
   8
 RL
 100
-AcDbText
+AcDbLine
  10
-335.0
+130.0
  20
-213.5
+75.0
  30
 0.0
- 40
-3.2
-  1
-Change-Over RL
  11
-335.0
+130.0
  21
-213.5
+190.0
  31
 0.0
-100
-AcDbText
   0
-LINE
+TEXT
   5
 E0
 330
@@ -7513,23 +7605,29 @@ E0
 100
 AcDbEntity
   8
-SPEICHER
+TEXT
 100
-AcDbLine
+AcDbText
  10
-200.0
+100.0
  20
-135.0
+264.0
  30
 0.0
+ 40
+2.6
+  1
+Sammelleitung DN54
  11
-200.0
+100.0
  21
-170.0
+264.0
  31
 0.0
+100
+AcDbText
   0
-LINE
+TEXT
   5
 E1
 330
@@ -7537,23 +7635,29 @@ E1
 100
 AcDbEntity
   8
-SPEICHER
+TEXT
 100
-AcDbLine
+AcDbText
  10
-250.0
+100.0
  20
-135.0
+258.0
  30
 0.0
+ 40
+2.6
+  1
+(Querschnitt prüfen)
  11
-250.0
+100.0
  21
-170.0
+258.0
  31
 0.0
+100
+AcDbText
   0
-ARC
+LWPOLYLINE
   5
 E2
 330
@@ -7561,25 +7665,31 @@ E2
 100
 AcDbEntity
   8
-SPEICHER
+ARMATUR
 100
-AcDbCircle
+AcDbPolyline
+ 90
+4
+ 70
+1
  10
-225.0
+150.0
  20
-170.0
- 30
-0.0
- 40
-25.0
-100
-AcDbArc
- 50
-0.0
- 51
-180.0
+152.0
+ 10
+178.0
+ 20
+152.0
+ 10
+178.0
+ 20
+212.0
+ 10
+150.0
+ 20
+212.0
   0
-ARC
+LWPOLYLINE
   5
 E3
 330
@@ -7587,23 +7697,49 @@ E3
 100
 AcDbEntity
   8
-SPEICHER
+ARMATUR
 100
-AcDbCircle
+AcDbPolyline
+ 90
+9
+ 70
+0
  10
-225.0
+157.0
  20
-135.0
- 30
-0.0
- 40
-25.0
-100
-AcDbArc
- 50
-180.0
- 51
-360.0
+152.0
+ 10
+171.0
+ 20
+159.5
+ 10
+157.0
+ 20
+167.0
+ 10
+171.0
+ 20
+174.5
+ 10
+157.0
+ 20
+182.0
+ 10
+171.0
+ 20
+189.5
+ 10
+157.0
+ 20
+197.0
+ 10
+171.0
+ 20
+204.5
+ 10
+157.0
+ 20
+212.0
   0
 TEXT
   5
@@ -7617,21 +7753,21 @@ TEXT
 100
 AcDbText
  10
-225.0
+164.0
  20
-156.0
+217.0
  30
 0.0
  40
-3.4
+3.2
   1
-PUFFERSPEICHER 1
+WT 1
  72
 1
  11
-225.0
+164.0
  21
-156.0
+217.0
  31
 0.0
 100
@@ -7651,27 +7787,23 @@ TEXT
 100
 AcDbText
  10
-225.0
+150.0
  20
-147.0
+145.0
  30
 0.0
  40
-3.0
+2.5
   1
-PSM 800 · 800 l
- 72
-1
+Heizen  primär 38 °C → sekundär 35 °C
  11
-225.0
+150.0
  21
-147.0
+145.0
  31
 0.0
 100
 AcDbText
- 73
-2
   0
 TEXT
   5
@@ -7685,27 +7817,23 @@ TEXT
 100
 AcDbText
  10
-225.0
+150.0
  20
 139.0
  30
 0.0
  40
-2.8
+2.5
   1
-Heizen + Kühlen
- 72
-1
+Kühlen  primär 13 °C → sekundär 16 °C
  11
-225.0
+150.0
  21
 139.0
  31
 0.0
 100
 AcDbText
- 73
-2
   0
 TEXT
   5
@@ -7719,27 +7847,23 @@ TEXT
 100
 AcDbText
  10
-225.0
+150.0
  20
-131.0
+133.0
  30
 0.0
  40
-2.6
+2.5
   1
-Austria Email · 95 °C · 0,4 MPa
- 72
-1
+Grädigkeit 2–4 K · Auslegung nach Kühlfall
  11
-225.0
+150.0
  21
-131.0
+133.0
  31
 0.0
 100
 AcDbText
- 73
-2
   0
 LINE
   5
@@ -7753,15 +7877,15 @@ VL
 100
 AcDbLine
  10
-212.0
+112.0
  20
-235.0
+203.0
  30
 0.0
  11
-212.0
+150.0
  21
-195.0
+203.0
  31
 0.0
   0
@@ -7777,9 +7901,9 @@ VL
 100
 AcDbCircle
  10
-212.0
+112.0
  20
-235.0
+203.0
  30
 0.0
  40
@@ -7797,15 +7921,15 @@ RL
 100
 AcDbLine
  10
-238.0
+150.0
  20
-215.0
+161.0
  30
 0.0
  11
-238.0
+130.0
  21
-195.0
+161.0
  31
 0.0
   0
@@ -7821,9 +7945,9 @@ RL
 100
 AcDbCircle
  10
-238.0
+130.0
  20
-215.0
+161.0
  30
 0.0
  40
@@ -7837,19 +7961,19 @@ EC
 100
 AcDbEntity
   8
-SPEICHER
+VL
 100
 AcDbLine
  10
-280.0
+178.0
  20
-135.0
+203.0
  30
 0.0
  11
-280.0
+560.0
  21
-170.0
+203.0
  31
 0.0
   0
@@ -7861,23 +7985,23 @@ ED
 100
 AcDbEntity
   8
-SPEICHER
+RL
 100
 AcDbLine
  10
-330.0
+560.0
  20
-135.0
+161.0
  30
 0.0
  11
-330.0
+178.0
  21
-170.0
+161.0
  31
 0.0
   0
-ARC
+CIRCLE
   5
 EE
 330
@@ -7885,25 +8009,19 @@ EE
 100
 AcDbEntity
   8
-SPEICHER
+ARMATUR
 100
 AcDbCircle
  10
-305.0
+205.0
  20
-170.0
+203.0
  30
 0.0
  40
-25.0
-100
-AcDbArc
- 50
-0.0
- 51
-180.0
+5.0
   0
-ARC
+LWPOLYLINE
   5
 EF
 330
@@ -7911,23 +8029,25 @@ EF
 100
 AcDbEntity
   8
-SPEICHER
+ARMATUR
 100
-AcDbCircle
+AcDbPolyline
+ 90
+3
+ 70
+1
  10
-305.0
+209.5
  20
-135.0
- 30
-0.0
- 40
-25.0
-100
-AcDbArc
- 50
-180.0
- 51
-360.0
+203.0
+ 10
+201.3948537300388
+ 20
+205.6931246484678
+ 10
+201.3948537300388
+ 20
+200.3068753515322
   0
 TEXT
   5
@@ -7941,29 +8061,25 @@ TEXT
 100
 AcDbText
  10
-305.0
+192.0
  20
-156.0
+212.0
  30
 0.0
  40
-3.4
+3.0
   1
-PUFFERSPEICHER 2
- 72
-1
+Pumpe Heiz-/Kühlkreis
  11
-305.0
+192.0
  21
-156.0
+212.0
  31
 0.0
 100
 AcDbText
- 73
-2
   0
-TEXT
+LINE
   5
 F1
 330
@@ -7971,33 +8087,23 @@ F1
 100
 AcDbEntity
   8
-TEXT
+SPEICHER
 100
-AcDbText
+AcDbLine
  10
-305.0
+255.0
  20
-147.0
+85.0
  30
 0.0
- 40
-3.0
-  1
-PSM 500 · 500 l
- 72
-1
  11
-305.0
+255.0
  21
-147.0
+120.0
  31
 0.0
-100
-AcDbText
- 73
-2
   0
-TEXT
+LINE
   5
 F2
 330
@@ -8005,33 +8111,23 @@ F2
 100
 AcDbEntity
   8
-TEXT
+SPEICHER
 100
-AcDbText
+AcDbLine
  10
 305.0
  20
-139.0
+85.0
  30
 0.0
- 40
-2.8
-  1
-Heizen + Kühlen
- 72
-1
  11
 305.0
  21
-139.0
+120.0
  31
 0.0
-100
-AcDbText
- 73
-2
   0
-LINE
+ARC
   5
 F3
 330
@@ -8039,23 +8135,25 @@ F3
 100
 AcDbEntity
   8
-VL
+SPEICHER
 100
-AcDbLine
+AcDbCircle
  10
-292.0
+280.0
  20
-235.0
+120.0
  30
 0.0
- 11
-292.0
- 21
-195.0
- 31
+ 40
+25.0
+100
+AcDbArc
+ 50
 0.0
+ 51
+180.0
   0
-CIRCLE
+ARC
   5
 F4
 330
@@ -8063,19 +8161,25 @@ F4
 100
 AcDbEntity
   8
-VL
+SPEICHER
 100
 AcDbCircle
  10
-292.0
+280.0
  20
-235.0
+85.0
  30
 0.0
  40
-1.2
+25.0
+100
+AcDbArc
+ 50
+180.0
+ 51
+360.0
   0
-LINE
+TEXT
   5
 F5
 330
@@ -8083,23 +8187,33 @@ F5
 100
 AcDbEntity
   8
-RL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-318.0
+280.0
  20
-215.0
+116.0
  30
 0.0
+ 40
+3.2
+  1
+PUFFERSPEICHER 1
+ 72
+1
  11
-318.0
+280.0
  21
-195.0
+116.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-CIRCLE
+TEXT
   5
 F6
 330
@@ -8107,19 +8221,33 @@ F6
 100
 AcDbEntity
   8
-RL
+TEXT
 100
-AcDbCircle
+AcDbText
  10
-318.0
+280.0
  20
-215.0
+107.0
  30
 0.0
  40
-1.2
+3.0
+  1
+PSM 800 · 800 l
+ 72
+1
+ 11
+280.0
+ 21
+107.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 F7
 330
@@ -8127,23 +8255,33 @@ F7
 100
 AcDbEntity
   8
-VL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-330.0
+280.0
  20
-235.0
+99.0
  30
 0.0
+ 40
+2.5
+  1
+Austria Email · 95 °C · 0,4 MPa
+ 72
+1
  11
-380.0
+280.0
  21
-235.0
+99.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 F8
 330
@@ -8151,23 +8289,33 @@ F8
 100
 AcDbEntity
   8
-VL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-380.0
+280.0
  20
-235.0
+90.0
  30
 0.0
+ 40
+2.5
+  1
+Mindestwasserinhalt,
+ 72
+1
  11
-376.5724449865242
+280.0
  21
-237.06200548728586
+90.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 F9
 330
@@ -8175,21 +8323,31 @@ F9
 100
 AcDbEntity
   8
-VL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-380.0
+280.0
  20
-235.0
+84.0
  30
 0.0
+ 40
+2.5
+  1
+bleibt beim Kühlen in Betrieb
+ 72
+1
  11
-376.5724449865242
+280.0
  21
-232.93799451271414
+84.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
 LINE
   5
@@ -8199,23 +8357,23 @@ FA
 100
 AcDbEntity
   8
-RL
+VL
 100
 AcDbLine
  10
-380.0
+267.0
  20
-215.0
+203.0
  30
 0.0
  11
-330.0
+267.0
  21
-215.0
+145.0
  31
 0.0
   0
-LINE
+CIRCLE
   5
 FB
 330
@@ -8223,21 +8381,17 @@ FB
 100
 AcDbEntity
   8
-RL
+VL
 100
-AcDbLine
+AcDbCircle
  10
-330.0
+267.0
  20
-215.0
+203.0
  30
 0.0
- 11
-333.4275550134758
- 21
-212.93799451271414
- 31
-0.0
+ 40
+1.2
   0
 LINE
   5
@@ -8251,15 +8405,15 @@ RL
 100
 AcDbLine
  10
-330.0
+293.0
  20
-215.0
+161.0
  30
 0.0
  11
-333.4275550134758
+293.0
  21
-217.06200548728586
+145.0
  31
 0.0
   0
@@ -8271,19 +8425,19 @@ FD
 100
 AcDbEntity
   8
-VL
+RL
 100
 AcDbCircle
  10
-330.0
+293.0
  20
-235.0
+161.0
  30
 0.0
  40
 1.2
   0
-CIRCLE
+LINE
   5
 FE
 330
@@ -8291,17 +8445,21 @@ FE
 100
 AcDbEntity
   8
-RL
+TRENNUNG
 100
-AcDbCircle
+AcDbLine
  10
-330.0
+355.0
  20
-215.0
+42.0
  30
 0.0
- 40
-1.2
+ 11
+355.0
+ 21
+265.0
+ 31
+0.0
   0
 TEXT
   5
@@ -8315,19 +8473,19 @@ TEXT
 100
 AcDbText
  10
-385.0
+360.0
  20
-230.0
+268.0
  30
 0.0
  40
-3.2
+3.0
   1
-zu / von den
+2. Heizungsraum
  11
-385.0
+360.0
  21
-230.0
+268.0
  31
 0.0
 100
@@ -8345,25 +8503,25 @@ TEXT
 100
 AcDbText
  10
-385.0
+360.0
  20
-222.0
+260.0
  30
 0.0
  40
-3.2
+2.6
   1
-21 Umluftkühlgeräten
+Verbindung: DN54-Doppelleitung
  11
-385.0
+360.0
  21
-222.0
+260.0
  31
 0.0
 100
 AcDbText
   0
-TEXT
+LINE
   5
 101
 330
@@ -8371,29 +8529,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+SPEICHER
 100
-AcDbText
+AcDbLine
  10
-385.0
+400.0
  20
-214.0
+85.0
  30
 0.0
- 40
-2.8
-  1
-KONVEKA DF2 51 (2-Leiter-Ausführung)
  11
-385.0
+400.0
  21
-214.0
+120.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 102
 330
@@ -8401,29 +8553,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+SPEICHER
 100
-AcDbText
+AcDbLine
  10
-385.0
+450.0
  20
-206.0
+85.0
  30
 0.0
- 40
-2.8
-  1
-Kühlen 17/22 °C: 1,5 kW je Gerät
  11
-385.0
+450.0
  21
-206.0
+120.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+ARC
   5
 103
 330
@@ -8431,29 +8577,25 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+SPEICHER
 100
-AcDbText
+AcDbCircle
  10
-385.0
+425.0
  20
-198.0
+120.0
  30
 0.0
  40
-2.8
-  1
-Heizen 35/30 °C: 1,6 kW je Gerät
- 11
-385.0
- 21
-198.0
- 31
-0.0
+25.0
 100
-AcDbText
+AcDbArc
+ 50
+0.0
+ 51
+180.0
   0
-TEXT
+ARC
   5
 104
 330
@@ -8461,29 +8603,25 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+SPEICHER
 100
-AcDbText
+AcDbCircle
  10
-385.0
+425.0
  20
-190.0
+85.0
  30
 0.0
  40
-2.8
-  1
-Kondensatanschluss DN20 je Gerät
- 11
-385.0
- 21
-190.0
- 31
-0.0
+25.0
 100
-AcDbText
+AcDbArc
+ 50
+180.0
+ 51
+360.0
   0
-LINE
+TEXT
   5
 105
 330
@@ -8491,23 +8629,33 @@ LINE
 100
 AcDbEntity
   8
-RL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-130.0
+425.0
  20
-90.0
+116.0
  30
 0.0
+ 40
+3.2
+  1
+PUFFERSPEICHER 2
+ 72
+1
  11
-130.0
+425.0
  21
-82.0
+116.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-CIRCLE
+TEXT
   5
 106
 330
@@ -8515,19 +8663,33 @@ CIRCLE
 100
 AcDbEntity
   8
-ARMATUR
+TEXT
 100
-AcDbCircle
+AcDbText
  10
-148.0
+425.0
  20
-45.0
+107.0
  30
 0.0
  40
-6.0
+3.0
+  1
+PSM 500 · 500 l
+ 72
+1
+ 11
+425.0
+ 21
+107.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 107
 330
@@ -8535,23 +8697,33 @@ LINE
 100
 AcDbEntity
   8
-ARMATUR
+TEXT
 100
-AcDbLine
+AcDbText
  10
-142.0
+425.0
  20
-45.0
+96.0
  30
 0.0
+ 40
+2.5
+  1
+im Kühlbetrieb absperren
+ 72
+1
  11
-154.0
+425.0
  21
-45.0
+96.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-LINE
+TEXT
   5
 108
 330
@@ -8559,21 +8731,31 @@ LINE
 100
 AcDbEntity
   8
-RL
+TEXT
 100
-AcDbLine
+AcDbText
  10
-130.0
+425.0
  20
-65.0
+90.0
  30
 0.0
+ 40
+2.5
+  1
+(Bypass über Hauptleitung)
+ 72
+1
  11
-148.0
+425.0
  21
-65.0
+90.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
 LINE
   5
@@ -8583,19 +8765,19 @@ LINE
 100
 AcDbEntity
   8
-RL
+VL
 100
 AcDbLine
  10
-148.0
+412.0
  20
-65.0
+203.0
  30
 0.0
  11
-148.0
+412.0
  21
-51.0
+145.0
  31
 0.0
   0
@@ -8607,19 +8789,19 @@ CIRCLE
 100
 AcDbEntity
   8
-RL
+VL
 100
 AcDbCircle
  10
-130.0
+412.0
  20
-65.0
+203.0
  30
 0.0
  40
 1.2
   0
-TEXT
+LWPOLYLINE
   5
 10B
 330
@@ -8627,29 +8809,27 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+ARMATUR
 100
-AcDbText
+AcDbPolyline
+ 90
+3
+ 70
+1
  10
-158.0
+408.0
  20
-43.0
- 30
-0.0
- 40
-3.2
-  1
-MAG
- 11
-158.0
- 21
-43.0
- 31
-0.0
-100
-AcDbText
+175.0
+ 10
+408.0
+ 20
+181.0
+ 10
+412.0
+ 20
+178.0
   0
-TEXT
+LWPOLYLINE
   5
 10C
 330
@@ -8657,29 +8837,27 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+ARMATUR
 100
-AcDbText
+AcDbPolyline
+ 90
+3
+ 70
+1
  10
-10.0
+416.0
  20
-20.0
- 30
-0.0
- 40
-3.4
-  1
-HINWEIS: Heizen und Kühlen laufen über DIESELBEN 2 Leitungen
- 11
-10.0
- 21
-20.0
- 31
-0.0
-100
-AcDbText
+175.0
+ 10
+416.0
+ 20
+181.0
+ 10
+412.0
+ 20
+178.0
   0
-TEXT
+LINE
   5
 10D
 330
@@ -8687,29 +8865,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+ARMATUR
 100
-AcDbText
+AcDbLine
  10
-10.0
+412.0
  20
-12.0
+178.0
  30
 0.0
- 40
-3.4
-  1
-und DIESELBEN 2 Pufferspeicher (Change-Over, Umschaltung an der WP).
  11
-10.0
+412.0
  21
-12.0
+184.4
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LWPOLYLINE
   5
 10E
 330
@@ -8717,37 +8889,7 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
-100
-AcDbText
- 10
-10.0
- 20
-4.0
- 30
-0.0
- 40
-3.4
-  1
-Warmwasser hat ein eigenes Leitungspaar und eigene Speicher.
- 11
-10.0
- 21
-4.0
- 31
-0.0
-100
-AcDbText
-  0
-LWPOLYLINE
-  5
-10F
-330
-17
-100
-AcDbEntity
-  8
-RAHMEN
+ARMATUR
 100
 AcDbPolyline
  90
@@ -8755,109 +8897,59 @@ AcDbPolyline
  70
 1
  10
-330.0
+408.8
  20
-60.0
+184.4
  10
-465.0
+415.2
  20
-60.0
+184.4
  10
-465.0
+415.2
  20
-148.0
+189.2
  10
-330.0
+408.8
  20
-148.0
+189.2
   0
 TEXT
+  5
+10F
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbText
+ 10
+412.0
+ 20
+186.8
+ 30
+0.0
+ 40
+3.6
+  1
+M
+ 72
+1
+ 11
+412.0
+ 21
+186.8
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LINE
   5
 110
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-336.0
- 20
-136.0
- 30
-0.0
- 40
-4.0
-  1
-LEGENDE
- 11
-336.0
- 21
-136.0
- 31
-0.0
-100
-AcDbText
-  0
-LINE
-  5
-111
-330
-17
-100
-AcDbEntity
-  8
-VL
-100
-AcDbLine
- 10
-336.0
- 20
-126.0
- 30
-0.0
- 11
-356.0
- 21
-126.0
- 31
-0.0
-  0
-TEXT
-  5
-112
-330
-17
-100
-AcDbEntity
-  8
-TEXT
-100
-AcDbText
- 10
-362.0
- 20
-124.0
- 30
-0.0
- 40
-3.2
-  1
-Vorlauf (VL)
- 11
-362.0
- 21
-124.0
- 31
-0.0
-100
-AcDbText
-  0
-LINE
-  5
-113
 330
 17
 100
@@ -8867,19 +8959,95 @@ RL
 100
 AcDbLine
  10
-336.0
+438.0
  20
-114.0
+161.0
  30
 0.0
  11
-356.0
+438.0
  21
-114.0
+145.0
  31
 0.0
   0
-TEXT
+CIRCLE
+  5
+111
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbCircle
+ 10
+438.0
+ 20
+161.0
+ 30
+0.0
+ 40
+1.2
+  0
+LWPOLYLINE
+  5
+112
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+434.0
+ 20
+149.0
+ 10
+434.0
+ 20
+155.0
+ 10
+438.0
+ 20
+152.0
+  0
+LWPOLYLINE
+  5
+113
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+442.0
+ 20
+149.0
+ 10
+442.0
+ 20
+155.0
+ 10
+438.0
+ 20
+152.0
+  0
+LINE
   5
 114
 330
@@ -8887,29 +9055,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+ARMATUR
 100
-AcDbText
+AcDbLine
  10
-362.0
+438.0
  20
-112.0
+152.0
  30
 0.0
- 40
-3.2
-  1
-Rücklauf (RL)
  11
-362.0
+438.0
  21
-112.0
+158.4
  31
 0.0
-100
-AcDbText
   0
-CIRCLE
+LWPOLYLINE
   5
 115
 330
@@ -8919,17 +9081,29 @@ AcDbEntity
   8
 ARMATUR
 100
-AcDbCircle
+AcDbPolyline
+ 90
+4
+ 70
+1
  10
-346.0
+434.8
  20
-102.0
- 30
-0.0
- 40
-4.0
+158.4
+ 10
+441.2
+ 20
+158.4
+ 10
+441.2
+ 20
+163.2
+ 10
+434.8
+ 20
+163.2
   0
-LWPOLYLINE
+TEXT
   5
 116
 330
@@ -8939,25 +9113,31 @@ AcDbEntity
   8
 ARMATUR
 100
-AcDbPolyline
- 90
-3
- 70
+AcDbText
+ 10
+438.0
+ 20
+160.8
+ 30
+0.0
+ 40
+3.6
+  1
+M
+ 72
 1
- 10
-349.6
- 20
-102.0
- 10
-343.11588298403103
- 20
-104.15449971877425
- 10
-343.11588298403103
- 20
-99.84550028122575
+ 11
+438.0
+ 21
+160.8
+ 31
+0.0
+100
+AcDbText
+ 73
+2
   0
-TEXT
+LINE
   5
 117
 330
@@ -8965,29 +9145,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+VL
 100
-AcDbText
+AcDbLine
  10
-362.0
+560.0
  20
-100.0
+203.0
  30
 0.0
- 40
-3.2
-  1
-Umwälzpumpe
  11
-362.0
+620.0
  21
-100.0
+203.0
  31
 0.0
-100
-AcDbText
   0
-LWPOLYLINE
+LINE
   5
 118
 330
@@ -8995,27 +9169,23 @@ LWPOLYLINE
 100
 AcDbEntity
   8
-ARMATUR
+VL
 100
-AcDbPolyline
- 90
-3
- 70
-1
+AcDbLine
  10
-342.0
+620.0
  20
-85.2
- 10
-342.0
- 20
-90.8
- 10
-346.0
- 20
-88.0
+203.0
+ 30
+0.0
+ 11
+616.5724449865243
+ 21
+205.06200548728586
+ 31
+0.0
   0
-LWPOLYLINE
+LINE
   5
 119
 330
@@ -9023,27 +9193,23 @@ LWPOLYLINE
 100
 AcDbEntity
   8
-ARMATUR
+VL
 100
-AcDbPolyline
- 90
-3
- 70
-1
+AcDbLine
  10
-350.0
+620.0
  20
-85.2
- 10
-350.0
- 20
-90.8
- 10
-346.0
- 20
-88.0
+203.0
+ 30
+0.0
+ 11
+616.5724449865243
+ 21
+200.93799451271414
+ 31
+0.0
   0
-LWPOLYLINE
+LINE
   5
 11A
 330
@@ -9051,27 +9217,23 @@ LWPOLYLINE
 100
 AcDbEntity
   8
-ARMATUR
+RL
 100
-AcDbPolyline
- 90
-3
- 70
-1
+AcDbLine
  10
-343.2
+620.0
  20
-92.0
- 10
-348.8
- 20
-92.0
- 10
-346.0
- 20
-88.0
+161.0
+ 30
+0.0
+ 11
+560.0
+ 21
+161.0
+ 31
+0.0
   0
-TEXT
+LINE
   5
 11B
 330
@@ -9079,29 +9241,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+RL
 100
-AcDbText
+AcDbLine
  10
-362.0
+560.0
  20
-86.0
+161.0
  30
 0.0
- 40
-3.2
-  1
-3-Wege-Umschaltventil
  11
-362.0
+563.4275550134757
  21
-86.0
+158.93799451271414
  31
 0.0
-100
-AcDbText
   0
-CIRCLE
+LINE
   5
 11C
 330
@@ -9109,19 +9265,23 @@ CIRCLE
 100
 AcDbEntity
   8
-ARMATUR
+RL
 100
-AcDbCircle
+AcDbLine
  10
-346.0
+560.0
  20
-72.0
+161.0
  30
 0.0
- 40
-5.0
+ 11
+563.4275550134757
+ 21
+163.06200548728586
+ 31
+0.0
   0
-LINE
+CIRCLE
   5
 11D
 330
@@ -9129,23 +9289,19 @@ LINE
 100
 AcDbEntity
   8
-ARMATUR
+VL
 100
-AcDbLine
+AcDbCircle
  10
-341.0
+560.0
  20
-72.0
+203.0
  30
 0.0
- 11
-351.0
- 21
-72.0
- 31
-0.0
+ 40
+1.2
   0
-TEXT
+CIRCLE
   5
 11E
 330
@@ -9153,29 +9309,19 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+RL
 100
-AcDbText
+AcDbCircle
  10
-362.0
+560.0
  20
-70.0
+161.0
  30
 0.0
  40
-3.2
-  1
-Ausdehnungsgefäß (MAG)
- 11
-362.0
- 21
-70.0
- 31
-0.0
-100
-AcDbText
+1.2
   0
-LWPOLYLINE
+CIRCLE
   5
 11F
 330
@@ -9183,31 +9329,19 @@ LWPOLYLINE
 100
 AcDbEntity
   8
-RAHMEN
+MSR
 100
-AcDbPolyline
- 90
-4
- 70
-1
+AcDbCircle
  10
+530.0
+ 20
+221.0
+ 30
 0.0
- 20
--30.0
- 10
-480.0
- 20
--30.0
- 10
-480.0
- 20
-440.0
- 10
-0.0
- 20
-440.0
+ 40
+6.0
   0
-LINE
+TEXT
   5
 120
 330
@@ -9215,23 +9349,33 @@ LINE
 100
 AcDbEntity
   8
-RAHMEN
+MSR
 100
-AcDbLine
+AcDbText
  10
-0.0
+530.0
  20
--5.0
+221.0
  30
 0.0
+ 40
+4.800000000000001
+  1
+TP
+ 72
+1
  11
-480.0
+530.0
  21
--5.0
+221.0
  31
 0.0
+100
+AcDbText
+ 73
+2
   0
-TEXT
+LINE
   5
 121
 330
@@ -9239,27 +9383,21 @@ TEXT
 100
 AcDbEntity
   8
-TEXT
+MSR
 100
-AcDbText
+AcDbLine
  10
-10.0
+530.0
  20
--15.0
+215.0
  30
 0.0
- 40
-4.5
-  1
-HYDRAULIKSCHEMA (PRINZIP) — WÄRMEPUMPEN: HEIZEN / KÜHLEN / WARMWASSER
  11
-10.0
+530.0
  21
--15.0
+203.0
  31
 0.0
-100
-AcDbText
   0
 TEXT
   5
@@ -9273,9 +9411,1819 @@ TEXT
 100
 AcDbText
  10
+452.0
+ 20
+240.0
+ 30
+0.0
+ 40
+2.6
+  1
+Taupunktwächter: hebt VL an,
+ 11
+452.0
+ 21
+240.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+123
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+452.0
+ 20
+234.0
+ 30
+0.0
+ 40
+2.6
+  1
+wenn Taupunkt + 2 K erreicht
+ 11
+452.0
+ 21
+234.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+124
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+258.0
+ 30
+0.0
+ 40
+3.2
+  1
+zu / von den 20 Umluftkühlgeräten
+ 11
+564.0
+ 21
+258.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+125
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+250.0
+ 30
+0.0
+ 40
+2.8
+  1
+KONVEKA DF2 51 (2-Leiter-Ausführung)
+ 11
+564.0
+ 21
+250.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+126
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+242.0
+ 30
+0.0
+ 40
+2.8
+  1
+Kühlen 17/22 °C · 1,5 kW je Gerät → 30,0 kW
+ 11
+564.0
+ 21
+242.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+127
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+234.0
+ 30
+0.0
+ 40
+2.8
+  1
+Heizen 35/30 °C · 1,6 kW je Gerät → 32,0 kW
+ 11
+564.0
+ 21
+234.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+128
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+226.0
+ 30
+0.0
+ 40
+2.8
+  1
+Kondensatanschluss DN20 je Gerät
+ 11
+564.0
+ 21
+226.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+129
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+218.0
+ 30
+0.0
+ 40
+2.8
+  1
+Auslegung Kaltwasser: 16/21 °C sekundär,
+ 11
+564.0
+ 21
+218.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+12A
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+210.0
+ 30
+0.0
+ 40
+2.8
+  1
+gleitend nach Taupunkt (Minimum 12 °C)
+ 11
+564.0
+ 21
+210.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+12B
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+130.0
+ 20
+75.0
+ 30
+0.0
+ 11
+146.0
+ 21
+75.0
+ 31
+0.0
+  0
+LINE
+  5
+12C
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+146.0
+ 20
+75.0
+ 30
+0.0
+ 11
+146.0
+ 21
+51.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+12D
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbCircle
+ 10
+130.0
+ 20
+75.0
+ 30
+0.0
+ 40
+1.2
+  0
+CIRCLE
+  5
+12E
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbCircle
+ 10
+146.0
+ 20
+45.0
+ 30
+0.0
+ 40
+6.0
+  0
+LINE
+  5
+12F
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbLine
+ 10
+140.0
+ 20
+45.0
+ 30
+0.0
+ 11
+152.0
+ 21
+45.0
+ 31
+0.0
+  0
+TEXT
+  5
+130
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+155.0
+ 20
+43.0
+ 30
+0.0
+ 40
+2.8
+  1
+MAG primär
+ 11
+155.0
+ 21
+43.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+131
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+330.0
+ 20
+161.0
+ 30
+0.0
+ 11
+330.0
+ 21
+128.0
+ 31
+0.0
+  0
+CIRCLE
+  5
+132
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbCircle
+ 10
+330.0
+ 20
+161.0
+ 30
+0.0
+ 40
+1.2
+  0
+CIRCLE
+  5
+133
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbCircle
+ 10
+330.0
+ 20
+122.0
+ 30
+0.0
+ 40
+6.0
+  0
+LINE
+  5
+134
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbLine
+ 10
+324.0
+ 20
+122.0
+ 30
+0.0
+ 11
+336.0
+ 21
+122.0
+ 31
+0.0
+  0
+TEXT
+  5
+135
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+339.0
+ 20
+120.0
+ 30
+0.0
+ 40
+2.8
+  1
+MAG sekundär
+ 11
+339.0
+ 21
+120.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+136
+330
+17
+100
+AcDbEntity
+  8
+TRENNUNG
+100
+AcDbLine
+ 10
+164.0
+ 20
+42.0
+ 30
+0.0
+ 11
+164.0
+ 21
+470.0
+ 31
+0.0
+  0
+TEXT
+  5
+137
+330
+17
+100
+AcDbEntity
+  8
+TRENNUNG
+100
+AcDbText
+ 10
+14.0
+ 20
+466.0
+ 30
+0.0
+ 40
+3.4
+  1
+PRIMÄR — Wasser/Glykol ca. 30 %
+ 11
+14.0
+ 21
+466.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+138
+330
+17
+100
+AcDbEntity
+  8
+TRENNUNG
+100
+AcDbText
+ 10
+14.0
+ 20
+459.0
+ 30
+0.0
+ 40
+2.8
+  1
+(Wärmepumpen + Außenleitungen, frostsicher)
+ 11
+14.0
+ 21
+459.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+139
+330
+17
+100
+AcDbEntity
+  8
+TRENNUNG
+100
+AcDbText
+ 10
+182.0
+ 20
+466.0
+ 30
+0.0
+ 40
+3.4
+  1
+SEKUNDÄR — reines Heizungswasser nach VDI 2035, kein Glykol
+ 11
+182.0
+ 21
+466.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+13A
+330
+17
+100
+AcDbEntity
+  8
+TRENNUNG
+100
+AcDbText
+ 10
+182.0
+ 20
+459.0
+ 30
+0.0
+ 40
+2.8
+  1
+(gesamtes Gebäude: Puffer, Verteilung, Verbraucher, TWW-Ladung)
+ 11
+182.0
+ 21
+459.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+13B
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+24.0
+ 30
+0.0
+ 40
+2.7
+  1
+SYSTEMTRENNUNG: Nur der Primärkreis (Wärmepumpen + Außenstrecke bis zu den Wärmetauschern) wird mit Frostschutz gefüllt —
+ 11
+10.0
+ 21
+24.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+13C
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+17.0
+ 30
+0.0
+ 40
+2.7
+  1
+dadurch statt über 600 l nur rund 50–75 l Glykol. Preis dafür: Grädigkeit der Wärmetauscher 2–4 K (rund 7 % COP bzw. EER).
+ 11
+10.0
+ 21
+17.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+13D
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+10.0
+ 30
+0.0
+ 40
+2.7
+  1
+WT 1 auf den KÜHLFALL auslegen (kleinere treibende Temperaturdifferenz als beim Heizen), nicht auf den Heizfall.
+ 11
+10.0
+ 21
+10.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+13E
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+3.0
+ 30
+0.0
+ 40
+2.7
+  1
+CHANGE-OVER: Heizen und Kühlen laufen über dieselben Leitungen, Puffer und Verbraucher — Umschaltung an den Wärmepumpen,
+ 11
+10.0
+ 21
+3.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+13F
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-4.0
+ 30
+0.0
+ 40
+2.7
+  1
+saisonal umschalten (nicht täglich): jedes Umladen der Puffer kostet rund 30 kWh. Warmwasser läuft davon unabhängig weiter.
+ 11
+10.0
+ 21
+-4.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+140
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-11.0
+ 30
+0.0
+ 40
+2.7
+  1
+KÜHLBETRIEB: Leitungen, Armaturen und Speicher dampfdiffusionsdicht dämmen (geschlossenzelliger Kautschuk, Stöße verklebt).
+ 11
+10.0
+ 21
+-11.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+141
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-18.0
+ 30
+0.0
+ 40
+2.7
+  1
+Die Eco-Skin-Vliesisolierung des PSM 800 ist NICHT diffusionsdicht. Kondensatanschlüsse der Umluftkühler mit Gefälle führen.
+ 11
+10.0
+ 21
+-18.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+142
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
 10.0
  20
 -25.0
+ 30
+0.0
+ 40
+2.7
+  1
+KALTWASSER: 16 °C Vorlauf sekundär (13 °C primär) hält die Anlage in fast allen Betriebspunkten über dem Taupunkt. Grenzen:
+ 11
+10.0
+ 21
+-25.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+143
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-32.0
+ 30
+0.0
+ 40
+2.7
+  1
+primär nie unter 7 °C (ohne Glykol Vereisungsgefahr), sekundär nie unter 12 °C. Bedarf 30 kW gegen 59 kW Kälteleistung —
+ 11
+10.0
+ 21
+-32.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+144
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-39.0
+ 30
+0.0
+ 40
+2.7
+  1
+die Reserve in eine HÖHERE Kaltwassertemperatur umsetzen (rund 2–3 % besserer EER je Kelvin), nicht in eine tiefere.
+ 11
+10.0
+ 21
+-39.0
+ 31
+0.0
+100
+AcDbText
+  0
+LWPOLYLINE
+  5
+145
+330
+17
+100
+AcDbEntity
+  8
+RAHMEN
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+470.0
+ 20
+30.0
+ 10
+640.0
+ 20
+30.0
+ 10
+640.0
+ 20
+148.0
+ 10
+470.0
+ 20
+148.0
+  0
+TEXT
+  5
+146
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+476.0
+ 20
+136.0
+ 30
+0.0
+ 40
+4.0
+  1
+LEGENDE
+ 11
+476.0
+ 21
+136.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+147
+330
+17
+100
+AcDbEntity
+  8
+VL
+100
+AcDbLine
+ 10
+478.0
+ 20
+126.0
+ 30
+0.0
+ 11
+500.0
+ 21
+126.0
+ 31
+0.0
+  0
+TEXT
+  5
+148
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+506.0
+ 20
+124.0
+ 30
+0.0
+ 40
+3.0
+  1
+Vorlauf (VL)
+ 11
+506.0
+ 21
+124.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+149
+330
+17
+100
+AcDbEntity
+  8
+RL
+100
+AcDbLine
+ 10
+478.0
+ 20
+115.0
+ 30
+0.0
+ 11
+500.0
+ 21
+115.0
+ 31
+0.0
+  0
+TEXT
+  5
+14A
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+506.0
+ 20
+113.0
+ 30
+0.0
+ 40
+3.0
+  1
+Rücklauf (RL)
+ 11
+506.0
+ 21
+113.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+14B
+330
+17
+100
+AcDbEntity
+  8
+TRENNUNG
+100
+AcDbLine
+ 10
+478.0
+ 20
+104.0
+ 30
+0.0
+ 11
+500.0
+ 21
+104.0
+ 31
+0.0
+  0
+TEXT
+  5
+14C
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+506.0
+ 20
+102.0
+ 30
+0.0
+ 40
+3.0
+  1
+Systemtrennung / Raumgrenze
+ 11
+506.0
+ 21
+102.0
+ 31
+0.0
+100
+AcDbText
+  0
+LWPOLYLINE
+  5
+14D
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+482.0
+ 20
+82.0
+ 10
+496.0
+ 20
+82.0
+ 10
+496.0
+ 20
+96.0
+ 10
+482.0
+ 20
+96.0
+  0
+LWPOLYLINE
+  5
+14E
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+9
+ 70
+0
+ 10
+485.5
+ 20
+82.0
+ 10
+492.5
+ 20
+83.75
+ 10
+485.5
+ 20
+85.5
+ 10
+492.5
+ 20
+87.25
+ 10
+485.5
+ 20
+89.0
+ 10
+492.5
+ 20
+90.75
+ 10
+485.5
+ 20
+92.5
+ 10
+492.5
+ 20
+94.25
+ 10
+485.5
+ 20
+96.0
+  0
+TEXT
+  5
+14F
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+506.0
+ 20
+87.0
+ 30
+0.0
+ 40
+3.0
+  1
+Plattenwärmetauscher
+ 11
+506.0
+ 21
+87.0
+ 31
+0.0
+100
+AcDbText
+  0
+CIRCLE
+  5
+150
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbCircle
+ 10
+489.0
+ 20
+72.0
+ 30
+0.0
+ 40
+4.0
+  0
+LWPOLYLINE
+  5
+151
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+492.6
+ 20
+72.0
+ 10
+486.11588298403103
+ 20
+74.15449971877425
+ 10
+486.11588298403103
+ 20
+69.84550028122575
+  0
+TEXT
+  5
+152
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+506.0
+ 20
+70.0
+ 30
+0.0
+ 40
+3.0
+  1
+Umwälzpumpe
+ 11
+506.0
+ 21
+70.0
+ 31
+0.0
+100
+AcDbText
+  0
+LWPOLYLINE
+  5
+153
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+485.5
+ 20
+54.375
+ 10
+485.5
+ 20
+59.625
+ 10
+489.0
+ 20
+57.0
+  0
+LWPOLYLINE
+  5
+154
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+492.5
+ 20
+54.375
+ 10
+492.5
+ 20
+59.625
+ 10
+489.0
+ 20
+57.0
+  0
+LINE
+  5
+155
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbLine
+ 10
+489.0
+ 20
+57.0
+ 30
+0.0
+ 11
+489.0
+ 21
+62.6
+ 31
+0.0
+  0
+LWPOLYLINE
+  5
+156
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+486.2
+ 20
+62.6
+ 10
+491.8
+ 20
+62.6
+ 10
+491.8
+ 20
+66.8
+ 10
+486.2
+ 20
+66.8
+  0
+TEXT
+  5
+157
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbText
+ 10
+489.0
+ 20
+64.7
+ 30
+0.0
+ 40
+3.15
+  1
+M
+ 72
+1
+ 11
+489.0
+ 21
+64.7
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+158
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+506.0
+ 20
+55.0
+ 30
+0.0
+ 40
+3.0
+  1
+Absperr-/Regelventil (motorisch)
+ 11
+506.0
+ 21
+55.0
+ 31
+0.0
+100
+AcDbText
+  0
+CIRCLE
+  5
+159
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbCircle
+ 10
+489.0
+ 20
+42.0
+ 30
+0.0
+ 40
+5.0
+  0
+LINE
+  5
+15A
+330
+17
+100
+AcDbEntity
+  8
+ARMATUR
+100
+AcDbLine
+ 10
+484.0
+ 20
+42.0
+ 30
+0.0
+ 11
+494.0
+ 21
+42.0
+ 31
+0.0
+  0
+TEXT
+  5
+15B
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+506.0
+ 20
+40.0
+ 30
+0.0
+ 40
+3.0
+  1
+Ausdehnungsgefäß (MAG)
+ 11
+506.0
+ 21
+40.0
+ 31
+0.0
+100
+AcDbText
+  0
+CIRCLE
+  5
+15C
+330
+17
+100
+AcDbEntity
+  8
+MSR
+100
+AcDbCircle
+ 10
+588.0
+ 20
+42.0
+ 30
+0.0
+ 40
+5.0
+  0
+TEXT
+  5
+15D
+330
+17
+100
+AcDbEntity
+  8
+MSR
+100
+AcDbText
+ 10
+588.0
+ 20
+42.0
+ 30
+0.0
+ 40
+4.0
+  1
+TP
+ 72
+1
+ 11
+588.0
+ 21
+42.0
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+15E
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+598.0
+ 20
+40.0
+ 30
+0.0
+ 40
+3.0
+  1
+Taupunktwächter
+ 11
+598.0
+ 21
+40.0
+ 31
+0.0
+100
+AcDbText
+  0
+LWPOLYLINE
+  5
+15F
+330
+17
+100
+AcDbEntity
+  8
+RAHMEN
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+0.0
+ 20
+-95.0
+ 10
+700.0
+ 20
+-95.0
+ 10
+700.0
+ 20
+500.0
+ 10
+0.0
+ 20
+500.0
+  0
+LINE
+  5
+160
+330
+17
+100
+AcDbEntity
+  8
+RAHMEN
+100
+AcDbLine
+ 10
+0.0
+ 20
+-70.0
+ 30
+0.0
+ 11
+700.0
+ 21
+-70.0
+ 31
+0.0
+  0
+TEXT
+  5
+161
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-80.0
+ 30
+0.0
+ 40
+4.5
+  1
+HYDRAULIKSCHEMA (PRINZIP) — WÄRMEPUMPEN: HEIZEN / KÜHLEN / WARMWASSER MIT SYSTEMTRENNUNG
+ 11
+10.0
+ 21
+-80.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+162
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-90.0
  30
 0.0
  40
@@ -9285,7 +11233,7 @@ LEANS Tech GmbH · ohne Maßstab · Prinzipdarstellung, keine Ausführungsplanun
  11
 10.0
  21
--25.0
+-90.0
  31
 0.0
 100
@@ -10381,7 +12329,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-125
+165
   0
 DICTIONARYVAR
   5
@@ -10393,7 +12341,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T15:52:34.629223+00:00
+1.4.4 @ 2026-08-20T16:28:57.362919+00:00
   0
 VISUALSTYLE
   5
@@ -16947,7 +18895,7 @@ strokes_ogs.tif
   0
 DICTIONARYVAR
   5
-125
+165
 330
 2D
 100
@@ -16955,7 +18903,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T15:52:34.640059+00:00
+1.4.4 @ 2026-08-20T16:28:57.374249+00:00
   0
 ENDSEC
   0
