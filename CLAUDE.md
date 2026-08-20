@@ -91,6 +91,22 @@ und einen Slack-Bot.
 - `slack_bot.py` — Slack-Bot (Chat + Plan-Bearbeitung, Claude-gestützt)
 - `START_HIER.md` — Deploy-Anleitung (Google Cloud Run)
 
+## Pläne immer mit Raster (VERBINDLICH)
+
+Bekommt Claude einen Plan (PDF oder Bild), wird er **immer mit einem
+gekennzeichneten Gitternetz** ausgegeben — Spalten mit Buchstaben (A, B, C …),
+Zeilen mit Zahlen (1, 2, 3 …), Beschriftung an allen vier Rändern. So können
+Nutzer und Claude Stellen eindeutig benennen: „der Speicher in C3", „die
+Wärmepumpen in D2".
+
+- Werkzeug: `python3 tools/plan_raster.py <plan.pdf|blatt.png> [ordner]
+  [--zelle=100] [--dpi=130]` — `--zelle` ist die Feldkantenlänge in mm auf dem
+  Originalplan (Standard 100 mm).
+- Ausgabe als PNG, damit der Nutzer sie in Paint öffnen und hineinzeichnen kann.
+- Dateinamen sprechend vergeben (`<BV>_RASTER_S<Nr>_<Geschoss>.png`).
+- Bei jeder Antwort, die sich auf eine Planstelle bezieht, das Rasterfeld
+  mitnennen.
+
 ## Suchen & Finden (VERBINDLICH)
 
 Der Nutzer erwartet, dass Gesuchtes (Dateien, Mails, Nachrichten, Notizen)
