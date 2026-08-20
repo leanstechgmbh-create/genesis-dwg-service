@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461273.6867708336
+2461273.707523148
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461273.6867708336
+2461273.707534722
   9
 $TDUUPDATE
  40
@@ -553,7 +553,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-166
+16C
   9
 $SURFTAB1
  70
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{EC395CA4-1271-405A-8402-AD5F2AA7C689}
+{8A0DA3B1-683C-4D83-BD59-EAC301B77CF6}
   9
 $VERSIONGUID
   2
-{D2928C1F-4E77-49A2-A1CD-7E79A2C89679}
+{96BF675B-F270-477E-B440-C3E967837DF1}
   9
 $EXTNAMES
 290
@@ -1327,9 +1327,9 @@ ISM
   0
 CLASS
   1
-LAYOUT
+ACDBPLACEHOLDER
   2
-AcDbLayout
+AcDbPlaceHolder
   3
 ObjectDBX Classes
  90
@@ -1343,9 +1343,9 @@ ObjectDBX Classes
   0
 CLASS
   1
-ACDBPLACEHOLDER
+LAYOUT
   2
-AcDbPlaceHolder
+AcDbLayout
   3
 ObjectDBX Classes
  90
@@ -3353,7 +3353,7 @@ ACAD
   0
 APPID
   5
-163
+169
 330
 3
 100
@@ -3367,7 +3367,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-164
+16A
 330
 3
 100
@@ -9479,7 +9479,7 @@ AcDbText
  40
 3.2
   1
-zu / von den 20 Umluftkühlgeräten
+zu / von den 20 Kanal-Gebläsekonvektoren
  11
 564.0
  21
@@ -9539,7 +9539,7 @@ AcDbText
  40
 2.8
   1
-Kühlen 17/22 °C · 1,5 kW je Gerät → 30,0 kW
+Kühlen 17/22 °C, Raum 27 °C, Stufe max:
  11
 564.0
  21
@@ -9569,7 +9569,7 @@ AcDbText
  40
 2.8
   1
-Heizen 35/30 °C · 1,6 kW je Gerät → 32,0 kW
+1 516 W total / 1 061 W sensibel je Gerät
  11
 564.0
  21
@@ -9599,7 +9599,7 @@ AcDbText
  40
 2.8
   1
-Kondensatanschluss DN20 je Gerät
+→ 30,3 kW total / 21,2 kW sensibel
  11
 564.0
  21
@@ -9629,7 +9629,7 @@ AcDbText
  40
 2.8
   1
-Auslegung Kaltwasser: 16/21 °C sekundär,
+Heizen 35/30 °C, Raum 20 °C: 1 593 W je Gerät → 31,9 kW
  11
 564.0
  21
@@ -9659,7 +9659,7 @@ AcDbText
  40
 2.8
   1
-gleitend nach Taupunkt (Minimum 12 °C)
+Wasser 261 l/h je Gerät · Δp 11,9 kPa · G 3/4"
  11
 564.0
  21
@@ -9669,9 +9669,99 @@ gleitend nach Taupunkt (Minimum 12 °C)
 100
 AcDbText
   0
-LINE
+TEXT
   5
 12B
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+202.0
+ 30
+0.0
+ 40
+2.8
+  1
+Kondensatanschluss DN20 je Gerät
+ 11
+564.0
+ 21
+202.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+12C
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+194.0
+ 30
+0.0
+ 40
+2.8
+  1
+Auslegung Kaltwasser: 16/21 °C sekundär,
+ 11
+564.0
+ 21
+194.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+12D
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+564.0
+ 20
+186.0
+ 30
+0.0
+ 40
+2.8
+  1
+gleitend nach Taupunkt (Minimum 12 °C)
+ 11
+564.0
+ 21
+186.0
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+12E
 330
 17
 100
@@ -9695,7 +9785,7 @@ AcDbLine
   0
 LINE
   5
-12C
+12F
 330
 17
 100
@@ -9719,7 +9809,7 @@ AcDbLine
   0
 CIRCLE
   5
-12D
+130
 330
 17
 100
@@ -9739,7 +9829,7 @@ AcDbCircle
   0
 CIRCLE
   5
-12E
+131
 330
 17
 100
@@ -9759,7 +9849,7 @@ AcDbCircle
   0
 LINE
   5
-12F
+132
 330
 17
 100
@@ -9783,7 +9873,7 @@ AcDbLine
   0
 TEXT
   5
-130
+133
 330
 17
 100
@@ -9813,7 +9903,7 @@ AcDbText
   0
 LINE
   5
-131
+134
 330
 17
 100
@@ -9837,7 +9927,7 @@ AcDbLine
   0
 CIRCLE
   5
-132
+135
 330
 17
 100
@@ -9857,7 +9947,7 @@ AcDbCircle
   0
 CIRCLE
   5
-133
+136
 330
 17
 100
@@ -9877,7 +9967,7 @@ AcDbCircle
   0
 LINE
   5
-134
+137
 330
 17
 100
@@ -9901,7 +9991,7 @@ AcDbLine
   0
 TEXT
   5
-135
+138
 330
 17
 100
@@ -9931,7 +10021,7 @@ AcDbText
   0
 LINE
   5
-136
+139
 330
 17
 100
@@ -9955,7 +10045,7 @@ AcDbLine
   0
 TEXT
   5
-137
+13A
 330
 17
 100
@@ -9985,7 +10075,7 @@ AcDbText
   0
 TEXT
   5
-138
+13B
 330
 17
 100
@@ -10015,7 +10105,7 @@ AcDbText
   0
 TEXT
   5
-139
+13C
 330
 17
 100
@@ -10045,7 +10135,7 @@ AcDbText
   0
 TEXT
   5
-13A
+13D
 330
 17
 100
@@ -10075,7 +10165,7 @@ AcDbText
   0
 TEXT
   5
-13B
+13E
 330
 17
 100
@@ -10105,7 +10195,7 @@ AcDbText
   0
 TEXT
   5
-13C
+13F
 330
 17
 100
@@ -10135,7 +10225,7 @@ AcDbText
   0
 TEXT
   5
-13D
+140
 330
 17
 100
@@ -10165,7 +10255,7 @@ AcDbText
   0
 TEXT
   5
-13E
+141
 330
 17
 100
@@ -10195,7 +10285,7 @@ AcDbText
   0
 TEXT
   5
-13F
+142
 330
 17
 100
@@ -10225,7 +10315,7 @@ AcDbText
   0
 TEXT
   5
-140
+143
 330
 17
 100
@@ -10255,7 +10345,7 @@ AcDbText
   0
 TEXT
   5
-141
+144
 330
 17
 100
@@ -10273,7 +10363,7 @@ AcDbText
  40
 2.7
   1
-Die Eco-Skin-Vliesisolierung des PSM 800 ist NICHT diffusionsdicht. Kondensatanschlüsse der Umluftkühler mit Gefälle führen.
+Die Eco-Skin-Vliesisolierung des PSM 800 ist NICHT diffusionsdicht. Kondensatanschlüsse der Konvektoren mit Gefälle führen.
  11
 10.0
  21
@@ -10285,7 +10375,7 @@ AcDbText
   0
 TEXT
   5
-142
+145
 330
 17
 100
@@ -10315,7 +10405,7 @@ AcDbText
   0
 TEXT
   5
-143
+146
 330
 17
 100
@@ -10345,7 +10435,7 @@ AcDbText
   0
 TEXT
   5
-144
+147
 330
 17
 100
@@ -10373,9 +10463,99 @@ die Reserve in eine HÖHERE Kaltwassertemperatur umsetzen (rund 2–3 % besserer
 100
 AcDbText
   0
+TEXT
+  5
+148
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-46.0
+ 30
+0.0
+ 40
+2.7
+  1
+AUSLEGUNG: Für die Raumtemperatur zählt die SENSIBLE Leistung der Konvektoren — bei 17/22 °C sind das 21,2 kW, bei 14/19 °C
+ 11
+10.0
+ 21
+-46.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+149
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-53.0
+ 30
+0.0
+ 40
+2.7
+  1
+27,4 kW, bei 10/15 °C 35,8 kW (Katalogwerte DF2 51, interpoliert). Volumenstrom steigt dabei von 261 auf 439 l/h je Gerät —
+ 11
+10.0
+ 21
+-53.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+14A
+330
+17
+100
+AcDbEntity
+  8
+TEXT
+100
+AcDbText
+ 10
+10.0
+ 20
+-60.0
+ 30
+0.0
+ 40
+2.7
+  1
+vor einer tieferen Kaltwassertemperatur die Strangquerschnitte Ø22/Ø28/Ø35 auf max. 0,8 m/s nachrechnen.
+ 11
+10.0
+ 21
+-60.0
+ 31
+0.0
+100
+AcDbText
+  0
 LWPOLYLINE
   5
-145
+14B
 330
 17
 100
@@ -10407,7 +10587,7 @@ AcDbPolyline
   0
 TEXT
   5
-146
+14C
 330
 17
 100
@@ -10437,7 +10617,7 @@ AcDbText
   0
 LINE
   5
-147
+14D
 330
 17
 100
@@ -10461,7 +10641,7 @@ AcDbLine
   0
 TEXT
   5
-148
+14E
 330
 17
 100
@@ -10491,7 +10671,7 @@ AcDbText
   0
 LINE
   5
-149
+14F
 330
 17
 100
@@ -10515,7 +10695,7 @@ AcDbLine
   0
 TEXT
   5
-14A
+150
 330
 17
 100
@@ -10545,7 +10725,7 @@ AcDbText
   0
 LINE
   5
-14B
+151
 330
 17
 100
@@ -10569,7 +10749,7 @@ AcDbLine
   0
 TEXT
   5
-14C
+152
 330
 17
 100
@@ -10599,7 +10779,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-14D
+153
 330
 17
 100
@@ -10631,7 +10811,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-14E
+154
 330
 17
 100
@@ -10683,7 +10863,7 @@ AcDbPolyline
   0
 TEXT
   5
-14F
+155
 330
 17
 100
@@ -10713,7 +10893,7 @@ AcDbText
   0
 CIRCLE
   5
-150
+156
 330
 17
 100
@@ -10733,7 +10913,7 @@ AcDbCircle
   0
 LWPOLYLINE
   5
-151
+157
 330
 17
 100
@@ -10761,7 +10941,7 @@ AcDbPolyline
   0
 TEXT
   5
-152
+158
 330
 17
 100
@@ -10791,7 +10971,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-153
+159
 330
 17
 100
@@ -10819,7 +10999,7 @@ AcDbPolyline
   0
 LWPOLYLINE
   5
-154
+15A
 330
 17
 100
@@ -10847,7 +11027,7 @@ AcDbPolyline
   0
 LINE
   5
-155
+15B
 330
 17
 100
@@ -10871,7 +11051,7 @@ AcDbLine
   0
 LWPOLYLINE
   5
-156
+15C
 330
 17
 100
@@ -10903,7 +11083,7 @@ AcDbPolyline
   0
 TEXT
   5
-157
+15D
 330
 17
 100
@@ -10937,7 +11117,7 @@ AcDbText
   0
 TEXT
   5
-158
+15E
 330
 17
 100
@@ -10967,7 +11147,7 @@ AcDbText
   0
 CIRCLE
   5
-159
+15F
 330
 17
 100
@@ -10987,7 +11167,7 @@ AcDbCircle
   0
 LINE
   5
-15A
+160
 330
 17
 100
@@ -11011,7 +11191,7 @@ AcDbLine
   0
 TEXT
   5
-15B
+161
 330
 17
 100
@@ -11041,7 +11221,7 @@ AcDbText
   0
 CIRCLE
   5
-15C
+162
 330
 17
 100
@@ -11061,7 +11241,7 @@ AcDbCircle
   0
 TEXT
   5
-15D
+163
 330
 17
 100
@@ -11095,7 +11275,7 @@ AcDbText
   0
 TEXT
   5
-15E
+164
 330
 17
 100
@@ -11125,7 +11305,7 @@ AcDbText
   0
 LWPOLYLINE
   5
-15F
+165
 330
 17
 100
@@ -11157,7 +11337,7 @@ AcDbPolyline
   0
 LINE
   5
-160
+166
 330
 17
 100
@@ -11181,7 +11361,7 @@ AcDbLine
   0
 TEXT
   5
-161
+167
 330
 17
 100
@@ -11211,7 +11391,7 @@ AcDbText
   0
 TEXT
   5
-162
+168
 330
 17
 100
@@ -12329,7 +12509,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-165
+16B
   0
 DICTIONARYVAR
   5
@@ -12341,7 +12521,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T16:28:57.362919+00:00
+1.4.4 @ 2026-08-20T16:58:50.996981+00:00
   0
 VISUALSTYLE
   5
@@ -18895,7 +19075,7 @@ strokes_ogs.tif
   0
 DICTIONARYVAR
   5
-165
+16B
 330
 2D
 100
@@ -18903,7 +19083,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-08-20T16:28:57.374249+00:00
+1.4.4 @ 2026-08-20T16:58:51.009545+00:00
   0
 ENDSEC
   0

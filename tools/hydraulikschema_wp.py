@@ -227,10 +227,13 @@ def build(doc):
     text(msp, "Taupunktwächter: hebt VL an,", (452, Y_HK_VL + 37), 2.6)
     text(msp, "wenn Taupunkt + 2 K erreicht", (452, Y_HK_VL + 31), 2.6)
     for i, s in enumerate([
-        "zu / von den 20 Umluftkühlgeräten",
+        "zu / von den 20 Kanal-Gebläsekonvektoren",
         "KONVEKA DF2 51 (2-Leiter-Ausführung)",
-        "Kühlen 17/22 °C · 1,5 kW je Gerät → 30,0 kW",
-        "Heizen 35/30 °C · 1,6 kW je Gerät → 32,0 kW",
+        "Kühlen 17/22 °C, Raum 27 °C, Stufe max:",
+        "1 516 W total / 1 061 W sensibel je Gerät",
+        "→ 30,3 kW total / 21,2 kW sensibel",
+        "Heizen 35/30 °C, Raum 20 °C: 1 593 W je Gerät → 31,9 kW",
+        "Wasser 261 l/h je Gerät · Δp 11,9 kPa · G 3/4\"",
         "Kondensatanschluss DN20 je Gerät",
         "Auslegung Kaltwasser: 16/21 °C sekundär,",
         "gleitend nach Taupunkt (Minimum 12 °C)",
@@ -265,10 +268,13 @@ def build(doc):
         "CHANGE-OVER: Heizen und Kühlen laufen über dieselben Leitungen, Puffer und Verbraucher — Umschaltung an den Wärmepumpen,",
         "saisonal umschalten (nicht täglich): jedes Umladen der Puffer kostet rund 30 kWh. Warmwasser läuft davon unabhängig weiter.",
         "KÜHLBETRIEB: Leitungen, Armaturen und Speicher dampfdiffusionsdicht dämmen (geschlossenzelliger Kautschuk, Stöße verklebt).",
-        "Die Eco-Skin-Vliesisolierung des PSM 800 ist NICHT diffusionsdicht. Kondensatanschlüsse der Umluftkühler mit Gefälle führen.",
+        "Die Eco-Skin-Vliesisolierung des PSM 800 ist NICHT diffusionsdicht. Kondensatanschlüsse der Konvektoren mit Gefälle führen.",
         "KALTWASSER: 16 °C Vorlauf sekundär (13 °C primär) hält die Anlage in fast allen Betriebspunkten über dem Taupunkt. Grenzen:",
         "primär nie unter 7 °C (ohne Glykol Vereisungsgefahr), sekundär nie unter 12 °C. Bedarf 30 kW gegen 59 kW Kälteleistung —",
         "die Reserve in eine HÖHERE Kaltwassertemperatur umsetzen (rund 2–3 % besserer EER je Kelvin), nicht in eine tiefere.",
+        "AUSLEGUNG: Für die Raumtemperatur zählt die SENSIBLE Leistung der Konvektoren — bei 17/22 °C sind das 21,2 kW, bei 14/19 °C",
+        "27,4 kW, bei 10/15 °C 35,8 kW (Katalogwerte DF2 51, interpoliert). Volumenstrom steigt dabei von 261 auf 439 l/h je Gerät —",
+        "vor einer tieferen Kaltwassertemperatur die Strangquerschnitte Ø22/Ø28/Ø35 auf max. 0,8 m/s nachrechnen.",
     ]):
         text(msp, s, (10, 24 - i * 7), 2.7)
 
