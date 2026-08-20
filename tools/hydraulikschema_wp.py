@@ -169,9 +169,9 @@ def build(doc):
     punkt(msp, (330, Y_HK_VL), "VL")
     punkt(msp, (330, Y_HK_RL), "RL")
     text(msp, "zu / von den", (385, Y_HK_VL - 5), 3.2)
-    text(msp, "Heiz-/Kühlflächen", (385, Y_HK_VL - 13), 3.2)
-    text(msp, "(z. B. FBH / Kühldecke,", (385, Y_HK_VL - 21), 2.8)
-    text(msp, "Taupunktüberwachung!)", (385, Y_HK_VL - 29), 2.8)
+    text(msp, "21 Umluftkühlgeräten", (385, Y_HK_VL - 13), 3.2)
+    text(msp, "à 1,5 kW (2-Leiter Change-Over,", (385, Y_HK_VL - 21), 2.8)
+    text(msp, "Kondensatablauf je Gerät)", (385, Y_HK_VL - 29), 2.8)
 
     # MAG + Fuellen/Entleeren am Ruecklauf-Sammler
     line(msp, (X_RL, 90), (X_RL, 82), "RL")
