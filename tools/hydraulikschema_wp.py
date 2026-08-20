@@ -83,15 +83,16 @@ def punkt(msp, p, layer):
 def build(doc):
     msp = doc.modelspace()
 
-    # --- Waermepumpen ------------------------------------------------------
-    for i, y0 in enumerate((150, 55)):  # WP1 oben, WP2 unten
+    # --- Waermepumpen (Kaskade, Prinzip: 2 Gruppen dargestellt) -----------
+    for i, y0 in enumerate((150, 55)):
         rect(msp, 10, y0, 85, y0 + 55, "WP")
-        text(msp, f"WÄRMEPUMPE {i + 1}", (47.5, y0 + 38), 4.5,
+        text(msp, ("WÄRMEPUMPEN 1–6", "WÄRMEPUMPEN 7–12")[i], (47.5, y0 + 38), 4.0,
              align=TextEntityAlignment.MIDDLE_CENTER)
-        text(msp, "reversibel", (47.5, y0 + 27), 3.2,
+        text(msp, "je 16 kW, reversibel", (47.5, y0 + 27), 3.2,
              align=TextEntityAlignment.MIDDLE_CENTER)
         text(msp, "Heizen / Kühlen / WW", (47.5, y0 + 19), 3.2,
              align=TextEntityAlignment.MIDDLE_CENTER)
+    text(msp, "Kaskade gesamt: 12 × 16 kW = 192 kW", (10, 137), 3.2)
 
     # Anschlusshoehen
     wp_vl = [195, 100]   # Vorlauf je WP
@@ -154,9 +155,11 @@ def build(doc):
     # Pufferspeicher 1+2 (unterhalb der Leitungen)
     for i, xs in enumerate((200, 280)):
         tank(msp, xs, 110, xs + 50, 195)
-        text(msp, f"PUFFERSPEICHER {i + 1}", (xs + 25, 152), 3.4,
+        text(msp, f"PUFFERSPEICHER {i + 1}", (xs + 25, 156), 3.4,
              align=TextEntityAlignment.MIDDLE_CENTER)
-        text(msp, "Heizen + Kühlen", (xs + 25, 143), 2.8,
+        text(msp, ("800 Liter", "500 Liter")[i], (xs + 25, 147), 3.0,
+             align=TextEntityAlignment.MIDDLE_CENTER)
+        text(msp, "Heizen + Kühlen", (xs + 25, 139), 2.8,
              align=TextEntityAlignment.MIDDLE_CENTER)
         line(msp, (xs + 12, Y_HK_VL), (xs + 12, 195), "VL")  # kreuzt HK-RL ohne Punkt
         punkt(msp, (xs + 12, Y_HK_VL), "VL")
