@@ -9,16 +9,52 @@ Typischer Fall: Ein Mitarbeiter bekommt eine Mahnung mit Kündigung der Kreditli
 Das Konto steht im Minus, die Bank kündigt an, Guthaben zu sperren und zu verrechnen.
 Das nächste **Gehalt wäre damit weg**. Genau das verhindert das P-Konto.
 
-## Reihenfolge (immer so)
+## Zuerst klären: Wo liegt künftig das Gehaltskonto?
+
+**Es ist nur EIN P-Konto pro Person erlaubt** (§ 850k ZPO). Der Schutz gehört deshalb
+immer an die Bank, bei der das **Gehalt eingeht** — nicht an die Bank, mit der der
+Streit läuft. Niemals bei zwei Banken gleichzeitig beantragen: Das meldet die Bank
+der SCHUFA.
+
+Daraus folgen zwei Wege:
+
+- **Es gibt schon ein anderes Konto** (oder eines wird eröffnet) → Gehalt dorthin, dieses
+  Konto als P-Konto führen lassen. An die alte Bank geht dann **kein** P-Konto-Verlangen,
+  sondern nur das Ratenzahlungsangebot.
+- **Es gibt nur das gesperrte Konto** → dieses als P-Konto führen lassen; § 901 Abs. 2 ZPO
+  greift dann direkt gegen die angedrohte Verrechnung.
+
+## Reihenfolge
 
 1. **Gehalt umleiten.** Wichtigster und schnellster Handgriff. Neue IBAN in die
    Lohnbuchhaltung. Solange der Lohn auf das gesperrte Konto läuft, ist er gefährdet.
-2. **P-Konto-Verlangen an die Bank** — Vorlage `vorlagen/pkonto-schreiben-muster.html`.
+   Zahlt der Arbeitgeber die Löhne manuell per Überweisung, entschärft das den Zeitdruck —
+   vorher fragen, statt Dringlichkeit zu behaupten.
+2. **P-Konto-Verlangen an die Bank des Gehaltskontos** — Vorlage
+   `vorlagen/pkonto-schreiben-muster.html`. IBAN **und BIC** angeben.
 3. **Bescheinigung nach § 903 ZPO** ausstellen — Vorlage
    `vorlagen/pkonto-bescheinigung-903-muster.html`. Darf der **Arbeitgeber** ausstellen,
    also LEANS Tech GmbH selbst. Kostet nichts.
-4. **Basiskonto** bei einer anderen Bank beantragen (§ 31 ZKG), dort als P-Konto führen.
-5. **Schuldnerberatung** vor Ort einschalten (kostenlos, staatlich anerkannt).
+4. **Ratenzahlungsangebot an die Gläubigerbank** — mit Einkommensbescheinigung und
+   Haushaltsaufstellung als Anlage.
+5. **Nur falls gar kein Konto vorhanden:** Basiskonto beantragen (§ 31 ZKG), dort als
+   P-Konto führen.
+6. **Schuldnerberatung** vor Ort einschalten (kostenlos, staatlich anerkannt).
+
+## Die Haushaltsaufstellung muss zur angebotenen Rate passen
+
+Erst rechnen, dann die Rate festlegen — nie umgekehrt. Bleibt in der Aufstellung ein
+Überschuss von mehreren hundert Euro und es werden trotzdem 70 EUR angeboten, lehnt die
+Bank ab und kennt nun die Zahlungsfähigkeit. Faustregel: Rate ≈ zwei Drittel des
+Überschusses, Laufzeit unter 15 Monaten.
+
+Typisch vergessene Ausgaben, aktiv abfragen: Kleidung und Windeln, Arzt- und
+Medikamentenkosten, Kfz-Steuer/Sprit/Wartung, Rundfunkbeitrag (18,36 EUR),
+Unterstützungszahlungen an Angehörige im Ausland, Rücklage für die
+Nebenkostennachzahlung, andere laufende Raten.
+
+**Niemals Ausgaben erfinden**, damit weniger Überschuss herauskommt — das wäre eine
+falsche Erklärung gegenüber der Bank, mit der Unterschrift des Schuldners darunter.
 
 ## Die Rechtsgrundlagen, auf die es ankommt
 
