@@ -7,3 +7,9 @@ mailer/sent_log.csv
 kosmos/zuordnung.json
 kosmos/daten.privat.js
 kosmos/quellen/
+
+# Depot: echte Wertpapierdaten bleiben lokal, nur das Muster ist im Repo
+depot*.csv
+watchlist.txt
+!vorlagen/depot-muster.csv
+!vorlagen/watchlist-muster.txt
