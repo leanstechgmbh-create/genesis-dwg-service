@@ -115,6 +115,19 @@ zuverlässig gefunden wird. Deshalb gilt für JEDE Suche in Google Drive
 5. Unabhängige Suchen (z. B. Drive + Gmail) **gleichzeitig** starten,
    nicht nacheinander — Geschwindigkeit zählt.
 
+## Fachwissen TGA (Skill `tga-wissen`)
+
+Bei JEDER fachlichen Frage — Heizung, Lüftung, Klima/Kälte, Sanitär/Trinkwasser,
+Elektro/MSR, Normen, Bau- und Vertragsrecht — zuerst den Skill `tga-wissen`
+nutzen (`.claude/skills/tga-wissen/`). Er enthält die Register aus dem
+Drive-Ordner „Fachwissen TGA" versioniert im Repo: Regelwerksübersichten,
+Pflichtprüfungen und Projektabläufe je Gewerk. Nur das Register des betroffenen
+Gewerks laden, nicht alle.
+
+Grenze: Die Register nennen Bezeichnung, Zweck und Prüfpunkt — keine
+Norm-Volltexte (urheberrechtlich geschützt). Fehlende Volltexte oder
+Herstellerdaten werden als offener Nachweis markiert, niemals erfunden.
+
 ## Gedächtnis (Graphiti-Konnektor)
 
 Wenn der Konnektor „Graphiti" verbunden ist (Einrichtung:
