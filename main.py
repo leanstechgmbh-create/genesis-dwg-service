@@ -10,6 +10,7 @@ from fastapi import FastAPI, Request, Header, HTTPException
 from fastapi.responses import (Response, JSONResponse, FileResponse,
                                StreamingResponse, PlainTextResponse)
 from dwg_core import have, modify_drawing
+import multi_cross
 from slack_bot import router as slack_router, slack_ready
 from mailer.core import versende, mail_bereit
 from social_poster import (insta_bereit, youtube_bereit, post_instagram_reel,
@@ -398,6 +399,56 @@ async def gpt_dialog(b: dict, x_genesis_key: str = Header(default=""), key: str 
                 "fazit": await gpt_bridge.fazit(thema, beitraege)}
     except RuntimeError as e:
         raise HTTPException(502, str(e))
+
+
+@app.post("/analyse-dwg")
+async def analyse_dwg(request: Request, x_genesis_key: str = Header(default="")):
+    """Multi Cross Anlagen — Analyse eines DWG/DXF-Plans.
+
+    Erkennt Außengeräte (AG), Innengeräte (IG), Klimaschichten und Abzweige.
+    Prüft auf typische Planungsfehler (zu viele IG/AG, fehlende Komponenten).
+    Erkennt auch BMS-Alarmhinweise im Plan (z. B. 'MB Alm', '01.01.2003'):
+      → Ursache: Pufferbatterie leer, Uhr springt auf Werksreset (01.01.2003),
+        Meldebaustein löst Alarm Klasse A (Dringend) aus.
+      → Lösung: Uhrzeit neu setzen (Siemens ACS/SYTE), Batterie tauschen,
+        Alarm quittieren.
+
+    Body (JSON):
+      dwg_base64  str  -> DWG als Base64
+      dxf_base64  str  -> DXF als Base64 (alternativ)
+      filename    str  -> Dateiname (optional, für Log)
+
+    Antwort: JSON mit schema_typ, aussengeraete, innengeraete,
+             abzweige, alarm_hinweise, warnungen, fehler, ok.
+    """
+    if API_KEY and x_genesis_key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    try:
+        b = await request.json()
+        is_dwg = bool(b.get("dwg_base64"))
+        raw = b.get("dwg_base64") or b.get("dxf_base64")
+        if not raw:
+            raise HTTPException(400, "dwg_base64 oder dxf_base64 fehlt")
+        if is_dwg and not have("dwg2dxf"):
+            raise HTTPException(500, "DWG-Leser nicht verfügbar")
+        import base64, tempfile, os
+        with tempfile.TemporaryDirectory() as t:
+            dxf = os.path.join(t, "analyse.dxf")
+            if is_dwg:
+                from dwg_core import dwg_to_dxf
+                dwg_in = os.path.join(t, "in.dwg")
+                open(dwg_in, "wb").write(base64.b64decode(raw))
+                dwg_to_dxf(dwg_in, dxf)
+            else:
+                open(dxf, "wb").write(base64.b64decode(raw))
+            bericht = multi_cross.analysiere(dxf)
+        return bericht
+    except HTTPException:
+        raise
+    except Exception as e:
+        return JSONResponse(status_code=500,
+                            content={"error": str(e),
+                                     "trace": traceback.format_exc()[-500:]})
 
 
 @app.post("/modify-dwg")
