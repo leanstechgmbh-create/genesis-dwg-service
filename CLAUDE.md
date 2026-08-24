@@ -135,6 +135,11 @@ suchen. Ablage ist Google Drive („GBrain"): Projektordner (z. B.
 Stammdaten (für alle Dokumente):
 - HR-Nr **HRB 249080 B** · USt-IdNr. **DE357948720**
 - E-Mail info@leanstech-gmbh.de · Tel. +491708280836 · www.leanstech-gmbh.de
+- **Persönliche Signatur (Stand 24.08.2026, VERBINDLICH):**
+  Semir Redzic · LEANS Tech GmbH · Tel. +49 1521 6607036 ·
+  sr@leanstech-gmbh.de · www.leanstech-klima.de · www.leanstechgmbh-hkls.de
+  Der Name **Semir Rastoder** ist FALSCH — niemals verwenden, auch wenn er
+  in älteren Mails auftaucht. Der Nutzer heißt **Semir Redzic**.
 - **Zahlungskonto auf Rechnungen (IMMER dieses): Adyen Bank** ·
   IBAN **DE24 1001 9000 1000 0012 17** · BIC ADYBDEB2XXX ·
   Kontoinhaber „Leans Tech GmbH" (so auf 2026-39/2026-40 verwendet)
@@ -180,14 +185,13 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
 
 ### E-Mail-Versand an Kunden (VERBINDLICH)
 
-- Rechnungen/Angebote an Kunden gehen IMMER vom Postfach **sr@** (IONOS)
-  raus — NIEMALS von leanstechgmbh@gmail.com, außer der Nutzer sagt es
-  ausdrücklich. Der Nutzer hat dafür eine eigene Schnittstelle
-  (IONOS + Gmail) in seinem n8n gebaut (semirredzic.app.n8n.cloud).
-- Ist der n8n-Connector in der Sitzung NICHT verbunden: EINMAL kurz
-  sagen, dass der Versand über sr@ gerade nicht möglich ist, und sofort
-  den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern. Nicht
-  wiederholt erklären oder diskutieren.
+- Rechnungen/Angebote an Kunden gehen IMMER vom Postfach **sr@** raus —
+  NIEMALS von leanstechgmbh@gmail.com, außer der Nutzer sagt es
+  ausdrücklich.
+- **Der n8n-Weg ist gelöscht (Stand 24.08.2026).** Nicht mehr erwähnen,
+  nicht mehr als Grund für „geht nicht" anführen. Der Versand läuft
+  direkt über den Gmail-Connector; sr@ ist dort als Absender hinterlegt.
+  Also: Mail einfach senden, statt Mailtext zum Kopieren zu liefern.
 - Der Gmail-Connector (leanstechgmbh@gmail.com) kann KEINE Anhänge in
   Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
   verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.
