@@ -58,6 +58,10 @@ Der Service LÄUFT in der Cloud. Eckdaten für jede Sitzung:
   **OpenAI-Guthaben leer** (429 insufficient_quota) — Nutzer klärt Aufladung
   auf platform.openai.com (dabei prüfen: richtiges Konto? Verbrauch durch
   Graphiti/n8n?). Danach läuft alles ohne weitere Änderung.
+- **Postfach sr@ (IONOS):** Endpunkte `/mail/entwurf` und `/mail/senden` sind
+  gebaut (`mailer/ionos.py`). Es fehlt nur noch `IONOS_MAIL_PASSWORT` in den
+  Cloud-Run-Variablen — Anleitung in `MAIL_SR_SETUP.md`. Prüfen über
+  `sr_mail` im Health.
 - **Noch offen:** Slack-Schlüssel (`slack:false`), Mail (`mail_ready:false`),
   Social-Keys, optional GCS-Bucket für den Nachrichten-Bus (`LEANS_OS_BUS.md`).
 
@@ -182,12 +186,20 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
 
 - Rechnungen/Angebote an Kunden gehen IMMER vom Postfach **sr@** (IONOS)
   raus — NIEMALS von leanstechgmbh@gmail.com, außer der Nutzer sagt es
-  ausdrücklich. Der Nutzer hat dafür eine eigene Schnittstelle
-  (IONOS + Gmail) in seinem n8n gebaut (semirredzic.app.n8n.cloud).
-- Ist der n8n-Connector in der Sitzung NICHT verbunden: EINMAL kurz
-  sagen, dass der Versand über sr@ gerade nicht möglich ist, und sofort
-  den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern. Nicht
-  wiederholt erklären oder diskutieren.
+  ausdrücklich.
+- **Der Weg dorthin führt über den eigenen Dienst**, nicht über n8n:
+  `POST /mail/entwurf` legt die fertige Mail **mit Anhängen** als Entwurf
+  in sr@ ab (`POST /mail/senden` verschickt direkt — nur nach Freigabe).
+  Beides mit `x-genesis-key`. Einrichtung und Klick-Anleitung:
+  `MAIL_SR_SETUP.md`, Code in `mailer/ionos.py`.
+  Health `GET /` zeigt `sr_mail: true`, sobald `IONOS_MAIL_USER` und
+  `IONOS_MAIL_PASSWORT` in Cloud Run gesetzt sind.
+- Steht dort `sr_mail: false`: EINMAL kurz sagen, dass in Cloud Run noch
+  das Postfach-Passwort fehlt (Schritt 1 in `MAIL_SR_SETUP.md`), und
+  sofort den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern.
+  Nicht wiederholt erklären oder diskutieren.
+- Der n8n-Connector (semirredzic.app.n8n.cloud) ist in Cloud-Sitzungen
+  meist nicht verbunden — nicht darauf warten, den Dienst nutzen.
 - Der Gmail-Connector (leanstechgmbh@gmail.com) kann KEINE Anhänge in
   Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
   verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.

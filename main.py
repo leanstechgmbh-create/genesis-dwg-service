@@ -12,6 +12,7 @@ from fastapi.responses import (Response, JSONResponse, FileResponse,
 from dwg_core import have, modify_drawing
 from slack_bot import router as slack_router, slack_ready
 from mailer.core import versende, mail_bereit
+from mailer import ionos
 from social_poster import (insta_bereit, youtube_bereit, post_instagram_reel,
                            post_youtube, post_nach_schluessel, lade_posts)
 import ai_bus, gpt_bridge
@@ -29,6 +30,7 @@ def health(request: Request):
     return {"service": "GENESIS", "status": "ok", "version": "4.0",
             "dwg_read": have("dwg2dxf"), "dwg_write": have("dxf2dwg"),
             "slack": slack_ready(), "mail_ready": mail_bereit(),
+            "sr_mail": ionos.ionos_bereit(),
             "instagram": insta_bereit(), "youtube": youtube_bereit(),
             "chatgpt": gpt_bridge.gpt_bereit(), "bus": ai_bus.bus_art()}
 
@@ -186,6 +188,58 @@ async def send_mails(request: Request, x_genesis_key: str = Header(default="")):
             resend=bool(b.get("resend", False)))
     except RuntimeError as e:
         raise HTTPException(400, str(e))
+
+@app.post("/mail/entwurf")
+def mail_entwurf(b: dict, x_genesis_key: str = Header(default=""), key: str = ""):
+    """Legt eine fertige Mail als Entwurf im IONOS-Postfach sr@ ab.
+
+    Es wird NICHTS verschickt — der Entwurf liegt mit allen Anhaengen im
+    Postfach, Semir prueft ihn und schickt ihn selbst los. Genau der Weg fuer
+    Rechnungen, Angebote und Behoerdenpost.
+
+    Body (JSON):
+      betreff     str   -> Pflicht
+      text        str   -> Pflicht, Mailtext (reiner Text)
+      an          str   -> Empfaenger, optional (Komma-getrennt)
+      cc          str   -> Kopie-Empfaenger, optional
+      antwort_auf str   -> Message-ID der Mail, auf die geantwortet wird
+      anhaenge    list  -> [{"dateiname": "x.pdf", "inhalt_base64": "..."}]
+    """
+    if API_KEY and x_genesis_key != API_KEY and key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    if not b.get("betreff") or not b.get("text"):
+        raise HTTPException(400, "betreff und text sind Pflicht")
+    try:
+        return ionos.entwurf(
+            an=b.get("an", ""), betreff=str(b["betreff"]), text=str(b["text"]),
+            anhaenge=b.get("anhaenge") or [], cc=b.get("cc"),
+            antwort_auf=b.get("antwort_auf", ""))
+    except RuntimeError as e:
+        raise HTTPException(503, str(e))
+    except Exception as e:
+        raise HTTPException(400, f"Entwurf fehlgeschlagen: {e}")
+
+@app.post("/mail/senden")
+def mail_senden(b: dict, x_genesis_key: str = Header(default=""), key: str = ""):
+    """Verschickt eine Mail direkt vom IONOS-Postfach sr@ (mit Anhaengen).
+
+    Gleicher Body wie /mail/entwurf, "an" ist hier Pflicht. Eine Kopie landet
+    im Ordner "Gesendet". Nur nutzen, wenn der Versand ausdruecklich
+    freigegeben ist — sonst /mail/entwurf.
+    """
+    if API_KEY and x_genesis_key != API_KEY and key != API_KEY:
+        raise HTTPException(401, "Ungueltiger Key")
+    if not b.get("an") or not b.get("betreff") or not b.get("text"):
+        raise HTTPException(400, "an, betreff und text sind Pflicht")
+    try:
+        return ionos.sende(
+            an=b["an"], betreff=str(b["betreff"]), text=str(b["text"]),
+            anhaenge=b.get("anhaenge") or [], cc=b.get("cc"),
+            antwort_auf=b.get("antwort_auf", ""))
+    except RuntimeError as e:
+        raise HTTPException(503, str(e))
+    except Exception as e:
+        raise HTTPException(400, f"Versand fehlgeschlagen: {e}")
 
 @app.post("/post-social")
 def post_social(b: dict, x_genesis_key: str = Header(default="")):
