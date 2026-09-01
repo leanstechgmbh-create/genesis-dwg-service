@@ -11,6 +11,8 @@ Code-Review. Kein eigenes Konto, keine Schlüssel, kostenlos.
 
 - ✅ Für dieses Repository eingetragen (`.claude/settings.json`, Abschnitt
   `enabledPlugins`) — gilt für alle, die hier arbeiten.
+- ✅ In Cloud-Sitzungen aktiv (am 01.09.2026 in einem frischen Container geprüft,
+  siehe unten).
 - ⬜ Auf dem PC von Semir noch nicht installiert → zwei Befehle, siehe unten.
 - ℹ️ **Kein Konflikt mit dem ECC-Plugin** (`SENIOR-PLUGIN-ANLEITUNG.md`):
   Superpowers bringt keine gleichnamigen Slash-Befehle mit, sondern 14 Skills,
@@ -73,24 +75,19 @@ Am PC: `/plugin uninstall superpowers@claude-plugins-official`.
 Für das Repository: den Eintrag `superpowers@claude-plugins-official` aus
 `.claude/settings.json` löschen.
 
-## Offener Punkt: Cloud-Sitzungen (Web, Handy, Slack-Bot)
+## Cloud-Sitzungen (Web, Handy, Slack-Bot) — läuft
 
-In einem frisch gestarteten Cloud-Container ist der Anthropic-Marktplatz noch
-nicht bekannt. Damit Superpowers dort ohne Handgriff mitkommt, müsste
-`.claude/settings.json` zusätzlich diesen Block enthalten:
+Am 26.08.2026 stand hier noch ein offener Punkt: Der Verdacht war, dass ein
+frisch gestarteter Cloud-Container den Anthropic-Marktplatz nicht kennt und
+`.claude/settings.json` deshalb zusätzlich einen `extraKnownMarketplaces`-Block
+bräuchte.
 
-```json
-"extraKnownMarketplaces": {
-  "claude-plugins-official": {
-    "source": { "source": "github", "repo": "anthropics/claude-plugins-official" }
-  }
-}
-```
+**Gegenprobe am 01.09.2026 in einem Container, der zwei Minuten alt war:
+nicht nötig.** `claude plugin list` meldete `superpowers@claude-plugins-official`
+als installiert und aktiv (Scope: project), die 14 Skills standen in der
+Skill-Liste der Sitzung. Der `enabledPlugins`-Eintrag allein genügt also —
+die Cloud-Umgebung holt das Plugin beim Start selbst.
 
-Das Schreiben in die geteilte Einstellungsdatei wurde in der Sitzung vom
-26.08.2026 von der Sicherheitsprüfung blockiert (Änderungen an gemeinsamen
-Einstellungen brauchen ausdrückliche Freigabe). Nachtragen lässt sich der
-Block jederzeit — entweder am PC mit
-`claude plugin marketplace add anthropics/claude-plugins-official --scope project`
-oder in einer Cloud-Sitzung, sobald die Freigabe erteilt ist.
-Für die Arbeit am PC ist der Block **nicht** nötig.
+(Die frühere Gegenprobe lief mit der nackten Kommandozeile und einer leeren
+Nutzerkonfiguration. Die bildet den Start einer Cloud-Sitzung nicht ab und
+hat in die Irre geführt.)
