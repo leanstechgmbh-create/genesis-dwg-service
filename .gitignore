@@ -3,6 +3,11 @@ __pycache__/
 .env
 mailer/sent_log.csv
 
+# Test-Artefakte
+.pytest_cache/
+.coverage
+htmlcov/
+
 # Kosmos: echte Geschaeftsdaten bleiben lokal
 kosmos/zuordnung.json
 kosmos/daten.privat.js
