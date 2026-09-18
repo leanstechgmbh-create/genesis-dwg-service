@@ -204,6 +204,25 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
   Entwürfe legen (getestet 07/2026, Anhang wird stillschweigend
   verworfen) — nicht erneut versuchen. Entwürfe dort nur auf Wunsch.
 
+### Ton in Kundenmails (VERBINDLICH)
+
+Kundenmails kurz und selbstbewusst halten. Wir bieten etwas an, wir
+betteln nicht.
+
+- **Nicht rechtfertigen, nicht mehrfach erklären.** Jeden Punkt einmal
+  sagen, dann stehen lassen. Begründungs-Schleifen („damit Sie
+  verstehen…", „der Grund dafür ist…") streichen.
+- **Keine bittende Sprache.** Raus mit „Falls etwas unklar sein sollte,
+  melden Sie sich gern jederzeit", „Wir würden uns sehr freuen",
+  „Selbstverständlich richten wir uns ganz nach Ihnen". Stattdessen
+  klare Sätze und ein konkreter nächster Schritt.
+- **Auf Augenhöhe schreiben:** eine Frage, ein Vorschlag, ein Termin.
+  Der Kunde entscheidet — das muss nicht erbeten werden.
+- **Fachliche Einschätzung gehört rein** (was dringend ist, was warten
+  kann, was wir empfehlen). Das ist Kompetenz, keine Rechtfertigung.
+- Länge: Nachfass- und Terminmails passen auf einen Bildschirm.
+  Lange Erklärblöcke nur, wenn der Kunde danach gefragt hat.
+
 ### Wartungsvertrag-Anfragen (Wartungs-Rechner) — VERBINDLICH
 
 Bei jeder Anfrage über den Wartungs-Rechner (leanstech-klima.de,
