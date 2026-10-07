@@ -86,6 +86,26 @@ python3 tools/mail_entwurf.py \
 Dafür müssen `IONOS_MAIL_USER` und `IONOS_MAIL_PASSWORT` in der Shell gesetzt
 sein (oder in einer lokalen `.env` stehen).
 
+### Aus Claude-Cloud-Sitzungen (claude.ai/code, Handy, Slack)
+
+In der Cloud sind die Mail-Ports zu IONOS gesperrt. Dort nimmt dasselbe Skript
+automatisch den Weg über den eigenen Dienst (`/mail/entwurf` bzw.
+`/mail/senden`) — Anhänge liest es selbst aus den Dateien, nichts muss
+abgetippt werden. Dafür einmalig (ohne Terminal):
+
+1. In der Claude-Sitzung oben in der Titelleiste das **Cloud-Umgebungs-Menü**
+   öffnen → **Bearbeiten**.
+2. **Netzwerkzugriff** auf **Benutzerdefiniert** stellen, die Standardliste
+   der Paketmanager drinlassen und unter **Erlaubte Domains** eintragen:
+   `genesis-dwg-service-24363325360.europe-west3.run.app`
+3. Unter **Umgebungsvariablen** eine Zeile anlegen:
+   `GENESIS_API_KEY=` + derselbe Wert wie in Cloud Run (beginnt mit
+   „Robertreder"). **Nicht in den Chat schreiben.**
+4. Speichern. Ab der **nächsten** neuen Sitzung kann Claude Mails mit Anhängen
+   von sr@ als Entwurf ablegen bzw. nach Freigabe verschicken.
+
+Voraussetzung bleibt Schritt 1 oben (Postfach-Passwort in Cloud Run).
+
 ---
 
 ## Technische Eckdaten
