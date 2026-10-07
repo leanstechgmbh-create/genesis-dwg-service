@@ -198,6 +198,12 @@ Dateiname: `<Datum> <Typ> <Nr> - LEANS Tech GmbH - <Betrag> EUR`.
   das Postfach-Passwort fehlt (Schritt 1 in `MAIL_SR_SETUP.md`), und
   sofort den fertigen Mailtext (An/Betreff/Text) zum Kopieren liefern.
   Nicht wiederholt erklären oder diskutieren.
+- In Cloud-Sitzungen läuft der Versand über `tools/mail_entwurf.py`
+  (nimmt ohne IONOS-Variablen automatisch den Weg über den Dienst, Anhänge
+  direkt aus Dateien — nie Base64 von Hand abtippen). Voraussetzung:
+  Run-Domain in den erlaubten Domains der Umgebung und `GENESIS_API_KEY` als
+  Umgebungsvariable (Anleitung: `MAIL_SR_SETUP.md`, Abschnitt
+  „Aus Claude-Cloud-Sitzungen").
 - Der n8n-Connector (semirredzic.app.n8n.cloud) ist in Cloud-Sitzungen
   meist nicht verbunden — nicht darauf warten, den Dienst nutzen.
 - Der Gmail-Connector (leanstechgmbh@gmail.com) kann KEINE Anhänge in
