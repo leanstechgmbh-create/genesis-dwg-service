@@ -1,0 +1,8 @@
+Wert;ISIN;Typ;Stueck;Kaufkurs;Kurs;Waehrung;Region;Branche;TER;Ziel
+MSCI World ETF;IE00B4L5Y983;ETF;120;78,40;104,20;EUR;Welt;Breit gestreut;0,20;40
+MSCI EM ETF;IE00B4L5YC18;ETF;90;38,10;44,60;EUR;Schwellenlaender;Breit gestreut;0,18;10
+Euro Staatsanleihen ETF;IE00B4WXJJ64;Anleihe-ETF;150;22,80;21,90;EUR;Europa;Anleihen;0,09;20
+Allianz;DE0008404005;Aktie;40;198,00;312,50;EUR;Europa;Versicherung;;10
+Siemens;DE0007236101;Aktie;25;131,00;214,80;EUR;Europa;Industrie;;10
+Apple;US0378331005;Aktie;30;142,00;229,40;USD;USA;Technologie;;5
+Tagesgeld;;Liquiditaet;1;9500,00;9500,00;EUR;Europa;Liquiditaet;;5

@@ -1,0 +1,6 @@
+# Watchlist — eine Zeile je Wert: Name;ISIN oder Ticker;Notiz
+# Zeilen mit # werden ueberlesen. Eigene Liste nicht ins Repo committen.
+MSCI World ETF;IE00B4L5Y983;Basisinvestment, nur Kosten und Indexaenderungen beobachten
+Allianz;DE0008404005;Dividende, Quartalszahlen Februar/August
+Siemens;DE0007236101;Industrieauftraege, Ausblick
+Apple;US0378331005;Waehrungsrisiko USD, Quartalszahlen Ende Januar
