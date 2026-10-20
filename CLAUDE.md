@@ -139,11 +139,11 @@ suchen. Ablage ist Google Drive („GBrain"): Projektordner (z. B.
 Stammdaten (für alle Dokumente):
 - HR-Nr **HRB 249080 B** · USt-IdNr. **DE357948720**
 - E-Mail info@leanstech-gmbh.de · Tel. +491708280836 · www.leanstech-gmbh.de
-- **Zahlungskonto auf Rechnungen (IMMER dieses): Adyen Bank** ·
-  IBAN **DE24 1001 9000 1000 0012 17** · BIC ADYBDEB2XXX ·
-  Kontoinhaber „Leans Tech GmbH" (so auf 2026-39/2026-40 verwendet)
-- Altes Konto Berliner Volksbank (DE21 1009 0000 2911 7280 04, BEVODEBB)
-  steht nur auf älteren Rechnungen — NICHT mehr für neue Rechnungen verwenden,
+- **Zahlungskonto auf Rechnungen (IMMER dieses, Anweisung Semir 20.10.2026):
+  Berliner Volksbank** · IBAN **DE21 1009 0000 2911 7280 04** · BIC BEVODEBB ·
+  Kontoinhaber „Leans Tech GmbH"
+- Adyen Bank (DE24 1001 9000 1000 0012 17, ADYBDEB2XXX) und Berliner
+  Sparkasse (DE80 1005 0000 0191 6542 21) NICHT mehr auf Rechnungen,
   außer der Nutzer sagt es ausdrücklich
 - Bauleistungen i. d. R. **§ 13b UStG** (Reverse Charge, 0 % USt):
   Pflichtsatz „Steuerschuldnerschaft des Leistungsempfängers (§ 13b UStG)."
@@ -162,7 +162,7 @@ Rechnungen IMMER nach `vorlagen/rechnung-muster.html` erstellen
    USt. % | Nettobetrag | Betrag — bei 2./3./x. AR wahlweise kumuliert
    (alle AR + Zwischensumme + „Abzüglich n. Abschlagsrechnung")
 6. Summenblock: Nettobetrag / USt. 0,00 % / **Gesamtsumme**
-7. §13b-Satz mit Adyen-Konto, Fußblock mit Stammdaten
+7. §13b-Satz mit Volksbank-Konto, Fußblock mit Stammdaten
 
 Regeln: Rechnungsnummer fortlaufend `<Jahr>-<n>` (Stand Juli 2026:
 zuletzt 2026-40 = 2. AR SP Construct/Mehringdamm).
