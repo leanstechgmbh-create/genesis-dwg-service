@@ -20,8 +20,8 @@ Verbindlicher Ablauf — KEINE Abweichungen vom Muster:
 3. **Positionstabelle:** Bei 2./3./x. AR kumuliert wie Rechnung 2026-8:
    alle bisherigen AR als Zeilen, Zwischensumme (grüne Linien), dann
    „Abzüglich n. Abschlagsrechnung" negativ. USt. immer 0,00 % (§ 13b).
-4. **Konto:** IMMER Adyen Bank, IBAN DE24 1001 9000 1000 0012 17,
-   BIC ADYBDEB2XXX — NIEMALS Berliner Volksbank (nur historisch).
+4. **Konto:** IMMER Berliner Volksbank, IBAN DE21 1009 0000 2911 7280 04,
+   BIC BEVODEBB (Anweisung Semir 20.10.2026) — nicht mehr Adyen/Sparkasse.
 5. **PDF rendern:**
    `/opt/pw-browsers/chromium-*/chrome-linux/chrome --headless --no-sandbox
    --disable-gpu --no-pdf-header-footer --print-to-pdf=<datei> <html>`
